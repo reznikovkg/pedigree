@@ -1,5 +1,7 @@
 <template>
-    <img :class=size :src=photo  alt="">
+  <div v-if="photo">
+    <img :class="'img__' + size" :src="photo"  alt="">
+  </div>
 </template>
 
 <script>
@@ -14,26 +16,29 @@
                 default: 'middle',
                 type: String
             }
-    }
+        }
     }
 </script>
 
 <style scoped lang="less">
-    .large{
-        width: 600px;
-        height: 450px;
-        object-fit: contain;
-    }
-
-    .middle{
-        width: 300px;
+    .img__large{
+        width: 200px;
         height: 300px;
-        object-fit: contain;
+        object-fit: cover;
+        border-radius: 12px;
     }
 
-    .small{
+    .img__middle{
         width: 150px;
-        height: 150px;
-        object-fit: contain;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+
+    .img__small{
+        width: 80px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 12px;
     }
 </style>
