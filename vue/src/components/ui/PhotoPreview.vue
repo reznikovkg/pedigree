@@ -1,6 +1,6 @@
 <template>
-  <div v-if="photo">
-    <img id="photo_preview" :class="'img--' + size" :src="photo"  alt="">
+  <div v-if="photo" class="photo-preview">
+    <img :class="'img--' + size" :src="photo"  alt="">
   </div>
 </template>
 
@@ -21,22 +21,24 @@
 </script>
 
 <style scoped lang="less">
-  #photo_preview{
-    object-fit: cover;
-    border-radius: 12px;
-  }
-  .img--large{
-    width: 200px;
-    height: 300px;
-  }
+  .photo-preview {
+    & img{
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    & .img--large{
+      width: 200px;
+      height: 300px;
+    }
 
-  .img--middle{
-    width: 150px;
-    height: 200px;
-}
+    & .img--middle{
+      width: 150px;
+      height: 200px;
+    }
 
-  .img--small{
-    width: 80px;
-    height: 120px;
+    & .img--small{
+      width: 80px;
+      height: 120px;
+    }
   }
 </style>
