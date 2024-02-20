@@ -3,26 +3,26 @@
     <form @submit.prevent="submitForm">
         <div class="form-row">
           <div class="form-group">
-            <input type="text" id="type" v-model="formData.type" placeholder="Тип">
+            <input class="form-group--Educ-inp" type="text"  v-model="formData.type" placeholder="Тип">
           </div>
           <div class="form-group">
-            <input type="text" id="level" v-model="formData.level" placeholder="Уровень">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <input type="text" id="startDate" v-model="formData.startDate" placeholder="Дата начала обучения">
-          </div>
-          <div class="form-group">
-            <input type="text" id="endDate" v-model="formData.endDate" placeholder="Дата завершения обучения">
+            <input class="form-group--Educ-inp" type="text"  v-model="formData.level" placeholder="Уровень">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <input type="text" id="institutionName" v-model="formData.institutionName" placeholder="Название учреждения">
+            <input class="form-group--Educ-inp" type="text"  v-model="formData.startDate" placeholder="Дата начала обучения">
           </div>
           <div class="form-group">
-            <input type="text" id="institutionCity" v-model="formData.institutionCity" placeholder="Город учреждения">
+            <input class="form-group--Educ-inp" type="text" v-model="formData.endDate" placeholder="Дата завершения обучения">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <input class="form-group--Educ-inp" type="text" v-model="formData.institutionName" placeholder="Название учреждения">
+          </div>
+          <div class="form-group">
+            <input class="form-group--Educ-inp" type="text" v-model="formData.institutionCity" placeholder="Город учреждения">
           </div>
         </div>
     </form>
@@ -35,21 +35,27 @@ export default {
   props: {
     education: {
       type: Object,
-      default: () => ({ 
+      required: true
+    }
+  },
+
+  data() {
+    return {
+      formData: {
         type: '',
         level: '',
         startDate: '',
         endDate: '',
         institutionName: '',
         institutionCity: ''
-      })
-    }
-  },
-  data() {
-    return {
-      formData: { ...this.education }
+      }
     };
   },
+
+  mounted() {
+    this.formData = { ...this.education };
+  },
+  
   methods: {
     submitForm() {
       this.$emit('submit', this.formData);
@@ -58,8 +64,7 @@ export default {
 };
 </script>
 
-<style scoped>
-
+ <style scoped lang = "less">
 .education-form {
   max-width: 450px;
   height:150px;
@@ -69,30 +74,27 @@ export default {
 .form-row {
   display: flex;
   justify-content: space-between;
-
-  margin-right:25px;
-  margin-left:25px;
+  margin-right:30px;
+  margin-left:30px;
 }
 
 .form-group {
   width: 195px;
   height: 40px;
   margin-top:8px;
-}
 
-
-input[type="text"] {
+&--Educ-inp {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 5px;
   border-color: rgba(0,0,0,0.6);
   background-color: rgba(0,0,0,0.04);
   height: 50%;
-  font-weight: bold;
 }
 
-input[type="text"]::placeholder {
+&--Educ-inp::placeholder {
   color: rgba(0,0,0,0.35);
+  font-weight: bold;
+    }
 }
-
 </style>
