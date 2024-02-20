@@ -49,7 +49,7 @@ export default {
         institutionName: '',
         institutionCity: ''
       }
-    };
+    }
   },
 
   mounted() {
@@ -61,34 +61,34 @@ export default {
       this.$emit('submit', this.formData);
     }
   }
-};
+}
 </script>
 
- <style scoped lang = "less">
+<style scoped lang="less">
 .education-form {
   max-width: 400px;
-  height:150px;
-  background-color:white;
+  height: 150px;
+  background-color: white;
 
 
-&__form-row {
-  display: flex;
-  justify-content: space-between;
-  margin-left:11px;
-
-
-&__form-group {
-  width: 195px;
-  height: 40px;
-  margin-top:8px;
-
-&__educ-inp {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  border-color: rgba(0,0,0,0.6);
-  background-color: rgba(0,0,0,0.04);
-  height: 50%;
+  &__form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 11px;
+  
+  
+    &__form-group {
+      width: 195px;
+      height: 40px;
+      margin-top: 8px;
+  
+      &__educ-inp {
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        border-color: rgba(0,0,0,0.6);
+        background-color: rgba(0,0,0,0.04);
+        height: 50%;
       }
     }
   }
