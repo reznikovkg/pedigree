@@ -20,13 +20,25 @@ export default {
   components: {
     PageLayout,
     EducationForm
+  },
+  data() {
+    return {
+      education: {
+        type: 'Бакалавриат',
+        level: 'Высшее',
+        startDate: '01.09.2019',
+        endDate: '31.08.2023',
+        institutionName: 'ВГУ',
+        institutionCity: ''
+      }
+    }
   }
 }
 </script>
 
 <style scoped>
-/* Стили для обертки страницы */
+
 .page-wrapper {
-  background-color: #fff; /* Белый цвет фона */
+  background-color: #fff; 
 }
 </style>
