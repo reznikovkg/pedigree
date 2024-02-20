@@ -37,8 +37,4 @@ export default {
 </script>
 
 <style scoped>
-
-.page-wrapper {
-  background-color: #fff; 
-}
 </style>

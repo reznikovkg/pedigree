@@ -61,23 +61,27 @@ export default {
 <style scoped>
 
 .education-form {
-  max-width: 400px;
+  max-width: 450px;
+  height:150px;
+  background-color:white;
 }
 
 .form-row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 5px;
+
+  margin-right:25px;
+  margin-left:25px;
 }
 
 .form-group {
-  width: 47%;
+  width: 195px;
   height: 40px;
+  margin-top:8px;
 }
 
 
 input[type="text"] {
-  width: 100%;
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 5px;
