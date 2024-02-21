@@ -1,6 +1,6 @@
 <template>
   <div class="education-form">
-    <form @submit.prevent="submitForm">
+    <form @submit.prevent="() => submitForm()">
       <div class="education-form__form-grid">
         <div class="education-form__form-grid__form-group">
           <input class="education-form__form-grid__form-group__educ-inp" type="text" v-model="formData.type" placeholder="Тип">
