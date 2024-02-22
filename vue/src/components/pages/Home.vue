@@ -5,7 +5,7 @@
       <button @click="() => openHelpModal()">Open modal</button>
     </section>
 
-<EducationForm :education="education" />
+    <EducationForm :education="education" />
   </PageLayout>
 </template>
 
@@ -21,7 +21,7 @@ export default {
     PageLayout,
     EducationForm
   },
-  data() {
+  data () {
     return {
       education: {
         type: 'Бакалавриат',

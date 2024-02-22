@@ -30,7 +30,7 @@ export default {
       required: true
     }
   },
-  data() {
+  data () {
     return {
       formData: {
         type: '',
@@ -46,7 +46,7 @@ export default {
     this.formData = { ...this.education };
   },
   methods: {
-    submitForm() {
+    submitForm () {
       this.$emit('submit', this.formData);
     }
   }
@@ -61,12 +61,14 @@ export default {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 5px;
+  
   &__form-group {
     width: 180px;
     height: 35px;
     margin-top: 6px;
     margin-left: 8px;
   }
+  
   &__educ-inp {
     padding: 8px;
     border: 1px solid #ccc;
