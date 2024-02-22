@@ -5,7 +5,8 @@
       <button @click="() => openHelpModal()">Open modal</button>
       <PersonCard :person="person" />
     </section>
-    <PhotoPreview size="large" photo="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666206241_12-mykaleidoscope-ru-p-kartinka-na-zastavku-oboi-12.jpg" />
+
+    <EducationForm :education="education" />
   </PageLayout>
 </template>
 
@@ -14,6 +15,8 @@ import PageLayout from '../parts/PageLayout'
 import { helpModal } from "@/mixins/modals";
 import PersonCard from '@/components/cards/PersonCard.vue';
 import PhotoPreview from '../ui/PhotoPreview.vue';
+import EducationForm from '../forms/EducationForm.vue';
+
 
 
 export default {
@@ -22,7 +25,8 @@ export default {
   components: {
     PageLayout,
     PhotoPreview,
-    PersonCard
+    PersonCard,
+    EducationForm
     
   },
   data() {
@@ -39,12 +43,19 @@ export default {
         biography: 'Родился в ...',
         activity: 'Бухгалтер',
         photo: '/pictures/ivan.jpg'
+      },
+      education: {
+        type: 'Бакалавриат',
+        level: 'Высшее',
+        startDate: '01.09.2019',
+        endDate: '31.08.2023',
+        institutionName: 'ВГУ',
+        institutionCity: ''
       }
     };
-   
   }
 }
 </script>
 
-<style>
+<style scoped>
 </style>
