@@ -5,7 +5,7 @@
       <button @click="() => openHelpModal()">Open modal</button>
       <PersonCard :person="person" />
     </section>
-
+    <PhotoPreview size="large" photo="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666206241_12-mykaleidoscope-ru-p-kartinka-na-zastavku-oboi-12.jpg" />
     <EducationForm :education="education" />
   </PageLayout>
 </template>
