@@ -51,13 +51,15 @@ export default {
     color:black;
   } 
 }
-h2{
+
+h2 {
   font-size: 14px;
   font-weight: 700;
   font-family:Arial;
   color:black;
 }
-h1{
+
+h1 {
   font-size: 18px;
   font-weight: 700;
   font-family:Arial;
