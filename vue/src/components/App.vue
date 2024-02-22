@@ -15,37 +15,6 @@ export default {
 }
 </script>
 
-<template>
-  <div>
-    <PersonPreviewCard :person="personData" />
-  </div>
-</template>
-
-
-
-<script>
-import PersonPreviewCard from '@/components/cards/PersonPreviewCard.vue';
-
-export default {
-  components: {
-    PersonPreviewCard,
-  },
-  data() {
-    return {
-      // Пример данных, подставьте ваши данные
-      personData: {
-        secondName: 'Фамилия',
-        firstName: 'Имя',
-        patronymic: 'Отчество',
-        birthDate: '1990-01-01',
-        id: 100,
-      },
-    };
-  },
-};
-</script>
-
-
 <style lang="less">
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap');
 
