@@ -1,7 +1,8 @@
 <template>
   <div>
     <RouterView />
-    <ModalContainer />
+    <ElButton type="primary">Кнопка</ElButton>
+    <ModalContainer />    
   </div>
 </template>
 
