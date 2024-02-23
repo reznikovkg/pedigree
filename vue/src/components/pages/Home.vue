@@ -3,6 +3,7 @@
     <section class="p-16">
       Homepage
       <button @click="() => openHelpModal()">Open modal</button>
+      <PersonCard :person="person" />
     </section>
     <WeddingForm :wedding="wedding" />
   </PageLayout>
