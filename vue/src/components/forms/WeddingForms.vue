@@ -13,7 +13,7 @@
 </template>
   
 <script>
-export default{
+export default {
   name: 'WeddingForm',
   props: {
     wedding: {
