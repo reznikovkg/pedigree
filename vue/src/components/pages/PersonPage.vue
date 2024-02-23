@@ -6,6 +6,7 @@
 
 <script>
 export default {
+  name: 'PersonPage',
   computed: {
     person() {
       // Здесь нужно получить объект человека по id из параметра страницы
