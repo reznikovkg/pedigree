@@ -1,13 +1,13 @@
 <template>
   <form class="wedding_form">
-    <div class="wedding_form--person">
-      <input class="wedding_form--inp" type="text" placeholder="Партнёр" v-model="person">
+    <div class="wedding_form__person">
+      <input class="wedding_form__inp" type="text" placeholder="Партнёр" v-model="form.partner.name">
     </div>
-    <div class="wedding_form--date_start">
-      <input class="wedding_form--inp" type="text" placeholder="Дата свадьбы" v-model="date_start">
+    <div class="wedding_form__date_start">
+      <input class="wedding_form__inp" type="text" placeholder="Дата свадьбы" v-model="form.date_start">
     </div>
-    <div class="wedding_form--date_end">
-      <input class="wedding_form--inp" type="text" placeholder="Дата развода" v-model="date_end">
+    <div class="wedding_form__date_end">
+      <input class="wedding_form__inp" type="text" placeholder="Дата развода" v-model="form.date_end">
     </div>
   </form>
 </template>
@@ -21,17 +21,17 @@ export default{
       type: Object
     }
   },
-  data() {
+  data(){
     return {
-      person: '',
-      date_start: '',
-      date_end: ''
-    }
+      form: {
+        partner: '',
+        date_start: '',
+        date_end: ''
+      }
+    };
   },
-  mounted: function() {
-    this.person = this.wedding.partner.name
-    this.date_start = this.wedding.date_start
-    this.date_end = this.wedding.date_end
+  mounted(){
+    this.form = {...this.wedding}
   }
 }
 </script>
@@ -44,19 +44,19 @@ export default{
   grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 15px;
   grid-row-gap: 15px;
-  &--inp{
+  &__inp{
     background: #f9f9f9;
     border-radius: 4px;
     padding: 5px;
     border: 1px solid #acacac;
   }
-  &--person{
+  &__person{
     grid-area: 1 / 1 / 2 / 2;
   }
-  &--date_start{
+  &__date_start{
     grid-area: 2 / 1 / 3 / 2;
   }
-  &--date_end{
+  &__date_end{
     grid-area: 2 / 2 / 3 / 2;
   }
 }
