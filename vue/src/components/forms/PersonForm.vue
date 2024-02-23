@@ -22,10 +22,10 @@
   </div>
 
   <div class="person-page__form-group-bottom">
-    <input class="person-page__inp-bottom" type="text" v-model="formData.occupation" placeholder="Род деятельности">
+    <textarea class="person-page__inp-bottom" type="text" v-model="formData.occupation" placeholder="Род деятельности"></textarea>
   </div>
   <div class="person-page__form-group-bottom">
-    <input class="person-page__inp-bottom" type="text" v-model="formData.bio" placeholder="Биография">
+    <textarea class="person-page__inp-bottom" type="text" v-model="formData.bio" placeholder="Биография"></textarea>
   </div>
   <button @click="submitForm" class="person-page__btn">Сохранить</button>
 </div>
