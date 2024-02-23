@@ -37,7 +37,7 @@ export default{
 </script>
   
 <style scoped lang="less">
-.wedding_form{
+.wedding_form {
   width: 450px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
