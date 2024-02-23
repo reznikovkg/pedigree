@@ -1,19 +1,17 @@
 <template>
   <div>
     <RouterView />
-    <el-button type="primary">Кнопка</el-button>
+    <ElButton type="primary">Кнопка</ElButton>
     <ModalContainer />
     
   </div>
 </template>
 
 <script>
-//import ButtonComponent from "@/components/ButtonComponent";
 import ModalContainer from "@/components/parts/ModalContainer";
 
 export default {
   components: {
-   // ButtonComponent,
     ModalContainer
   }
 }
@@ -32,16 +30,6 @@ a {
   text-decoration: none;
 }
 
-section {
-  background-color: @cBaseOne;
-  margin-bottom: 20px;
-  border-radius: 2px;
-  box-sizing: border-box;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-}
 
 h1, h2, h3, h4, h5 {
   font-family: @ffOne;
