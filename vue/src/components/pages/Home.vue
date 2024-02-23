@@ -6,30 +6,37 @@
     </section>
 
     <EducationForm :education="education" />
+    <PersonForm :person="person"/>
   </PageLayout>
 </template>
 
 <script>
-import PageLayout from '../parts/PageLayout'
+import PageLayout from '../parts/PageLayout';
 import { helpModal } from "@/mixins/modals";
 import EducationForm from '../forms/EducationForm.vue';
+import PersonForm from '../forms/PersonForm.vue';
+
 
 export default {
   name: 'HomePage',
   mixins: [helpModal],
   components: {
     PageLayout,
-    EducationForm
+    EducationForm,
+    PersonForm
+
   },
   data () {
     return {
-      education: {
-        type: 'Бакалавриат',
-        level: 'Высшее',
-        startDate: '01.09.2019',
-        endDate: '31.08.2023',
-        institutionName: 'ВГУ',
-        institutionCity: ''
+      person: {
+        lastName: 'Боклагов',
+        firstName: 'Егор',
+        middleName: 'Игоревич',
+        gender: 'Мужской',
+        birthDate: '',
+        deathDate: '',
+        occupation: 'Студент',
+        bio: ''
       }
     }
   }
