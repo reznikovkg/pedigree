@@ -53,10 +53,10 @@ export default{
   &__person{
     grid-area: 1 / 1 / 2 / 2;
   }
-  &__date_start{
+  &__date_start {
     grid-area: 2 / 1 / 3 / 2;
   }
-  &__date_end{
+  &__date_end {
     grid-area: 2 / 2 / 3 / 2;
   }
 }
