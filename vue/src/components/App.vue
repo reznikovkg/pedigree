@@ -49,6 +49,20 @@ h1, h2, h3, h4, h5 {
   margin: 0;
 }
 
+.appbutton {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  height: 75px;
+  width: 75px;
+  background-color: #EF5859;
+  border-radius: 50%;
+}
+
+.appbutton:hover {
+  background-color: #D34E50;
+}
+
 h2 {
   font-size: 32px;
 }
