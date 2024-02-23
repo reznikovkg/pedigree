@@ -30,7 +30,7 @@ export default{
       }
     };
   },
-  mounted(){
+  mounted () {
     this.form = {...this.wedding}
   }
 }
