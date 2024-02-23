@@ -2,8 +2,7 @@
   <div>
     <RouterView />
     <ElButton type="primary">Кнопка</ElButton>
-    <ModalContainer />
-    
+    <ModalContainer />    
   </div>
 </template>
 
@@ -30,15 +29,22 @@ a {
   text-decoration: none;
 }
 
+section {
+  background-color: @cBaseOne;
+  margin-bottom: 20px;
+  border-radius: 2px;
+  box-sizing: border-box;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
 
 h1, h2, h3, h4, h5 {
   font-family: @ffOne;
   color: @cBaseThree;
   margin: 0;
 }
-
-
-
 
 h2 {
   font-size: 32px;
@@ -83,5 +89,4 @@ h2 {
     }
   }
 }
-
 </style>
