@@ -16,7 +16,7 @@ import WeddingForm from '../forms/WeddingForm.vue';
 export default {
   name: 'HomePage',
   mixins: [helpModal],
-  data: () => {
+  data() {
     return{
       wedding: {
         partner: {

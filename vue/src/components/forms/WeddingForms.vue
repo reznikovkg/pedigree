@@ -21,7 +21,7 @@ export default{
       type: Object
     }
   },
-  data(){
+  data() {
     return {
       form: {
         partner: '',
