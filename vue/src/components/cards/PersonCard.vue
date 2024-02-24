@@ -1,7 +1,7 @@
 <template>
   <div class="person-card">
     <h1>{{ fullName }}</h1>
-    <span class="person-card__dates">{{ person.birth_date }} </span>
+    <span class="person-card__dates">{{ person.birth_date }}</span>
     <span v-if="person.die_date" class="person-card__dates"> - {{ person.die_date }}</span>
 
     <h2>Родители</h2> 
@@ -27,7 +27,7 @@ export default {
     }
   },
   computed: {
-    fullName() {
+    fullName () {
       return `${this.person.secondName} ${this.person.firstName} ${this.person.patronymic}`;
     }
   }
@@ -40,29 +40,16 @@ export default {
   &__dates {
     font-size: 12px;
     color: grey;
-    font-family:Arial;
-    padding-bottom:20px;
+    font-family: Arial;
+    padding-bottom: 20px;
   }
+
   &__information-text {
-    font-weight: normal;
+    font-weight: 500;
     font-size: 10px;
-    padding-bottom:20px;
-    font-family:Arial;
-    color:black;
+    padding-bottom: 20px;
+    font-family: Arial;
+    color: black;
   } 
-}
-
-h2 {
-  font-size: 14px;
-  font-weight: 700;
-  font-family:Arial;
-  color:black;
-}
-
-h1 {
-  font-size: 18px;
-  font-weight: 700;
-  font-family:Arial;
-  color:black;
 }
 </style>

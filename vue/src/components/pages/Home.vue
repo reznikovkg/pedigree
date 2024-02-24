@@ -7,7 +7,7 @@
     </section>
     <PhotoPreview size="large" photo="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666206241_12-mykaleidoscope-ru-p-kartinka-na-zastavku-oboi-12.jpg" />
     <EducationForm :education="education" />
-    <PersonForm :person="person" />
+    <WeddingForm :wedding="wedding" />
   </PageLayout>
 </template>
 
@@ -29,7 +29,7 @@ export default {
     EducationForm,
     PersonForm
   },
-  data() {
+  data () {
     return {
       person: {
         id: 'gi6437tf63i4ftfo43f',
@@ -39,10 +39,19 @@ export default {
         birth_date: '01.01.2000',
         die_date: '',
         gender: 'male',
-        children: ['y3g46yf34fy636b','3345fg35yg34f3f46'],
+        children: ['y3g46yf34fy636b', '3345fg35yg34f3f46'],
         biography: 'Родился в ...',
         activity: 'Бухгалтер',
         photo: '/pictures/ivan.jpg'
+      },
+      wedding: {
+        partner: {
+          id: '1',
+          name: 'Ivan',
+          second_name: 'Ivanov'
+        },
+        date_start: '01.01.2024',
+        date_end: '01.02.2024'
       },
       education: {
         type: 'Бакалавриат',
