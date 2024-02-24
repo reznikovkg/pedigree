@@ -1,13 +1,13 @@
 <template>
-  <form class="wedding_form">
-    <div class="wedding_form__person">
-      <input class="wedding_form__inp" type="text" placeholder="Партнёр" v-model="form.partner.name">
+  <form class="wedding-form">
+    <div class="wedding-form__person">
+      <input class="wedding-form__inp" type="text" placeholder="Партнёр" v-model="form.partner.name">
     </div>
-    <div class="wedding_form__date_start">
-      <input class="wedding_form__inp" type="text" placeholder="Дата свадьбы" v-model="form.date_start">
+    <div class="wedding-form__date-start">
+      <input class="wedding-form__inp" type="text" placeholder="Дата свадьбы" v-model="form.date_start">
     </div>
-    <div class="wedding_form__date_end">
-      <input class="wedding_form__inp" type="text" placeholder="Дата развода" v-model="form.date_end">
+    <div class="wedding-form__date-end">
+      <input class="wedding-form__inp" type="text" placeholder="Дата развода" v-model="form.date_end">
     </div>
   </form>
 </template>
@@ -37,7 +37,7 @@ export default {
 </script>
   
 <style scoped lang="less">
-.wedding_form {
+.wedding-form {
   width: 450px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -53,10 +53,10 @@ export default {
   &__person{
     grid-area: 1 / 1 / 2 / 2;
   }
-  &__date_start {
+  &__date-start {
     grid-area: 2 / 1 / 3 / 2;
   }
-  &__date_end {
+  &__date-end {
     grid-area: 2 / 2 / 3 / 2;
   }
 }
