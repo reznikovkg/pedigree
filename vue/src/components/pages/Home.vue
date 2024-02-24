@@ -19,8 +19,6 @@ import PhotoPreview from '../ui/PhotoPreview.vue';
 import EducationForm from '../forms/EducationForm.vue';
 import PersonForm from '../forms/PersonForm.vue';
 
-
-
 export default {
   name: 'HomePage',
   mixins: [helpModal],
@@ -30,7 +28,6 @@ export default {
     PersonCard,
     EducationForm,
     PersonForm
-    
   },
   data() {
     return {
@@ -55,7 +52,7 @@ export default {
         institutionName: 'ВГУ',
         institutionCity: ''
       }
-    };
+    }
   }
 }
 </script>

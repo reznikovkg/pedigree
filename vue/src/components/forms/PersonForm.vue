@@ -29,7 +29,7 @@
     <button @click="submitForm" class="person-page__btn">Сохранить</button>
   </div>
 </template>
-      
+
 <script>
 export default {
   name: 'PersonForm',
@@ -54,11 +54,11 @@ export default {
     }
   },
   mounted () {
-    this.formData = { ...this.person };
+    this.formData = { ...this.person }
   },
   methods: {
     submitForm () {
-      console.log(this.formData);
+      console.log(this.formData)
     }
   }
 }
@@ -75,13 +75,13 @@ export default {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 5px;
   }
-  
+
   &__form-group-grid {
     height: 35px;
     margin-top: 6px;
     margin-left: 8px;
   }
-  
+
   &__inp-grid {
     padding: 8px;
     border: 1px solid #ccc;
@@ -127,4 +127,3 @@ export default {
   }
 }
 </style>
-    
