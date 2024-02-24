@@ -6,11 +6,36 @@
       type="text"
       placeholder="Тип"
     >
-    <input class="education-form__input" type="text" v-model="formData.level" placeholder="Уровень">
-    <input class="education-form__input" type="text" v-model="formData.startDate" placeholder="Дата начала обучения">
-    <input class="education-form__input" type="text" v-model="formData.endDate" placeholder="Дата завершения обучения">
-    <input class="education-form__input" type="text" v-model="formData.institutionName" placeholder="Название учреждения">
-    <input class="education-form__input" type="text" v-model="formData.institutionCity" placeholder="Город учреждения">
+    <input
+      v-model="formData.level"
+      class="education-form__input"
+      type="text"
+      placeholder="Уровень"
+    >
+    <input
+      v-model="formData.startDate"
+      class="education-form__input"
+      type="text"
+      placeholder="Дата начала обучения"
+    >
+    <input
+      v-model="formData.endDate"
+      class="education-form__input"
+      type="text"
+      placeholder="Дата завершения обучения"
+    >
+    <input
+      v-model="formData.institutionName"
+      class="education-form__input"
+      type="text"
+      placeholder="Название учреждения"
+    >
+    <input
+      v-model="formData.institutionCity"
+      class="education-form__input"
+      type="text"
+      placeholder="Город учреждения"
+    >
   </div>
 </template>
 

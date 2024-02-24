@@ -2,31 +2,73 @@
   <div class="person-page">
     <div class="person-page__person-form">
       <div class="person-page__form-group-grid">
-        <input class="person-page__inp-grid" type="text" v-model="formData.secondName" placeholder="Фамилия">
+        <input
+          v-model="formData.secondName"
+          class="person-page__inp-grid"
+          type="text"
+          placeholder="Фамилия"
+        >
       </div>
       <div class="person-page__form-group-grid">
-        <input class="person-page__inp-grid" type="text" v-model="formData.firstName" placeholder="Имя">
+        <input
+          v-model="formData.firstName"
+          class="person-page__inp-grid"
+          type="text"
+          placeholder="Имя"
+        >
       </div>
       <div class="person-page__form-group-grid">
-        <input class="person-page__inp-grid" type="text" v-model="formData.patronymic" placeholder="Отчество">
+        <input
+          v-model="formData.patronymic"
+          class="person-page__inp-grid"
+          type="text"
+          placeholder="Отчество"
+        >
       </div>
       <div class="person-page__form-group-grid">
-        <input class="person-page__inp-grid" type="text" v-model="formData.gender" placeholder="Пол">
+        <input
+          v-model="formData.gender"
+          class="person-page__inp-grid"
+          type="text"
+          placeholder="Пол"
+        >
       </div>
       <div class="person-page__form-group-grid">
-        <input class="person-page__inp-grid" type="text" v-model="formData.birth_date" placeholder="Дата рождения">
+        <input
+          v-model="formData.birth_date"
+          class="person-page__inp-grid"
+          type="text"
+          placeholder="Дата рождения"
+        >
       </div>
       <div class="person-page__form-group-grid">
-        <input class="person-page__inp-grid" type="text" v-model="formData.die_date" placeholder="Дата смерти">
+        <input
+          v-model="formData.die_date"
+          class="person-page__inp-grid"
+          type="text"
+          placeholder="Дата смерти"
+        >
       </div>
     </div>
     <div class="person-page__form-group-bottom">
-      <textarea class="person-page__inp-bottom" type="text" v-model="formData.activity" placeholder="Род деятельности"></textarea>
+      <textarea
+        v-model="formData.activity"
+        class="person-page__inp-bottom"
+        type="text"
+        placeholder="Род деятельности"
+      >
+      </textarea>
     </div>
     <div class="person-page__form-group-bottom">
-      <textarea class="person-page__inp-bottom" type="text" v-model="formData.biography" placeholder="Биография"></textarea>
+      <textarea
+        v-model="formData.biography"
+        class="person-page__inp-bottom"
+        type="text"
+        placeholder="Биография"
+      >
+      </textarea>
     </div>
-    <button @click="submitForm" class="person-page__btn">Сохранить</button>
+    <button @click="() => submitForm()" class="person-page__btn">Сохранить</button>
   </div>
 </template>
 
