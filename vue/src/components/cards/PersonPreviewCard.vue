@@ -1,14 +1,14 @@
 <template>
 <div class="person-preview-card">
-  <div class="person-info">
-   <h2 class="second-name">{{ person.secondName }}</h2>
-   <h2 class="first-name">{{ person.firstName }}</h2>
-   <h2 class="patronymic">{{ person.patronymic }}</h2>
-   <span class="birth-date">{{ person.birthDate }}</span>
-   <span v-if="person.die_date" class="birth-date">- {{ person.die_date}}</span>
-   <span class="person-id" style="display: block;">id: {{ person.id }}</span>
+  <div class="person-preview-card__person-info">
+   <h2 class="person-preview-card__person-info__second-name">{{ person.secondName }}</h2>
+   <h2 class="person-preview-card__person-info__first-name">{{ person.firstName }}</h2>
+   <h2 class="person-preview-card__person-info__patronymic">{{ person.patronymic }}</h2>
+   <span class="person-preview-card__person-info__birth-date">{{ person.birthDate }}</span>
+   <span v-if="person.die_date" class="person-preview-card__person-info__birth-date">- {{ person.die_date}}</span>
+   <span class="person-preview-card__person-info__person-id" style="display: block;">id: {{ person.id }}</span>
   </div>
-  <div class="status-indicator"></div>
+  <div class="person-preview-card__person-info__status-indicator"></div>
 </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang = "less">
 .person-preview-card {
   background-color: white;
   border-radius: 24px;
@@ -38,41 +38,41 @@ export default {
   margin: 1em;
   width: 425px;
   height: 215px;
-  .person-info {
-   .second-name,
-   .first-name,
-   .patronymic,
-   .birth-date,
-   .person-id {
+  &__person-info {
+    &__second-name,
+    &__first-name,
+    &__patronymic,
+    &__birth-date,
+    &__person-id {
      margin-left: 5%;
      font-family: 'Inter', sans-serif;
-   }
-   .second-name {
+    }
+    &__second-name {
     margin-top: 5%;
     margin-bottom: 5%;
     color: black;
-   }
-   .first-name {
+    }
+    &__first-name {
      margin-bottom: 5%;
      color: black;
-   }
-   .patronymic {
+    }
+    &__patronymic {
      margin-bottom: 5%;
      color: black;
-   }
-   .birth-date {
+    }
+    &__birth-date {
     color: rgb(117, 117, 117);
     font-weight: bold;
     white-space: nowrap;
     }
-    .person-id {
+    &__person-id {
        margin-top: 17%;
        margin-bottom: 10%;
        font-weight: bold;
        color: rgb(117, 117, 117);
     }
   }
-  .status-indicator {
+  &__status-indicator {
     width: 25px;
     height: 25px;
     border-radius: 50%;
