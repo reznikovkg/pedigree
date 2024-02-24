@@ -1,8 +1,3 @@
-<script setup>
-import SimpleButton from "./components/ui/SimpleButton.vue";
-import NavigationPanel from "./components/ui/NavigationPanel.vue";
-</script>
-
 <template>
   <header>
     <div class="wrapper">
@@ -10,6 +5,18 @@ import NavigationPanel from "./components/ui/NavigationPanel.vue";
     </div>
   </header>
 </template>
+
+<script>
+import SimpleButton from "./components/ui/SimpleButton.vue";
+import NavigationPanel from "./components/ui/NavigationPanel.vue";
+
+export default {
+  components: {
+    SimpleButton,
+    NavigationPanel,
+  },
+};
+</script>
 
 <style scoped>
 header {
