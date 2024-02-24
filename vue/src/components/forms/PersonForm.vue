@@ -2,29 +2,29 @@
   <div class="person-page">
     <div class="person-page__person-form">
       <div class="person-page__form-group-grid">
-        <input class="person-page__inp-grid" type="text" v-model="formData.lastName" placeholder="Фамилия">
+        <input class="person-page__inp-grid" type="text" v-model="formData.secondName" placeholder="Фамилия">
       </div>
       <div class="person-page__form-group-grid">
         <input class="person-page__inp-grid" type="text" v-model="formData.firstName" placeholder="Имя">
       </div>
       <div class="person-page__form-group-grid">
-        <input class="person-page__inp-grid" type="text" v-model="formData.middleName" placeholder="Отчество">
+        <input class="person-page__inp-grid" type="text" v-model="formData.patronymic" placeholder="Отчество">
       </div>
       <div class="person-page__form-group-grid">
         <input class="person-page__inp-grid" type="text" v-model="formData.gender" placeholder="Пол">
       </div>
       <div class="person-page__form-group-grid">
-        <input class="person-page__inp-grid" type="text" v-model="formData.birthDate" placeholder="Дата рождения">
+        <input class="person-page__inp-grid" type="text" v-model="formData.birth_date" placeholder="Дата рождения">
       </div>
       <div class="person-page__form-group-grid">
-        <input class="person-page__inp-grid" type="text" v-model="formData.deathDate" placeholder="Дата смерти">
+        <input class="person-page__inp-grid" type="text" v-model="formData.die_date" placeholder="Дата смерти">
       </div>
     </div>
     <div class="person-page__form-group-bottom">
-      <textarea class="person-page__inp-bottom" type="text" v-model="formData.occupation" placeholder="Род деятельности"></textarea>
+      <textarea class="person-page__inp-bottom" type="text" v-model="formData.activity" placeholder="Род деятельности"></textarea>
     </div>
     <div class="person-page__form-group-bottom">
-      <textarea class="person-page__inp-bottom" type="text" v-model="formData.bio" placeholder="Биография"></textarea>
+      <textarea class="person-page__inp-bottom" type="text" v-model="formData.biography" placeholder="Биография"></textarea>
     </div>
     <button @click="submitForm" class="person-page__btn">Сохранить</button>
   </div>
@@ -42,14 +42,14 @@ export default {
   data () {
     return {
       formData: {
-        lastName: '',
+        secondName: '',
         firstName: '',
-        middleName: '',
+        patronymic: '',
         gender: '',
-        birthDate: '',
-        deathDate: '',
-        occupation: '',
-        bio: ''
+        birth_date: '',
+        die_date: '',
+        activity: '',
+        biography: ''
       }
     }
   },
@@ -63,7 +63,7 @@ export default {
   }
 }
 </script>
-      
+
 <style scoped lang="less">
 .person-page {
   background-color: white;
@@ -77,7 +77,6 @@ export default {
   }
   
   &__form-group-grid {
-    width: 180px;
     height: 35px;
     margin-top: 6px;
     margin-left: 8px;
@@ -114,7 +113,6 @@ export default {
   }
 
   &__btn {
-    grid-column: 1 / -1;
     justify-self: center;
     padding: 10px 20px;
     margin-top: 10px;

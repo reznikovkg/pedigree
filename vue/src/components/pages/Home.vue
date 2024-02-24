@@ -35,14 +35,17 @@ export default {
   data() {
     return {
       person: {
-        lastName: 'Иванов',
+        id: 'gi6437tf63i4ftfo43f',
+        secondName: 'Иванов',
         firstName: 'Иван',
-        middleName: 'Иванович',
-        gender: 'Мужской',
-        birthDate: '',
-        deathDate: '',
-        occupation: 'Студент',
-        bio: '',
+        patronymic: 'Иванович',
+        birth_date: '01.01.2000',
+        die_date: '',
+        gender: 'male',
+        children: ['y3g46yf34fy636b','3345fg35yg34f3f46'],
+        biography: 'Родился в ...',
+        activity: 'Бухгалтер',
+        photo: '/pictures/ivan.jpg'
       },
       education: {
         type: 'Бакалавриат',
