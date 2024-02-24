@@ -8,6 +8,7 @@
     <PhotoPreview size="large" photo="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666206241_12-mykaleidoscope-ru-p-kartinka-na-zastavku-oboi-12.jpg" />
     <EducationForm :education="education" />
     <WeddingForm :wedding="wedding" />
+    <PersonForm :person="person" />
   </PageLayout>
 </template>
 
@@ -17,6 +18,7 @@ import { helpModal } from "@/mixins/modals";
 import PersonCard from '@/components/cards/PersonCard.vue';
 import PhotoPreview from '../ui/PhotoPreview.vue';
 import EducationForm from '../forms/EducationForm.vue';
+import WeddingForm from '../forms/WeddingForm.vue'
 import PersonForm from '../forms/PersonForm.vue';
 
 export default {
@@ -27,6 +29,7 @@ export default {
     PhotoPreview,
     PersonCard,
     EducationForm,
+    WeddingForm,
     PersonForm
   },
   data () {
