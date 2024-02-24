@@ -1,73 +1,57 @@
 <template>
   <div class="person-page">
-    <div class="person-page__person-form">
-      <div class="person-page__form-group-grid">
-        <input
-          v-model="formData.secondName"
-          class="person-page__inp-grid"
-          type="text"
-          placeholder="Фамилия"
-        >
-      </div>
-      <div class="person-page__form-group-grid">
-        <input
-          v-model="formData.firstName"
-          class="person-page__inp-grid"
-          type="text"
-          placeholder="Имя"
-        >
-      </div>
-      <div class="person-page__form-group-grid">
-        <input
-          v-model="formData.patronymic"
-          class="person-page__inp-grid"
-          type="text"
-          placeholder="Отчество"
-        >
-      </div>
-      <div class="person-page__form-group-grid">
-        <input
-          v-model="formData.gender"
-          class="person-page__inp-grid"
-          type="text"
-          placeholder="Пол"
-        >
-      </div>
-      <div class="person-page__form-group-grid">
-        <input
-          v-model="formData.birth_date"
-          class="person-page__inp-grid"
-          type="text"
-          placeholder="Дата рождения"
-        >
-      </div>
-      <div class="person-page__form-group-grid">
-        <input
-          v-model="formData.die_date"
-          class="person-page__inp-grid"
-          type="text"
-          placeholder="Дата смерти"
-        >
-      </div>
-    </div>
-    <div class="person-page__form-group-bottom">
-      <textarea
-        v-model="formData.activity"
-        class="person-page__inp-bottom"
+    <div class="person-page__form">
+      <input
+        v-model="formData.secondName"
+        class="person-page__input"
         type="text"
-        placeholder="Род деятельности"
+        placeholder="Фамилия"
       >
-      </textarea>
-    </div>
-    <div class="person-page__form-group-bottom">
-      <textarea
-        v-model="formData.biography"
-        class="person-page__inp-bottom"
+      <input
+        v-model="formData.firstName"
+        class="person-page__input"
         type="text"
-        placeholder="Биография"
+        placeholder="Имя"
       >
-      </textarea>
+      <input
+        v-model="formData.patronymic"
+        class="person-page__input"
+        type="text"
+        placeholder="Отчество"
+      >
+      <input
+        v-model="formData.gender"
+        class="person-page__input"
+        type="text"
+        placeholder="Пол"
+      >
+      <input
+        v-model="formData.birth_date"
+        class="person-page__input"
+        type="text"
+        placeholder="Дата рождения"
+      >
+      <input
+        v-model="formData.die_date"
+        class="person-page__input"
+        type="text"
+        placeholder="Дата смерти"
+      >
     </div>
+    <textarea
+      v-model="formData.activity"
+      class="person-page__input-bottom"
+      type="text"
+      placeholder="Род деятельности"
+    >
+    </textarea>
+    <textarea
+      v-model="formData.biography"
+      class="person-page__input-bottom"
+      type="text"
+      placeholder="Биография"
+    >
+    </textarea>
     <button @click="() => submitForm()" class="person-page__btn">Сохранить</button>
   </div>
 </template>
@@ -111,47 +95,33 @@ export default {
   background-color: white;
   max-width: 400px;
 
-  &__person-form {
+  &__form {
     max-width: 400px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 5px;
+    grid-gap: 17px;
+    padding: 10px;
   }
 
-  &__form-group-grid {
-    height: 35px;
-    margin-top: 6px;
-    margin-left: 8px;
-  }
-
-  &__inp-grid {
+  &__input {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
     border-color: rgba(0,0,0,0.6);
     background-color: rgba(0,0,0,0.04);
-    height: 50%;
-    font-weight: bold;
-    width: 163px;
+    font-weight: 600;
+    width: 160px;
   }
 
-  &__form-group-bottom {
-    width: 365px;
-    height: 70px;
-    margin-top: 6px;
-    margin-left: 8px;
-  }
-
-  &__inp-bottom {
-    width: 100%;
+  &__input-bottom {
+    width: 90%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
     border-color: rgba(0,0,0,0.6);
     background-color: rgba(0,0,0,0.04);
-    height: 50px;
-    margin-bottom: 10px;
-    font-weight: bold;
+    margin: 10px;
+    font-weight: 600;
   }
 
   &__btn {
@@ -162,7 +132,7 @@ export default {
     border-radius: 5px;
     background-color: aqua;
     color: black;
-    font-weight: bold;
+    font-weight: 600;
     cursor: pointer;
     margin-left: 280px;
     margin-bottom: 20px;
