@@ -44,13 +44,13 @@ export default {
   grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 15px;
   grid-row-gap: 15px;
-  &__inp{
+  &__inp {
     background: #f9f9f9;
     border-radius: 4px;
     padding: 5px;
     border: 1px solid #acacac;
   }
-  &__person{
+  &__person {
     grid-area: 1 / 1 / 2 / 2;
   }
   &__date-start {
