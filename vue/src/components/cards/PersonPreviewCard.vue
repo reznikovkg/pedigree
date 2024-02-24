@@ -40,11 +40,12 @@ export default {
 }
 
 .person-info {
+
     .second-name,
     .first-name,
     .patronymic,
     .birth-date,
-    .person-id{
+    .person-id {
         margin-left: 5%;
         font-family: 'Inter', sans-serif;
     }
