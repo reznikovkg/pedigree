@@ -1,15 +1,20 @@
 <template>
   <div v-if="photo" class="photo-preview">
-    <img class="photo-preview__img" :class="'photo-preview__img--' + size" :src="photo"  alt="">
+    <img
+      class="photo-preview__img"
+      :class="'photo-preview__img--' + size"
+      :src="photo"
+      alt="Фото"
+    >
   </div>
 </template>
 
 <script>
-export default{
+export default {
   name: 'PhotoPreview',
   props: {
     photo: {
-      default: null,
+      default: '',
       type: String
     },
     size: {
@@ -22,20 +27,22 @@ export default{
 
 <style scoped lang="less">
 .photo-preview {
-  &__img{
+
+  &__img {
     object-fit: cover;
     border-radius: 12px;
-    &--large{
+
+    &--large {
       width: 200px;
       height: 300px;
     }
 
-    &--middle{
+    &--middle {
       width: 150px;
       height: 200px;
     }
 
-    &--small{
+    &--small {
       width: 80px;
       height: 120px;
     }
