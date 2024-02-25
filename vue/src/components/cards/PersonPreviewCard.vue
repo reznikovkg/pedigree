@@ -1,14 +1,14 @@
 <template>
 <div class="person-preview-card">
   <div class="person-preview-card__person-info">
-   <h2 class="person-preview-card__person-info__second-name">{{ person.secondName }}</h2>
-   <h2 class="person-preview-card__person-info__first-name">{{ person.firstName }}</h2>
-   <h2 class="person-preview-card__person-info__patronymic">{{ person.patronymic }}</h2>
-   <span class="person-preview-card__person-info__birth-date">{{ person.birthDate }}</span>
-   <span v-if="person.die_date" class="person-preview-card__person-info__birth-date">- {{ person.die_date}}</span>
-   <span class="person-preview-card__person-info__person-id" style="display: block;">id: {{ person.id }}</span>
+    <h2 class="person-preview-card__person-info__top-name">{{ person.secondName }}</h2>
+    <h2 class="person-preview-card__person-info__non-top-name">{{ person.firstName }}</h2>
+    <h2 class="person-preview-card__person-info__non-top-name">{{ person.patronymic }}</h2>
+    <span class="person-preview-card__person-info__birth-date">{{ person.birthDate }}</span>
+    <span v-if="person.die_date" class="person-preview-card__person-info__die-date">- {{person.die_date}}</span>
+    <span class="person-preview-card__person-info__person-id" style="display: block;">id: {{ person.id }}</span>
   </div>
-  <div class="person-preview-card__person-info__status-indicator"></div>
+  <div class="person-preview-card__status-indicator"></div>
 </div>
 </template>
 
@@ -29,7 +29,7 @@ export default {
   background-color: white;
   border-radius: 24px;
   background-color: #f5f5f5;
-  box-shadow: 1.5px 7px 5px 1.5px rgba(0, 0, 0, 0.1), -1.5px 7px 5px -1.5px rgba(0, 0, 0, 0.2);
+  box-shadow: 1.5px 7px 5px 1.5px #0000001a, -1.5px 7px 5px -1.5px #00000033;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,46 +39,49 @@ export default {
   width: 425px;
   height: 215px;
   &__person-info {
-    &__second-name,
-    &__first-name,
+    &__top-name,
+    &__non-top-name,
     &__patronymic,
     &__birth-date,
+    &__die-date,
     &__person-id {
-     margin-left: 5%;
+     margin-left: 10px;
      font-family: 'Inter', sans-serif;
     }
-    &__second-name {
-    margin-top: 5%;
-    margin-bottom: 5%;
-    color: black;
+    &__top-name {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #000000;
     }
-    &__first-name {
-     margin-bottom: 5%;
-     color: black;
-    }
-    &__patronymic {
-     margin-bottom: 5%;
-     color: black;
+    &__non-top-name {
+     margin-bottom: 10px;
+     color: #000000;
     }
     &__birth-date {
-    color: rgb(117, 117, 117);
+    color: #757575;
     font-weight: bold;
     white-space: nowrap;
     }
+    &__die-date {
+    color: #757575;
+    font-weight: bold;
+    white-space: nowrap;
+    margin-left: 3px;
+    }
     &__person-id {
-       margin-top: 17%;
-       margin-bottom: 10%;
+       margin-top: 34px;
+       margin-bottom: 20px;
        font-weight: bold;
-       color: rgb(117, 117, 117);
+       color: #757575;
     }
   }
   &__status-indicator {
     width: 25px;
     height: 25px;
-    border-radius: 50%;
-    margin-top: 3%;
-    margin-right: 3%;
-    background-color: rgb(173, 255, 180);
+    border-radius: 24px;
+    margin-top: 14px;
+    margin-right: 15px;
+    background-color: #adffb4;
     position: absolute;
     top: 10px;
     right: 10px;
