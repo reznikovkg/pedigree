@@ -2,30 +2,14 @@
     <PageLayout>
       <router-link to="/">Go back</router-link>
       <div class="persons">
-        <h3>Добавить нового ребенка:</h3>
-        <div class="persons__add">
-        <input placeholder="name" />
-        <input placeholder="surname" />
-        <input placeholder="patronomyc" />
-        <input type="date" placeholder="birth date" />
-        <input type="date" placeholder="die date" />
-        <select>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-        </select>
-        <input placeholder="biography" />
-        <input placeholder="activity" />
-        <div>
-          <button>add</button>
+        <PersonAdd />
+        <h3>Текущие люди:</h3>
+        <div class="persons__item" v-for="(p, index) in allPersons" :key="p.id">
+          <span class="persons__index">#{{ index + 1 }}</span>
+          <button class="persons__select-btn" @click="handleClick(p.id)">
+            {{ p.firstName }} {{ p.secondName }}, {{ p.gender }}
+          </button>
         </div>
-      </div>
-      <h3>Текущие дети:</h3>
-      <div class="persons__item" v-for="(p, index) in allPersons" :key="p.id">
-        <span class="persons__index">#{{ index + 1 }}</span>
-        <button class="persons__select-btn" @click="handleClick(p.id)">
-          {{ p.firstName }} {{ p.secondName }}, {{ p.gender }}
-        </button>
-      </div>
       </div>
     </PageLayout>
   </template>
@@ -34,9 +18,11 @@
   import PageLayout from "../../components/parts/PageLayout.vue";
   import { mapGetters } from "vuex";
   import { PERSONS_ROUTE } from "@/router/routes";
+  import PersonAdd from "@/components/personInputs/PersonAdd.vue";
   export default {
     name: "PersonPage",
     components: {
+      PersonAdd,
       PageLayout
     },
     data() {
@@ -70,13 +56,6 @@
     display: flex;
     flex-direction: column;
   gap: @indentMedium;
-  
-  &__add {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
 
   &__item {
     display: flex;
