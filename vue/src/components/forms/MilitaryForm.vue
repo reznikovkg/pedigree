@@ -1,49 +1,49 @@
 <template>
   <form class="military-form">
-    <div class="military-form__type">
-      <el-input
-      v-model="form.type" 
-      :disabled="military.type ? true : false"
-      class="military-form__inp" 
-      type="text" 
-      placeholder="Тип" 
-      ></el-input>
-    </div>
-    <div class="military-form__rank">
-        <el-input 
-        v-model="form.rank"
-        :disabled="military.rank ? true : false"
+    <div class="military-form__container">
+      <elInput
+        v-model="form.type" 
+        :disabled="military.type ? true : false"
         class="military-form__inp" 
         type="text" 
-        placeholder="Звание, должность" 
-        ></el-input>
+        placeholder="Тип" 
+      />
     </div>
-    <div class="military-form__date-start">
-        <el-input
-        v-model="form.date_start"
-        :disabled="military.date_start ? true : false" 
-        class="military-form__inp" 
-        type="text" 
-        placeholder="Дата начала службы" 
-        ></el-input>
+    <div class="military-form__container">
+        <elInput 
+          v-model="form.rank"
+          :disabled="military.rank ? true : false"
+          class="military-form__inp" 
+          type="text" 
+          placeholder="Звание, должность" 
+        />
     </div>
-    <div class="military-form__date-end">
-        <el-input 
-        v-model="form.date_end"
-        :disabled="military.date_end ? true : false" 
-        class="military-form__inp" 
-        type="text" 
-        placeholder="Дата конца службы" 
-        ></el-input>
+    <div class="military-form__container">
+        <elInput
+          v-model="form.date_start"
+          :disabled="military.date_start ? true : false" 
+          class="military-form__inp" 
+          type="text" 
+          placeholder="Дата начала службы" 
+        />
+    </div>
+    <div class="military-form__container">
+        <elInput 
+          v-model="form.date_end"
+          :disabled="military.date_end ? true : false" 
+          class="military-form__inp" 
+          type="text" 
+          placeholder="Дата конца службы" 
+        />
     </div>
     <div class="military-form__description">
-        <el-input
-        v-model="form.description" 
-        :disabled="military.description ? true : false" 
-        class="military-form__inp" 
-        type="textarea"
-        placeholder="Описание" 
-        ></el-input>
+        <elInput
+          v-model="form.description" 
+          :disabled="military.description ? true : false" 
+          class="military-form__inp" 
+          type="textarea"
+          placeholder="Описание" 
+        />
     </div>
   </form>
 </template>
@@ -98,18 +98,6 @@ export default {
   grid-template-rows: repeat(2, 1fr);
   grid-gap: 15px;
   padding: 8px;
-  &__type {
-    grid-area: 1 / 1 / 2 / 2;
-  }
-  &__rank {
-    grid-area: 1 / 2 / 2 / 3;
-  }
-  &__date-start {
-    grid-area: 2 / 1 / 3 / 2;
-  }
-  &__date-end {
-    grid-area: 2 / 2 / 3 / 2;
-  }
   &__description {
     grid-area: 3 / 1 / 4 / 3;
   }
