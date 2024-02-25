@@ -49,6 +49,12 @@ h5 {
   margin: 0;
 }
 
+p,
+span {
+  font-family: @ffOne;
+  color: @cBaseThree;
+}
+
 h2 {
   font-size: 32px;
 }

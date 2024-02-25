@@ -72,7 +72,7 @@ const initialState = [
 export default {
     namespaced: true,
     state: {
-        persons: initialState
+        persons: JSON.parse(localStorage.getItem("persons")) || initialState
     },
     getters: {
         getAllPersons: (state) => state.persons,
@@ -95,9 +95,11 @@ export default {
         addPerson: (state, payload) => {
             const newId = genHash();
             state.persons.push({ id: newId, ...payload });
+            localStorage.setItem("persons", JSON.stringify(state.persons));
           },
           deletePerson: (state, payload) => {
             state.persons = state.persons.filter((p) => p.id !== payload);
+            localStorage.setItem("persons", JSON.stringify(state.persons));
           },
           editPerson: (state, payload) => {
             state.persons = state.persons.map((p) => {
@@ -106,6 +108,7 @@ export default {
               }
               return p;
             });
+            localStorage.setItem("persons", JSON.stringify(state.persons));
           }
         }
       };
