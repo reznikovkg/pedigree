@@ -9,6 +9,7 @@
     <EducationForm :education="education" />
     <WeddingForm :wedding="wedding" />
     <PersonForm :person="person" />
+    <MilitaryForm :military="military"/>
   </PageLayout>
 </template>
 
@@ -20,6 +21,7 @@ import PhotoPreview from '../ui/PhotoPreview.vue'
 import EducationForm from '../forms/EducationForm.vue'
 import WeddingForm from '../forms/WeddingForm.vue'
 import PersonForm from '../forms/PersonForm.vue'
+import MilitaryForm from '../forms/MilitaryForm.vue'
 
 export default {
   name: 'HomePage',
@@ -30,7 +32,8 @@ export default {
     PersonCard,
     EducationForm,
     WeddingForm,
-    PersonForm
+    PersonForm,
+    MilitaryForm,
   },
   data () {
     return {
@@ -63,6 +66,13 @@ export default {
         endDate: '31.08.2023',
         institutionName: 'ВГУ',
         institutionCity: ''
+      },
+      military: {
+        type: 'Контракт',
+        rank: 'Рядовой',
+        date_start: '01.01.2024',
+        date_end: '01.03.2025',
+        description: 'Служил в мото-стрелковой дивизии под Калининградом'
       }
     }
   }
