@@ -8,14 +8,14 @@
 
 <script>
 export default {
-  name: 'PageLayout',
+  name: "PageLayout",
   props: {
     loading: {
       type: Boolean,
       default: false
     }
   }
-}
+};
 </script>
 
 <style scoped lang="less">
@@ -27,5 +27,6 @@ export default {
   overflow: auto;
   box-sizing: border-box;
   max-width: 1000px;
+  background: lightgrey;
 }
 </style>

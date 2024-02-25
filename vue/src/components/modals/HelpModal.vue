@@ -1,13 +1,11 @@
 <template>
   <ModalComponent>
     <div>
-      {{ params.title || 'HelpModal' }}
+      {{ params.title || "HelpModal" }}
     </div>
-    <button @click="() => $emit('close')">
-      Close
-    </button>
+    <button @click="() => $emit('close')"> Close</button>
     <div>
-      {{ params.message || 'HelpMessage' }}
+      {{ params.message || "HelpMessage" }}
     </div>
     <div>
       <button
@@ -34,28 +32,26 @@ export default {
     params: Object
   },
   methods: {
-    click (btn) {
+    click(btn) {
       if (btn.click) {
-        this.clickHandler(btn.click)
+        this.clickHandler(btn.click);
       }
 
       if (btn.afterClick) {
-        this.clickHandler(btn.afterClick)
+        this.clickHandler(btn.afterClick);
       }
     },
-    clickHandler (click) {
-      if (typeof click === 'string') {
-        if (click === 'emitClose') {
-          return this.$emit('close')
+    clickHandler(click) {
+      if (typeof click === "string") {
+        if (click === "emitClose") {
+          return this.$emit("close")
         }
       }
 
-      return click()
+      return click();
     }
   }
-}
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

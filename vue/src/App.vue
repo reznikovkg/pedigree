@@ -6,17 +6,17 @@
 </template>
 
 <script>
-import ModalContainer from "@/components/parts/ModalContainer";
+import ModalContainer from "@/components/parts/ModalContainer.vue";
 
 export default {
   components: {
     ModalContainer
   }
-}
+};
 </script>
 
 <style lang="less">
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap");
 
 body {
   margin: 0;
@@ -39,7 +39,11 @@ section {
   }
 }
 
-h1, h2, h3, h4, h5 {
+h1, 
+h2,
+h3, 
+h4,
+h5 {
   font-family: @ffOne;
   color: @cBaseThree;
   margin: 0;
@@ -76,7 +80,7 @@ h2 {
     position: relative;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       left: 0;
       top: 0;

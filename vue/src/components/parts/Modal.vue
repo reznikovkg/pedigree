@@ -9,12 +9,12 @@
 <script>
 export default {
   name: "ModalRCMS"
-}
+};
 </script>
 
 <style scoped lang="less">
 .modal {
-  background: #EBEEF2;
+  background: #ebeef2;
   border-radius: 5px;
 
   &__wrapper {
