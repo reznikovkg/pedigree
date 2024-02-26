@@ -1,11 +1,12 @@
 <template>
-  <button :class="['simple-button', `button-${type}`]">
+  <button class="simple-button" :class="`button-${type}`">
     <slot></slot>
   </button>
 </template>
 
 <script>
 export default {
+  name: "SimpleButton",
   props: {
     type: {
       type: String,
@@ -17,7 +18,6 @@ export default {
   },
 };
 </script>
-
 <style scoped lang="less">
 .simple-button {
   padding: 15px 20px;
@@ -25,27 +25,26 @@ export default {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-
   font-family: "Arial", sans-serif;
-}
 
-.button-info {
-  background-color: #ccc;
-  color: #000;
-}
+  &.button-info {
+    background-color: #ccc;
+    color: #000;
+  }
 
-.button-warning {
-  background-color: #ff0;
-  color: #000;
-}
+  &.button-warning {
+    background-color: #ff0;
+    color: #000;
+  }
 
-.button-danger {
-  background-color: #f00;
-  color: #fff;
-}
+  &.button-danger {
+    background-color: #f00;
+    color: #fff;
+  }
 
-.button-primary {
-  background-color: #5bc0de;
-  color: #fff;
+  &.button-primary {
+    background-color: #5bc0de;
+    color: #fff;
+  }
 }
 </style>
