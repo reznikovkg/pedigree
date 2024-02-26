@@ -1,5 +1,5 @@
 <template>
-  <form class="military-form">
+  <div class="military-form">
     <div class="military-form__container">
       <ElInput
         v-model="form.type" 
@@ -40,7 +40,7 @@
         placeholder="Описание" 
       />
     </div>
-  </form>
+  </div>
 </template>
     
 <script>
@@ -89,8 +89,6 @@ export default {
 .military-form {
   width: 450px;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
   grid-gap: 15px;
   padding: 8px;
   &__description {
