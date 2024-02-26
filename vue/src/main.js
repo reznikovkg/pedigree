@@ -4,7 +4,9 @@ import router from './router';
 import Vuex from 'vuex'
 import storeRoot from './store'
 import { sync } from "vuex-router-sync";
+//import { SettingsPlugin } from './store/settings';
 
+//Vue.use(SettingsPlugin)
 Vue.use(Vuex)
 Vue.config.productionTip = false
 
