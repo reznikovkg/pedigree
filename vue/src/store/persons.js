@@ -104,7 +104,7 @@ export default {
           editPerson: (state, payload) => {
             state.persons = state.persons.map((p) => {
               if (p.id === payload.id) {
-                return payload;
+                return { ...p, ...payload };
               }
               return p;
             });

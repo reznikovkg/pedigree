@@ -4,7 +4,7 @@
       <div class="persons">
         <PersonAdd />
         <h3>Текущие люди:</h3>
-        <div class="persons__item" v-for="(p, index) in allPersons" :key="p.id">
+        <div class="persons__item" v-for="(p, index) in _getAllPersons" :key="p.id">  
           <span class="persons__index">#{{ index + 1 }}</span>
           <button class="persons__select-btn" @click="handleClick(p.id)">
             {{ p.firstName }} {{ p.secondName }}, {{ p.gender }}
@@ -31,15 +31,10 @@
       };
     },
     computed: {
-      allPersons() {
-      const lsPersons = localStorage.getItem("persons");
-      if (lsPersons) {
-        return JSON.parse(lsPersons);
-      } else {
-        const allPersons = this.getAllPersons;
-        localStorage.setItem("persons", JSON.stringify(allPersons));
-        return allPersons;
-      }
+      _getAllPersons() {
+      const allPersons = this.getAllPersons;
+      localStorage.setItem("persons", JSON.stringify(allPersons));
+      return allPersons;
     },
       ...mapGetters("persons", ["getAllPersons"])
     },

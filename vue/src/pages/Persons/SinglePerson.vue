@@ -3,9 +3,12 @@
       <router-link :to="PERSONS_ROUTE">Go back</router-link>
       <div class="person">
       <div class="person__wrapper-img">
-        <img class="person__img" :src="personData?.photo" alt="person photo" />
-        <button class="person__btn">delete</button>
-        <button class="person__btn">edit</button>
+        <img class="person__img" :src="personData.photo" alt="person photo" />
+        <button @click="_deletePerson(personData.id)" class="person__btn">Удалить</button>
+        <button @click="isEditing = !isEditing" class="person__btn">
+          {{ isEditing ? "Отмена" : "Редактировать" }}
+        </button>
+        <PersonEdit :id="personData.id" v-if="isEditing" />
       </div>
       <div class="person__container">
         <div class="persons__sub-container">
@@ -38,24 +41,35 @@
   <script>
   import PageLayout from "../../components/parts/PageLayout.vue";
   import { PERSONS_ROUTE } from "@/router/routes";
-  import { mapGetters } from "vuex";
+  import { mapActions, mapGetters } from "vuex";
+  import PersonEdit from "@/components/personInputs/PersonEdit.vue";
   export default {
     name: "SinglePerson",
     components: {
+      PersonEdit,
       PageLayout
     },
     data() {
       return {
-        PERSONS_ROUTE: PERSONS_ROUTE
+        PERSONS_ROUTE: PERSONS_ROUTE,
+        isEditing: false
       };
     },
-  
+
     computed: {
       personData() {
         return this.getPersonById(this.$route.params.id);
       },
       ...mapGetters("persons", ["getAllPersons", "getPersonById"])
-    }
+    },
+    methods: {
+    _deletePerson(id) {
+      this.deletePerson(id);
+      this.$router.push(`${PERSONS_ROUTE}`);
+    },
+    ...mapActions("persons", ["deletePerson"])
+  }
+
   };
   </script>
   
