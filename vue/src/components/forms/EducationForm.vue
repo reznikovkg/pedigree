@@ -60,13 +60,21 @@ export default {
       }
     }
   },
-  mounted () {
-    this.formData = { ...this.education }
+  watch: {
+    education: {
+      handler(newValue) {
+        this.formData = { ...newValue }
+      },
+      deep: true
+    }
   },
   methods: {
-    submitForm () {
-      this.$emit('submit', this.formData)
+    emitFormData () {
+      this.$emit('input', { ...this.formData })
     }
+  },
+  mounted () {
+    this.emitFormData();
   }
 }
 </script>
