@@ -89,8 +89,7 @@ export default {
 .military-form {
   width: 450px;
   display: grid;
-  grid-template-columns: repeat(2);
-  grid-template-rows: repeat(3);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 15px;
   padding: 8px;
   &__description {
