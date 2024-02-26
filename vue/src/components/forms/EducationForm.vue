@@ -48,7 +48,7 @@ export default {
       required: true
     }
   },
-  data() {
+  data () {
     return {
       formData: {
         type: '',
@@ -58,7 +58,7 @@ export default {
         institutionName: '',
         institutionCity: ''
       }
-    };
+    }
   },
   mounted () {
     this.formData = { ...this.education }
