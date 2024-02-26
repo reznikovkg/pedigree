@@ -13,6 +13,7 @@ import PageLayout from '../parts/PageLayout'
 import NavigationPanel from "@/components/ui/NavigationPanel";
 import { helpModal } from "@/mixins/modals";
 
+
 export default {
   name: 'HomePage',
   mixins: [helpModal],
@@ -22,6 +23,3 @@ export default {
   }
 }
 </script>
-
-<style>
-</style>
