@@ -20,8 +20,10 @@
           </p>
           <div class="person__section">
             <p class="person__title">Дети</p>
-            <div class="person__children">
-              {{ personData.children?.[0] }}
+            <div v-if="personData.children" class="person__children">
+              <p v-for="childId in personData.children" :key="childId">
+                {{ getChildrenStr(childId) }}
+              </p>
             </div>
           </div>
           <div class="person__section">
@@ -63,6 +65,10 @@
       ...mapGetters("persons", ["getAllPersons", "getPersonById"])
     },
     methods: {
+      getChildrenStr(id) {
+      const childrenPerson = this.getPersonById(id);
+      return `${childrenPerson.firstName} ${childrenPerson.secondName}, ${childrenPerson.gender}`;
+    },
     _deletePerson(id) {
       this.deletePerson(id);
       this.$router.push(`${PERSONS_ROUTE}`);
