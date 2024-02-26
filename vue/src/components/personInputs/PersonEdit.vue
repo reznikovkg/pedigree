@@ -20,11 +20,13 @@
       />
       <input
         v-else-if="propertyToEdit === 'birth_date' || propertyToEdit === 'die_date'"
+        :value="propertyValue"
         type="date"
         @change="changePropertyValue"
       />
       <input
         v-else-if="propertyToEdit"
+        :value="propertyValue"
         @change="changePropertyValue"
         placeholder="Введите новое значение"
       />
