@@ -12,7 +12,12 @@
         <option value="activity">Род деятельности</option>
         <option value="photo">Картинка</option>
       </select>
-      <input v-if="propertyToEdit === 'photo'" @change="changePropertyValue" type="file" />
+      <input
+      v-if="propertyToEdit === 'photo'"
+      @change="changePropertyValue"
+      type="file"
+      accept="image/*"
+      />
       <input
         v-else-if="propertyToEdit === 'birth_date' || propertyToEdit === 'die_date'"
         type="date"
