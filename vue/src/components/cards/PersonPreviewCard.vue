@@ -1,11 +1,11 @@
 <template>
 <div class="person-preview-card">
   <div class="person-preview-card__person-info">
-    <h2 class="person-preview-card__person-info__top-name">{{ person.secondName }}</h2>
-    <h2 class="person-preview-card__person-info__non-top-name">{{ person.firstName }}</h2>
-    <h2 class="person-preview-card__person-info__non-top-name">{{ person.patronymic }}</h2>
-    <span class="person-preview-card__person-info__birth-date">{{ person.birthDate }}</span>
-    <span v-if="person.die_date" class="person-preview-card__person-info__die-date">- {{person.die_date}}</span>
+    <h2 class="person-preview-card__person-info__name">{{ person.secondName }}</h2>
+    <h2 class="person-preview-card__person-info__name">{{ person.firstName }}</h2>
+    <h2 class="person-preview-card__person-info__name">{{ person.patronymic }}</h2>
+    <span class="person-preview-card__person-info__date">{{ person.birthDate }}</span>
+    <span v-if="person.die_date" class="person-preview-card__person-info__date" style="margin-left: 0;"> - {{person.die_date}}</span>
     <span class="person-preview-card__person-info__person-id" style="display: block;">id: {{ person.id }}</span>
   </div>
   <div class="person-preview-card__status-indicator"></div>
@@ -24,7 +24,7 @@ export default {
 };
 </script>
 
-<style scoped lang = "less">
+<style scoped lang="less">
 .person-preview-card {
   background-color: white;
   border-radius: 24px;
@@ -39,34 +39,22 @@ export default {
   width: 425px;
   height: 215px;
   &__person-info {
-    &__top-name,
-    &__non-top-name,
+    &__name,
     &__patronymic,
-    &__birth-date,
-    &__die-date,
+    &__date,
     &__person-id {
-     margin-left: 10px;
-     font-family: 'Inter', sans-serif;
+      margin-left: 10px;
+      font-family: 'Inter', sans-serif;
     }
-    &__top-name {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    color: #000000;
+    &__name {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      color: #000000;
     }
-    &__non-top-name {
-     margin-bottom: 10px;
-     color: #000000;
-    }
-    &__birth-date {
-    color: #757575;
-    font-weight: bold;
-    white-space: nowrap;
-    }
-    &__die-date {
-    color: #757575;
-    font-weight: bold;
-    white-space: nowrap;
-    margin-left: 3px;
+    &__date {
+      color: #757575;
+      font-weight: bold;
+      white-space: nowrap;
     }
     &__person-id {
        margin-top: 34px;
