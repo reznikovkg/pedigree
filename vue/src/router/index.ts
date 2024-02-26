@@ -5,10 +5,6 @@ import PersonsPage from "../pages/Persons/Persons.vue";
 import { RouteNames } from "./routes";
 import SinglePerson from "@/pages/Persons/SinglePerson.vue";
 
-// import PersonPage from '../components/pages/PersonPage.vue'
-// import EditPersonPage from '../components/pages/EditPersonPage.vue'
-// import CreatePersonPage from '../components/pages/CreatePersonPage.vue'
-
 Vue.use(VueRouter)
 
 const routes = [
