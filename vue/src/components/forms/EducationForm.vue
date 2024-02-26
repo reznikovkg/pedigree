@@ -1,41 +1,41 @@
 <template>
   <div class="education-form">
-    <input
+    <ElInput
       v-model="formData.type"
       class="education-form__input"
       type="text"
       placeholder="Тип"
-    >
-    <input
+    />
+    <ElInput
       v-model="formData.level"
       class="education-form__input"
       type="text"
       placeholder="Уровень"
-    >
-    <input
+    />
+    <ElInput
       v-model="formData.startDate"
       class="education-form__input"
       type="text"
       placeholder="Дата начала обучения"
-    >
-    <input
+    />
+    <ElInput
       v-model="formData.endDate"
       class="education-form__input"
       type="text"
       placeholder="Дата завершения обучения"
-    >
-    <input
+    />
+    <ElInput
       v-model="formData.institutionName"
       class="education-form__input"
       type="text"
       placeholder="Название учреждения"
-    >
-    <input
+    />
+    <ElInput
       v-model="formData.institutionCity"
       class="education-form__input"
       type="text"
       placeholder="Город учреждения"
-    >
+    />
   </div>
 </template>
 
@@ -48,7 +48,7 @@ export default {
       required: true
     }
   },
-  data () {
+  data() {
     return {
       formData: {
         type: '',
@@ -58,7 +58,7 @@ export default {
         institutionName: '',
         institutionCity: ''
       }
-    }
+    };
   },
   mounted () {
     this.formData = { ...this.education }
@@ -80,11 +80,9 @@ export default {
   padding: 10px;
 
   &__input {
-    padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
     border-color: rgba(0,0,0,0.6);
-    background-color: rgba(0,0,0,0.04);
   }
 }
 </style>
