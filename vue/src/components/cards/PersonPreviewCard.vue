@@ -5,7 +5,7 @@
       <h2 class="person-preview-card__name">{{ person.firstName }}</h2>
       <h2 class="person-preview-card__name">{{ person.patronymic }}</h2>
       <span class="person-preview-card__date">{{ person.birthDate }}</span>
-      <span v-if="person.die_date" class="person-preview-card__date" style="margin-left: 0;"> - {{person.die_date}}</span>
+      <span v-if="person.die_date" class="person-preview-card__date"> - {{person.die_date}}</span>
       <span class="person-preview-card__person-id" style="display: block;">id: {{ person.id }}</span>
     </div>
     <div class="person-preview-card__status-indicator"></div>
@@ -15,8 +15,8 @@
 <script>
 export default {
   name: 'PersonPreviewCard',
-    props: {
-      person: {
+  props: {
+    person: {
       type: Object,
       required: true,
     },
