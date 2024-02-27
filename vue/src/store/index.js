@@ -6,6 +6,7 @@ export default {
   getters: {},
   mutations: {},
   modules: {
-    modals
+    modals, 
+    settings
   }
 }
