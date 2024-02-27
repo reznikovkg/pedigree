@@ -46,6 +46,10 @@ export default {
     education: {
       type: Object,
       required: true
+    },
+    value: {
+      type: Object,
+      required: true
     }
   },
   data () {
@@ -60,21 +64,59 @@ export default {
       }
     }
   },
-  watch: {
-    education: {
-      handler(newValue) {
-        this.formData = { ...newValue }
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
+  computed: {
+    type: {
+      get() {
+        return this.value.type;
       },
-      deep: true
+      set(value) {
+        this.$emit('change', { ...this.value, type: value });
+      }
+    },
+    level: {
+      get() {
+        return this.value.level;
+      },
+      set(value) {
+        this.$emit('change', { ...this.value, level: value });
+      }
+    },
+    startDate: {
+      get() {
+        return this.value.startDate;
+      },
+      set(value) {
+        this.$emit('change', { ...this.value, startDate: value });
+      }
+    },
+    endDate: {
+      get() {
+        return this.value.endDate;
+      },
+      set(value) {
+        this.$emit('change', { ...this.value, endDate: value });
+      }
+    },
+    institutionName: {
+      get() {
+        return this.value.institutionName;
+      },
+      set(value) {
+        this.$emit('change', { ...this.value, institutionName: value });
+      }
+    },
+    institutionCity: {
+      get() {
+        return this.value.institutionCity;
+      },
+      set(value) {
+        this.$emit('change', { ...this.value, institutionCity: value });
+      }
     }
-  },
-  methods: {
-    emitFormData () {
-      this.$emit('input', { ...this.formData })
-    }
-  },
-  mounted () {
-    this.emitFormData()
   }
 }
 </script>
