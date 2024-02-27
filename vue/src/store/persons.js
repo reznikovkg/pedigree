@@ -1,7 +1,7 @@
-import { genHash } from "./modals";
+import { genHash } from "./modals"
 
-export const PERSONS = "persons";
-const initialState = [];
+export const PERSONS = "persons"
+const initialState = []
 export default {
   namespaced: true,
   state: {
@@ -13,28 +13,27 @@ export default {
   },
   mutations: {
     addPerson: (state, payload) => {
-      const newId = genHash();
-      state.persons.push({ id: newId, ...payload });
-      localStorage.setItem(PERSONS, JSON.stringify(state.persons));
+      state.persons.push({ id: genHash(), ...payload })
+      localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     },
     deletePerson: (state, payload) => {
-      state.persons = state.persons.filter((p) => p.id !== payload);
-      localStorage.setItem(PERSONS, JSON.stringify(state.persons));
+      state.persons = state.persons.filter((p) => p.id !== payload)
+      localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     },
     editPerson: (state, payload) => {
-      state.persons = state.persons.map((p) => (p.id === payload.id ? { ...p, ...payload } : p));
-      localStorage.setItem(PERSONS, JSON.stringify(state.persons));
+      state.persons = state.persons.map((p) => (p.id === payload.id ? { ...p, ...payload } : p))
+      localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     }
   },
   actions: {
     addPerson: ({ commit }, payload) => {
-      commit("addPerson", payload);
+      commit("addPerson", payload)
     },
     deletePerson: ({ commit }, payload) => {
-      commit("deletePerson", payload);
+      commit("deletePerson", payload)
     },
     editPerson: ({ commit }, payload) => {
-      commit("editPerson", payload);
+      commit("editPerson", payload)
     }
   }
-};
+}
