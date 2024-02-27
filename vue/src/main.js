@@ -3,8 +3,8 @@ import App from '@/components/App.vue'
 import router from './router';
 import Vuex from 'vuex'
 import storeRoot from './store'
+import SettingsPlugin from './utils/settings.plugin'
 import { sync } from "vuex-router-sync";
-import { SettingsPlugin } from './utils/settings.plugin'
 
 Vue.use(Vuex)
 Vue.use(SettingsPlugin)
