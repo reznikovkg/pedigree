@@ -1,21 +1,20 @@
 <template>
-    <PageLayout>
-      <section class="p-16">
-        <h1>
-            Settings
-        </h1>
-        <div>
-            <elSwitch
-                v-model= "value"
-                activeColor= "green"
-                inactiveColor= "grey"
-                activeValue= "True"
-                inactiveValue= "False">
-            </elSwitch>
-            Скрытый режим       
-        </div>
-      </section>
-    </PageLayout>
+  <PageLayout>
+    <section class="p-16">
+      <h1>
+         Settings
+      </h1>
+      <div>
+        <ElSwitch
+          v-model= "value"
+          activeColor= "green"
+          inactiveColor= "grey"
+          activeValue= "True"
+          inactiveValue= "False"/>
+          Скрытый режим       
+      </div>
+    </section>
+  </PageLayout>
 </template>
 
 <script>
@@ -26,17 +25,17 @@
     components: {
       PageLayout
     },
-    data() {
+    data () {
       return {
         value: []
       }
     },
-    mounted() {
-        this.value = JSON.parse(localStorage.getItem("value")) || []
+    mounted () {
+      this.value = JSON.parse(localStorage.getItem("value")) || []
     },
     watch: {
         value(newValue) {
-            localStorage.setItem("value", JSON.stringify(newValue));
+          localStorage.setItem("value", JSON.stringify(newValue));
         }
     }
   }
