@@ -1,12 +1,12 @@
 <template>
 <div class="person-preview-card">
-  <div class="person-preview-card__person-info">
-    <h2 class="person-preview-card__person-info__name">{{ person.secondName }}</h2>
-    <h2 class="person-preview-card__person-info__name">{{ person.firstName }}</h2>
-    <h2 class="person-preview-card__person-info__name">{{ person.patronymic }}</h2>
-    <span class="person-preview-card__person-info__date">{{ person.birthDate }}</span>
-    <span v-if="person.die_date" class="person-preview-card__person-info__date" style="margin-left: 0;"> - {{person.die_date}}</span>
-    <span class="person-preview-card__person-info__person-id" style="display: block;">id: {{ person.id }}</span>
+  <div>
+    <h2 class="person-preview-card__name">{{ person.secondName }}</h2>
+    <h2 class="person-preview-card__name">{{ person.firstName }}</h2>
+    <h2 class="person-preview-card__name">{{ person.patronymic }}</h2>
+    <span class="person-preview-card__date">{{ person.birthDate }}</span>
+    <span v-if="person.die_date" class="person-preview-card__date" style="margin-left: 0;"> - {{person.die_date}}</span>
+    <span class="person-preview-card__person-id" style="display: block;">id: {{ person.id }}</span>
   </div>
   <div class="person-preview-card__status-indicator"></div>
 </div>
@@ -39,19 +39,19 @@ export default {
   width: 425px;
   height: 215px;
   padding-left: 25px;
-  &__person-info__name {
+  &__name {
     font-family: 'Inter', sans-serif;
     margin-top: 10px;
     margin-bottom: 10px;
     color: #000000;
   }
-  &__person-info__date {
+  &__date {
     font-family: 'Inter', sans-serif;
     color: #757575;
     font-weight: bold;
     white-space: nowrap;
   }
-  &__person-info__person-id {
+  &__person-id {
     font-family: 'Inter', sans-serif;
     margin-top: 34px;
     margin-bottom: 20px;
