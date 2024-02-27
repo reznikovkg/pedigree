@@ -6,7 +6,7 @@
       <ElButton type="primary">Кнопка</ElButton>
       <PersonCard :person="person" />
       <PhotoPreview size="large" photo="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666206241_12-mykaleidoscope-ru-p-kartinka-na-zastavku-oboi-12.jpg" />
-      <EducationForm :education="education" />
+      <EducationForm v-model="education" />
       <WeddingForm :wedding="wedding" />
       <PersonForm :person="person" />
       <MilitaryForm :military="military"/>
@@ -66,7 +66,7 @@ export default {
         startDate: '01.09.2019',
         endDate: '31.08.2023',
         institutionName: 'ВГУ',
-        institutionCity: ''
+        institutionCity: 'Воронеж'
       },
       military: {
         type: 'Контракт',

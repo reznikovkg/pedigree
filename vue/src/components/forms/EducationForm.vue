@@ -69,12 +69,12 @@ export default {
     }
   },
   methods: {
-    emitFormData () {
+    emitFormData() {
       this.$emit('input', { ...this.formData })
     }
   },
-  mounted () {
-    this.emitFormData();
+  mounted() {
+    this.emitFormData()
   }
 }
 </script>
