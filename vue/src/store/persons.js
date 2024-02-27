@@ -1,6 +1,6 @@
 import { genHash } from "./modals";
-import { PERSONS } from "@/constants";
 
+export const PERSONS = "persons";
 const initialState = [];
 export default {
   namespaced: true,
