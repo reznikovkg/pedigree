@@ -68,53 +68,61 @@ export default {
     prop: 'value',
     event: 'change'
   },
+  methods: {
+    emitChange(param) {
+      this.$emit('change', {
+        ...this.value,
+        ...param
+      })
+    }
+  },
   computed: {
     type: {
       get() {
-        return this.value.type;
+        return this.value.type
       },
       set(value) {
-        this.$emit('change', { ...this.value, type: value });
+        this.emitChange({ type: value })
       }
     },
     level: {
       get() {
-        return this.value.level;
+        return this.value.level
       },
       set(value) {
-        this.$emit('change', { ...this.value, level: value });
+        this.emitChange({ level: value })
       }
     },
     startDate: {
       get() {
-        return this.value.startDate;
+        return this.value.startDate
       },
       set(value) {
-        this.$emit('change', { ...this.value, startDate: value });
+        this.emitChange({ startDate: value })
       }
     },
     endDate: {
       get() {
-        return this.value.endDate;
+        return this.value.endDate
       },
       set(value) {
-        this.$emit('change', { ...this.value, endDate: value });
+        this.emitChange({ endDate: value })
       }
     },
     institutionName: {
       get() {
-        return this.value.institutionName;
+        return this.value.institutionName
       },
       set(value) {
-        this.$emit('change', { ...this.value, institutionName: value });
+        this.emitChange({ institutionName: value })
       }
     },
     institutionCity: {
       get() {
-        return this.value.institutionCity;
+        return this.value.institutionCity
       },
       set(value) {
-        this.$emit('change', { ...this.value, institutionCity: value });
+        this.emitChange({ institutionCity: value })
       }
     }
   }
