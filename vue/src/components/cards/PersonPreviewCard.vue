@@ -1,25 +1,25 @@
 <template>
-<div class="person-preview-card">
-  <div>
-    <h2 class="person-preview-card__name">{{ person.secondName }}</h2>
-    <h2 class="person-preview-card__name">{{ person.firstName }}</h2>
-    <h2 class="person-preview-card__name">{{ person.patronymic }}</h2>
-    <span class="person-preview-card__date">{{ person.birthDate }}</span>
-    <span v-if="person.die_date" class="person-preview-card__date" style="margin-left: 0;"> - {{person.die_date}}</span>
-    <span class="person-preview-card__person-id" style="display: block;">id: {{ person.id }}</span>
+  <div class="person-preview-card">
+    <div>
+      <h2 class="person-preview-card__name">{{ person.secondName }}</h2>
+      <h2 class="person-preview-card__name">{{ person.firstName }}</h2>
+      <h2 class="person-preview-card__name">{{ person.patronymic }}</h2>
+      <span class="person-preview-card__date">{{ person.birthDate }}</span>
+      <span v-if="person.die_date" class="person-preview-card__date" style="margin-left: 0;"> - {{person.die_date}}</span>
+      <span class="person-preview-card__person-id" style="display: block;">id: {{ person.id }}</span>
+    </div>
+    <div class="person-preview-card__status-indicator"></div>
   </div>
-  <div class="person-preview-card__status-indicator"></div>
-</div>
 </template>
 
 <script>
 export default {
   name: 'PersonPreviewCard',
-  props: {
-   person: {
-    type: Object,
-    required: true,
-   },
+    props: {
+      person: {
+      type: Object,
+      required: true,
+    },
   },
 }
 </script>
@@ -39,25 +39,29 @@ export default {
   width: 425px;
   height: 215px;
   padding-left: 25px;
+
   &__name {
     font-family: 'Inter', sans-serif;
     margin-top: 10px;
     margin-bottom: 10px;
     color: #000000;
   }
+
   &__date {
     font-family: 'Inter', sans-serif;
     color: #757575;
-    font-weight: bold;
+    font-weight: 700;
     white-space: nowrap;
   }
+
   &__person-id {
     font-family: 'Inter', sans-serif;
     margin-top: 34px;
     margin-bottom: 20px;
-    font-weight: bold;
+    font-weight: 700;
     color: #757575;
   }
+
   &__status-indicator {
     width: 25px;
     height: 25px;
@@ -68,5 +72,4 @@ export default {
     right: 25px;
   }
 }
-
 </style>
