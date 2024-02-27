@@ -1,5 +1,5 @@
-import modals from './modals';
-import persons from './persons';
+import modals from './modals'
+import persons from './persons'
 
 export default {
   namespaced: true,
