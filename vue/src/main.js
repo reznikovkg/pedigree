@@ -4,10 +4,10 @@ import router from './router';
 import Vuex from 'vuex'
 import storeRoot from './store'
 import { sync } from "vuex-router-sync";
-//import { SettingsPlugin } from './store/settings';
+import { SettingsPlugin } from './utils/settings.plugin'
 
-//Vue.use(SettingsPlugin)
 Vue.use(Vuex)
+Vue.use(SettingsPlugin)
 Vue.config.productionTip = false
 
 
