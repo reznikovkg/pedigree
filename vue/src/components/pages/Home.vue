@@ -7,7 +7,7 @@
       <PersonCard :person="person" />
       <PhotoPreview size="large" photo="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666206241_12-mykaleidoscope-ru-p-kartinka-na-zastavku-oboi-12.jpg" />
       <EducationForm v-model="education" />
-      <WeddingForm v-model="wedding"/>
+      <WeddingForm v-model="wedding" />
       <PersonForm :person="person" />
       <MilitaryForm :military="military"/>
     </section>

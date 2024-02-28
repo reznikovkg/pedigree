@@ -82,12 +82,6 @@ export default {
         ...param
       })
     }
-  },
-  watch: {
-    form: {
-      handler: 'emitFormData',
-      deep: true
-    }
   }
 }
 </script>
