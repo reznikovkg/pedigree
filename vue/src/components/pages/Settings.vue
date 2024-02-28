@@ -10,7 +10,8 @@
           activeColor="green"
           inactiveColor="grey"
           activeValue="True"
-          inactiveValue="False"/>
+          inactiveValue="False"
+          />
           Скрытый режим       
       </div>
     </section>
@@ -34,9 +35,9 @@ export default {
     this.value = JSON.parse(localStorage.getItem("value")) || []
   },
   watch: {
-      value(newValue) {
-        localStorage.setItem("value", JSON.stringify(newValue));
-      }
+    value(newValue) {
+      localStorage.setItem("value", JSON.stringify(newValue));
+    }
   }
 }
 </script>
