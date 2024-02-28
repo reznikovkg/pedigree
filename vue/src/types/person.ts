@@ -1,51 +1,54 @@
-
 enum Gender {
-    Male = "male",
-    Female = "female"
+  MALE = "MALE",
+  FEMALE = "FEMALE"
 }
 
 interface Person {
-    id: string;
-    secondName: string;
-    firstName: string;
-    patronymic: string;
-    birth_date: string;
-    die_date: string;
-    gender: Gender;
-    children: string[];
-    biography: string;
-    activity: string;
-    photo: string;
+  id: string;
+  secondName: string;
+  firstName: string;
+  patronymic: string;
+  birth_date: string;
+  die_date: string;
+  gender: Gender;
+  children: string[];
+  biography: string;
+  activity: string;
+  photo: string;
+  educations: Education[]; 
+  weddings: Wedding[];
+  works: Work[]; 
+  militaryServices: MilitaryService[];
 }
 
-interface EducationPerson extends Person {
-    type: string;
-    level: string;
-    startDate: string;
-    endDate: string;
-    institutionName: string;
-    institutionCity: string;
+interface Education {
+  type: string;
+  level: string;
+  startDate: string;
+  endDate: string;
+  institutionName: string;
+  institutionCity: string;
 }
 
-interface WeddingPerson extends Person {
-    partner: string;
-    date_start: string;
-    date_end: string;
+interface Wedding {
+  partner: string;
+  date_start: string;
+  date_end: string;
 }
 
-interface WorkPerson extends Person {
-    country_city: string;
-    organization: string;
-    date_start: string;
-    data_end: string;
-    job_title: string;
-    description: string;
+interface Work {
+  countryCity: string;
+  organization: string;
+  dateStart: string;
+  dataEnd: string;
+  jobTitle: string;
+  description: string;
 }
 
-interface MilitaryPerson extends Person {
-    type: string;
-    rank: string;
-    date_start: string;
-    data_end: string;
-    description: string;
+interface MilitaryService {
+  type: string;
+  rank: string;
+  date_start: string;
+  data_end: string;
+  description: string;
 }
