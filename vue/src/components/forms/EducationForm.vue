@@ -42,6 +42,10 @@
 <script>
 export default {
   name: 'EducationForm',
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   props: {
     education: {
       type: Object,
@@ -62,18 +66,6 @@ export default {
         institutionName: '',
         institutionCity: ''
       }
-    }
-  },
-  model: {
-    prop: 'value',
-    event: 'change'
-  },
-  methods: {
-    emitChange(param) {
-      this.$emit('change', {
-        ...this.value,
-        ...param
-      })
     }
   },
   computed: {
@@ -124,6 +116,14 @@ export default {
       set(value) {
         this.emitChange({ institutionCity: value })
       }
+    }
+  },
+  methods: {
+    emitChange(param) {
+      this.$emit('change', {
+        ...this.value,
+        ...param
+      })
     }
   }
 }
