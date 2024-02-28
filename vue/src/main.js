@@ -3,15 +3,12 @@ import App from '@/components/App.vue'
 import router from './router';
 import Vuex from 'vuex'
 import storeRoot from './store'
-import SettingsPlugin from './utils/settings.plugin'
 import { sync } from "vuex-router-sync";
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(Vuex)
-Vue.use(SettingsPlugin)
 Vue.config.productionTip = false
-
 
 const store = new Vuex.Store(storeRoot)
 sync(store, router);
