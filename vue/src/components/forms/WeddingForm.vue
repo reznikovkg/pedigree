@@ -32,7 +32,7 @@ export default {
   name: 'WeddingForm',
   model: {
     prop: 'value',
-    event: 'updateForm'
+    event: 'change'
   },
   props: {
     value: {
@@ -77,7 +77,7 @@ export default {
   },
   methods: {
     emitFormData(param) {
-      this.$emit('updateForm', {
+      this.$emit('change', {
         ...this.value,
         ...param
       })
