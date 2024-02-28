@@ -17,11 +17,13 @@ export default {
 
 <style lang="less">
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 body {
   margin: 0;
   padding: 0;
   background-color: @cBaseTwo;
+  font-family: @ffInter;
 }
 
 a {
@@ -40,13 +42,25 @@ section {
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: @ffOne;
+  font-family: @ffInter;
   color: @cBaseThree;
   margin: 0;
 }
 
+h1 {
+  font-size: 26px;
+}
+
 h2 {
-  font-size: 32px;
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
 }
 
 .p-16 {
@@ -55,37 +69,5 @@ h2 {
 
 .d-flex {
   display: flex;
-}
-
-.rcms {
-
-  &-divider {
-
-    &-h {
-      width: 100%;
-      height: @sizeBorderDefault;
-      background-color: @cBaseTwo;
-    }
-
-    &-v {
-
-    }
-  }
-
-  &-loading {
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 1;
-      background: rgba(100, 100, 100, 0.5);
-      cursor: wait;
-    }
-  }
 }
 </style>
