@@ -16,12 +16,6 @@ export default{
     },
     setAccess: (state, payload) => {
       state.access = payload
-    },
-    deleteMode: (state) => {
-      state.mode = 'user'
-    },
-    deleteAccess: (state) => {
-      state.access = false
     }
   },
 
@@ -32,14 +26,6 @@ export default{
     }),
     setAccess: (store, payload) => new Promise((resolve) => {
       store.commit('setAccess', payload)
-      return resolve()
-    }),
-    deleteMode: (store) => new Promise((resolve) => {
-      store.commit('deleteMode')
-      return resolve()
-    }),
-    deleteAccess: (store) => new Promise((resolve) => {
-      store.commit('deleteAccess')
       return resolve()
     })
   }
