@@ -9,10 +9,8 @@
           v-model="value"
           activeColor="green"
           inactiveColor="grey"
-          activeValue="True"
-          inactiveValue="False"
-          />
-          Скрытый режим       
+        />
+        Скрытый режим       
       </div>
     </section>
   </PageLayout>
@@ -28,7 +26,7 @@ export default {
   },
   data () {
     return {
-      value: "False"
+      value: false
     }
   },
   mounted () {
