@@ -1,4 +1,4 @@
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 
 export const Settings = {
   computed: {
@@ -6,23 +6,11 @@ export const Settings = {
       'getMode',
       'getAccess'
     ]),
-    mode () {
-      return this.getMode
-    },
-    access () {
-        return this.getAccess
-    }
-  },
-  methods: {
-    ...mapActions('settings', [
-      'setMode',
-      'setAccess'
-    ]),
-    setMode (payload) {
-      this.setMode(payload)
-    },
-    setAccess (payload){
-      this.setAccess(payload)
+    $settings () {
+      return {
+        mode: this.getMode, 
+        access:this.getAccess
+      }
     }
   }
 }
