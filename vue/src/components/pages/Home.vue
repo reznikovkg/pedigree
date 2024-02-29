@@ -34,7 +34,7 @@ export default {
     EducationForm,
     WeddingForm,
     PersonForm,
-    MilitaryForm,
+    MilitaryForm
   },
   data () {
     return {
