@@ -4,8 +4,10 @@
       <h2 class="person-preview-card__name">{{ person.secondName }}</h2>
       <h2 class="person-preview-card__name">{{ person.firstName }}</h2>
       <h2 class="person-preview-card__name">{{ person.patronymic }}</h2>
-      <span class="person-preview-card__date">{{ person.birthDate }}</span>
-      <span v-if="person.die_date" class="person-preview-card__date"> - {{person.die_date}}</span>
+
+      <span class="person-preview-card__date">{{ person.birth_date }}</span>
+      <span v-if="person.die_date" class="person-preview-card__date"> - {{ person.die_date }}</span>
+
       <div class="person-preview-card__person-id">id: {{ person.id }}</div>
     </div>
     <div class="person-preview-card__status-indicator"></div>
@@ -26,7 +28,6 @@ export default {
 
 <style scoped lang="less">
 .person-preview-card {
-  background-color: white;
   border-radius: 24px;
   background-color: #f5f5f5;
   box-shadow: 1.5px 7px 5px 1.5px rgba(0, 0, 0, 0.1), -1.5px 7px 5px -1.5px rgba(0, 0, 0, 0.2);
