@@ -4,14 +4,15 @@ enum Gender {
 }
 
 type PersonId = string;
+type Date = string;
 
 interface Person {
   id: PersonId;
   secondName: string;
   firstName: string;
   patronymic: string;
-  birth_date: string;
-  die_date: string;
+  birth_date: Date;
+  die_date: Date;
   gender: Gender;
   biography: string;
   activity: string;
@@ -26,23 +27,23 @@ interface Person {
 interface Education {
   type: string;
   level: string;
-  startDate: string;
-  endDate: string;
+  startDate: Date;
+  endDate: Date;
   institutionName: string;
   institutionCity: string;
 }
 
 interface Wedding {
   partnerId: PersonId;
-  date_start: string;
-  date_end: string;
+  date_start: Date;
+  date_end: Date;
 }
 
 interface Work {
   countryCity: string;
   organization: string;
-  dateStart: string;
-  dataEnd: string;
+  dateStart: Date;
+  dataEnd: Date;
   jobTitle: string;
   description: string;
 }
@@ -50,7 +51,7 @@ interface Work {
 interface MilitaryService {
   type: string;
   rank: string;
-  date_start: string;
-  data_end: string;
+  date_start: Date;
+  data_end: Date;
   description: string;
 }
