@@ -92,7 +92,6 @@ export default {
 
 <style scoped lang="less">
 .person-page {
-  background-color: white;
   max-width: 400px;
 
   &__form {

@@ -10,7 +10,6 @@ import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(Vuex)
 Vue.config.productionTip = false
 
-
 const store = new Vuex.Store(storeRoot)
 sync(store, router);
 

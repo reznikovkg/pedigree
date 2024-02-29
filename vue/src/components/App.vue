@@ -1,8 +1,7 @@
 <template>
   <div>
     <RouterView />
-    <ElButton type="primary">Кнопка</ElButton>
-    <ModalContainer />    
+    <ModalContainer />
   </div>
 </template>
 
@@ -18,11 +17,13 @@ export default {
 
 <style lang="less">
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 body {
   margin: 0;
   padding: 0;
   background-color: @cBaseTwo;
+  font-family: @ffInter;
 }
 
 a {
@@ -41,19 +42,25 @@ section {
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: @ffOne;
+  font-family: @ffInter;
   color: @cBaseThree;
   margin: 0;
 }
 
 h1 {
-  font-size: 18px;
-  font-family: Arial;
+  font-size: 26px;
 }
 
 h2 {
-  font-size: 14px;
-  font-family: Arial;
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
 }
 
 .p-16 {

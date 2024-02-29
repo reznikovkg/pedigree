@@ -1,4 +1,6 @@
 import modals from './modals'
+import settings from './settings'
+import persons from './persons'
 
 export default {
   namespaced: true,
@@ -6,6 +8,8 @@ export default {
   getters: {},
   mutations: {},
   modules: {
-    modals
+    modals, 
+    settings,
+    persons
   }
 }

@@ -4,6 +4,7 @@ import HomePage from '../components/pages/Home.vue'
 import PersonPage from '../components/pages/PersonPage.vue'
 import EditPersonPage from '../components/pages/EditPersonPage.vue'
 import CreatePersonPage from '../components/pages/CreatePersonPage.vue'
+import SettingsPage from '../components/pages/Settings.vue'
 import { RouteNames } from './routes'
 
 Vue.use(VueRouter)
@@ -28,6 +29,11 @@ const routes = [
     path: '/create',
     name: RouteNames.CREATE_PERSON,
     component: CreatePersonPage
+  },
+  {
+    path: '/settings',
+    name: RouteNames.SETTINGS,
+    component: SettingsPage
   }
 ]
 

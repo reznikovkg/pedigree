@@ -1,4 +1,4 @@
-# ADMIN APP
+# pedigree
 
 ## Copy files from container
 ```

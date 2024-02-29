@@ -4,12 +4,12 @@
     <span class="person-card__dates">{{ person.birth_date }}</span>
     <span v-if="person.die_date" class="person-card__dates"> - {{ person.die_date }}</span>
 
-    <h2>Родители</h2> 
-    <div class="person-card__information-text">-</div> 
+    <h2>Родители</h2>
+    <div class="person-card__information-text">-</div>
 
     <h2>Дети </h2>
     <div class="person-card__information-text">-</div>
-    
+
     <h2>Род деятельности</h2>
     <div class="person-card__information-text">{{ person.activity }}</div>
 
@@ -40,7 +40,6 @@ export default {
   &__dates {
     font-size: 12px;
     color: grey;
-    font-family: Arial;
     padding-bottom: 20px;
   }
 
@@ -48,8 +47,7 @@ export default {
     font-weight: 500;
     font-size: 10px;
     padding-bottom: 20px;
-    font-family: Arial;
     color: black;
-  } 
+  }
 }
 </style>
