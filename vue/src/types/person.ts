@@ -3,18 +3,20 @@ enum Gender {
   FEMALE = "FEMALE"
 }
 
+type PersonId = string;
+
 interface Person {
-  id: string;
+  id: PersonId;
   secondName: string;
   firstName: string;
   patronymic: string;
   birth_date: string;
   die_date: string;
   gender: Gender;
-  children: string[];
   biography: string;
   activity: string;
   photo: string;
+  children: PersonId[];
   educations: Education[]; 
   weddings: Wedding[];
   works: Work[]; 
@@ -31,7 +33,7 @@ interface Education {
 }
 
 interface Wedding {
-  partner: string;
+  partnerId: PersonId;
   date_start: string;
   date_end: string;
 }
