@@ -91,8 +91,8 @@ export default {
         description: 'Служил в мото-стрелковой дивизии под Калининградом'
       },
       workData: {
-        countryAndCity: "Россия, Воронеж",
-        company: "RedCollar",
+        place: "Россия, Воронеж",
+        organization: "RedCollar",
         startDate: "01.01.2023",
         endDate: "31.12.2023",
         position: "Младший инженер-программист",

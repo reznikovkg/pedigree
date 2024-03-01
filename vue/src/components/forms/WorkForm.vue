@@ -2,14 +2,14 @@
   <div class="work-form">
     <div>
       <ElInput
-        v-model="countryAndCity"
+        v-model="place"
         type="text"
         placeholder="Страна, город"
       />
     </div> 
     <div>
       <ElInput
-        v-model="company"
+        v-model="organization"
         type="text"
         placeholder="Организация"
       />
@@ -63,20 +63,20 @@ export default {
     }
   },
   computed: {
-    countryAndCity: {
+    place: {
       get() {
-        return this.value.countryAndCity
+        return this.value.place
       },
       set(value) {
-        this.emitChange({ countryAndCity: value })
+        this.emitChange({ place: value })
       }
     },
-    company: {
+    organization: {
       get() {
-        return this.value.company
+        return this.value.organization
       },
       set(value) {
-        this.emitChange({ company: value })
+        this.emitChange({ organization: value })
       }
     },
     startDate: {
@@ -135,7 +135,7 @@ export default {
     grid-area: 3 / 1 / 4 / 3;
   }
 
-  &__description{
+  &__description {
     grid-area: 4 / 1 / 4 / 3;
   }
 }
