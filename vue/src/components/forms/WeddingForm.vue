@@ -7,7 +7,7 @@
         placeholder="Выберите партнёра"
       >
         <ElOption
-          v-for="person in persons"
+          v-for="person in filteredPersons"
           :key="person.id"
           :label="person.name"
           :value="person"
@@ -83,7 +83,7 @@ export default {
     emitFormData (param) {
       this.$emit('change', {
         ...this.value,
-        ...param
+        ...param,
       })
     }
   }

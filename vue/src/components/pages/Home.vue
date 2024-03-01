@@ -23,6 +23,7 @@ import EducationForm from '../forms/EducationForm.vue'
 import WeddingForm from '../forms/WeddingForm.vue'
 import PersonForm from '../forms/PersonForm.vue'
 import MilitaryForm from '../forms/MilitaryForm.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'HomePage',
@@ -37,8 +38,19 @@ export default {
     MilitaryForm,
   },
   computed: {
+    ...mapGetters('persons', ['filteredPersons']),
     persons() {
-      return this.filteredPersons || []
+      const customFilter = (person) => {
+        const partnerGender = this.person.gender === 'male' ? 'female' : 'male'
+        const startDate = this.wedding.date_start
+        const endDate = this.wedding.date_end
+        return (
+          person.gender !== partnerGender &&
+          (!person.death_date || new Date(person.death_date) > new Date(startDate)) &&
+          (!person.birth_date || new Date(person.birth_date) < new Date(endDate))
+        )
+      }
+      return this.filteredPersons(customFilter) || []
     }
   },
   data () {
