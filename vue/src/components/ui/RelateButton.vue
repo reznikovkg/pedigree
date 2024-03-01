@@ -3,7 +3,6 @@
     <button
       class="relate-button__text"
       :class="{ 'relate-button__male': isMale, 'relate-button__female': !isMale }"
-      @click="goToPerson"
     >
       {{ buttonText }}
     </button>
@@ -16,11 +15,10 @@ export default {
   props: {
     person: {
       type: Object,
-      required: true
     },
     relate: {
       type: String,
-      required: true,
+      default: 'child',
       validator: value => ['child', 'parent'].includes(value)
     }
   },
