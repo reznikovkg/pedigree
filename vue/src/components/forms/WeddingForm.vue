@@ -2,14 +2,16 @@
   <form class="wedding-form">
     <div class="wedding-form__person">
       <ElSelect
-      v-model="partner"
-      class="wedding-form__inp"
-      placeholder="Выберите партнёра">
+        v-model="partner"
+        class="wedding-form__inp"
+        placeholder="Выберите партнёра"
+      >
         <ElOption
-          v-for="person in filteredPersonsList"
+          v-for="person in persons"
           :key="person.id"
           :label="person.name"
-          :value="person">
+          :value="person"
+        >
         </ElOption>
       </ElSelect>
     </div>
@@ -50,15 +52,15 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      partner: null
-    }
-  },
   computed: {
     ...mapGetters('persons',['filteredPersons']),
-    filteredPersonsList() {
-      return this.filteredPersons(this.value.partner.gender, this.value.date_start, this.value.date_end)
+    partner: {
+      get () {
+        return this.value.partner
+      },
+      set (value) {
+        this.emitFormData({ partner: value })
+      }
     },
     date_start: {
       get () {
@@ -81,7 +83,7 @@ export default {
     emitFormData (param) {
       this.$emit('change', {
         ...this.value,
-        ...param,
+        ...param
       })
     }
   }

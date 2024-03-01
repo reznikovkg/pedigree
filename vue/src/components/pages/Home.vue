@@ -36,6 +36,11 @@ export default {
     PersonForm,
     MilitaryForm,
   },
+  computed: {
+    persons() {
+      return this.filteredPersons || []
+    }
+  },
   data () {
     return {
       person: {
@@ -74,8 +79,7 @@ export default {
         date_start: '01.01.2024',
         date_end: '01.03.2025',
         description: 'Служил в мото-стрелковой дивизии под Калининградом'
-      },
-      persons: []
+      }
     }
   }
 }
