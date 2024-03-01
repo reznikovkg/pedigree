@@ -6,13 +6,12 @@
 
     <h2>Родители</h2>
     <div class="person-card__information-text">
-      <RelateButton :person="null" relate="parent" />
-      <RelateButton :person="null" relate="parent" />
+      <RelateButton :person="person" relate="parent" />
     </div>
 
     <h2>Дети </h2>
     <div class="person-card__information-text">
-      <RelateButton :person="null" relate="child" />
+      <RelateButton :person="person" relate="child" />
     </div>
 
     <h2>Род деятельности</h2>
