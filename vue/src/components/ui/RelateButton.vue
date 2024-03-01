@@ -1,7 +1,8 @@
 <template>
   <div class="relate-button">
     <button
-      :style="{ backgroundColor: buttonColor }"
+      class="relate-button__text"
+      :class="{ 'relate-button__male': isMale, 'relate-button__female': !isMale }"
       @click="goToPerson"
     >
       {{ buttonText }}
@@ -13,7 +14,10 @@
 export default {
   name: 'RelateButton',
   props: {
-    person: Object,
+    person: {
+      type: Object,
+      required: true
+    },
     relate: {
       type: String,
       required: true,
@@ -21,56 +25,51 @@ export default {
     }
   },
   computed: {
-    buttonText() {
-      if (this.person) {
-        if (this.relate === 'parent') {
-          return this.person.gender === 'male' ? `Отец: ${this.formatName()}` : `Мать: ${this.formatName()}`;
-        } else if (this.relate === 'child') {
-          return `${this.formatName()}`;
-        }
-      } else {
-        if (this.relate === 'parent') {
-          return 'Родитель: Фамилия И. О.';
-        } else if (this.relate === 'child') {
-          return 'Фамилия И. О.';
-        }
-      }
-      return '';
+    isMale() {
+      return this.person && this.person.gender === 'male';
     },
-    buttonColor() {
-      if (this.person) {
-        return this.person.gender === 'male' ? '#adffb4' : '#adffe6';
-      } else {
-        return '#adffb4'; // По умолчанию, если данные о человеке отсутствуют, цвет для кнопки - для мужского пола
-      }
-    }
-  },
-  methods: {
     formatName() {
       if (this.person) {
         return `${this.person.secondName} ${this.person.firstName[0]}. ${this.person.patronymic[0]}.`;
       }
       return 'Фамилия И. О.';
     },
-    goToPerson() {
-      // Реализация перехода на страницу персоны
+    buttonText() {
+      if (this.person) {
+        if (this.relate === 'parent') {
+          return this.isMale ? `Отец: ${this.formatName}` : `Мать: ${this.formatName}`;
+        } else if (this.relate === 'child') {
+          return `${this.formatName}`;
+        }
+      } else {
+        return this.relate === 'parent' ? 'Родитель: Фамилия И. О.' : 'Фамилия И. О.';
+      }
+      return '';
     }
   }
 };
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .relate-button {
   display: inline-block;
-  margin-right: 10px; /* Отступ между кнопками */
+  margin-right: 10px;
 }
 
-button {
+.relate-button__text {
   border: none;
   padding: 10px 20px;
   color: black;
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.relate-button__male {
+  background-color: #adffb4;
+}
+
+.relate-button__female {
+  background-color: #adffe6;
 }
 </style>
