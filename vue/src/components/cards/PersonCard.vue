@@ -5,13 +5,13 @@
     <span v-if="person.die_date" class="person-card__dates"> - {{ person.die_date }}</span>
 
     <h2>Родители</h2>
-    <div class="button-container">
+    <div class="person-card__information-text">
       <RelateButton :person="null" relate="parent" />
       <RelateButton :person="null" relate="parent" />
     </div>
 
     <h2>Дети </h2>
-    <div class="button-container">
+    <div class="person-card__information-text">
       <RelateButton :person="null" relate="child" />
     </div>
 
@@ -59,10 +59,6 @@ export default {
     font-size: 10px;
     padding-bottom: 20px;
     color: black;
-  }
-  .button-container > *:not(:last-child) {
-    margin-bottom: 10px;
-    margin-right: 10px;
   }
 }
 </style>
