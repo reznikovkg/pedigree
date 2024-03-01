@@ -7,7 +7,7 @@
       <PersonCard :person="person" />
       <PhotoPreview size="large" photo="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666206241_12-mykaleidoscope-ru-p-kartinka-na-zastavku-oboi-12.jpg" />
       <EducationForm v-model="education" />
-      <WeddingForm v-model="wedding" />
+      <WeddingForm v-model="wedding" :persons="persons" />
       <PersonForm :person="person" />
       <MilitaryForm :military="military"/>
     </section>
@@ -57,8 +57,8 @@ export default {
           name: 'Ivan',
           second_name: 'Ivanov'
         },
-        date_start: '01.01.2024',
-        date_end: '01.02.2024'
+        date_start: '01.01.2020',
+        date_end: '01.02.2022'
       },
       education: {
         type: 'Бакалавриат',
@@ -74,7 +74,12 @@ export default {
         date_start: '01.01.2024',
         date_end: '01.03.2025',
         description: 'Служил в мото-стрелковой дивизии под Калининградом'
-      }
+      },
+      persons: [
+        { id: '1', name: 'John', gender: 'male', birth_date: '01.01.1980', death_date: '01.01.2023' },
+        { id: '2', name: 'Alice', gender: 'female', birth_date: '01.01.1985', death_date: '01.01.2023' },
+        { id: '3', name: 'Maya', gender: 'female', birth_date: '01.01.1985', death_date: '01.01.2023' }
+      ]
     }
   }
 }

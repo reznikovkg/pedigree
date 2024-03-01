@@ -1,12 +1,17 @@
 <template>
   <form class="wedding-form">
     <div class="wedding-form__person">
-      <ElInput
-        v-model="partner"
-        class="wedding-form__inp"
-        type="text"
-        placeholder="Партнёр"
-      />
+      <ElSelect
+      v-model="partner"
+      class="wedding-form__inp"
+      placeholder="Выберите партнёра">
+        <ElOption
+          v-for="person in filteredPersons"
+          :key="person.id"
+          :label="person.name"
+          :value="person">
+        </ElOption>
+      </ElSelect>
     </div>
     <div class="wedding-form__date-start">
       <ElInput
@@ -38,43 +43,55 @@ export default {
     value: {
       type: Object,
       required: true
+    },
+    persons: {
+      type: Array,
+      required: true
     }
   },
   computed: {
     partner: {
       get () {
-        return this.value.partner.name
+        return this.value.partner;
       },
       set (value) {
-        this.emitFormData({ partner: value })
+        this.emitFormData({ partner: value });
       }
     },
     date_start: {
       get () {
-        return this.value.date_start
+        return this.value.date_start;
       },
       set (value) {
-        this.emitFormData({ date_start: value })
+        this.emitFormData({ date_start: value });
       }
     },
     date_end: {
       get () {
-        return this.value.date_end
+        return this.value.date_end;
       },
       set (value) {
-        this.emitFormData({ date_end: value })
+        this.emitFormData({ date_end: value });
       }
     },
+    filteredPersons() {
+      if (!this.value.partner || !this.value.date_end) return [];
+      return this.persons.filter(person =>
+        person.gender !== this.value.partner.gender &&
+        (!person.death_date || new Date(person.death_date) > new Date(this.value.date_start)) &&
+        (!person.birth_date || new Date(person.birth_date) < new Date(this.value.date_end))
+      );
+    }
   },
   methods: {
     emitFormData (param) {
       this.$emit('change', {
         ...this.value,
-        ...param
-      })
+        ...param,
+      });
     }
   }
-}
+};
 </script>
 
 <style lang="less">
