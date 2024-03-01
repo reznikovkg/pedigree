@@ -10,7 +10,7 @@
       <WeddingForm v-model="wedding" />
       <PersonForm :person="person" />
       <MilitaryForm :military="military"/>
-      <WorkForm :workData="workData"/>
+      <WorkForm v-model="workData"/>
     </section>
   </PageLayout>
 </template>
