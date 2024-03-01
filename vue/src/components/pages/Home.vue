@@ -75,11 +75,7 @@ export default {
         date_end: '01.03.2025',
         description: 'Служил в мото-стрелковой дивизии под Калининградом'
       },
-      persons: [
-        { id: '1', name: 'John', gender: 'male', birth_date: '01.01.1980', death_date: '01.01.2023' },
-        { id: '2', name: 'Alice', gender: 'female', birth_date: '01.01.1985', death_date: '01.01.2023' },
-        { id: '3', name: 'Maya', gender: 'female', birth_date: '01.01.1985', death_date: '01.01.2023' }
-      ]
+      persons: []
     }
   }
 }

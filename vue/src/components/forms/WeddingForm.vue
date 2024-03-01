@@ -6,7 +6,7 @@
       class="wedding-form__inp"
       placeholder="Выберите партнёра">
         <ElOption
-          v-for="person in filteredPersons"
+          v-for="person in filteredPersonsList"
           :key="person.id"
           :label="person.name"
           :value="person">
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'WeddingForm',
   model: {
@@ -49,38 +50,31 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      partner: null
+    }
+  },
   computed: {
-    partner: {
-      get () {
-        return this.value.partner;
-      },
-      set (value) {
-        this.emitFormData({ partner: value });
-      }
+    ...mapGetters('persons',['filteredPersons']),
+    filteredPersonsList() {
+      return this.filteredPersons(this.value.partner.gender, this.value.date_start, this.value.date_end)
     },
     date_start: {
       get () {
-        return this.value.date_start;
+        return this.value.date_start
       },
       set (value) {
-        this.emitFormData({ date_start: value });
+        this.emitFormData({ date_start: value })
       }
     },
     date_end: {
       get () {
-        return this.value.date_end;
+        return this.value.date_end
       },
       set (value) {
-        this.emitFormData({ date_end: value });
+        this.emitFormData({ date_end: value })
       }
-    },
-    filteredPersons() {
-      if (!this.value.partner || !this.value.date_end) return [];
-      return this.persons.filter(person =>
-        person.gender !== this.value.partner.gender &&
-        (!person.death_date || new Date(person.death_date) > new Date(this.value.date_start)) &&
-        (!person.birth_date || new Date(person.birth_date) < new Date(this.value.date_end))
-      );
     }
   },
   methods: {
@@ -88,10 +82,10 @@ export default {
       this.$emit('change', {
         ...this.value,
         ...param,
-      });
+      })
     }
   }
-};
+}
 </script>
 
 <style lang="less">
