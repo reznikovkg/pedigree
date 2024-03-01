@@ -52,7 +52,19 @@ export default {
         children: ['y3g46yf34fy636b', '3345fg35yg34f3f46'],
         biography: 'Родился в ...',
         activity: 'Бухгалтер',
-        photo: '/pictures/ivan.jpg'
+        photo: '/pictures/ivan.jpg',
+        weddingsData: [
+          {
+            person: { name: 'Иванова И.И.' },
+            date_start: '2021',
+            date_end: ''
+          },
+          {
+            person: { name: 'Петрова П.И.' },
+            date_start: '2010',
+            date_end: '2020'
+          }
+        ]
       },
       wedding: {
         partner: {
