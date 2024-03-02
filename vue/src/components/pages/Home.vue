@@ -41,7 +41,9 @@ export default {
     WorkForm
   },
   computed: {
-    ...mapGetters('persons', ['filteredPersons']),
+    ...mapGetters('persons', [
+      'filteredPersons'
+    ]),
     persons() {
       const customFilter = (person) => {
         const partnerGender = this.person.gender === 'male' ? 'female' : 'male'

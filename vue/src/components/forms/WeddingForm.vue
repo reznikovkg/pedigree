@@ -52,7 +52,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('persons',['filteredPersons']),
+    ...mapGetters('persons', [
+      'filteredPersons'
+    ]),
     partner: {
       get () {
         return this.value.partner
