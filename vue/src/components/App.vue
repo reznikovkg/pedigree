@@ -71,3 +71,30 @@ h4 {
   display: flex;
 }
 </style>
+
+<style lang="less">
+.custom-input {
+  width: 450px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  //grid-template-columns: 1fr 1fr;
+  grid-gap: 15px;
+  padding: 8px;
+  
+  &__container {
+
+  }
+
+  &__description {
+    //grid-area: 3 / 1 / 4 / 3;
+  }
+
+  & .el-input__inner {
+    font-size: 16px;
+  }
+
+  & .el-textarea__inner {
+    font-size: 16px;
+  }
+}
+</style>

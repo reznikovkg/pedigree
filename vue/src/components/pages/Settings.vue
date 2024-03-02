@@ -2,7 +2,7 @@
   <PageLayout>
     <section class="p-16">
       <h1>
-         Настройки
+        Настройки
       </h1>
       <div>
         <ElSwitch

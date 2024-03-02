@@ -1,58 +1,72 @@
 <template>
-  <div class="person-page">
-    <div class="person-page__form">
-      <input
+  <div class="custom-input">
+    <div class="custom-input__container">
+      <ElInput
         v-model="formData.secondName"
-        class="person-page__input"
+        class="custom-input__input"
         type="text"
         placeholder="Фамилия"
-      >
-      <input
+      />
+    </div>
+    <div class="custom-input__container">
+      <ElInput
         v-model="formData.firstName"
-        class="person-page__input"
+        class="custom-input__input"
         type="text"
         placeholder="Имя"
-      >
-      <input
+      />
+    </div>
+    <div class="custom-input__container">
+      <ElInput
         v-model="formData.patronymic"
-        class="person-page__input"
+        class="custom-input__input"
         type="text"
         placeholder="Отчество"
-      >
-      <input
+      />
+    </div>
+    <div class="custom-input__container">
+      <ElInput
         v-model="formData.gender"
-        class="person-page__input"
+        class="custom-input__input"
         type="text"
         placeholder="Пол"
-      >
-      <input
+      />
+    </div>
+    <div class="custom-input__container">
+      <ElInput
         v-model="formData.birth_date"
-        class="person-page__input"
+        class="custom-input__input"
         type="text"
         placeholder="Дата рождения"
-      >
-      <input
+      />
+    </div>
+    <div class="custom-input__container">
+       <ElInput
         v-model="formData.die_date"
-        class="person-page__input"
+        class="custom-input__input"
         type="text"
         placeholder="Дата смерти"
-      >
+      />
     </div>
-    <textarea
-      v-model="formData.activity"
-      class="person-page__input-bottom"
-      type="text"
-      placeholder="Род деятельности"
-    >
-    </textarea>
-    <textarea
-      v-model="formData.biography"
-      class="person-page__input-bottom"
-      type="text"
-      placeholder="Биография"
-    >
-    </textarea>
-    <button @click="() => submitForm()" class="person-page__btn">Сохранить</button>
+    <div class="custom-input__description">
+      <ElInput
+        v-model="formData.activity"
+        class="custom-input__input"
+        type="textarea"
+        placeholder="Род деятельности"
+      />
+    </div>
+    <div class="custom-input__description">
+      <ElInput
+        v-model="formData.biography"
+        class="custom-input__input"
+        type="textarea"
+        placeholder="Биография"
+      />
+    </div>
+    <div> 
+      <button @click="() => submitForm()" class="person-page__btn">Сохранить</button>
+    </div>
   </div>
 </template>
 
@@ -92,38 +106,7 @@ export default {
 
 <style scoped lang="less">
 .person-page {
-  max-width: 400px;
-
-  &__form {
-    max-width: 400px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 17px;
-    padding: 10px;
-  }
-
-  &__input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    border-color: rgba(0,0,0,0.6);
-    background-color: rgba(0,0,0,0.04);
-    font-weight: 600;
-    width: 160px;
-  }
-
-  &__input-bottom {
-    width: 90%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    border-color: rgba(0,0,0,0.6);
-    background-color: rgba(0,0,0,0.04);
-    margin: 10px;
-    font-weight: 600;
-  }
-
-  &__btn {
+&__btn {
     justify-self: center;
     padding: 10px 20px;
     margin-top: 10px;
@@ -133,7 +116,7 @@ export default {
     color: black;
     font-weight: 600;
     cursor: pointer;
-    margin-left: 280px;
+    margin-left: 0px;
     margin-bottom: 20px;
   }
 }
