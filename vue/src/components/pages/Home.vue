@@ -10,6 +10,7 @@
       <WeddingForm v-model="wedding" />
       <PersonForm :person="person" />
       <MilitaryForm :military="military"/>
+      <WorkForm v-model="workData"/>
     </section>
   </PageLayout>
 </template>
@@ -23,6 +24,7 @@ import EducationForm from '../forms/EducationForm.vue'
 import WeddingForm from '../forms/WeddingForm.vue'
 import PersonForm from '../forms/PersonForm.vue'
 import MilitaryForm from '../forms/MilitaryForm.vue'
+import WorkForm from '../forms/WorkForm.vue';
 
 export default {
   name: 'HomePage',
@@ -35,6 +37,7 @@ export default {
     WeddingForm,
     PersonForm,
     MilitaryForm,
+    WorkForm
   },
   data () {
     return {
@@ -86,6 +89,14 @@ export default {
         date_start: '01.01.2024',
         date_end: '01.03.2025',
         description: 'Служил в мото-стрелковой дивизии под Калининградом'
+      },
+      workData: {
+        place: "Россия, Воронеж",
+        organization: "RedCollar",
+        startDate: "01.01.2023",
+        endDate: "31.12.2023",
+        position: "Младший инженер-программист",
+        description: "Клёвый чел"
       }
     }
   }
