@@ -10,6 +10,7 @@
       <WeddingForm v-model="wedding" :persons="persons" />
       <PersonForm :person="person" />
       <MilitaryForm :military="military"/>
+      <WorkForm v-model="workData"/>
     </section>
   </PageLayout>
 </template>
@@ -24,6 +25,7 @@ import WeddingForm from '../forms/WeddingForm.vue'
 import PersonForm from '../forms/PersonForm.vue'
 import MilitaryForm from '../forms/MilitaryForm.vue'
 import { mapGetters } from 'vuex'
+import WorkForm from '../forms/WorkForm.vue'
 
 export default {
   name: 'HomePage',
@@ -52,6 +54,8 @@ export default {
       }
       return this.filteredPersons(customFilter) || []
     }
+    MilitaryForm,
+    WorkForm
   },
   data () {
     return {
@@ -66,7 +70,19 @@ export default {
         children: ['y3g46yf34fy636b', '3345fg35yg34f3f46'],
         biography: 'Родился в ...',
         activity: 'Бухгалтер',
-        photo: '/pictures/ivan.jpg'
+        photo: '/pictures/ivan.jpg',
+        weddingsData: [
+          {
+            person: { name: 'Иванова И.И.' },
+            date_start: '2021',
+            date_end: ''
+          },
+          {
+            person: { name: 'Петрова П.И.' },
+            date_start: '2010',
+            date_end: '2020'
+          }
+        ]
       },
       wedding: {
         partner: {
@@ -91,6 +107,14 @@ export default {
         date_start: '01.01.2024',
         date_end: '01.03.2025',
         description: 'Служил в мото-стрелковой дивизии под Калининградом'
+      },
+      workData: {
+        place: "Россия, Воронеж",
+        organization: "RedCollar",
+        startDate: "01.01.2023",
+        endDate: "31.12.2023",
+        position: "Младший инженер-программист",
+        description: "Клёвый чел"
       }
     }
   }

@@ -15,11 +15,18 @@
 
     <h2>Биография</h2>
     <div class="person-card__information-text">{{ person.biography }}</div>
+
+    <WeddingsList :weddings="person.weddingsData" />
   </div>
 </template>
 
 <script>
+import WeddingsList from '../parts/WeddingsList.vue';
+
 export default {
+  components: {
+    WeddingsList
+  },
   props: {
     person: {
       type: Object,
