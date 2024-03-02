@@ -43,11 +43,11 @@ export default {
       const customFilter = (person) => {
         const partnerGender = this.person.gender === 'male' ? 'female' : 'male'
         const birthDate = new Date(this.person.birth_date)
-        const dieDate = new Date(this.person.death_date)
+        const deathDate = new Date(this.person.die_date)
         return (
           person.gender !== partnerGender &&
-          (!person.death_date || new Date(person.death_date) > birthDate) &&
-          (!person.birth_date || new Date(person.birth_date) < dieDate)
+          (!person.die_date || new Date(person.die_date) >birthDate) &&
+          (!person.birth_date || new Date(person.birth_date) < deathDate)
         )
       }
       return this.filteredPersons(customFilter) || []
