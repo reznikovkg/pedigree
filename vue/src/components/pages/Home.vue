@@ -37,7 +37,8 @@ export default {
     EducationForm,
     WeddingForm,
     PersonForm,
-    MilitaryForm
+    MilitaryForm,
+    WorkForm
   },
   computed: {
     ...mapGetters('persons', ['filteredPersons']),
@@ -54,8 +55,6 @@ export default {
       }
       return this.filteredPersons(customFilter) || []
     }
-    MilitaryForm,
-    WorkForm
   },
   data () {
     return {
