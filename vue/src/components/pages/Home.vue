@@ -35,19 +35,19 @@ export default {
     EducationForm,
     WeddingForm,
     PersonForm,
-    MilitaryForm,
+    MilitaryForm
   },
   computed: {
     ...mapGetters('persons', ['filteredPersons']),
     persons() {
       const customFilter = (person) => {
         const partnerGender = this.person.gender === 'male' ? 'female' : 'male'
-        const startDate = this.wedding.date_start
-        const endDate = this.wedding.date_end
+        const birthDate = new Date(this.person.birth_date)
+        const dieDate = new Date(this.person.death_date)
         return (
           person.gender !== partnerGender &&
-          (!person.death_date || new Date(person.death_date) > new Date(startDate)) &&
-          (!person.birth_date || new Date(person.birth_date) < new Date(endDate))
+          (!person.death_date || new Date(person.death_date) > birthDate) &&
+          (!person.birth_date || new Date(person.birth_date) < dieDate)
         )
       }
       return this.filteredPersons(customFilter) || []

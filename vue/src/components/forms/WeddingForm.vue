@@ -10,9 +10,8 @@
           v-for="person in filteredPersons"
           :key="person.id"
           :label="person.name"
-          :value="person"
-        >
-        </ElOption>
+          :value="person.id"
+        />
       </ElSelect>
     </div>
     <div class="wedding-form__date-start">
@@ -83,7 +82,7 @@ export default {
     emitFormData (param) {
       this.$emit('change', {
         ...this.value,
-        ...param,
+        ...param
       })
     }
   }
