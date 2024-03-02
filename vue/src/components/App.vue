@@ -82,12 +82,15 @@ h4 {
     grid-column-end: span 2
   }
 
-  & .el-input__inner {
-    font-size: 16px;
-  }
+  &__input {
+    & .el-input__inner {
+      font-size: 16px;
+    }
 
-  & .el-textarea__inner {
-    font-size: 16px;
+    & .el-textarea__inner {
+      font-size: 16px;
+    }
   }
+  
 }
 </style>

@@ -98,7 +98,7 @@ export default {
 
 <style scoped lang="less">
 .person-page {
-&__btn {
+  &__btn {
     justify-self: center;
     padding: 10px 20px;
     margin-top: 10px;
