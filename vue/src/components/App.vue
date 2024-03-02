@@ -79,7 +79,7 @@ h4 {
   padding: 8px;
 
   &__full-width {
-    grid-column-end: span 2
+    grid-column: span 2
   }
 
   &__input {

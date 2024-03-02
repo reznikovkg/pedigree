@@ -1,19 +1,17 @@
 <template>
   <div class="custom-form">
-    <div class="custom-form__full-width">
-      <ElSelect
-        v-model="partner"
-        class="custom-form__input"
-        type="textarea"
-        placeholder="Выберите партнёра"
-      />
-      <ElOption
-        v-for="person in persons"
-        :key="person.id"
-        :label="person.name"
-        :value="person.id"
-      />
-    </div>
+    <ElSelect
+      v-model="partner"
+      class="custom-form__full-width"
+      type="textarea"
+      placeholder="Выберите партнёра"
+    />
+    <ElOption
+      v-for="person in persons"
+      :key="person.id"
+      :label="person.name"
+      :value="person.id"
+    />
     <ElDatePicker
       v-model="date_start"
       class="custom-form__input"
