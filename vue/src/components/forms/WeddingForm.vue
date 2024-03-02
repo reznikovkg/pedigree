@@ -7,7 +7,7 @@
         placeholder="Выберите партнёра"
       >
         <ElOption
-          v-for="person in filteredPersons"
+          v-for="person in persons"
           :key="person.id"
           :label="person.name"
           :value="person.id"
@@ -34,7 +34,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 export default {
   name: 'WeddingForm',
   model: {
@@ -52,9 +51,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('persons', [
-      'filteredPersons'
-    ]),
     partner: {
       get () {
         return this.value.partner
