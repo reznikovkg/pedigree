@@ -1,53 +1,45 @@
 <template>
-  <div class="custom-input">
-    <div class="custom-input__container">
-      <ElInput
-        v-model="type"
-        class="custom-input__input"
-        type="text"
-        placeholder="Тип"
-      />
-    </div>
-    <div class="custom-input__container">
-      <ElInput
-        v-model="level"
-        class="custom-input__input"
-        type="text"
-        placeholder="Уровень"
-      />
-    </div>
-    <div class="custom-input__container">
-      <ElInput
-        v-model="startDate"
-        class="custom-input__input"
-        type="text"
-        placeholder="Дата начала обучения"
-      />
-    </div>
-    <div class="custom-input__container">
-      <ElInput
-        v-model="endDate"
-        class="custom-input__input"
-        type="text"
-       placeholder="Дата завершения обучения"
-      />
-    </div>
-    <div class="custom-input__container">
-      <ElInput
-        v-model="institutionName"
-        class="custom-input__input"
-        type="text"
-        placeholder="Название учреждения"
-      />
-    </div>
-    <div class="custom-input__container">
-      <ElInput
-        v-model="institutionCity"
-        class="custom-input__input"
-        type="text"
-        placeholder="Город учреждения"
-     />
-    </div>
+  <div class="custom-form">
+    <ElInput
+      v-model="type"
+      class="custom-input__input"
+      type="text"
+      placeholder="Тип"
+    />
+    <ElInput
+      v-model="level"
+      class="custom-input__input"
+      type="text"
+      placeholder="Уровень"
+    />
+    <ElDatePicker
+      v-model="startDate"
+      class="custom-input__input"
+      type="date"
+      format="dd.MM.yyyy"
+      value-format="dd.MM.yyyy"
+      placeholder="Дата начала обучения"
+    />
+    <ElDatePicker
+      v-model="endDate"
+      class="custom-input__input"
+      type="date"
+      format="dd.MM.yyyy"
+      value-format="dd.MM.yyyy"
+      placeholder="Дата завершения обучения"
+    />
+    <ElInput
+      v-model="institutionName"
+      class="custom-input__input"
+      type="text"
+      placeholder="Название учреждения"
+    />
+    <ElInput
+      v-model="institutionCity"
+      class="custom-input__input"
+      type="text"
+      placeholder="Город учреждения"
+    />
   </div>
 </template>
 

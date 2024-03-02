@@ -1,29 +1,29 @@
 <template>
-  <div class="custom-input">
-    <div class="custom-input__container">
+  <div class="custom-form">
+    <div class="custom-form__full-width">
       <ElInput
         v-model="partner"
-        class="custom-input__input"
+        class="custom-form__input"
         type="text"
         placeholder="Партнёр"
       />
     </div>
-    <div class="custom-input__container">
-      <ElInput
-        v-model="date_start"
-        class="custom-input__input"
-        type="text"
-        placeholder="Дата свадьбы"
-      />
-    </div>
-    <div class="custom-input__container">
-      <ElInput
-        v-model="date_end"
-        class="custom-input__input"
-        type="text"
-        placeholder="Дата развода"
-      />
-    </div>
+    <ElDatePicker
+      v-model="date_start"
+      class="custom-form__input"
+      type="date"
+      format="dd.MM.yyyy"
+      value-format="dd.MM.yyyy"
+      placeholder="Дата свадьбы"
+    />
+    <ElDatePicker
+      v-model="date_end"
+      class="custom-form__input"
+      type="date"
+      format="dd.MM.yyyy"
+      value-format="dd.MM.yyyy"
+      placeholder="Дата развода"
+    />
   </div>
 </template>
 

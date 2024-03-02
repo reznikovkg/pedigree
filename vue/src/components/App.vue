@@ -70,23 +70,16 @@ h4 {
 .d-flex {
   display: flex;
 }
-</style>
 
-<style lang="less">
-.custom-input {
+.custom-form {
   width: 450px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  //grid-template-columns: 1fr 1fr;
   grid-gap: 15px;
   padding: 8px;
-  
-  &__container {
 
-  }
-
-  &__description {
-    //grid-area: 3 / 1 / 4 / 3;
+  &__full-width {
+    grid-column-end: span 2
   }
 
   & .el-input__inner {

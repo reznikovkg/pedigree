@@ -1,45 +1,39 @@
 <template>
-  <div class="work-form">
-    <div>
-      <ElInput
-        v-model="place"
-        type="text"
-        placeholder="Страна, город"
-      />
-    </div> 
-    <div>
-      <ElInput
-        v-model="organization"
-        type="text"
-        placeholder="Организация"
-      />
-    </div>
-    <div>  
-      <ElDatePicker
-        v-model="startDate"
-        type="date"
-        placeholder="Дата начала"
-        format="dd.MM.yyyy"
-        value-format="dd.MM.yyyy"
-      />
-    </div> 
-    <div> 
-      <ElDatePicker
-        v-model="endDate"
-        type="date"
-        placeholder="Дата завершения"
-        format="dd.MM.yyyy"
-        value-format="dd.MM.yyyy"
-      />
-    </div>
-    <div class="work-form__position">
+  <div class="custom-form">
+    <ElInput
+      v-model="place"
+      type="text"
+      placeholder="Страна, город"
+    />
+    <ElInput
+      v-model="organization"
+      type="text"
+      placeholder="Организация"
+    />
+    <ElDatePicker
+      v-model="startDate"
+      class="custom-form__input"
+      type="date"
+      format="dd.MM.yyyy"
+      value-format="dd.MM.yyyy"
+      placeholder="Дата начала"
+    />
+    <ElDatePicker
+      v-model="endDate"
+      class="custom-form__input"
+      type="date"
+      format="dd.MM.yyyy"
+      value-format="dd.MM.yyyy"
+      placeholder="Дата завершения"
+    />
+    <div class="custom-form__full-width">
       <ElInput
         v-model="position"
         type="textarea"
         placeholder="Должность"
       />
      </div>
-     <div class="work-form__description"> 
+     <div class="custom-form__full-width">
       <ElInput
         v-model="description"
         type="textarea"
@@ -123,20 +117,5 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
-.work-form {
-  width: 450px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 15px;
-  padding: 8px;
-
-  &__position {
-    grid-area: 3 / 1 / 4 / 3;
-  }
-
-  &__description {
-    grid-area: 4 / 1 / 4 / 3;
-  }
-}
+<style>
 </style>

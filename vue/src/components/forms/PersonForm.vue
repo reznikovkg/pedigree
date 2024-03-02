@@ -1,65 +1,57 @@
 <template>
-  <div class="custom-input">
-    <div class="custom-input__container">
-      <ElInput
-        v-model="formData.secondName"
-        class="custom-input__input"
-        type="text"
-        placeholder="Фамилия"
-      />
-    </div>
-    <div class="custom-input__container">
-      <ElInput
-        v-model="formData.firstName"
-        class="custom-input__input"
-        type="text"
-        placeholder="Имя"
-      />
-    </div>
-    <div class="custom-input__container">
-      <ElInput
-        v-model="formData.patronymic"
-        class="custom-input__input"
-        type="text"
-        placeholder="Отчество"
-      />
-    </div>
-    <div class="custom-input__container">
-      <ElInput
-        v-model="formData.gender"
-        class="custom-input__input"
-        type="text"
-        placeholder="Пол"
-      />
-    </div>
-    <div class="custom-input__container">
-      <ElInput
-        v-model="formData.birth_date"
-        class="custom-input__input"
-        type="text"
-        placeholder="Дата рождения"
-      />
-    </div>
-    <div class="custom-input__container">
-       <ElInput
-        v-model="formData.die_date"
-        class="custom-input__input"
-        type="text"
-        placeholder="Дата смерти"
-      />
-    </div>
-    <div class="custom-input__description">
+  <div class="custom-form">
+    <ElInput
+      v-model="formData.secondName"
+      class="custom-form__input"
+      type="text"
+      placeholder="Фамилия"
+    />
+    <ElInput
+      v-model="formData.firstName"
+      class="custom-form__input"
+      type="text"
+      placeholder="Имя"
+    />
+    <ElInput
+      v-model="formData.patronymic"
+      class="custom-form__input"
+      type="text"
+      placeholder="Отчество"
+    />
+    <ElInput
+      v-model="formData.gender"
+      class="custom-form__input"
+      type="text"
+      placeholder="Пол"
+    />
+    <ElDatePicker
+      v-model="formData.birth_date"
+      class="custom-form__input"
+      type="date"
+      format="dd.MM.yyyy"
+      value-format="dd.MM.yyyy"
+      placeholder="Дата рождения"
+    />
+    <ElDatePicker
+      v-model="formData.die_date"
+      class="custom-form__input"
+      type="date"
+      format="dd.MM.yyyy"
+      value-format="dd.MM.yyyy"
+      placeholder="Дата смерти"
+    />
+    <div class="custom-form__full-width">
       <ElInput
         v-model="formData.activity"
-        class="custom-input__input"
+        class="custom-form__input"
         type="textarea"
         placeholder="Род деятельности"
       />
     </div>
-    <div class="custom-input__description">
+    <div class="custom-form__full-width">
       <ElInput
         v-model="formData.biography"
-        class="custom-input__input"
+        class="custom-form__input"
         type="textarea"
         placeholder="Биография"
       />
