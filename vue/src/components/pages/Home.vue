@@ -7,7 +7,7 @@
       <PersonCard :person="person" />
       <PhotoPreview size="large" photo="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666206241_12-mykaleidoscope-ru-p-kartinka-na-zastavku-oboi-12.jpg" />
       <EducationForm v-model="education" />
-      <WeddingForm v-model="wedding" />
+      <WeddingForm v-model="wedding" :persons="persons" />
       <PersonForm :person="person" />
       <MilitaryForm :military="military"/>
       <WorkForm v-model="workData"/>
@@ -24,7 +24,8 @@ import EducationForm from '../forms/EducationForm.vue'
 import WeddingForm from '../forms/WeddingForm.vue'
 import PersonForm from '../forms/PersonForm.vue'
 import MilitaryForm from '../forms/MilitaryForm.vue'
-import WorkForm from '../forms/WorkForm.vue';
+import { mapGetters } from 'vuex'
+import WorkForm from '../forms/WorkForm.vue'
 
 export default {
   name: 'HomePage',
@@ -38,6 +39,24 @@ export default {
     PersonForm,
     MilitaryForm,
     WorkForm
+  },
+  computed: {
+    ...mapGetters('persons', [
+      'filteredPersons'
+    ]),
+    persons() {
+      const customFilter = (person) => {
+        const partnerGender = this.person.gender === 'male' ? 'female' : 'male'
+        const birthDate = new Date(this.person.birthDate)
+        const deathDate = new Date(this.person.dieDate)
+        return (
+          person.gender !== partnerGender &&
+          (!person.dieDate || new Date(person.dieDate) >birthDate) &&
+          (!person.birthDate|| new Date(person.birthDate) < deathDate)
+        )
+      }
+      return this.filteredPersons(customFilter) || []
+    }
   },
   data () {
     return {
@@ -72,8 +91,8 @@ export default {
           name: 'Ivan',
           second_name: 'Ivanov'
         },
-        date_start: '01.01.2024',
-        date_end: '01.02.2024'
+        date_start: '01.01.2020',
+        date_end: '01.02.2022'
       },
       education: {
         type: 'Бакалавриат',

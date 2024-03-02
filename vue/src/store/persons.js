@@ -9,7 +9,8 @@ export default {
   },
   getters: {
     getAllPersons: (state) => state,
-    getPersonById: (state) => (id) => state.persons.find((person) => person.id === id)
+    getPersonById: (state) => (id) => state.persons.find((person) => person.id === id),
+    filteredPersons: (state) => (filterFunction) => state.persons.filter(filterFunction)
   },
   mutations: {
     addPerson: (state, payload) => {

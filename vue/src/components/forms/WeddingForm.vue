@@ -1,11 +1,17 @@
 <template>
   <div class="custom-form">
     <div class="custom-form__full-width">
-      <ElInput
+      <ElSelect
         v-model="partner"
         class="custom-form__input"
-        type="text"
-        placeholder="Партнёр"
+        type="textarea"
+        placeholder="Выберите партнёра"
+      />
+      <ElOption
+        v-for="person in persons"
+        :key="person.id"
+        :label="person.name"
+        :value="person.id"
       />
     </div>
     <ElDatePicker
@@ -38,12 +44,16 @@ export default {
     value: {
       type: Object,
       required: true
+    },
+    persons: {
+      type: Array,
+      required: true
     }
   },
   computed: {
     partner: {
       get () {
-        return this.value.partner.name
+        return this.value.partner
       },
       set (value) {
         this.emitFormData({ partner: value })
@@ -64,7 +74,7 @@ export default {
       set (value) {
         this.emitFormData({ date_end: value })
       }
-    },
+    }
   },
   methods: {
     emitFormData (param) {

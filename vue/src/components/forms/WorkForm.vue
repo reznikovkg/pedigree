@@ -29,6 +29,7 @@
     <div class="custom-form__full-width">
       <ElInput
         v-model="position"
+        class="custom-form__input"
         type="textarea"
         placeholder="Должность"
       />
@@ -36,6 +37,7 @@
      <div class="custom-form__full-width">
       <ElInput
         v-model="description"
+        class="custom-form__input"
         type="textarea"
         placeholder="Описание"
       />
