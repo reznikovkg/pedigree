@@ -5,7 +5,7 @@
       <button @click="() => openHelpModal()">Open modal</button>
       <ElButton type="primary">Кнопка</ElButton>
       <PersonCard :person="person" />
-      <PhotoPreview size="large"/>
+      <PhotoPreview size="large" photo=" " />
       <EducationForm v-model="education" />
       <WeddingForm v-model="wedding" :persons="persons" />
       <PersonForm :person="person" />
@@ -86,7 +86,6 @@ export default {
         children: ['y3g46yf34fy636b', '3345fg35yg34f3f46'],
         biography: 'Родился в ...',
         activity: 'Бухгалтер',
-<<<<<<< Updated upstream
         photo: '/pictures/ivan.jpg',
         weddingsData: [
           {
@@ -100,9 +99,6 @@ export default {
             date_end: '2020'
           }
         ]
-=======
-        photo: "https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666206241_12-mykaleidoscope-ru-p-kartinka-na-zastavku-oboi-12.jpg"
->>>>>>> Stashed changes
       },
       wedding: {
         partner: {
