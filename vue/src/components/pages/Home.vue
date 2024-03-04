@@ -8,7 +8,7 @@
       <PhotoPreview size="large" photo="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666206241_12-mykaleidoscope-ru-p-kartinka-na-zastavku-oboi-12.jpg" />
       <EducationForm v-model="education" />
       <WeddingForm v-model="wedding" :persons="persons" />
-      <PersonForm :person="person" />
+      <PersonForm v-model="person" />
       <MilitaryForm :military="military"/>
       <PopOver>
         <template v-slot:button>
@@ -53,7 +53,7 @@ export default {
     PersonForm,
     MilitaryForm,
     PopOver,
-    WorkForm
+    WorkForm,
   },
   computed: {
     ...mapGetters('persons', [
