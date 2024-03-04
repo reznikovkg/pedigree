@@ -11,7 +11,7 @@
 
       <div class="person-preview-card__person-id">id: {{ person.id }}</div>
     </div>
-    <div :class="['person-preview-card__status-indicator', genderClass]"></div>
+    <div class="person-preview-card__status-indicator" :class="genderClass"></div>
   </div>
 </template>
 
@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     genderClass() {
-      return this.person.gender === 'FEMALE' ? 'female' : 'male';
+      return this.person.gender === 'FEMALE' ? '__female' : '__male';
     },
   },
 }
@@ -90,14 +90,14 @@ export default {
     position: absolute;
     top: 25px;
     right: 25px;
-  }
 
-  &__status-indicator.female {
-    background-color: #ACFFE6;
-  }
+    &.__female {
+      background-color: #ACFFE6;
+    }
 
-  &__status-indicator.male {
-    background-color: #ACFFB4;
+    &.__male {
+      background-color: #ACFFB4;
+    }
   }
 }
 </style>
