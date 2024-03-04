@@ -1,7 +1,6 @@
 <template>
   <div class="person-preview-card">
-    <PhotoPreview class="person-preview-card__photo" size="middle" photo="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666206241_12-mykaleidoscope-ru-p-kartinka-na-zastavku-oboi-12.jpg" />
-    <!-- <PhotoPreview v-if="person.photo" :photo="person.photo" size="middle"/> -->
+    <PhotoPreview v-if="person.photo" class="person-preview-card__photo" size="middle" :photo="person.photo" />
     <div class="person-preview-card__information">
       <h2 class="person-preview-card__name">{{ person.secondName }}</h2>
       <h2 class="person-preview-card__name">{{ person.firstName }}</h2>
@@ -12,7 +11,7 @@
 
       <div class="person-preview-card__person-id">id: {{ person.id }}</div>
     </div>
-    <div class="person-preview-card__status-indicator" :style="{ backgroundColor: genderColor }"></div>
+    <div :class="['person-preview-card__status-indicator', genderClass]"></div>
   </div>
 </template>
 
@@ -31,8 +30,8 @@ export default {
     },
   },
   computed: {
-    genderColor() {
-      return this.person.gender === 'FEMALE' || this.person.gender === 'female' ? '#ACFFE6' : '#ACFFB4';
+    genderClass() {
+      return this.person.gender === 'FEMALE' ? 'female' : 'male';
     },
   },
 }
@@ -91,6 +90,14 @@ export default {
     position: absolute;
     top: 25px;
     right: 25px;
+  }
+
+  &__status-indicator.female {
+    background-color: #ACFFE6;
+  }
+
+  &__status-indicator.male {
+    background-color: #ACFFB4;
   }
 }
 </style>
