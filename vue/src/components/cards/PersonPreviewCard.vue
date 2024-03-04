@@ -1,6 +1,8 @@
 <template>
   <div class="person-preview-card">
-    <div>
+    <PhotoPreview class="person-preview-card__photo" size="middle" photo="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666206241_12-mykaleidoscope-ru-p-kartinka-na-zastavku-oboi-12.jpg" />
+    <!-- <PhotoPreview v-if="person.photo" :photo="person.photo" size="middle"/> -->
+    <div class="person-preview-card__information">
       <h2 class="person-preview-card__name">{{ person.secondName }}</h2>
       <h2 class="person-preview-card__name">{{ person.firstName }}</h2>
       <h2 class="person-preview-card__name">{{ person.patronymic }}</h2>
@@ -10,17 +12,27 @@
 
       <div class="person-preview-card__person-id">id: {{ person.id }}</div>
     </div>
-    <div class="person-preview-card__status-indicator"></div>
+    <div class="person-preview-card__status-indicator" :style="{ backgroundColor: genderColor }"></div>
   </div>
 </template>
 
 <script>
+import PhotoPreview from '../ui/PhotoPreview.vue'
+
 export default {
   name: 'PersonPreviewCard',
+  components: {
+    PhotoPreview
+  },
   props: {
     person: {
       type: Object,
       required: true,
+    },
+  },
+  computed: {
+    genderColor() {
+      return this.person.gender === 'FEMALE' || this.person.gender === 'female' ? '#ACFFE6' : '#ACFFB4';
     },
   },
 }
@@ -40,6 +52,15 @@ export default {
   width: 425px;
   height: 215px;
   padding-left: 25px;
+
+  &__information {
+    margin-right: 55px;
+  }
+
+  &__photo {
+    margin-top: 5px;
+    margin-right: 20px;
+  }
 
   &__name {
     font-family: 'Inter', sans-serif;
@@ -67,7 +88,6 @@ export default {
     width: 25px;
     height: 25px;
     border-radius: 24px;
-    background-color: #adffb4;
     position: absolute;
     top: 25px;
     right: 25px;
