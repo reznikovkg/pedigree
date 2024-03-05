@@ -6,6 +6,7 @@ import EditPersonPage from '../components/pages/EditPersonPage.vue'
 import CreatePersonPage from '../components/pages/CreatePersonPage.vue'
 import SettingsPage from '../components/pages/Settings.vue'
 import { RouteNames } from './routes'
+import PaginationPage from '@/components/pages/pagination/PaginationPage.vue'
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,11 @@ const routes = [
     path: '/settings',
     name: RouteNames.SETTINGS,
     component: SettingsPage
+  },
+  {
+    path: '/pagination',
+    name: RouteNames.PAGINATION,
+    component: PaginationPage
   }
 ]
 
