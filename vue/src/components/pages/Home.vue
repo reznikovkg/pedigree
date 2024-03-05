@@ -5,7 +5,7 @@
       <button @click="() => openHelpModal()">Open modal</button>
       <ElButton type="primary">Кнопка</ElButton>
       <PersonCard :person="person" />
-      <PhotoPreview size="large" photo=" " />
+      <PhotoPreview size="large" />
       <EducationForm v-model="education" />
       <WeddingForm v-model="wedding" :persons="persons" />
       <PersonForm :person="person" />

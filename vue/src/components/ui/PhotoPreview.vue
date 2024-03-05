@@ -1,12 +1,18 @@
 <template>
-  <div v-if="photo" class="photo-preview">
+  <div class="photo-preview">
     <img
+      v-if="photo"
       class="photo-preview__img"
       :class="'photo-preview__img--' + size"
-      ref = "photo"
-      :src="photo" 
-      @error="handleError"
+      :src="photo"
       alt="Фото"
+    >
+    <img
+      v-else
+      class="photo-preview__img"
+      :class="'photo-preview__img--' + size"
+      :src="require('@/assets/1688112950_sneg-top-p-foto-net-avatarki-vatsap-krasivo-14.jpg')"
+      alt="Фото по умолчанию"
     >
   </div>
 </template>
@@ -16,22 +22,12 @@ export default {
   name: 'PhotoPreview',
   props: {
     photo: {
-      default: ' ',
+      default: '',
       type: String
     },
     size: {
       default: 'middle',
       type: String
-    }
-  },
-  data () {
-    return {
-      defaultImage: 'https://sneg.top/uploads/posts/2023-06/1688112950_sneg-top-p-foto-net-avatarki-vatsap-krasivo-14.jpg'
-    }
-  },
-  methods: {
-    handleError() {
-      this.$refs.photo.src = this.defaultImage
     }
   }
 }
