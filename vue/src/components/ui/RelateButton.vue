@@ -1,12 +1,15 @@
 <template>
-  <div class="relate-button">
-    <button
-      class="relate-button__text"
-      :class="{ 'relate-button__male': isMale, 'relate-button__female': !isMale }"
-    >
-      {{ buttonText }}
-    </button>
-  </div>
+  <button
+    class="relate-button"
+    :class="'relate-button__' + (isMale ? 'male' : 'female')"
+  >
+    <template v-if="relate === 'parent'">
+      {{ isMale ? 'Отец: ' : 'Мать: ' }}{{ formatName }}
+    </template>
+    <template v-else>
+      {{ formatName }}
+    </template>
+  </button>
 </template>
 
 <script>
@@ -24,20 +27,11 @@ export default {
     }
   },
   computed: {
-    isMale() {
+    isMale () {
       return this.person.gender === 'male';
     },
-    formatName() {
+    formatName () {
       return `${this.person.secondName} ${this.person.firstName[0]}. ${this.person.patronymic[0]}.`;
-    },
-    buttonText() {
-      if (this.relate === 'parent') {
-        return this.isMale ? `Отец: ${this.formatName}` : `Мать: ${this.formatName}`;
-      } else if (this.relate === 'child') {
-        return `${this.formatName}`;
-      } else {
-        return this.relate === 'parent' ? 'Родитель: Фамилия И. О.' : 'Фамилия И. О.';
-      }
     }
   }
 };
@@ -45,17 +39,14 @@ export default {
 
 <style scoped lang="less">
 .relate-button {
-  display: inline-block;
   margin-right: 10px;
-
-  &__text {
+  margin-bottom: 10px;
   border: none;
   padding: 10px 20px;
   color: black;
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
-  }
 
   &__male {
     background-color: #adffb4;

@@ -70,4 +70,36 @@ h4 {
 .d-flex {
   display: flex;
 }
+
+.custom-form {
+  width: 450px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 15px;
+  margin-bottom: 15px;
+
+  &__full-width {
+    grid-column: span 2
+  }
+
+  &__input {
+
+    &.el-date-editor {
+      width: 100% !important;
+    }
+
+    & .el-input__inner {
+      font-size: 14px;
+      width: 100%;
+      font-family: @ffInter;
+    }
+
+    & .el-textarea__inner {
+      font-size: 14px;
+      width: 100%;
+      font-family: @ffInter;
+      min-height: 100px !important;
+    }
+  }
+}
 </style>

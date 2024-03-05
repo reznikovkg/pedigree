@@ -19,15 +19,20 @@
 
     <h2>Биография</h2>
     <div class="person-card__information-text">{{ person.biography }}</div>
+
+    <WeddingsList :weddings="person.weddingsData" />
   </div>
 </template>
 
 <script>
+import WeddingsList from '../parts/WeddingsList.vue';
+
 import RelateButton from '@/components/ui/RelateButton.vue';
 
 export default {
   name: 'PersonCard',
   components: {
+    WeddingsList,
     RelateButton
   },
   props: {

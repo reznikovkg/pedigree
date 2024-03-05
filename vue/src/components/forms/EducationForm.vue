@@ -1,38 +1,42 @@
 <template>
-  <div class="education-form">
+  <div class="custom-form">
     <ElInput
-      v-model="formData.type"
-      class="education-form__input"
+      v-model="type"
+      class="custom-form__input"
       type="text"
       placeholder="Тип"
     />
     <ElInput
-      v-model="formData.level"
-      class="education-form__input"
+      v-model="level"
+      class="custom-form__input"
       type="text"
       placeholder="Уровень"
     />
-    <ElInput
-      v-model="formData.startDate"
-      class="education-form__input"
-      type="text"
+    <ElDatePicker
+      v-model="startDate"
+      class="custom-form__input"
+      type="date"
+      format="dd.MM.yyyy"
+      value-format="dd.MM.yyyy"
       placeholder="Дата начала обучения"
     />
-    <ElInput
-      v-model="formData.endDate"
-      class="education-form__input"
-      type="text"
+    <ElDatePicker
+      v-model="endDate"
+      class="custom-form__input"
+      type="date"
+      format="dd.MM.yyyy"
+      value-format="dd.MM.yyyy"
       placeholder="Дата завершения обучения"
     />
     <ElInput
-      v-model="formData.institutionName"
-      class="education-form__input"
+      v-model="institutionName"
+      class="custom-form__input"
       type="text"
       placeholder="Название учреждения"
     />
     <ElInput
-      v-model="formData.institutionCity"
-      class="education-form__input"
+      v-model="institutionCity"
+      class="custom-form__input"
       type="text"
       placeholder="Город учреждения"
     />
@@ -47,79 +51,63 @@ export default {
     event: 'change'
   },
   props: {
-    education: {
-      type: Object,
-      required: true
-    },
     value: {
       type: Object,
       required: true
     }
   },
-  data () {
-    return {
-      formData: {
-        type: '',
-        level: '',
-        startDate: '',
-        endDate: '',
-        institutionName: '',
-        institutionCity: ''
-      }
-    }
-  },
   computed: {
     type: {
-      get() {
+      get () {
         return this.value.type
       },
-      set(value) {
+      set (value) {
         this.emitChange({ type: value })
       }
     },
     level: {
-      get() {
+      get () {
         return this.value.level
       },
-      set(value) {
+      set (value) {
         this.emitChange({ level: value })
       }
     },
     startDate: {
-      get() {
+      get () {
         return this.value.startDate
       },
-      set(value) {
+      set (value) {
         this.emitChange({ startDate: value })
       }
     },
     endDate: {
-      get() {
+      get () {
         return this.value.endDate
       },
-      set(value) {
+      set (value) {
         this.emitChange({ endDate: value })
       }
     },
     institutionName: {
-      get() {
+      get () {
         return this.value.institutionName
       },
-      set(value) {
+      set (value) {
         this.emitChange({ institutionName: value })
       }
     },
     institutionCity: {
-      get() {
+      get () {
         return this.value.institutionCity
       },
-      set(value) {
+      set (value) {
         this.emitChange({ institutionCity: value })
       }
     }
   },
   methods: {
-    emitChange(param) {
+    emitChange (param) {
       this.$emit('change', {
         ...this.value,
         ...param
@@ -129,18 +117,5 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
-.education-form {
-  max-width: 400px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-  padding: 10px;
-
-  &__input {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    border-color: rgba(0,0,0,0.6);
-  }
-}
+<style>
 </style>
