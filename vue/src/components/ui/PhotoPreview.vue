@@ -1,18 +1,10 @@
 <template>
   <div class="photo-preview">
     <img
-      v-if="photo"
       class="photo-preview__img"
       :class="'photo-preview__img--' + size"
-      :src="photo"
+      :src="imageSource"
       alt="Фото"
-    >
-    <img
-      v-else
-      class="photo-preview__img"
-      :class="'photo-preview__img--' + size"
-      :src="require('@/assets/1688112950_sneg-top-p-foto-net-avatarki-vatsap-krasivo-14.jpg')"
-      alt="Фото по умолчанию"
     >
   </div>
 </template>
@@ -28,6 +20,11 @@ export default {
     size: {
       default: 'middle',
       type: String
+    }
+  },
+  computed: {
+    imageSource () {
+      return this.photo || require('@/assets/photo-default.jpg');
     }
   }
 }
