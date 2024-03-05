@@ -157,9 +157,6 @@ export default {
     }
   },
   methods: {
-    submitForm () {
-      console.log(this.$store)
-    },
     emitFormData (param) {
       this.$emit('change', {
         ...this.value,

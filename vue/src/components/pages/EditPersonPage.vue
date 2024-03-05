@@ -1,7 +1,7 @@
 <template>
   <PageLayout>
     <PersonForm v-model="person"/>
-    <button @click="() => submitForm()" class="person-page__btn">Сохранить</button>
+    <button @click="() => editPerson()" class="person-page__btn">Сохранить</button>
   </PageLayout>
 </template>
 
@@ -37,12 +37,12 @@ export default {
   computed: {
     id () {
       return this.$route.params.id
-    },
-    ...mapActions('persons', ['editPerson']),
-    ...mapGetters('persons', ['getPersonById'])
+    }
   },
   methods: {
-    submitForm() {
+    ...mapActions('persons', ['editPerson']),
+    ...mapGetters('persons', ['getPersonById']),
+    editPerson () {
       if (this.person.firstName == '' || this.person.firstName == undefined)
         this.$router.push({ path: '/' })
       else

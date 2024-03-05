@@ -1,7 +1,7 @@
 <template>
   <PageLayout>
     <PersonForm v-model="person"/>
-    <button @click="() => submitForm()" class="person-page__btn">Сохранить</button>
+    <button @click="() => createPerson()" class="person-page__btn">Сохранить</button>
   </PageLayout>
 </template>
   
@@ -31,12 +31,10 @@ export default {
       }
     }
   },
-  computed: {
-    ...mapActions('persons', ['addPerson']),
-  },
   methods: {
-    submitForm() {
-      return this.addPerson('persons', this.person)
+    ...mapActions('persons', ['addPerson']),
+    createPerson () {
+      this.addPerson('persons', this.person)
     }
   }
 }
