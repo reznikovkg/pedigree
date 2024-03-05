@@ -43,10 +43,12 @@ export default {
     ...mapActions('persons', ['editPerson']),
     ...mapGetters('persons', ['getPersonById']),
     editPerson () {
-      if (this.person.firstName == '' || this.person.firstName == undefined)
+      if (this.person.firstName == '' || this.person.firstName == undefined) {
         this.$router.push({ path: '/' })
-      else
+      }
+      else {
         return this.editPerson('persons', this.person)
+      }
     }
   }
 }
