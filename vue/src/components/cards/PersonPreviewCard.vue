@@ -30,7 +30,7 @@ export default {
     },
   },
   computed: {
-    genderClass() {
+    genderClass () {
       return this.person.gender === 'FEMALE' ? '__female' : '__male';
     },
   },
