@@ -1,4 +1,4 @@
-  <template>
+<template>
   <PageLayout>
     <section class="p-16">
       <h1>
