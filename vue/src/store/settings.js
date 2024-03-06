@@ -20,7 +20,6 @@ export default{
   },
 
   actions: {
-    // Initialize state from localStorage
     initializeSettings: ({ commit }) => {
       const storedAccess = localStorage.getItem('access');
       if (storedAccess !== null) {
@@ -29,7 +28,6 @@ export default{
     },
     setAccess: ({ commit }, payload) => {
       commit('setAccess', payload);
-      // Сохраняем значение в localStorage
       localStorage.setItem('access', JSON.stringify(payload));
     },
   },

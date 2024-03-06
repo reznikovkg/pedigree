@@ -1,4 +1,4 @@
-<template>
+  <template>
   <PageLayout>
     <section class="p-16">
       <h1>
@@ -23,25 +23,21 @@ export default {
   name: 'SettingsPage',
   
   computed: {
-    // Используем геттер для получения значения из хранилища
     ...mapGetters({
       hiddenMode: 'settings/getAccess',
     }),
 
     hiddenModeSwitch: {
       get() {
-        // Возвращаем значение из хранилища
         return this.hiddenMode;
       },
       set(value) {
-        // Вызываем действие для обновления значения в хранилище
         this.updateAccess(value);
       },
     },
   },
 
   methods: {
-    // Используем действие Vuex для установки нового значения
     ...mapActions('settings', {
       updateAccess: 'setAccess'
     }),
