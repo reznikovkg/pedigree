@@ -19,5 +19,8 @@ Vue.use(ElementUI, { locale });
 new Vue({
   render: h => h(App),
   router,
-  store
+  store,
+  created() {
+    this.$store.dispatch('settings/initializeSettings');
+  },
 }).$mount('#app')

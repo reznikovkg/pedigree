@@ -20,13 +20,18 @@ export default{
   },
 
   actions: {
-    setMode: (store, payload) => new Promise((resolve) => {          
-      store.commit('setMode', payload)
-      return resolve()
-    }),
-    setAccess: (store, payload) => new Promise((resolve) => {
-      store.commit('setAccess', payload)
-      return resolve()
-    })
-  }
+    // Initialize state from localStorage
+    initializeSettings: ({ commit }) => {
+      const storedAccess = localStorage.getItem('access');
+      if (storedAccess !== null) {
+        commit('setAccess', JSON.parse(storedAccess));
+      }
+    },
+    setAccess: ({ commit }, payload) => {
+      commit('setAccess', payload);
+      // Сохраняем значение в localStorage
+      localStorage.setItem('access', JSON.stringify(payload));
+    },
+  },
+  
 }
