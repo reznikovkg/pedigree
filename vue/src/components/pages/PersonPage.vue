@@ -40,11 +40,6 @@ export default {
     id () {
       return this.$route.params.id
     }
-  },
-  mounted () {
-    if (this.person) {
-      this.form = { ...this.person }
-    }
   }
 };
 </script>
