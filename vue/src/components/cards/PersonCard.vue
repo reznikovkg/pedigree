@@ -73,6 +73,6 @@ export default {
     padding-bottom: 20px;
     color: black;
   }
-}
 
+}
 </style>
