@@ -15,21 +15,6 @@ export default {
     PageLayout,
     PersonCard
   },
-  data () {
-    return {
-      form: {
-        id: '',
-        secondName: '',
-        firstName: '',
-        patronymic: '',
-        birth_date: '',
-        die_date: '',
-        gender: '',
-        biography: '',
-        activity: '',
-      }
-    }
-  },
   computed: {
     ...mapGetters('persons', [
       'getPersonById'

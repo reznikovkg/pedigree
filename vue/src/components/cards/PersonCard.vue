@@ -26,8 +26,6 @@
       <div class="person-card__information-text">{{ person.biography }}</div>
 
       <WeddingsList :weddings="person.weddingsData" />
-
-      <WeddingsList :weddings="person.weddingsData" />
     </div>
   </div>
 </template>
@@ -76,4 +74,5 @@ export default {
     color: black;
   }
 }
+
 </style>
