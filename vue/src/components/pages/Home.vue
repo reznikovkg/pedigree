@@ -13,8 +13,6 @@
       </PopOver>
 
       <ElButton type="primary">Кнопка</ElButton>
-      <PersonCard :person="person" />
-      <PhotoPreview size="large" />
       <EducationForm v-model="education" />
       <WeddingForm v-model="wedding" :persons="persons" />
       <PersonForm v-model="person" />
@@ -27,8 +25,6 @@
 <script>
 import PageLayout from '../parts/PageLayout'
 import { helpModal } from "@/mixins/modals"
-import PersonCard from '@/components/cards/PersonCard.vue'
-import PhotoPreview from '../ui/PhotoPreview.vue'
 import EducationForm from '../forms/EducationForm.vue'
 import WeddingForm from '../forms/WeddingForm.vue'
 import PersonForm from '../forms/PersonForm.vue'
@@ -42,8 +38,6 @@ export default {
   name: 'HomePage',
   components: {
     PageLayout,
-    PhotoPreview,
-    PersonCard,
     EducationForm,
     WeddingForm,
     PersonForm,
@@ -129,6 +123,9 @@ export default {
         description: "Клёвый чел"
       }
     }
+  },
+  mounted () {
+    this.$router.push({ path: '/person/1' })
   }
 }
 </script>
