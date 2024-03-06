@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     genderClass () {
-      return this.person.gender === 'FEMALE' ? '__female' : '__male';
+      return this.person.gender === 'FEMALE' ? 'person-preview-card__status-indicator__female' : 'person-preview-card__status-indicator__male';
     },
   },
 }
@@ -91,11 +91,11 @@ export default {
     top: 25px;
     right: 25px;
 
-    &.__female {
+    &__female {
       background-color: #ACFFE6;
     }
 
-    &.__male {
+    &__male {
       background-color: #ACFFB4;
     }
   }
