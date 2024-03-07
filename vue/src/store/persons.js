@@ -1,32 +1,24 @@
-import { genHash } from "./modals"
+import { genHash } from "../store/services/common.js"
 
 export const PERSONS = "persons"
-
-const initialState = [
-  {
-    id: '1',
-    secondName: 'Иванов',
-    firstName: 'Иван',
-    patronymicName: 'Иванович',
-    gender: 'male',
-
-    weddings: []
-  }
-]
-
+const initialState = []
 export default {
   namespaced: true,
   state: {
-    persons: JSON.parse(localStorage.getItem(PERSONS)) || initialState
+    persons: JSON.parse(localStorage.getItem(PERSONS)) || initialState,
+    currentPerson: null,
   },
   getters: {
     getAllPersons: (state) => state,
     getPersonById: (state) => (id) => state.persons.find((person) => person.id === id),
-    filteredPersons: (state) => (filterFunction) => state.persons.filter(filterFunction)
+    filteredPersons: (state) => (filterFunction) => state.persons.filter(filterFunction),
+    getCurrentPerson: (state) => state.currentPerson
   },
   mutations: {
     addPerson: (state, payload) => {
-      state.persons.push({ id: genHash(), ...payload })
+      let newId = genHash()
+      state.persons.push({ id: newId, ...payload })
+      state.currentPerson = newId
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     },
     deletePerson: (state, payload) => {
@@ -34,10 +26,7 @@ export default {
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     },
     editPerson: (state, payload) => {
-      console.log(payload)
-      console.log(state.persons.find((p) => (p.id === payload.id)))
       state.persons = state.persons.map((p) => (p.id === payload.id ? { ...p, ...payload } : p))
-      console.log(state.persons)
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     }
   },
