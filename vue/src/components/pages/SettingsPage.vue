@@ -21,12 +21,10 @@ import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'SettingsPage',
-  
   computed: {
     ...mapGetters({
       hiddenMode: 'settings/getAccess',
     }),
-
     hiddenModeSwitch: {
       get() {
         return this.hiddenMode;
@@ -36,7 +34,6 @@ export default {
       },
     },
   },
-
   methods: {
     ...mapActions('settings', {
       updateAccess: 'setAccess'

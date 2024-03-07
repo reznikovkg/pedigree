@@ -20,7 +20,4 @@ new Vue({
   render: h => h(App),
   router,
   store,
-  created() {
-    this.$store.dispatch('settings/initializeSettings');
-  },
 }).$mount('#app')

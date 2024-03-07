@@ -2,7 +2,7 @@ export default{
   namespaced: true,
   state: {
     mode: 'user', // admin/user
-    access: false // true/false
+    access: localStorage.getItem('access') !== null ? JSON.parse(localStorage.getItem('access')) : false,
   },
 
   getters: {
@@ -30,6 +30,10 @@ export default{
       commit('setAccess', payload);
       localStorage.setItem('access', JSON.stringify(payload));
     },
+    setMode: (store, payload) => new Promise((resolve) => {
+      store.commit('setMode', payload)
+      return resolve()
+    }),
   },
   
 }
