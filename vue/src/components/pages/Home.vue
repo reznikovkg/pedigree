@@ -4,26 +4,20 @@
       Homepage
       <router-link to="/pagination">Open PaginationComponent</router-link>
       <button @click="() => openHelpModal()">Open modal</button>
-      <ElButton type="primary">Кнопка</ElButton>
-      <PersonCard :person="person" />
-      <PhotoPreview size="large" photo="https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666206241_12-mykaleidoscope-ru-p-kartinka-na-zastavku-oboi-12.jpg" />
-      <EducationForm v-model="education" />
-      <WeddingForm v-model="wedding" :persons="persons" />
-      <PersonForm :person="person" />
-      <MilitaryForm :military="military"/>
+
       <PopOver>
-        <template v-slot:button>
-          <div>Отчество: Фамилия И. О.</div>
-        </template>
-        <template v-slot:popover>
-          <div>Фамилия Имя Отчество</div>
-          <div>01.01.1920 - 01.01.2020</div>
-          <div>id: 100</div>
+        <div>Отчество: Фамилия И. О.</div>
+
+        <template slot="popover">
+          <div>Поповер</div>
         </template>
       </PopOver>
-    </section>
-    <section class="home-page__section">
-      <button @click="openHelpModal" class="home-page__button">Open modal</button>
+
+      <ElButton type="primary">Кнопка</ElButton>
+      <EducationForm v-model="education" />
+      <WeddingForm v-model="wedding" :persons="persons" />
+      <PersonForm v-model="person" />
+      <MilitaryForm :military="military"/>
       <WorkForm v-model="workData"/>
     </section>
   </PageLayout>
@@ -31,9 +25,7 @@
 
 <script>
 import PageLayout from '../parts/PageLayout'
-import { helpModal } from "@/mixins/modals" 
-import PersonCard from '@/components/cards/PersonCard.vue'
-import PhotoPreview from '../ui/PhotoPreview.vue'
+import { helpModal } from "@/mixins/modals"
 import EducationForm from '../forms/EducationForm.vue'
 import WeddingForm from '../forms/WeddingForm.vue'
 import PersonForm from '../forms/PersonForm.vue'
@@ -47,14 +39,12 @@ export default {
   name: 'HomePage',
   components: {
     PageLayout,
-    PhotoPreview,
-    PersonCard,
     EducationForm,
     WeddingForm,
     PersonForm,
     MilitaryForm,
     PopOver,
-    WorkForm
+    WorkForm,
   },
   computed: {
     ...mapGetters('persons', [
@@ -134,6 +124,9 @@ export default {
         description: "Клёвый чел"
       }
     }
+  },
+  mounted () {
+    this.$router.push({ path: '/person/1' })
   }
 }
 </script>
