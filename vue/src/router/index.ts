@@ -6,7 +6,7 @@ import EditPersonPage from '../components/pages/EditPersonPage.vue'
 import CreatePersonPage from '../components/pages/CreatePersonPage.vue'
 import SettingsPage from '../components/pages/Settings.vue'
 import { RouteNames } from './routes'
-import PaginationPage from '@/components/pages/pagination/PaginationPage.vue'
+import PaginationPage from '../components/pages/PaginationPage.vue'
 
 Vue.use(VueRouter)
 
