@@ -6,12 +6,18 @@
       <option value="50">50</option>
       <option value="100">100</option>
     </select>
-    <div class="pagination-btns">
+    <div class="pagination">
       <template v-for="(rangeNum, index) in currentRange">
-        <button :key="index" v-if="rangeNum !== DOTS" @click="currentPage = rangeNum">
+        <button
+          v-bind:class="[
+            'pagination__button',
+            rangeNum !== DOTS && currentPage === rangeNum && 'pagination__button--active'
+          ]"
+          :key="index"
+          @click="rangeNum !== DOTS ? (currentPage = rangeNum) : {}"
+        >
           {{ rangeNum }}
         </button>
-        <span :key="index" v-else>{{ rangeNum }}</span>
       </template>
     </div>
   </PageLayout>
@@ -19,6 +25,7 @@
 
 <script>
 import PageLayout from '@/components/parts/PageLayout.vue'
+
 export default {
   name: 'PaginationPage',
   components: {
@@ -84,7 +91,22 @@ export default {
 }
 </script>
 <style scoped lang="less">
-.pagination-btns {
+.pagination {
   margin-top: 200px;
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+}
+.pagination__button {
+  font-size: 16px;
+  border: 1px solid black;
+  padding: 6px 8px;
+  color: black;
+  background: lightgray;
+  border-radius: 6px;
+}
+.pagination__button--active {
+  color: white;
+  background: blue;
 }
 </style>
