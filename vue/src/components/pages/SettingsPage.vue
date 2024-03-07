@@ -6,7 +6,7 @@
       </h1>
       <div>
         <ElSwitch
-          v-model="hiddenModeSwitch"
+          v-model="accessSwitch"
           activeColor="green"
           inactiveColor="grey"
         />
@@ -23,11 +23,11 @@ export default {
   name: 'SettingsPage',
   computed: {
     ...mapGetters({
-      hiddenMode: 'settings/getAccess',
+      access: 'settings/getAccess',
     }),
-    hiddenModeSwitch: {
+    accessSwitch: {
       get() {
-        return this.hiddenMode;
+        return this.access;
       },
       set(value) {
         this.updateAccess(value);
