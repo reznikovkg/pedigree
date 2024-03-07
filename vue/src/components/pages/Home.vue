@@ -125,8 +125,8 @@ export default {
       }
     }
   },
-  mounted () {
-    this.$router.push({ path: '/person/1' })
-  }
+  // mounted () {
+  //   this.$router.push({ path: '/person/1' })
+  // }
 }
 </script>
