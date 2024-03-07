@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     genderClass () {
-      return this.person.gender === 'FEMALE' ? 'person-preview-card__status-indicator__female' : 'person-preview-card__status-indicator__male';
+      return `person-preview-card__status-indicator__${this.person.gender.toLowerCase()}`;
     },
   },
 }
