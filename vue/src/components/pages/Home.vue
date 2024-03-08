@@ -2,7 +2,6 @@
   <PageLayout>
     <section class="p-16">
       Homepage
-      <router-link to="/pagination">Open PaginationComponent</router-link>
       <button @click="() => openHelpModal()">Open modal</button>
 
       <PopOver>
@@ -125,8 +124,8 @@ export default {
       }
     }
   },
-  // mounted () {
-  //   this.$router.push({ path: '/person/1' })
-  // }
+  mounted () {
+    this.$router.push({ path: '/person/1' })
+  }
 }
 </script>

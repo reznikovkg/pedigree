@@ -1,7 +1,7 @@
 <template>
   <PageLayout>
-    <select v-model="limit">
-      <option selected value="10">10</option>
+    <select v-model="limit" @change="currentPage = 1">
+      <option value="10">10</option>
       <option value="30">30</option>
       <option value="50">50</option>
       <option value="100">100</option>
@@ -9,12 +9,12 @@
     <div class="pagination">
       <template v-for="(rangeNum, index) in currentRange">
         <button
-          v-bind:class="[
+          :class="[
             'pagination__button',
-            rangeNum !== DOTS && currentPage === rangeNum && 'pagination__button--active'
+            rangeNum !== '...' && currentPage === rangeNum && 'pagination__button_active'
           ]"
           :key="index"
-          @click="rangeNum !== DOTS ? (currentPage = rangeNum) : {}"
+          @click="rangeNum !== '...' ? (currentPage = rangeNum) : {}"
         >
           {{ rangeNum }}
         </button>
@@ -35,8 +35,7 @@ export default {
     return {
       limit: 10,
       currentPage: 1,
-      elementsLength: 1000,
-      DOTS: '...'
+      elementsLength: 1000
     }
   },
   methods: {
@@ -62,30 +61,19 @@ export default {
       const isLeftDots = currentPage > btnsAmount - defaultBtnsCount //1 ... 98 99 100
 
       if (isRightDots && !isLeftDots) {
-        return [...this.getRange(1, defaultBtnsCount), this.DOTS, btnsAmount]
+        return [...this.getRange(1, defaultBtnsCount), '...', btnsAmount]
       }
 
       if (isLeftDots && !isRightDots) {
-        return [1, this.DOTS, ...this.getRange(btnsAmount - defaultBtnsCount, btnsAmount)]
+        return [1, '...', ...this.getRange(btnsAmount - defaultBtnsCount, btnsAmount)]
       }
 
-      return [
-        1,
-        this.DOTS,
-        ...this.getRange(currentPage - 1, currentPage + 1),
-        this.DOTS,
-        btnsAmount
-      ] //1 ... 76 77 78 ... 100
+      return [1, '...', ...this.getRange(currentPage - 1, currentPage + 1), '...', btnsAmount] //1 ... 76 77 78 ... 100
     }
   },
   computed: {
     currentRange() {
       return this.getPaginationRange(this.currentPage, this.limit, this.elementsLength)
-    }
-  },
-  watch: {
-    limit() {
-      this.currentPage = 1
     }
   }
 }
@@ -96,17 +84,19 @@ export default {
   display: flex;
   flex-direction: row;
   gap: 6px;
-}
-.pagination__button {
-  font-size: 16px;
-  border: 1px solid black;
-  padding: 6px 8px;
-  color: black;
-  background: lightgray;
-  border-radius: 6px;
-}
-.pagination__button--active {
-  color: white;
-  background: blue;
+
+  &__button {
+    font-size: 16px;
+    border: 1px solid black;
+    padding: 6px 8px;
+    color: black;
+    background: lightgray;
+    border-radius: 6px;
+
+    &_active {
+      color: white;
+      background: blue;
+    }
+  }
 }
 </style>
