@@ -1,14 +1,20 @@
 <template>
   <div>
     <div class="content">
+      <NavigationPanel />
       <slot />
     </div>
   </div>
 </template>
 
 <script>
+import NavigationPanel from "@/components/ui/NavigationPanel.vue";
+
 export default {
   name: 'PageLayout',
+  components: {
+    NavigationPanel
+  },
   props: {
     loading: {
       type: Boolean,
