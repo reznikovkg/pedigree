@@ -1,5 +1,8 @@
 <template>
-  <button class="simple-button" :class="`simple-button--${type}`" @click="pressButton">
+  <button class="simple-button" :disabled="disabled"
+    :class="[`simple-button--${type}`, { 'simple-button--disabled': disabled }]" 
+    @click="pressButton"
+  >
     <slot />
   </button>
 </template>
@@ -13,6 +16,10 @@ export default {
       default: "primary",
       validator: (value) => ["info", "warning", "danger", "primary"].includes(value),
     },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
   methods: {
     pressButton () {
@@ -52,6 +59,16 @@ export default {
 
   &--primary {
     background-color: #02defd;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    background-color: #4d4d4d;
+
+    &:hover {
+      opacity: 0.5;
+    }
   }
 }
 </style>
