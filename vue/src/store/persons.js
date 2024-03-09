@@ -20,6 +20,15 @@ const initialState = [
     patronymicName: 'Иванович',
     gender: 'male',
     weddings: []
+  },
+  {
+    id: '2',
+    secondName: 'Петров',
+    firstName: 'Петр',
+    patronymicName: 'Петрович',
+    gender: 'male',
+
+    weddings: []
   }
 ]
 
@@ -56,6 +65,9 @@ export default {
     editPerson: (state, payload) => {
       state.persons = state.persons.map((p) => (p.id === payload.id ? { ...p, ...payload } : p))
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
+    },
+    setCenterId(state, id) {
+      state.center = id;
     }
   },
   actions: {
