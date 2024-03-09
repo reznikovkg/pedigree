@@ -65,6 +65,7 @@
     </div>
 
     <button @click="() => addForm()"  class="person-page__btn">Добавить</button>
+    
 
   </div>
 </template>
