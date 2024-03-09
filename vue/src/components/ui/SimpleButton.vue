@@ -1,5 +1,5 @@
 <template>
-  <button class="simple-button" :class="`simple-button--${type}`">
+  <button class="simple-button" :class="`simple-button--${type}`" @click="pressButton">
     <slot />
   </button>
 </template>
@@ -14,7 +14,12 @@ export default {
       validator: (value) => ["info", "warning", "danger", "primary"].includes(value),
     },
   },
-};
+  methods: {
+    pressButton () {
+      this.$emit('click')
+    }
+  }
+}
 </script>
 
 <style scoped lang="less">

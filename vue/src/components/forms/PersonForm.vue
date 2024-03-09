@@ -61,8 +61,8 @@
       v-for="(military, index) in value.military" 
       :key="index"
     >
+      <div class ="person-page__header-wrapper">
       <h2>Военная служба {{index + 1}}</h2>
-      <div class ="person-page__right-wrapper">
         <button @click="() => removeForm(index)" class="person-page__btn-close ">
           ✖
         </button>
@@ -74,9 +74,8 @@
       />
     </div>
     <div class ="custom-form__full-width person-page__right-wrapper">
-      <SimpleButton  @click="() => addForm()" 
-        class="person-page__btn"
-        type="info"
+      <SimpleButton  @click="addForm" 
+        type="primary"
       >
         Добавить
       </SimpleButton >
@@ -86,7 +85,7 @@
 
 <script>
 import MilitaryForm from '../forms/MilitaryForm.vue'
-
+import SimpleButton from '../ui/SimpleButton.vue'
 
 export default {
   name: 'PersonForm',
@@ -95,7 +94,8 @@ export default {
     event: 'change'
   },
   components: {
-    MilitaryForm
+    MilitaryForm,
+    SimpleButton
   },
   props: {
     value: {
@@ -222,7 +222,11 @@ export default {
     background: none;
     border: none;
     cursor: pointer;
-    margin-bottom: 10px;
+  }
+
+  &__header-wrapper {
+    display: grid;
+    grid-template-columns: auto max-content;
   }
 
   &__right-wrapper {

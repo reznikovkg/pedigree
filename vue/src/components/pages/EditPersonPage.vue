@@ -32,11 +32,11 @@ export default {
         activity: '',
         military: [
           {
-          type: '',
-          rank: '',
-          startDate: '',
-          endDate: '',
-          description: ''
+            type: '',
+            rank: '',
+            startDate: '',
+            endDate: '',
+            description: ''
           }
         ]
       }
