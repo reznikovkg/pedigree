@@ -9,7 +9,6 @@
       <EducationForm v-model="education" />
       <WeddingForm v-model="wedding" />
       <PersonForm :person="person" />
-      <MilitaryForm :military="military"/>
       <WorkForm v-model="workData"/>
     </section>
   </PageLayout>
@@ -23,7 +22,6 @@ import PhotoPreview from '../ui/PhotoPreview.vue'
 import EducationForm from '../forms/EducationForm.vue'
 import WeddingForm from '../forms/WeddingForm.vue'
 import PersonForm from '../forms/PersonForm.vue'
-import MilitaryForm from '../forms/MilitaryForm.vue'
 import WorkForm from '../forms/WorkForm.vue';
 
 export default {
@@ -36,7 +34,6 @@ export default {
     EducationForm,
     WeddingForm,
     PersonForm,
-    MilitaryForm,
     WorkForm
   },
   data () {
@@ -83,13 +80,22 @@ export default {
         institutionName: 'ВГУ',
         institutionCity: 'Воронеж'
       },
-      military: {
+      military: [
+        {
         type: 'Контракт',
         rank: 'Рядовой',
-        date_start: '01.01.2024',
-        date_end: '01.03.2025',
+        startDate: '01.01.2024',
+        endDate: '01.03.2025',
         description: 'Служил в мото-стрелковой дивизии под Калининградом'
-      },
+        },
+        {
+        type: 'Контракт2',
+        rank: 'Рядовой',
+        startDate: '01.01.2024',
+        endDate: '01.03.2025',
+        description: 'Служил в мото-стрелковой дивизии под Калининградом'
+        }
+      ],
       workData: {
         place: "Россия, Воронеж",
         organization: "RedCollar",

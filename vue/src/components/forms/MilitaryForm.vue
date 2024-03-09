@@ -1,41 +1,40 @@
 <template>
   <div class="military-form">
-    <div class="military-form__container">
+    <div>
       <ElInput
-        v-model="form.type"
-        class="military-form__input"
+        v-model="type"
         type="text"
         placeholder="Тип"
       />
     </div>
-    <div class="military-form__container">
+    <div>
       <ElInput
-        v-model="form.rank"
-        class="military-form__input"
+        v-model="rank"
         type="text"
         placeholder="Звание, должность"
       />
     </div>
-    <div class="military-form__container">
-      <ElInput
-        v-model="form.date_start"
-        class="military-form__input"
-        type="text"
+    <div>
+      <ElDatePicker
+        v-model="startDate"
+        type="date"
         placeholder="Дата начала службы"
+        format="dd.MM.yyyy"
+        value-format="dd.MM.yyyy"
       />
     </div>
-    <div class="military-form__container">
-      <ElInput
-        v-model="form.date_end"
-        class="military-form__input"
-        type="text"
+    <div>
+      <ElDatePicker
+        v-model="endDate"
+        type="date"
         placeholder="Дата конца службы"
+        format="dd.MM.yyyy"
+        value-format="dd.MM.yyyy"
       />
     </div>
     <div class="military-form__description">
       <ElInput
-        v-model="form.description"
-        class="military-form__input"
+        v-model="description"
         type="textarea"
         placeholder="Описание"
       />
@@ -46,41 +45,68 @@
 <script>
 export default {
   name: 'MilitaryForm',
+  model: {
+    prop: 'value',
+    event: 'change'
+  },
   props: {
-    military: {
-      default: null,
-      type: Object
+    value: {
+      type: Object,
+      required: true
     }
   },
-  data () {
-    return {
-      form: {
-        type: '',
-        rank: '',
-        date_start: '',
-        date_end: '',
-        description: ''
+  computed: {
+    type: {
+      get() {
+        return this.value.type
+      },
+      set(value) {
+        this.emitChange({ type: value })
       }
-    };
+    },
+    rank: {
+      get() {
+        return this.value.rank
+      },
+      set(value) {
+        this.emitChange({ rank: value })
+      }
+    },
+    startDate: {
+      get() {
+        return this.value.startDate
+      },
+      set(value) {
+        this.emitChange({ startDate: value })
+      }
+    },
+    endDate: {
+      get() {
+        return this.value.endDate
+      },
+      set(value) {
+        this.emitChange({ endDate: value })
+      }
+    },
+    description: {
+      get() {
+        return this.value.description
+      },
+      set(value) {
+        this.emitChange({ description: value })
+      }
+    }
   },
-  mounted () {
-    this.form = { ...this.military }
+  methods: {
+    emitChange (param) {
+      this.$emit('change', {
+        ...this.value,
+        ...param
+      })
+    }
   }
 }
 </script>
-
-<style lang="less">
-.military-form__input {
-
-  & .el-input__inner {
-    font-size: 16px;
-  }
-
-  & .el-textarea__inner {
-    font-size: 16px;
-  }
-}
-</style>
 
 <style scoped lang="less">
 .military-form {
