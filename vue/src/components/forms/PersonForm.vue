@@ -56,16 +56,33 @@
         placeholder="Биография"
       />
     </div>
+
+    <div v-for="(military, index) in formData.military" :key="index">
+      <MilitaryForm
+        :value="military"
+        v-model="formData.military[index]"
+        @change="(military) => setForm(military, index)"
+      />
+      <button @click="() => removeForm(index)">Удалить</button>
+    </div>
+
+    <button @click="() => addForm()"  class="person-page__btn">Добавить</button>
+
   </div>
 </template>
 
 <script>
+import MilitaryForm from '../forms/MilitaryForm.vue'
+
 
 export default {
   name: 'PersonForm',
   model: {
     prop: 'value',
     event: 'change'
+  },
+  components: {
+    MilitaryForm
   },
   props: {
     value: {
@@ -145,6 +162,27 @@ export default {
         ...this.value,
         ...param
       })
+    },
+    submitForm () {
+      console.log(this.formData)
+    },
+    setForm (v, index) {
+      this.formData.military[index] = v
+      this.formData.military = [...this.military]
+    },
+    addForm () {
+      this.formData.military.push(
+        {        
+        type: '',
+        rank: '',
+        startDate: '',
+        endDate: '',
+        description: ''
+        }
+      )
+    },
+    removeForm (index) {
+      this.formData.military.splice(index, 1);
     }
   }
 }
