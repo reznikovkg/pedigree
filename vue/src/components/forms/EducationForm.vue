@@ -1,38 +1,42 @@
 <template>
-  <div class="education-form">
+  <div class="custom-form">
     <ElInput
       v-model="type"
-      class="education-form__input"
+      class="custom-form__input"
       type="text"
       placeholder="Тип"
     />
     <ElInput
       v-model="level"
-      class="education-form__input"
+      class="custom-form__input"
       type="text"
       placeholder="Уровень"
     />
-    <ElInput
+    <ElDatePicker
       v-model="startDate"
-      class="education-form__input"
-      type="text"
+      class="custom-form__input"
+      type="date"
+      format="dd.MM.yyyy"
+      value-format="dd.MM.yyyy"
       placeholder="Дата начала обучения"
     />
-    <ElInput
+    <ElDatePicker
       v-model="endDate"
-      class="education-form__input"
-      type="text"
+      class="custom-form__input"
+      type="date"
+      format="dd.MM.yyyy"
+      value-format="dd.MM.yyyy"
       placeholder="Дата завершения обучения"
     />
     <ElInput
       v-model="institutionName"
-      class="education-form__input"
+      class="custom-form__input"
       type="text"
       placeholder="Название учреждения"
     />
     <ElInput
       v-model="institutionCity"
-      class="education-form__input"
+      class="custom-form__input"
       type="text"
       placeholder="Город учреждения"
     />
@@ -113,17 +117,5 @@ export default {
 }
 </script>
 
-<style scoped lang="less">
-.education-form {
-  max-width: 400px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-  padding: 10px;
-
-  &__input {
-    border: 1px solid rgba(0, 0, 0, 0.6);
-    border-radius: 5px;
-  }
-}
+<style>
 </style>
