@@ -11,13 +11,23 @@ const initialState = [
     gender: 'male',
 
     weddings: []
+  },
+  {
+    id: '2',
+    secondName: 'Петров',
+    firstName: 'Петр',
+    patronymicName: 'Петрович',
+    gender: 'male',
+
+    weddings: []
   }
 ]
 
 export default {
   namespaced: true,
   state: {
-    persons: JSON.parse(localStorage.getItem(PERSONS)) || initialState
+    persons: JSON.parse(localStorage.getItem(PERSONS)) || initialState,
+    center: ''
   },
   getters: {
     getAllPersons: (state) => state,
@@ -39,6 +49,9 @@ export default {
       state.persons = state.persons.map((p) => (p.id === payload.id ? { ...p, ...payload } : p))
       console.log(state.persons)
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
+    },
+    setCenterId(state, id) {
+      state.center = id;
     }
   },
   actions: {
