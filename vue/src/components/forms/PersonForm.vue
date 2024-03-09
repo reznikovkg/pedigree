@@ -74,9 +74,12 @@
       />
     </div>
     <div class ="custom-form__full-width person-page__right-wrapper">
-      <button @click="() => addForm()" class="person-page__btn">
+      <SimpleButton  @click="() => addForm()" 
+        class="person-page__btn"
+        type="info"
+      >
         Добавить
-      </button>
+      </SimpleButton >
     </div>
   </div>
 </template>
