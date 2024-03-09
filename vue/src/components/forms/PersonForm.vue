@@ -56,17 +56,28 @@
         placeholder="Биография"
       />
     </div>
-    <div v-for="(military, index) in value.military" :key="index">
+    <div 
+      class="custom-form__full-width" 
+      v-for="(military, index) in value.military" 
+      :key="index"
+    >
+      <h2>Военная служба {{index + 1}}</h2>
+      <div class ="person-page__right-wrapper">
+        <button @click="() => removeForm(index)" class="person-page__btn-close ">
+          ✖
+        </button>
+      </div>
       <MilitaryForm
         :value="military"
+        class="custom-form__input"
         @change="(military) => setForm(military, index)"
       />
-      <button @click="() => removeForm(index)">Удалить</button>
     </div>
-
-    <button @click="() => addForm()"  class="person-page__btn">Добавить</button>
-    
-
+    <div class ="custom-form__full-width person-page__right-wrapper">
+      <button @click="() => addForm()" class="person-page__btn">
+        Добавить
+      </button>
+    </div>
   </div>
 </template>
 
@@ -164,23 +175,24 @@ export default {
     },
     setForm(updatedMilitary, index) {
       const newValue = { ...this.value }
+      newValue.military = [...newValue.military]
       newValue.military[index] = updatedMilitary
       this.$emit('change', newValue)
     },
     addForm() {
       const newValue = { ...this.value }
-      newValue.military.push({
+      newValue.military = [...newValue.military, {
         type: '',
         rank: '',
         startDate: '',
         endDate: '',
         description: ''
-      })
+      }]
       this.$emit('change', newValue)
     },
     removeForm(index) {
       const newValue = { ...this.value }
-      newValue.military.splice(index, 1);
+      newValue.military.splice(index, 1)
       this.$emit('change', newValue)
     }
   }
@@ -202,5 +214,17 @@ export default {
     margin-left: 0px;
     margin-bottom: 20px;
   }
+
+  &__btn-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+  &__right-wrapper {
+    text-align: right;
+  }
 }
 </style>
+ 
