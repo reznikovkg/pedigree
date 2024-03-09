@@ -56,11 +56,9 @@
         placeholder="Биография"
       />
     </div>
-
-    <div v-for="(military, index) in formData.military" :key="index">
+    <div v-for="(military, index) in value.military" :key="index">
       <MilitaryForm
         :value="military"
-        v-model="formData.military[index]"
         @change="(military) => setForm(military, index)"
       />
       <button @click="() => removeForm(index)">Удалить</button>
@@ -163,26 +161,26 @@ export default {
         ...param
       })
     },
-    submitForm () {
-      console.log(this.formData)
+    setForm(updatedMilitary, index) {
+      const newValue = { ...this.value }
+      newValue.military[index] = updatedMilitary
+      this.$emit('change', newValue)
     },
-    setForm (v, index) {
-      this.formData.military[index] = v
-      this.formData.military = [...this.military]
-    },
-    addForm () {
-      this.formData.military.push(
-        {        
+    addForm() {
+      const newValue = { ...this.value }
+      newValue.military.push({
         type: '',
         rank: '',
         startDate: '',
         endDate: '',
         description: ''
-        }
-      )
+      })
+      this.$emit('change', newValue)
     },
-    removeForm (index) {
-      this.formData.military.splice(index, 1);
+    removeForm(index) {
+      const newValue = { ...this.value }
+      newValue.military.splice(index, 1);
+      this.$emit('change', newValue)
     }
   }
 }
