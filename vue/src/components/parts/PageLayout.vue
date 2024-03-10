@@ -11,8 +11,8 @@
 
 <script>
 import NavigationPanel from "@/components/ui/NavigationPanel.vue";
-import HeaderComponent from "@/components/ui/Header.vue"
-import FooterComponent from "@/components/ui/Footer.vue"
+import HeaderComponent from "@/components/ui/HeaderComponent.vue"
+import FooterComponent from "@/components/ui/FooterComponent.vue"
 
 export default {
   name: 'PageLayout',
