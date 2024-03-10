@@ -15,7 +15,7 @@ export default {
     };
   },
   mounted() {
-      this.getCurrentYear();
+    this.getCurrentYear();
   },
   methods: {
     getCurrentYear() {
