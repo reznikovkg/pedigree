@@ -22,11 +22,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-  methods: {
-    pressButton () {
-      this.$emit('click')
-    }
   }
 }
 </script>
