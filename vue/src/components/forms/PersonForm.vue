@@ -74,9 +74,7 @@
       />
     </div>
     <div class ="custom-form__full-width person-page__right-wrapper">
-      <SimpleButton  @click="addForm" 
-        type="primary"
-      >
+      <SimpleButton @click="() => addForm()" type="primary">
         Добавить
       </SimpleButton >
     </div>
