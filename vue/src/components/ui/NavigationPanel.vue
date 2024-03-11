@@ -7,7 +7,7 @@
       <SimpleButton class="navigation-panel__link" type="warning">В центр</SimpleButton>
     </RouterLink>
     <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'HOME' }">
-      <SimpleButton class="navigation-panel__link" type="danger">Удалить</SimpleButton>
+      <SimpleButton class="navigation-panel__link" type="danger" @click="deletePersonInButton">Удалить</SimpleButton>
     </RouterLink>
     <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'CREATE_PERSON' }">
       <SimpleButton class="navigation-panel__link" type="primary">Добавить</SimpleButton>
@@ -17,11 +17,41 @@
 
 <script>
 import SimpleButton from "./SimpleButton.vue";
+import { mapActions } from "vuex";
 
 export default {
   components: {
     SimpleButton,
   },
+  methods: {
+    ...mapActions('persons', [
+      'deletePerson'
+    ]),
+    id () {
+      return this.$route.params.id
+    },
+    delPers(){
+      this.deletePerson(this.id())
+      return 'Удаление выполнено'
+    },
+    deletePersonInButton() {
+      this.$confirm('Действительно хотите удалить профиль? Это действие невозможно будет отменить', 'Удаление', {
+        confirmButtonText: 'Да',
+        cancelButtonText: 'Отмена',
+        type: 'warning'
+      }).then(() => {
+        this.$message({
+          type: 'success',
+          message: this.delPers()
+        });
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: 'Удаление отменено'
+        });          
+      });
+    }
+  }
 };
 </script>
 
