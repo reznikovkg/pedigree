@@ -6,7 +6,7 @@
     <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'HOME' }">
       <SimpleButton class="navigation-panel__link" type="warning">В центр</SimpleButton>
     </RouterLink>
-    <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'HOME' }">
+    <RouterLink class="navigation-panel__link__wrapper" :to="{ path: '/person/' + id() }">
       <SimpleButton class="navigation-panel__link" type="danger" @click="deletePersonInButton">Удалить</SimpleButton>
     </RouterLink>
     <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'CREATE_PERSON' }">
@@ -31,6 +31,7 @@ export default {
       return this.$route.params.id
     },
     delPers(){
+
       this.deletePerson(this.id())
       return 'Удаление выполнено'
     },
