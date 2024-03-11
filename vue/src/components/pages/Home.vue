@@ -16,7 +16,6 @@
       <EducationForm v-model="education" />
       <WeddingForm v-model="wedding" :persons="persons" />
       <PersonForm v-model="person" />
-      <MilitaryForm :military="military"/>
       <WorkForm v-model="workData"/>
     </section>
   </PageLayout>
@@ -28,10 +27,10 @@ import { helpModal } from "@/mixins/modals"
 import EducationForm from '../forms/EducationForm.vue'
 import WeddingForm from '../forms/WeddingForm.vue'
 import PersonForm from '../forms/PersonForm.vue'
-import MilitaryForm from '../forms/MilitaryForm.vue'
 import PopOver from "@/components/ui/PopOver"
 import { mapGetters } from 'vuex'
 import WorkForm from '../forms/WorkForm.vue'
+
 
 export default {
   mixins: [helpModal],
@@ -41,7 +40,6 @@ export default {
     EducationForm,
     WeddingForm,
     PersonForm,
-    MilitaryForm,
     PopOver,
     WorkForm,
   },
@@ -107,13 +105,22 @@ export default {
         institutionName: 'ВГУ',
         institutionCity: 'Воронеж'
       },
-      military: {
-        type: 'Контракт',
-        rank: 'Рядовой',
-        date_start: '01.01.2024',
-        date_end: '01.03.2025',
-        description: 'Служил в мото-стрелковой дивизии под Калининградом'
-      },
+      military: [
+        {
+          type: 'Контракт',
+          rank: 'Рядовой',
+          startDate: '01.01.2024',
+          endDate: '01.03.2025',
+          description: 'Служил в мото-стрелковой дивизии под Калининградом'
+        },
+        {
+          type: 'Контракт2',
+          rank: 'Рядовой',
+          startDate: '01.01.2024',
+          endDate: '01.03.2025',
+          description: 'Служил в мото-стрелковой дивизии под Калининградом'
+        }
+      ],
       workData: {
         place: "Россия, Воронеж",
         organization: "RedCollar",
@@ -129,3 +136,4 @@ export default {
   }
 }
 </script>
+ 

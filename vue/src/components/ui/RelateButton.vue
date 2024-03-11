@@ -29,7 +29,10 @@ export default {
       return this.person.gender === 'male'
     },
     formatName () {
-      return `${this.person.secondName} ${this.person.firstName[0]}. ${this.person.patronymicName[0]}.`
+      if (!this.person) {
+        return ''
+      }
+      return `${this.person.secondName} ${this.person.firstName && this.person.firstName[0] || ''}. ${this.person.patronymicName && this.person.patronymicName[0] || ''}.`
     }
   }
 };
