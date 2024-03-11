@@ -22,21 +22,21 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
   name: 'SettingsPage',
   computed: {
-    ...mapGetters({
-      access: 'settings/getAccess',
+    ...mapGetters('settings', {
+      getAccess: 'getAccess'
     }),
     accessSwitch: {
       get() {
-        return this.access;
+        return this.getAccess;
       },
       set(value) {
-        this.updateAccess(value);
+        this.setAccess(value);
       },
     },
   },
   methods: {
     ...mapActions('settings', {
-      updateAccess: 'setAccess'
+      setAccess: 'setAccess'
     }),
   },
   mounted() {
