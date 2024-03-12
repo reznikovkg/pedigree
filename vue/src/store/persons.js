@@ -1,7 +1,17 @@
 import { genHash } from "../store/services/common.js"
 
 export const PERSONS = "persons"
-const initialState = []
+const initialState = [
+  {
+    id: '1',
+    secondName: 'Иванов',
+    firstName: 'Иван',
+    patronymicName: 'Иванович',
+    gender: 'male',
+    military: [],
+    weddings: []
+  }
+]
 export default {
   namespaced: true,
   state: {
