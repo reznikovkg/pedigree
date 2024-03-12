@@ -1,4 +1,5 @@
-import { genHash } from "../store/services/common.js"
+import { genHash } from "./modals"
+import { genHash } from "../services/modals.js"
 
 export const PERSONS = "persons"
 const initialState = []
@@ -6,7 +7,6 @@ export default {
   namespaced: true,
   state: {
     persons: JSON.parse(localStorage.getItem(PERSONS)) || initialState,
-    currentPerson: null,
   },
   getters: {
     getAllPersons: (state) => state,
@@ -16,9 +16,7 @@ export default {
   },
   mutations: {
     addPerson: (state, payload) => {
-      let newId = genHash()
-      state.persons.push({ id: newId, ...payload })
-      state.currentPerson = newId
+      state.persons.push({ id: genHash(), ...payload })
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     },
     deletePerson: (state, payload) => {
