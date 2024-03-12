@@ -1,5 +1,6 @@
 export enum RouteNames {
   HOME = "HOME",
+  PERSON = "PERSON",
   EDIT_PERSON = "EDIT_PERSON",
   CREATE_PERSON = "CREATE_PERSON",
   SETTINGS = "SETTINGS"

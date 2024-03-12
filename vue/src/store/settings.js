@@ -1,4 +1,4 @@
-export default{
+export default {
   namespaced: true,
   state: {
     mode: 'user', // admin/user
@@ -20,7 +20,7 @@ export default{
   },
 
   actions: {
-    setMode: (store, payload) => new Promise((resolve) => {          
+    setMode: (store, payload) => new Promise((resolve) => {
       store.commit('setMode', payload)
       return resolve()
     }),
