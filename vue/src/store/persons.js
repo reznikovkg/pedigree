@@ -1,5 +1,4 @@
-import { genHash } from "./modals"
-import { genHash } from "../services/modals.js"
+import { genHash } from "../store/services/common.js"
 
 export const PERSONS = "persons"
 const initialState = []
@@ -11,8 +10,7 @@ export default {
   getters: {
     getAllPersons: (state) => state,
     getPersonById: (state) => (id) => state.persons.find((person) => person.id === id),
-    filteredPersons: (state) => (filterFunction) => state.persons.filter(filterFunction),
-    getCurrentPerson: (state) => state.currentPerson
+    filteredPersons: (state) => (filterFunction) => state.persons.filter(filterFunction)
   },
   mutations: {
     addPerson: (state, payload) => {
