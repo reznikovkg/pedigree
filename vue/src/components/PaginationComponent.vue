@@ -11,7 +11,9 @@
         <button
           :class="[
             'pagination__button',
-            rangeNum !== '...' && currentPage === rangeNum && 'pagination__button_active'
+            rangeNum !== '...' &&
+              paginationInfo.currentPage === rangeNum &&
+              'pagination__button_active'
           ]"
           :key="index"
           @click="rangeNum !== '...' ? changePage(rangeNum) : {}"
@@ -32,22 +34,21 @@ export default {
     }
   },
   props: {
-    currentPage: {
-      type: Number,
-      required: true
-    },
-    elementsLength: {
-      type: Number,
+    paginationInfo: {
+      type: Object,
       required: true
     }
   },
   model: {
-    prop: 'currentPage',
+    prop: 'paginationInfo',
     event: 'setPage'
   },
   methods: {
     changePage(page) {
-      this.$emit('setPage', page)
+      this.$emit('setPage', {
+        ...this.paginationInfo,
+        currentPage: page
+      })
     },
     getRange(from, to) {
       return Array(to - from + 1)
@@ -83,7 +84,11 @@ export default {
   },
   computed: {
     currentRange() {
-      return this.getPaginationRange(this.currentPage, this.limit, this.elementsLength)
+      return this.getPaginationRange(
+        this.paginationInfo.currentPage,
+        this.limit,
+        this.paginationInfo.elementsLength
+      )
     }
   }
 }

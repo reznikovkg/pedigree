@@ -1,6 +1,6 @@
 <template>
   <PageLayout>
-    <PaginationComponent :elements-length="elementsLength" v-model="currentPage" />
+    <PaginationComponent v-model="paginationInfo" />
   </PageLayout>
 </template>
 
@@ -16,8 +16,10 @@ export default {
   },
   data() {
     return {
-      currentPage: 1,
-      elementsLength: 1000
+      paginationInfo: {
+        currentPage: 1,
+        elementsLength: 1000
+      }
     }
   }
 }
