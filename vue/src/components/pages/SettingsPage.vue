@@ -22,9 +22,7 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
   name: 'SettingsPage',
   computed: {
-    ...mapGetters('settings', {
-      getAccess: 'getAccess'
-    }),
+    ...mapGetters('settings', ['getAccess']),
     accessSwitch: {
       get() {
         return this.getAccess;
@@ -35,12 +33,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions('settings', {
-      setAccess: 'setAccess'
-    }),
-  },
-  mounted() {
-    this.$store.dispatch('initializeSettings');
+    ...mapActions('settings', ['setAccess']),
   }
 };
 </script>
