@@ -3,26 +3,19 @@
     <section class="p-16">
       Homepage
       <button @click="() => openHelpModal()">Open modal</button>
-      <ElButton type="primary">Кнопка</ElButton>
-      <PersonCard :person="person" />
-      <PhotoPreview size="large" />
-      <EducationForm v-model="education" />
-      <WeddingForm v-model="wedding" :persons="persons" />
-      <PersonForm :person="person" />
-      <MilitaryForm :military="military"/>
+
       <PopOver>
-        <template v-slot:button>
-          <div>Отчество: Фамилия И. О.</div>
-        </template>
-        <template v-slot:popover>
-          <div>Фамилия Имя Отчество</div>
-          <div>01.01.1920 - 01.01.2020</div>
-          <div>id: 100</div>
+        <div>Отчество: Фамилия И. О.</div>
+
+        <template slot="popover">
+          <div>Поповер</div>
         </template>
       </PopOver>
-    </section>
-    <section class="home-page__section">
-      <button @click="openHelpModal" class="home-page__button">Open modal</button>
+
+      <ElButton type="primary">Кнопка</ElButton>
+      <EducationForm v-model="education" />
+      <WeddingForm v-model="wedding" :persons="persons" />
+      <PersonForm v-model="person" />
       <WorkForm v-model="workData"/>
     </section>
   </PageLayout>
@@ -30,30 +23,25 @@
 
 <script>
 import PageLayout from '../parts/PageLayout'
-import { helpModal } from "@/mixins/modals" 
-import PersonCard from '@/components/cards/PersonCard.vue'
-import PhotoPreview from '../ui/PhotoPreview.vue'
+import { helpModal } from "@/mixins/modals"
 import EducationForm from '../forms/EducationForm.vue'
 import WeddingForm from '../forms/WeddingForm.vue'
 import PersonForm from '../forms/PersonForm.vue'
-import MilitaryForm from '../forms/MilitaryForm.vue'
 import PopOver from "@/components/ui/PopOver"
 import { mapGetters } from 'vuex'
 import WorkForm from '../forms/WorkForm.vue'
+
 
 export default {
   mixins: [helpModal],
   name: 'HomePage',
   components: {
     PageLayout,
-    PhotoPreview,
-    PersonCard,
     EducationForm,
     WeddingForm,
     PersonForm,
-    MilitaryForm,
     PopOver,
-    WorkForm
+    WorkForm,
   },
   computed: {
     ...mapGetters('persons', [
@@ -117,13 +105,22 @@ export default {
         institutionName: 'ВГУ',
         institutionCity: 'Воронеж'
       },
-      military: {
-        type: 'Контракт',
-        rank: 'Рядовой',
-        date_start: '01.01.2024',
-        date_end: '01.03.2025',
-        description: 'Служил в мото-стрелковой дивизии под Калининградом'
-      },
+      military: [
+        {
+          type: 'Контракт',
+          rank: 'Рядовой',
+          startDate: '01.01.2024',
+          endDate: '01.03.2025',
+          description: 'Служил в мото-стрелковой дивизии под Калининградом'
+        },
+        {
+          type: 'Контракт2',
+          rank: 'Рядовой',
+          startDate: '01.01.2024',
+          endDate: '01.03.2025',
+          description: 'Служил в мото-стрелковой дивизии под Калининградом'
+        }
+      ],
       workData: {
         place: "Россия, Воронеж",
         organization: "RedCollar",
@@ -133,6 +130,10 @@ export default {
         description: "Клёвый чел"
       }
     }
+  },
+  mounted () {
+    this.$router.push({ path: '/person/1' })
   }
 }
 </script>
+ 
