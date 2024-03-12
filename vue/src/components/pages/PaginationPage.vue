@@ -1,9 +1,6 @@
 <template>
   <PageLayout>
-    <PaginationComponent
-      :elements-length="elementsLength"
-      v-model="currentPage"
-    />
+    <PaginationComponent :elements-length="elementsLength" v-model="currentPage" />
   </PageLayout>
 </template>
 
