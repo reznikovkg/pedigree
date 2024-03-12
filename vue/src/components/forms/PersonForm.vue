@@ -56,16 +56,44 @@
         placeholder="Биография"
       />
     </div>
+    <div 
+      class="custom-form__full-width" 
+      v-for="(military, index) in value.military" 
+      :key="index"
+    >
+      <div class ="person-page__header-wrapper">
+      <h2>Военная служба {{index + 1}}</h2>
+        <button @click="() => removeForm(index)" class="person-page__btn-close ">
+          ✖
+        </button>
+      </div>
+      <MilitaryForm
+        :value="military"
+        class="custom-form__input"
+        @change="(military) => setForm(military, index)"
+      />
+    </div>
+    <div class ="custom-form__full-width person-page__right-wrapper">
+      <SimpleButton @click="() => addForm()" type="primary">
+        Добавить
+      </SimpleButton >
+    </div>
   </div>
 </template>
 
 <script>
+import MilitaryForm from '../forms/MilitaryForm.vue'
+import SimpleButton from '../ui/SimpleButton.vue'
 
 export default {
   name: 'PersonForm',
   model: {
     prop: 'value',
     event: 'change'
+  },
+  components: {
+    MilitaryForm,
+    SimpleButton
   },
   props: {
     value: {
@@ -145,6 +173,28 @@ export default {
         ...this.value,
         ...param
       })
+    },
+    setForm(updatedMilitary, index) {
+      const newValue = { ...this.value }
+      newValue.military = [...newValue.military]
+      newValue.military[index] = updatedMilitary
+      this.$emit('change', newValue)
+    },
+    addForm() {
+      const newValue = { ...this.value }
+      newValue.military = [...newValue.military, {
+        type: '',
+        rank: '',
+        startDate: '',
+        endDate: '',
+        description: ''
+      }]
+      this.$emit('change', newValue)
+    },
+    removeForm(index) {
+      const newValue = { ...this.value }
+      newValue.military.splice(index, 1)
+      this.$emit('change', newValue)
     }
   }
 }
@@ -165,5 +215,21 @@ export default {
     margin-left: 0px;
     margin-bottom: 20px;
   }
+
+  &__btn-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__header-wrapper {
+    display: grid;
+    grid-template-columns: auto max-content;
+  }
+
+  &__right-wrapper {
+    text-align: right;
+  }
 }
 </style>
+ 

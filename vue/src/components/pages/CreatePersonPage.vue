@@ -30,6 +30,15 @@ export default {
         gender: '',
         biography: '',
         activity: '',
+        military: [
+          {
+            type: '',
+            rank: '',
+            startDate: '',
+            endDate: '',
+            description: ''
+          }
+        ]
       }
     }
   },
@@ -61,3 +70,4 @@ export default {
   }
 }
 </style>
+ 

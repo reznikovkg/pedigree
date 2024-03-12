@@ -6,8 +6,12 @@
     <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'HOME' }">
       <SimpleButton class="navigation-panel__link" type="warning">В центр</SimpleButton>
     </RouterLink>
-    <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'HOME' }">
+    <RouterLink v-if="isUserPage" class="navigation-panel__link__wrapper" :to="{ name: 'HOME' }">
       <SimpleButton class="navigation-panel__link" type="danger">Удалить</SimpleButton>
+    </RouterLink>
+    <RouterLink v-if="isUserPage" class="navigation-panel__link__wrapper"
+      :to="{ name: 'EDIT_PERSON', params: { id: $route.params.id } }">
+      <SimpleButton class="navigation-panel__link" type="warning">Редактировать</SimpleButton>
     </RouterLink>
     <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'CREATE_PERSON' }">
       <SimpleButton class="navigation-panel__link" type="primary">Добавить</SimpleButton>
@@ -22,6 +26,11 @@ export default {
   components: {
     SimpleButton,
   },
+  computed: {
+    isUserPage() {
+      return this.$route.name === 'PersonPage';
+    }
+  }
 };
 </script>
 
