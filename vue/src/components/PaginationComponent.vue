@@ -41,6 +41,10 @@ export default {
       required: true
     }
   },
+  model: {
+    prop: 'currentPage',
+    event: 'setPage'
+  },
   methods: {
     changePage(page) {
       this.$emit('setPage', page)

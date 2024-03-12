@@ -2,8 +2,7 @@
   <PageLayout>
     <PaginationComponent
       :elements-length="elementsLength"
-      :current-page="currentPage"
-      @setPage="setPage"
+      v-model="currentPage"
     />
   </PageLayout>
 </template>
@@ -22,11 +21,6 @@ export default {
     return {
       currentPage: 1,
       elementsLength: 1000
-    }
-  },
-  methods: {
-    setPage(newPage) {
-      this.currentPage = newPage
     }
   }
 }
