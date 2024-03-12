@@ -1,11 +1,23 @@
-import { genHash } from "./modals"
+import { genHash } from "@/services/common"
 
 export const PERSONS = "persons"
-const initialState = []
+
+const initialState = [
+  {
+    id: '1',
+    secondName: 'Иванов',
+    firstName: 'Иван',
+    patronymicName: 'Иванович',
+    gender: 'male',
+    military: [],
+    weddings: []
+  }
+]
+
 export default {
   namespaced: true,
   state: {
-    persons: JSON.parse(localStorage.getItem(PERSONS)) || initialState
+    persons: JSON.parse(localStorage.getItem(PERSONS)) || initialState,
   },
   getters: {
     getAllPersons: (state) => state,
@@ -14,7 +26,7 @@ export default {
   },
   mutations: {
     addPerson: (state, payload) => {
-      state.persons.push({ id: genHash(), ...payload })
+      state.persons.push({ ...payload, id: genHash() })
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     },
     deletePerson: (state, payload) => {

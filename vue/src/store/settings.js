@@ -1,4 +1,3 @@
-// Выносим функцию для получения значения 'access' в отдельное определение
 function getStoredAccess() {
   const access = localStorage.getItem('access')
   return access !== null ? JSON.parse(access) : false;
@@ -29,11 +28,11 @@ export default {
   actions: {
     setAccess: ({ commit }, payload) => new Promise((resolve) => {
       commit('setAccess', payload);
-      resolve();
-    }),
-    setMode: ({ commit }, payload) => new Promise((resolve) => {
-      commit('setMode', payload);
-      resolve();
+      return resolve();
+
+    setMode: (store, payload) => new Promise((resolve) => {
+      store.commit('setMode', payload)
+      return resolve()
     }),
   },
 }
