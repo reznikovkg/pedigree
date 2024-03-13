@@ -2,7 +2,8 @@
   <PageLayout>
     <section class="p-16">
       <PersonForm v-model="form"/>
-      <button @click="() => editPersonHandler()" class="person-page__btn">Сохранить</button>
+      <button @click="editPersonHandler" class="person-page__btn">Сохранить</button>
+      <button @click="cancel" class="person-page__btn">Отмена</button>
     </section>
   </PageLayout>
 </template>
@@ -66,6 +67,13 @@ export default {
     ]),
     editPersonHandler () {
       this.editPerson(this.form)
+      this.goBack()
+    },
+    cancel () {
+      this.goBack()
+    },
+    goBack () {
+      this.$router.go(-1)
     }
   }
 }
@@ -77,6 +85,7 @@ export default {
     justify-self: center;
     padding: 10px 20px;
     margin-top: 10px;
+    margin-right: 10px;
     border: none;
     border-radius: 5px;
     background-color: aqua;
@@ -88,4 +97,3 @@ export default {
   }
 }
 </style>
- 
