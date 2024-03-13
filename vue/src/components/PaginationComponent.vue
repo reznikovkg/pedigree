@@ -13,7 +13,6 @@
       </template>
     </div>
     <select
-      class="pagination__select"
       :value="paginationInfo.limit"
       @change="(e) => changeLimit(e.target.value)"
     >
