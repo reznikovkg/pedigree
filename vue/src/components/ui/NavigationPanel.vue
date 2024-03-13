@@ -28,7 +28,7 @@ export default {
   },
   computed: {
     isUserPage() {
-      return this.$route.name === 'PersonPage';
+      return this.$route.name === 'PERSON';
     }
   }
 };
