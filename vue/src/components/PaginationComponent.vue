@@ -1,12 +1,6 @@
 <template>
-  <div>
-    <select :value="paginationInfo.limit" @change="(e) => changeLimit(e.target.value)">
-      <option value="10">10</option>
-      <option value="30">30</option>
-      <option value="50">50</option>
-      <option value="100">100</option>
-    </select>
-    <div class="pagination">
+  <div class="pagination">
+    <div class="pagination__buttons">
       <template v-for="(rangeNum, index) in currentRange">
         <button
           class="pagination__button"
@@ -18,6 +12,16 @@
         </button>
       </template>
     </div>
+    <select
+      class="pagination__select"
+      :value="paginationInfo.limit"
+      @change="(e) => changeLimit(e.target.value)"
+    >
+      <option value="10">10</option>
+      <option value="30">30</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+    </select>
   </div>
 </template>
 
@@ -43,6 +47,7 @@ export default {
     changeLimit(limit) {
       this.$emit('setPaginationInfo', {
         ...this.paginationInfo,
+        page: 1,
         limit
       })
     },
@@ -97,10 +102,16 @@ export default {
 </script>
 <style scoped lang="less">
 .pagination {
-  margin-top: 200px;
   display: flex;
-  flex-direction: row;
-  gap: 6px;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+  }
 
   &__button {
     font-size: 16px;
