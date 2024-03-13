@@ -5,7 +5,10 @@
     <span v-if="person.die_date" class="person-card__dates"> - {{ person.die_date }}</span>
 
     <h2>Родители</h2>
-    <div class="person-card__information-text">-</div>
+    <div class="person-card__information-text">
+      <p>Мать {{ mother }}</p>
+      <p>Отец {{ father }}</p>
+    </div>
 
     <h2>Дети </h2>
     <div class="person-card__information-text">-</div>
@@ -31,11 +34,32 @@ export default {
     person: {
       type: Object,
       required: true
-    }
+    },
+    persons: {
+      type: [person]
+    },
   },
   computed: {
     fullName () {
       return `${this.person.secondName} ${this.person.firstName} ${this.person.patronymic}`;
+    },
+    mother () {
+      for (var i = 0; i < persons.length; i++) {
+        if (persons[i].children.includes(person.id)) {
+          if (persons[i].gender == FEMALE) {
+            return persons[i].id;
+          } 
+        }
+      }
+    },
+    father () {
+      for (var i = 0; i < persons.length; i++) {
+        if (persons[i].children.includes(person.id)) {
+          if (persons[i].gender == MALE) {
+            return persons[i].id;
+          } 
+        }
+      }
     }
   }
 }
