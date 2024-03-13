@@ -17,8 +17,9 @@ export default {
   data() {
     return {
       paginationInfo: {
-        currentPage: 1,
-        elementsLength: 1000
+        page: 1,
+        count: 1000,
+        limit: 10
       }
     }
   }

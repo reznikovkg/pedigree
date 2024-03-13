@@ -1,6 +1,6 @@
 <template>
   <div>
-    <select v-model="limit" @change="changePage(1)">
+    <select :value="paginationInfo.limit" @change="(e) => changeLimit(e.target.value)">
       <option value="10">10</option>
       <option value="30">30</option>
       <option value="50">50</option>
@@ -9,14 +9,10 @@
     <div class="pagination">
       <template v-for="(rangeNum, index) in currentRange">
         <button
-          :class="[
-            'pagination__button',
-            rangeNum !== '...' &&
-              paginationInfo.currentPage === rangeNum &&
-              'pagination__button_active'
-          ]"
+          class="pagination__button"
+          :class="getActiveBtnStyle(rangeNum)"
           :key="index"
-          @click="rangeNum !== '...' ? changePage(rangeNum) : {}"
+          @click="() => (rangeNum !== '...' ? changePage(rangeNum) : {})"
         >
           {{ rangeNum }}
         </button>
@@ -28,11 +24,6 @@
 <script>
 export default {
   name: 'PaginationComponent',
-  data() {
-    return {
-      limit: 10
-    }
-  },
   props: {
     paginationInfo: {
       type: Object,
@@ -41,13 +32,24 @@ export default {
   },
   model: {
     prop: 'paginationInfo',
-    event: 'setPage'
+    event: 'setPaginationInfo'
   },
   methods: {
-    changePage(page) {
-      this.$emit('setPage', {
+    getActiveBtnStyle(rangeNum) {
+      return (
+        rangeNum !== '...' && this.paginationInfo.page === rangeNum && 'pagination__button--active'
+      )
+    },
+    changeLimit(limit) {
+      this.$emit('setPaginationInfo', {
         ...this.paginationInfo,
-        currentPage: page
+        limit
+      })
+    },
+    changePage(page) {
+      this.$emit('setPaginationInfo', {
+        ...this.paginationInfo,
+        page
       })
     },
     getRange(from, to) {
@@ -85,9 +87,9 @@ export default {
   computed: {
     currentRange() {
       return this.getPaginationRange(
-        this.paginationInfo.currentPage,
-        this.limit,
-        this.paginationInfo.elementsLength
+        this.paginationInfo.page,
+        this.paginationInfo.limit,
+        this.paginationInfo.count
       )
     }
   }
@@ -108,7 +110,7 @@ export default {
     background: lightgray;
     border-radius: 6px;
 
-    &_active {
+    &--active {
       color: white;
       background: blue;
     }
