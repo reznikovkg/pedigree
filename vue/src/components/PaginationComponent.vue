@@ -12,10 +12,7 @@
         </button>
       </template>
     </div>
-    <select
-      :value="paginationInfo.limit"
-      @change="(e) => changeLimit(e.target.value)"
-    >
+    <select :value="paginationInfo.limit" @change="(e) => changeLimit(e.target.value)">
       <option value="10">10</option>
       <option value="30">30</option>
       <option value="50">50</option>
@@ -105,24 +102,30 @@ export default {
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
+  margin-bottom: 10px;
 
   &__buttons {
     display: flex;
     flex-direction: row;
-    gap: 6px;
+    gap: 10px;
   }
 
   &__button {
-    font-size: 16px;
-    border: 1px solid black;
-    padding: 6px 8px;
-    color: black;
-    background: lightgray;
-    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    border: none;
+    padding: 6px 12px;
+    color: #606266;
+    background: #f4f4f5;
+    border-radius: 2px;
+
+    &:not(&--active):hover {
+      color: @cBaseLightBlue;
+    }
 
     &--active {
-      color: white;
-      background: blue;
+      color: #fff;
+      background: @cBaseLightBlue;
     }
   }
 }
