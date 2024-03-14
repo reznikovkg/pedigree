@@ -29,7 +29,7 @@ export default {
     setAccess: ({ commit }, payload) => new Promise((resolve) => {
       commit('setAccess', payload);
       return resolve();
-
+    }),
     setMode: (store, payload) => new Promise((resolve) => {
       store.commit('setMode', payload)
       return resolve()
