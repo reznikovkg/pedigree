@@ -13,9 +13,14 @@
         <RelateButton :person="person" relate="parent"/>
       </div>
 
-      <h2>Дети </h2>
+      <h2>Дети</h2>
       <div class="person-card__information-text">
-        <RelateButton :person="person" relate="child"/>
+        <template v-if="person.children.length > 0">
+          <div>
+            <RelateButton v-for="child in children" :key="child.id" :person="child" relate="child" />
+          </div>
+        </template>
+        <p v-else>Нет детей</p>
       </div>
 
       <h2>Род деятельности</h2>
@@ -44,6 +49,7 @@
 import WeddingsList from '../parts/WeddingsList.vue';
 import PhotoPreview from '../ui/PhotoPreview.vue';
 import RelateButton from '@/components/ui/RelateButton.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'PersonCard',
@@ -59,8 +65,13 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('persons',['getPersonsByIds']),
     fullName () {
       return `${ this.person.secondName } ${ this.person.firstName } ${ this.person.patronymicName }`
+    },
+    children () {
+      console.log(Object.keys(this.person))
+      return this.getPersonsByIds(this.person.children);
     }
   }
 }

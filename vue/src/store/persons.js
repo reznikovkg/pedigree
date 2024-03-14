@@ -10,6 +10,15 @@ const initialState = [
     patronymicName: 'Иванович',
     gender: 'male',
     military: [],
+    children: ['1','2'],
+    weddings: []
+  },
+  {
+    id: '2',
+    secondName: 'Петров',
+    firstName: 'Петр',
+    patronymicName: 'Иванович',
+    gender: 'male',
     weddings: []
   }
 ]
@@ -22,7 +31,8 @@ export default {
   getters: {
     getAllPersons: (state) => state,
     getPersonById: (state) => (id) => state.persons.find((person) => person.id === id),
-    filteredPersons: (state) => (filterFunction) => state.persons.filter(filterFunction)
+    filteredPersons: (state) => (filterFunction) => state.persons.filter(filterFunction),
+    getPersonsByIds: (state) => (ids) => state.persons.filter(person => ids.includes(person.id))
   },
   mutations: {
     addPerson: (state, payload) => {

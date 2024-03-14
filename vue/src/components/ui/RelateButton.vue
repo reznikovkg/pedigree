@@ -6,6 +6,9 @@
     <template v-if="relate === 'parent'">
       {{ isMale ? 'Отец: ' : 'Мать: ' }}
     </template>
+    <template v-else-if="relate === 'child'">
+      {{ isMale ? 'Сын: ' : 'Дочь: ' }}
+    </template>
     {{ formatName }}
   </button>
 </template>
