@@ -31,6 +31,8 @@ export default {
     },
     deletePerson: (state, payload) => {
       state.persons = state.persons.filter((p) => p.id !== payload)
+      state.persons.forEach((person) => { person.weddings = person.weddings.filter((wedding) => wedding.partnerId !== payload)})
+      state.persons.forEach((person) => { person.children = person.children.filter((childId) => childId !== payload)})
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     },
     editPerson: (state, payload) => {
