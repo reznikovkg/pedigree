@@ -6,9 +6,9 @@
     <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'HOME' }">
       <SimpleButton class="navigation-panel__link" type="warning">В центр</SimpleButton>
     </RouterLink>
-    <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'PERSON', params: {id: this.id}}">
+    <div v-if="isUserPage" class="navigation-panel__link__wrapper">
       <SimpleButton class="navigation-panel__link" type="danger" @click="() => deletePersonInButton()">Удалить</SimpleButton>
-    </RouterLink>
+    </div>
     <RouterLink v-if="isUserPage" class="navigation-panel__link__wrapper"
       :to="{ name: 'EDIT_PERSON', params: { id: $route.params.id } }">
       <SimpleButton class="navigation-panel__link" type="warning">Редактировать</SimpleButton>
@@ -49,7 +49,8 @@ export default {
         this.$message({
           type: 'success',
           message: 'Удаление выполнено'
-        });
+        })
+        this.$router.push({name: 'HOME'});
       }).catch(() => {
         this.$message({
           type: 'info',
