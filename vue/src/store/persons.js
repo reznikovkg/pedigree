@@ -26,8 +26,10 @@ export default {
     searchedPersons: (state) => (searchField) => state.persons.filter(
       (person) => { 
         return Object.keys(person).some(
-          (key) => { 
-            return person[key].includes(searchField)
+          (key) => {
+            if(key == 'id' || key == 'name' || key == 'secondName' || key == 'patronymic' || key == 'birth_date') {
+              return person[key].includes(searchField)
+            }
           })
         })
   },
