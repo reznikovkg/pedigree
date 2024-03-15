@@ -73,6 +73,9 @@ export default {
       set (value) {
         this.emitFormData({ date_end: value })
       }
+    },
+    filteredPersons() {
+      return this.persons.filter(person => person.weddings.length === 0)
     }
   },
   methods: {
