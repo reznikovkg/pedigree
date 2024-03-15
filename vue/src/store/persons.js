@@ -1,4 +1,4 @@
-import { genHash } from "./modals"
+import { genHash } from "@/services/common"
 
 export const PERSONS = "persons"
 export const CENTER = "center"
@@ -10,16 +10,16 @@ const initialState = [
     firstName: 'Иван',
     patronymicName: 'Иванович',
     gender: 'male',
-
+    military: [],
+    children: ['1','2'],
     weddings: []
   },
   {
     id: '2',
     secondName: 'Петров',
     firstName: 'Петр',
-    patronymicName: 'Петрович',
+    patronymicName: 'Иванович',
     gender: 'male',
-
     weddings: []
   }
 ]
@@ -38,18 +38,19 @@ export default {
   },
   mutations: {
     addPerson: (state, payload) => {
-      state.persons.push({ id: genHash(), ...payload })
+      state.persons.push({ ...payload, id: genHash() })
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     },
     deletePerson: (state, payload) => {
       state.persons = state.persons.filter((p) => p.id !== payload)
+      state.persons.forEach((person) => {
+        person.weddings = person.weddings.filter((wedding) => wedding.partnerId !== payload)
+        person.children = person.children.filter((childId) => childId !== payload)
+      })
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     },
     editPerson: (state, payload) => {
-      console.log(payload)
-      console.log(state.persons.find((p) => (p.id === payload.id)))
       state.persons = state.persons.map((p) => (p.id === payload.id ? { ...p, ...payload } : p))
-      console.log(state.persons)
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     },
     setCenter(state, id) {

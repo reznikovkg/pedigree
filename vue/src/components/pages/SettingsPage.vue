@@ -6,7 +6,7 @@
       </h1>
       <div>
         <ElSwitch
-          v-model="value"
+          v-model="accessSwitch"
           activeColor="green"
           inactiveColor="grey"
         />
@@ -17,28 +17,23 @@
 </template>
 
 <script>
-import PageLayout from '../parts/PageLayout'
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'SettingsPage',
-  components: {
-    PageLayout
+  computed: {
+    ...mapGetters('settings', ['getAccess']),
+    accessSwitch: {
+      get() {
+        return this.getAccess;
+      },
+      set(value) {
+        this.setAccess(value);
+      },
+    },
   },
-  data () {
-    return {
-      value: false
-    }
-  },
-  mounted () {
-    this.value = JSON.parse(localStorage.getItem("value")) || []
-  },
-  watch: {
-    value(newValue) {
-      localStorage.setItem("value", JSON.stringify(newValue));
-    }
+  methods: {
+    ...mapActions('settings', ['setAccess']),
   }
-}
+};
 </script>
-
-<style>
-</style>

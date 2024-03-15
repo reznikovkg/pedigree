@@ -1,7 +1,7 @@
 <template>
   <div class="person-card">
     <div>
-      <PhotoPreview size="large" />
+      <PhotoPreview size="large"/>
     </div>
     <div>
       <h1>{{ fullName }}</h1>
@@ -10,12 +10,15 @@
 
       <h2>Родители</h2>
       <div class="person-card__information-text">
-        <RelateButton :person="person" relate="parent" />
+        <RelateButton :person="person" relate="parent"/>
       </div>
 
-      <h2>Дети </h2>
+      <h2>Дети</h2>
       <div class="person-card__information-text">
-        <RelateButton :person="person" relate="child" />
+        <div v-if="person.children.length > 0">
+          <RelateButton v-for="child in children" :key="child.id" :person="child" relate="child" />
+        </div>
+        <p v-else>Нет детей</p>
       </div>
 
       <h2>Род деятельности</h2>
@@ -30,7 +33,7 @@
 
       <h2>Брачные союзы</h2>
       <WeddingsList
-        v-if="person.weddings.length > 0"
+        v-if="person.weddings && person.weddings.length > 0"
         :weddings="person.weddings"
       />
       <div v-else class="person-card__information-text">
@@ -44,6 +47,7 @@
 import WeddingsList from '../parts/WeddingsList.vue';
 import PhotoPreview from '../ui/PhotoPreview.vue';
 import RelateButton from '@/components/ui/RelateButton.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'PersonCard',
@@ -59,14 +63,18 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('persons',['getPersonsByIds']),
     fullName () {
-      return `${this.person.secondName} ${this.person.firstName} ${this.person.patronymicName}`;
+      return `${ this.person.secondName } ${ this.person.firstName } ${ this.person.patronymicName }`
+    },
+    children () {
+      return this.getPersonsByIds(this.person.children);
     }
   }
 }
 </script>
 
-<style scoped lang ="less">
+<style scoped lang="less">
 .person-card {
   display: flex;
   gap: 15px;
