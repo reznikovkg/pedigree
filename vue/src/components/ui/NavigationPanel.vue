@@ -6,7 +6,7 @@
     <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'HOME' }">
       <SimpleButton class="navigation-panel__link" type="warning">В центр</SimpleButton>
     </RouterLink>
-    <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'PERSON_PAGE', params: {id: this.id}}">
+    <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'PERSON', params: {id: this.id}}">
       <SimpleButton class="navigation-panel__link" type="danger" @click="() => deletePersonInButton()">Удалить</SimpleButton>
     </RouterLink>
     <RouterLink v-if="isUserPage" class="navigation-panel__link__wrapper"
@@ -29,7 +29,7 @@ export default {
   },
   computed: {
     isUserPage() {
-      return this.$route.name === 'PersonPage';
+      return this.$route.name === 'PERSON';
     },
      id () {
       return this.$route.params.id
