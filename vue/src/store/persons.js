@@ -7,10 +7,10 @@ const initialState = [
     id: '1',
     secondName: 'Иванов',
     firstName: 'Иван',
-    patronymicName: 'Иванович',
+    patronymic: 'Иванович',
     gender: 'male',
     military: [],
-    weddings: []
+    weddings: [],
   }
 ]
 
@@ -22,7 +22,14 @@ export default {
   getters: {
     getAllPersons: (state) => state,
     getPersonById: (state) => (id) => state.persons.find((person) => person.id === id),
-    filteredPersons: (state) => (filterFunction) => state.persons.filter(filterFunction)
+    filteredPersons: (state) => (filterFunction) => state.persons.filter(filterFunction),
+    searchedPersons: (state) => (searchField) => state.persons.filter(
+      (person) => { 
+        return Object.keys(person).some(
+          (key) => { 
+            return person[key].includes(searchField)
+          })
+        })
   },
   mutations: {
     addPerson: (state, payload) => {
