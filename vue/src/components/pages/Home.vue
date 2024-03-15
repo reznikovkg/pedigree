@@ -47,7 +47,8 @@ export default {
   },
   computed: {
     ...mapGetters('persons', [
-      'filteredPersons'
+      'filteredPersons',
+      'getCenter'
     ]),
     persons() {
       const customFilter = (person) => {
@@ -126,9 +127,8 @@ export default {
   },
   methods: {
   redirectToDefaultPersonPage() {
-    const savedId = localStorage.getItem('centerId');
-    const id = savedId ? savedId : '1';
-    this.$router.push(`/person/${id}`);
+    const savedId = this.getCenter;
+    this.$router.push(`/person/${savedId}`);
   }
 },
   mounted () {

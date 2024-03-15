@@ -1,6 +1,7 @@
 import { genHash } from "./modals"
 
 export const PERSONS = "persons"
+export const CENTER = "center"
 
 const initialState = [
   {
@@ -27,12 +28,13 @@ export default {
   namespaced: true,
   state: {
     persons: JSON.parse(localStorage.getItem(PERSONS)) || initialState,
-    center: ''
+    center: JSON.parse(localStorage.getItem(CENTER)) || '1'
   },
   getters: {
     getAllPersons: (state) => state,
     getPersonById: (state) => (id) => state.persons.find((person) => person.id === id),
-    filteredPersons: (state) => (filterFunction) => state.persons.filter(filterFunction)
+    filteredPersons: (state) => (filterFunction) => state.persons.filter(filterFunction),
+    getCenter: (state) => state.center
   },
   mutations: {
     addPerson: (state, payload) => {
@@ -50,8 +52,9 @@ export default {
       console.log(state.persons)
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     },
-    setCenterId(state, id) {
-      state.center = id;
+    setCenter(state, id) {
+      state.id = id
+      localStorage.setItem(CENTER, JSON.stringify(id))
     }
   },
   actions: {
@@ -63,6 +66,9 @@ export default {
     },
     editPerson: ({ commit }, payload) => {
       commit("editPerson", payload)
-    }
+    },
+    setCenter({ commit }, id) {
+      commit("setCenter", id)
+    },
   }
 }
