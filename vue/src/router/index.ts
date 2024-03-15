@@ -17,7 +17,7 @@ const routes = [
   },
   {
     path: '/person/:id',
-    name: 'PersonPage',
+    name: RouteNames.PERSON_PAGE,
     component: PersonPage
   },
   {
