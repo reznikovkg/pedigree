@@ -131,6 +131,12 @@ export default {
       return this.filteredPersons(customFilter) || []
     }
   },
+  methods: {
+  redirectToDefaultPersonPage() {
+    const savedId = this.getCenter;
+    this.$router.push(`/person/${savedId}`);
+  }
+},
   mounted () {
     const person = this.getAllPersons[0]
     if (person) {

@@ -1,12 +1,13 @@
 <template>
   <PageLayout>
-    <button 
+    <button
       :class="['person-page__btn', { 'disabled': isButtonDisabled }]" 
-      @click="saveId" 
       :disabled="isButtonDisabled"
+      @click = "() => saveId()"
     >
       Сохранить
-    </button>
+  </button>
+
     <section class="p-16">
       <PersonCard :person="person" />
     </section>
@@ -14,15 +15,17 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import PageLayout from '../parts/PageLayout.vue';
 import PersonCard from '@/components/cards/PersonCard.vue';
+//import SimpleButton from '../ui/SimpleButton.vue';
 
 export default {
   name: 'PersonPage',
   components: {
     PageLayout,
-    PersonCard
+    PersonCard,
+    //SimpleButton
   },
   data() {
     return {
@@ -31,7 +34,8 @@ export default {
   },
   computed: {
     ...mapGetters('persons', [
-      'getPersonById'
+      'getPersonById',
+      'getCenter'
     ]),
     person () {
       return this.getPersonById(this.id)
@@ -41,14 +45,17 @@ export default {
     }
   },
   methods: {
+    ...mapActions('persons', [
+      'setCenter'
+    ]),
     saveId() {
-      this.$store.commit('persons/setCenterId', this.currentId); //
-      localStorage.setItem('centerId', this.id);
+      this.setCenter(this.id);
       this.isButtonDisabled = true;
+      //console.log('Button clicked')
     }
   },
   mounted() {
-    const centerId = localStorage.getItem('centerId');
+    const centerId = this.getCenter;
     if (centerId && centerId === this.id) {
       this.isButtonDisabled = true;
     }
