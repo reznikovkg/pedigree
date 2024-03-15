@@ -15,11 +15,9 @@
 
       <h2>Дети</h2>
       <div class="person-card__information-text">
-        <template v-if="person.children.length > 0">
-          <div>
-            <RelateButton v-for="child in children" :key="child.id" :person="child" relate="child" />
-          </div>
-        </template>
+        <div v-if="person.children.length > 0">
+          <RelateButton v-for="child in children" :key="child.id" :person="child" relate="child" />
+        </div>
         <p v-else>Нет детей</p>
       </div>
 
@@ -70,7 +68,6 @@ export default {
       return `${ this.person.secondName } ${ this.person.firstName } ${ this.person.patronymicName }`
     },
     children () {
-      console.log(Object.keys(this.person))
       return this.getPersonsByIds(this.person.children);
     }
   }
