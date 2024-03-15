@@ -133,11 +133,11 @@ export default {
     }
   },
   methods: {
-  redirectToDefaultPersonPage() {
-    const savedId = this.getCenter;
-    this.$router.push(`/person/${savedId}`);
-  }
-},
+    redirectToDefaultPersonPage() {
+      const savedId = this.getCenter;
+      this.$router.push(`/person/${savedId}`);
+    }
+  },
   mounted () {
     this.redirectToDefaultPersonPage();
   }
