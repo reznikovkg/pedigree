@@ -10,6 +10,15 @@ const initialState = [
     patronymicName: 'Иванович',
     gender: 'male',
     military: [],
+    children: ['1','2'],
+    weddings: []
+  },
+  {
+    id: '2',
+    secondName: 'Петров',
+    firstName: 'Петр',
+    patronymicName: 'Иванович',
+    gender: 'male',
     weddings: []
   }
 ]
@@ -22,7 +31,8 @@ export default {
   getters: {
     getAllPersons: (state) => state,
     getPersonById: (state) => (id) => state.persons.find((person) => person.id === id),
-    filteredPersons: (state) => (filterFunction) => state.persons.filter(filterFunction)
+    filteredPersons: (state) => (filterFunction) => state.persons.filter(filterFunction),
+    getPersonsByIds: (state) => (ids) => state.persons.filter(person => ids.includes(person.id))
   },
   mutations: {
     addPerson: (state, payload) => {
@@ -31,6 +41,10 @@ export default {
     },
     deletePerson: (state, payload) => {
       state.persons = state.persons.filter((p) => p.id !== payload)
+      state.persons.forEach((person) => {
+        person.weddings = person.weddings.filter((wedding) => wedding.partnerId !== payload)
+        person.children = person.children.filter((childId) => childId !== payload)
+      })
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     },
     editPerson: (state, payload) => {
