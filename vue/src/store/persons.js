@@ -10,7 +10,8 @@ const initialState = [
     patronymicName: 'Иванович',
     gender: 'male',
     military: [],
-    weddings: []
+    weddings: [],
+    photo: require('@/assets/logo.png'),
   }
 ]
 

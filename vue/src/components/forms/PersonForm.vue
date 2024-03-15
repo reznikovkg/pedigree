@@ -73,6 +73,15 @@
         @change="(military) => setForm(military, index)"
       />
     </div>
+    <div class="custom-form__full-width">
+      <ElSelect
+        v-model="access"
+        class="custom-form__input"
+        placeholder="Скрывание">
+      <ElOption label="Да" value=true></ElOption>
+      <ElOption label="Нет" value=false></ElOption>
+      </ElSelect>
+    </div>
     <div class ="custom-form__full-width person-page__right-wrapper">
       <SimpleButton @click="() => addForm()" type="primary">
         Добавить
@@ -164,6 +173,16 @@ export default {
       },
       set (value) {
         this.emitFormData({ biography: value })
+      }
+    },
+    access: {
+      get(){
+        return this.value.access
+      },
+      set(value){
+        this.emitFormData({
+          access: value
+        })
       }
     }
   },

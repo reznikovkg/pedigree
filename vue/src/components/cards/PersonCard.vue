@@ -1,12 +1,12 @@
 <template>
   <div class="person-card">
     <div>
-      <PhotoPreview size="large"/>
+      <PhotoPreview size="large" :photo="Photo"/>
     </div>
     <div>
       <h1>{{ fullName }}</h1>
-      <span class="person-card__dates">{{ person.birth_date }}</span>
-      <span v-if="person.die_date" class="person-card__dates"> - {{ person.die_date }}</span>
+      <span class="person-card__dates">{{ birthDate }}</span>
+      <span v-if="dieDate" class="person-card__dates"> - {{ dieDate }}</span>
 
       <h2>Родители</h2>
       <div class="person-card__information-text">
@@ -20,12 +20,12 @@
 
       <h2>Род деятельности</h2>
       <div class="person-card__information-text">
-        {{ person.activity || 'Информации нет' }}
+        {{ activity }}
       </div>
 
       <h2>Биография</h2>
       <div class="person-card__information-text">
-        {{ person.biography || 'Информации нет' }}
+        {{ biography }}
       </div>
 
       <h2>Брачные союзы</h2>
@@ -44,6 +44,8 @@
 import WeddingsList from '../parts/WeddingsList.vue';
 import PhotoPreview from '../ui/PhotoPreview.vue';
 import RelateButton from '@/components/ui/RelateButton.vue';
+import { mapGetters } from 'vuex';
+import { mask_datetime, mask_fio, default_image } from '@/utils/mask';
 
 export default {
   name: 'PersonCard',
@@ -59,9 +61,57 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('settings', ['getAccess']),
+    needHide(){
+      return this.person.access && this.getAccess
+    },
+    Photo(){
+      if (!this.needHide){
+        return this.person.photo
+      }
+      return default_image
+    },
     fullName () {
-      return `${ this.person.secondName } ${ this.person.firstName } ${ this.person.patronymicName }`
-    }
+      if (this.needHide){
+        const maskedSecondName = mask_fio(this.person.secondName)
+        const maskedFirstName = mask_fio(this.person.firstName)
+        const maskedPatronymicName = mask_fio(this.person.patronymicName)
+        return `${ maskedSecondName } ${ maskedFirstName } ${ maskedPatronymicName }`
+      }
+      else {
+        return `${ this.person.secondName } ${ this.person.firstName } ${ this.person.patronymicName }`
+      }
+    },
+    birthDate() {
+      if (!this.person.birth_date){
+        return null
+      }
+      if (!this.needHide){
+        return this.person.birth_date
+      }
+      return mask_datetime(this.person.birth_date)
+    },
+    dieDate () {
+      if (!this.person.die_date){
+        return null
+      }
+      if (!this.needHide){
+        return this.person.die_date
+      }
+      return mask_datetime(this.person.die_date)
+    },
+    activity(){
+      if (this.needHide){
+        return 'Информация скрыта'
+      }
+      return this.person.activity || 'Информации нет'
+    },
+    biography(){
+      if (this.needHide){
+        return 'Информация скрыта'
+      }
+      return this.person.biography || 'Информации нет'
+    },
   }
 }
 </script>
