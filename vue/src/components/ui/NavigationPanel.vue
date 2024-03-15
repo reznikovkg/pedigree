@@ -6,8 +6,8 @@
     <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'HOME' }">
       <SimpleButton class="navigation-panel__link" type="warning">В центр</SimpleButton>
     </RouterLink>
-    <RouterLink v-if="isUserPage" class="navigation-panel__link__wrapper" :to="{ path: '/person/' + id() }">
-      <SimpleButton class="navigation-panel__link" type="danger" @click="deletePersonInButton">Удалить</SimpleButton>
+    <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'PERSON_PAGE', params: {id: this.id}}">
+      <SimpleButton class="navigation-panel__link" type="danger" @click="() => deletePersonInButton()">Удалить</SimpleButton>
     </RouterLink>
     <RouterLink v-if="isUserPage" class="navigation-panel__link__wrapper"
       :to="{ name: 'EDIT_PERSON', params: { id: $route.params.id } }">
@@ -30,28 +30,25 @@ export default {
   computed: {
     isUserPage() {
       return this.$route.name === 'PersonPage';
+    },
+     id () {
+      return this.$route.params.id
     }
   },
   methods: {
     ...mapActions('persons', [
       'deletePerson'
     ]),
-    id () {
-      return this.$route.params.id
-    },
-    delPers(){
-      this.deletePerson(this.id())
-      return 'Удаление выполнено'
-    },
     deletePersonInButton() {
       this.$confirm('Действительно хотите удалить профиль? Это действие невозможно будет отменить', 'Удаление', {
         confirmButtonText: 'Да',
         cancelButtonText: 'Отмена',
         type: 'warning'
       }).then(() => {
+        this.deletePerson(this.id)
         this.$message({
           type: 'success',
-          message: this.delPers()
+          message: 'Удаление выполнено'
         });
       }).catch(() => {
         this.$message({
