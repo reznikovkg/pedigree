@@ -3,7 +3,8 @@
     class="simple-button" 
     :disabled="disabled"
     :class="[`simple-button--${type}`, { 'simple-button--disabled': disabled }]" 
-    @click="$emit('click')">
+    @click="$emit('click')"
+    >
     <slot />
   </button>
 </template>
