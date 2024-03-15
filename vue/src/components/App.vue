@@ -10,7 +10,7 @@ import ModalContainer from "@/components/parts/ModalContainer";
 
 export default {
   components: {
-    ModalContainer
+    ModalContainer,
   }
 }
 </script>
@@ -24,6 +24,7 @@ body {
   padding: 0;
   background-color: @cBaseTwo;
   font-family: @ffInter;
+  overflow-y: scroll;
 }
 
 a {
@@ -45,6 +46,7 @@ h1, h2, h3, h4, h5 {
   font-family: @ffInter;
   color: @cBaseThree;
   margin: 0;
+  margin-bottom: 8px;
 }
 
 h1 {
