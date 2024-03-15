@@ -1,12 +1,12 @@
 <template>
   <PageLayout>
-    <button
+    <SimpleButton
       :class="['person-page__btn', { 'disabled': isButtonDisabled }]" 
       :disabled="isButtonDisabled"
       @click = "() => saveId()"
     >
       Сохранить
-  </button>
+    </SimpleButton>
 
     <section class="p-16">
       <PersonCard :person="person" />
@@ -18,14 +18,14 @@
 import { mapGetters, mapActions } from 'vuex'
 import PageLayout from '../parts/PageLayout.vue';
 import PersonCard from '@/components/cards/PersonCard.vue';
-//import SimpleButton from '../ui/SimpleButton.vue';
+import SimpleButton from '../ui/SimpleButton.vue';
 
 export default {
   name: 'PersonPage',
   components: {
     PageLayout,
     PersonCard,
-    //SimpleButton
+    SimpleButton
   },
   data() {
     return {
@@ -51,7 +51,6 @@ export default {
     saveId() {
       this.setCenter(this.id);
       this.isButtonDisabled = true;
-      //console.log('Button clicked')
     }
   },
   mounted() {
@@ -66,17 +65,8 @@ export default {
 <style scoped lang="less">
 .person-page {
   &__btn {
-    justify-self: center;
-    padding: 10px 20px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #60ff6d;
-    color: black;
-    font-weight: 600;
-    cursor: pointer;
-    margin-left: 0px;
-    margin-bottom: 20px;
+    background-color: #00ff6e;
+    margin-bottom: 10px;
   }
 
   &__btn.disabled {
