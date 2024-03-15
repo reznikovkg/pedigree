@@ -63,9 +63,6 @@ export default {
       type: Object,
       required: true
     },
-    persons: {
-      type: [person]
-    },
   },
   computed: {
     ...mapGetters('persons',['getPersonsByIds']),
@@ -73,22 +70,20 @@ export default {
       return `${ this.person.secondName } ${ this.person.firstName } ${ this.person.patronymicName }`;
     },
     mother () {
-      for (var i = 0; i < persons.length; i++) {
-        if (persons[i].children.includes(person.id)) {
-          if (persons[i].gender == FEMALE) {
-            return persons[i].id;
-          } 
-        }
+      var pers = persons.find((p) => p === p.children.includes(person.id) ? p : undefined);
+      var res = "-";
+      if (pers.gender == FEMALE) {
+        res = pers.id;
       }
+      return res;
     },
     father () {
-      for (var i = 0; i < persons.length; i++) {
-        if (persons[i].children.includes(person.id)) {
-          if (persons[i].gender == MALE) {
-            return persons[i].id;
-          } 
-        }
+      var pers = persons.find((p) => p === p.children.includes(person.id) ? p : undefined);
+      var res = "-";
+      if (pers.gender == MALE) {
+        res = pers.id;
       }
+      return res;
     },
     children () {
       return this.getPersonsByIds(this.person.children);
