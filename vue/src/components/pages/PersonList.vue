@@ -46,15 +46,17 @@ export default {
     },
     persons () {
       if(this.search.length >= 3) {
-        return this.filteredPersons((person) => this.searchFunc(person))
+        return this.filteredPersons(this.searchFunc)
       }
       return this.getAllPersons.persons
     },
   },
   methods: {
     searchFunc(person) {
-      return Object.keys(person).some(key => {
-        return person[key].toString().toLowerCase().includes(this.search.toLowerCase()) && this.fields.includes(key)
+      return this.fields.some((field) => {
+        if(person[field]) {
+          return person[field].toString().toLowerCase().includes(this.search.toLowerCase())
+        }
       })
     }
   }
