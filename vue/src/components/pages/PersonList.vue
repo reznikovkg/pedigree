@@ -34,13 +34,6 @@ export default {
   data () {
     return {
       search: '',
-      searchFunc: 
-        (person) => {
-          return Object.keys(person).some(key => {
-              return person[key].toString().toLowerCase().includes(this.search.toLowerCase()) && this.fields.includes(key)
-          })
-        },
-      fields: ['id', 'firstName', 'secondName', 'patronymicName', 'birth_date']
     }
   },
   computed: {
@@ -48,13 +41,23 @@ export default {
       'getAllPersons',
       'filteredPersons'
     ]),
+    fields () {
+      return ['id', 'firstName', 'secondName', 'patronymicName', 'birth_date']
+    },
     persons () {
       if(this.search.length >= 3) {
-        return this.filteredPersons(this.searchFunc)
+        return this.filteredPersons((person) => this.searchFunc(person))
       }
       return this.getAllPersons.persons
     },
   },
+  methods: {
+    searchFunc(person) {
+      return Object.keys(person).some(key => {
+          return person[key].toString().toLowerCase().includes(this.search.toLowerCase()) && this.fields.includes(key)
+      })
+    }
+  }
 };
 </script>
 
