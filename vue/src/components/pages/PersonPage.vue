@@ -1,7 +1,7 @@
 <template>
   <PageLayout>
-    <SimpleButton
-      :class="['person-page__btn', { 'disabled': isButtonDisabled }]" 
+    <SimpleButton class="person-page__btn"
+      :class="{ 'disabled': buttonDisabled }" 
       :disabled="isButtonDisabled"
       @click = "() => saveId()"
     >
@@ -27,11 +27,6 @@ export default {
     PersonCard,
     SimpleButton
   },
-  data() {
-    return {
-      isButtonDisabled: false
-    };
-  },
   computed: {
     ...mapGetters('persons', [
       'getPersonById',
@@ -42,6 +37,11 @@ export default {
     },
     id () {
       return this.$route.params.id
+    },
+    buttonDisabled() {
+      const center = this.getCenter;
+      const savedId = center ? center : '1';
+      return savedId === this.id;
     }
   },
   methods: {
@@ -50,12 +50,6 @@ export default {
     ]),
     saveId() {
       this.setCenter(this.id);
-      this.isButtonDisabled = true;
-    }
-  },
-  mounted() {
-    const centerId = this.getCenter;
-    if (centerId && centerId === this.id) {
       this.isButtonDisabled = true;
     }
   }
@@ -67,11 +61,11 @@ export default {
   &__btn {
     background-color: #00ff6e;
     margin-bottom: 10px;
-  }
 
-  &__btn.disabled {
-    background-color: #c8c8c8;
-    cursor: not-allowed;
+    &.disabled {
+      background-color: #c8c8c8;
+      cursor: not-allowed;
+    }
   }
 }
 </style>

@@ -21,15 +21,6 @@ const initialState = [
     patronymicName: 'Иванович',
     gender: 'male',
     weddings: []
-  },
-  {
-    id: '2',
-    secondName: 'Петров',
-    firstName: 'Петр',
-    patronymicName: 'Петрович',
-    gender: 'male',
-
-    weddings: []
   }
 ]
 
@@ -88,6 +79,6 @@ export default {
     },
     setCenter({ commit }, id) {
       commit("setCenter", id)
-    },
+    }
   }
 }

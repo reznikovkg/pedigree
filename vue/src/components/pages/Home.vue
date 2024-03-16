@@ -134,8 +134,9 @@ export default {
   },
   methods: {
     redirectToDefaultPersonPage() {
-      const savedId = this.getCenter;
-      this.$router.push(`/person/${savedId}`);
+      const center = this.getCenter;
+      const savedId = center ? center : '1';
+      this.$router.push({name: 'PERSON', params: { id: savedId } });
     }
   },
   mounted () {
