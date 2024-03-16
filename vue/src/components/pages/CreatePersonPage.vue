@@ -1,7 +1,7 @@
 <template>
   <PageLayout>
     <section class="p-16">
-      <PersonForm v-model="person"/>
+      <PersonForm v-model="form"/>
       <button @click="() => createPerson()" class="person-page__btn">Сохранить</button>
     </section>
   </PageLayout>
@@ -11,6 +11,7 @@
 import { mapActions } from 'vuex'
 import PageLayout from '../parts/PageLayout.vue'
 import PersonForm from '../forms/PersonForm.vue'
+import { emptyPerson } from '@/services/person'
 
 export default {
   name: 'CreatePersonPage',
@@ -20,26 +21,7 @@ export default {
   },
   data () {
     return {
-      person: {
-        id: '',
-        secondName: '',
-        firstName: '',
-        patronymic: '',
-        birth_date: '',
-        die_date: '',
-        gender: '',
-        biography: '',
-        activity: '',
-        military: [
-          {
-            type: '',
-            rank: '',
-            startDate: '',
-            endDate: '',
-            description: ''
-          }
-        ]
-      }
+      form: emptyPerson()
     }
   },
   methods: {
@@ -47,7 +29,10 @@ export default {
       'addPerson'
     ]),
     createPerson () {
-      this.addPerson(this.person)
+      this.addPerson(this.form)
+        .then((person) => {
+          console.log(person)
+        })
     }
   }
 }

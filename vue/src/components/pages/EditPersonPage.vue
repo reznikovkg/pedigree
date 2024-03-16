@@ -11,6 +11,7 @@
 import { mapGetters, mapActions } from 'vuex'
 import PageLayout from '../parts/PageLayout.vue'
 import PersonForm from '../forms/PersonForm.vue'
+import { emptyPerson } from '@/services/person'
 
 export default {
   name: 'EditPersonPage',
@@ -20,42 +21,26 @@ export default {
   },
   data () {
     return {
-      form: {
-        id: '',
-        secondName: '',
-        firstName: '',
-        patronymic: '',
-        birth_date: '',
-        die_date: '',
-        gender: '',
-        biography: '',
-        activity: '',
-        military: [
-          {
-            type: '',
-            rank: '',
-            startDate: '',
-            endDate: '',
-            description: ''
-          }
-        ]
-      }
+      form: emptyPerson()
     }
   },
   computed: {
     ...mapGetters('persons', [
       'getPersonById'
     ]),
-    person () {
-      return this.getPersonById(this.id)
-    },
     id () {
       return this.$route.params.id
+    },
+    person () {
+      return this.getPersonById(this.id)
     }
   },
   mounted () {
     if (this.person) {
-      this.form = { ...this.person }
+      this.form = {
+        ...this.form,
+        ...this.person
+      }
     } else {
       this.$router.push({ path: '/' })
     }
