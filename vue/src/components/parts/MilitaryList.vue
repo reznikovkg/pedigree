@@ -14,8 +14,8 @@ export default {
   },
   props: {
     military: {
-      type: Array,
-      required: true
+    type: Array,
+    required: true
     }
   }
 };
