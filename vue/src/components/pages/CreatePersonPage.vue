@@ -1,7 +1,7 @@
 <template>
   <PageLayout>
     <section class="p-16">
-      <PersonForm v-model="person"/>
+      <PersonForm v-model="form"/>
       <SimpleButton class ="person-page__btn" type="primary" @click="() => createPerson()">Сохранить</SimpleButton>
       <SimpleButton class ="person-page__btn" type="danger" @click="() => cancel()">Отмена</SimpleButton>
     </section>
@@ -32,7 +32,10 @@ export default {
       'addPerson'
     ]),
     createPerson () {
-      this.addPerson(this.person)
+      this.addPerson(this.form)
+        .then((person) => {
+          this.$router.push({ name: 'PERSON', params: { id: person.id } })
+        })
     },
     cancel () {
       this.goBack()
@@ -50,14 +53,6 @@ export default {
     margin-top: 10px;
     margin-right: 10px;
     margin-bottom: 20px;
-  }
-
-  &__link {
-    width: 100%;
-
-    &__wrapper {
-      flex: 1;
-    }
   }
 }
 </style>

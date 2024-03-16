@@ -61,7 +61,7 @@ export default {
   actions: {
     addPerson: ({ commit }, payload) => new Promise((resolve) => {
       const person = { ...payload, id: genHash() }
-      commit("addPerson", payload)
+      commit("addPerson", person)
       return resolve(person)
     }),
     deletePerson: ({ commit }, payload) => {
