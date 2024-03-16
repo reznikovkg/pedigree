@@ -60,7 +60,7 @@ export default {
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     },
     setCenter(state, id) {
-      state.id = id
+      state.center = id
       localStorage.setItem(CENTER, JSON.stringify(id))
     }
   },
