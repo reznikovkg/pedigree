@@ -13,6 +13,7 @@ import { mapActions } from 'vuex'
 import { genHash } from "@/services/common"
 import PageLayout from '../parts/PageLayout.vue'
 import PersonForm from '../forms/PersonForm.vue'
+import { emptyPerson } from '@/services/person'
 
 export default {
   name: 'CreatePersonPage',
@@ -22,26 +23,7 @@ export default {
   },
   data () {
     return {
-      person: {
-        id: '',
-        secondName: '',
-        firstName: '',
-        patronymic: '',
-        birth_date: '',
-        die_date: '',
-        gender: '',
-        biography: '',
-        activity: '',
-        military: [
-          {
-            type: '',
-            rank: '',
-            startDate: '',
-            endDate: '',
-            description: ''
-          }
-        ]
-      }
+      form: emptyPerson()
     }
   },
   methods: {
