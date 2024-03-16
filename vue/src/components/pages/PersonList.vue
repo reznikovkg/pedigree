@@ -42,7 +42,7 @@ export default {
       'filteredPersons'
     ]),
     fields () {
-      return ['id', 'firstName', 'secondName', 'patronymicName', 'birth_date']
+      return ['id', 'firstName', 'secondName', 'patronymicName', 'birthDate']
     },
     persons () {
       if(this.search.length >= 3) {
