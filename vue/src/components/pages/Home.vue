@@ -142,8 +142,9 @@ export default {
   mounted () {
     const person = this.getAllPersons[0]
     if (person) {
-      this.$router.push({ name: 'PERSON', params: { id: person.id } })
+      this.$router.push({ name: 'PERSON', params: { id: person.id } });
     }
+    this.redirectToDefaultPersonPage();
   }
 }
 </script>

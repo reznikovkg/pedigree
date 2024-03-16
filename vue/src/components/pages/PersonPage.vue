@@ -50,7 +50,6 @@ export default {
     ]),
     saveId() {
       this.setCenter(this.id);
-      this.isButtonDisabled = true;
     }
   }
 };
