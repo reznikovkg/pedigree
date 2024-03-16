@@ -115,7 +115,8 @@ export default {
   computed: {
     ...mapGetters('persons', [
       'filteredPersons',
-      'getAllPersons'
+      'getAllPersons',
+      'getCenter'
     ]),
     persons() {
       const customFilter = (person) => {
