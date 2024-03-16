@@ -33,34 +33,41 @@ export default {
   },
   data () {
     return {
-      search: ''
+      search: '',
+      searchFunc: 
+        (person) => {
+          return Object.keys(person).some(key => {
+              return person[key].toString().toLowerCase().includes(this.search.toLowerCase()) && this.fields.includes(key)
+          })
+        },
+      fields: ['id', 'firstName', 'secondName', 'patronymicName', 'birth_date']
     }
   },
   computed: {
     ...mapGetters('persons', [
       'getAllPersons',
-      'searchedPersons'
+      'filteredPersons'
     ]),
     persons () {
       if(this.search.length >= 3) {
-        return this.searchedPersons(this.search)
+        return this.filteredPersons(this.searchFunc)
       }
       return this.getAllPersons.persons
     },
-  }
+  },
 };
 </script>
 
 <style scoped lang="less">
-  .person-container {
+.person-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 30px;
+  &__wrapper {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding-bottom: 30px;
-    &__wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
+    gap: 30px;
   }
+}
 </style>

@@ -7,10 +7,19 @@ const initialState = [
     id: '1',
     secondName: 'Иванов',
     firstName: 'Иван',
-    patronymic: 'Иванович',
+    patronymicName: 'Иванович',
     gender: 'male',
     military: [],
-    weddings: [],
+    children: ['1','2'],
+    weddings: []
+  },
+  {
+    id: '2',
+    secondName: 'Петров',
+    firstName: 'Петр',
+    patronymicName: 'Иванович',
+    gender: 'male',
+    weddings: []
   }
 ]
 
@@ -23,15 +32,7 @@ export default {
     getAllPersons: (state) => state,
     getPersonById: (state) => (id) => state.persons.find((person) => person.id === id),
     filteredPersons: (state) => (filterFunction) => state.persons.filter(filterFunction),
-    searchedPersons: (state) => (searchField) => state.persons.filter(
-      (person) => { 
-        return Object.keys(person).some(
-          (key) => {
-            if(key == 'id' || key == 'name' || key == 'secondName' || key == 'patronymic' || key == 'birth_date') {
-              return person[key].includes(searchField)
-            }
-          })
-        })
+    getPersonsByIds: (state) => (ids) => state.persons.filter(person => ids.includes(person.id))
   },
   mutations: {
     addPerson: (state, payload) => {

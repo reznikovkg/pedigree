@@ -60,9 +60,12 @@ export default {
   },
   computed: {
     fullName () {
-      return `${ this.person.secondName } ${ this.person.firstName } ${ this.person.patronymic }`
+      return `${ this.person.secondName } ${ this.person.firstName } ${ this.person.patronymicName }`
+    },
+    children () {
+      return this.getPersonsByIds(this.person.children);
     }
-  }
+  },
 }
 </script>
 
