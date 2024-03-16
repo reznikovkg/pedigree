@@ -60,7 +60,7 @@ export default {
   },
   computed: {
     fullName () {
-      return `${ this.person.secondName } ${ this.person.firstName } ${ this.person.patronymic }`
+      return `${ this.person.secondName } ${ this.person.firstName } ${ this.person.patronymicName }`
     }
   }
 }

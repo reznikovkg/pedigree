@@ -13,7 +13,7 @@
       placeholder="Имя"
     />
     <ElInput
-      v-model="patronymic"
+      v-model="patronymicName"
       class="custom-form__input"
       type="text"
       placeholder="Отчество"
@@ -118,12 +118,12 @@ export default {
         this.emitFormData({ firstName: value })
       }
     },
-    patronymic: {
+    patronymicName: {
       get () {
-        return this.value.patronymic
+        return this.value.patronymicName
       },
       set (value) {
-        this.emitFormData({ patronymic: value })
+        this.emitFormData({ patronymicName: value })
       }
     },
     gender: {

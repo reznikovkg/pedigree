@@ -2,23 +2,24 @@
   <PageLayout>
     <section class="p-16">
       <PersonForm v-model="person"/>
-      <button @click="createPerson" class="person-page__btn">Сохранить</button>
-      <button @click="cancel" class="person-page__btn">Отмена</button>
+      <SimpleButton class ="person-page__btn" type="primary" @click="() => createPerson()">Сохранить</SimpleButton>
+      <SimpleButton class ="person-page__btn" type="danger" @click="() => cancel()">Отмена</SimpleButton>
     </section>
   </PageLayout>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
-import { genHash } from "@/services/common"
 import PageLayout from '../parts/PageLayout.vue'
 import PersonForm from '../forms/PersonForm.vue'
+import SimpleButton from '../ui/SimpleButton.vue'
 
 export default {
   name: 'CreatePersonPage',
   components: {
     PageLayout,
-    PersonForm
+    PersonForm,
+    SimpleButton
   },
   data () {
     return {
@@ -26,7 +27,7 @@ export default {
         id: '',
         secondName: '',
         firstName: '',
-        patronymic: '',
+        patronymicName: '',
         birth_date: '',
         die_date: '',
         gender: '',
@@ -48,12 +49,8 @@ export default {
     ...mapActions('persons', [
       'addPerson'
     ]),
-    createPerson() {
-      const newPerson = { ...this.person, id: genHash() };
-      this.$store.dispatch('persons/addPerson', newPerson)
-        .then(() => {
-          this.$router.push({ name: 'PERSON', params: { id: newPerson.id }});
-        })
+    createPerson () {
+      this.addPerson(this.person)
     },
     cancel () {
       this.goBack()
@@ -68,18 +65,17 @@ export default {
 <style scoped lang="less">
 .person-page {
   &__btn {
-    justify-self: center;
-    padding: 10px 20px;
     margin-top: 10px;
     margin-right: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: aqua;
-    color: black;
-    font-weight: 600;
-    cursor: pointer;
-    margin-left: 0px;
     margin-bottom: 20px;
+  }
+
+  &__link {
+    width: 100%;
+
+    &__wrapper {
+      flex: 1;
+    }
   }
 }
 </style>
