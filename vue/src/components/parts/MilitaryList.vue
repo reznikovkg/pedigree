@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MilitaryItem v-for="(military, index) in military" :key="index" :military="military" />
+    <MilitaryItem v-for="(military, index) in militaries" :key="index" :military="military" />
   </div>
 </template>
 
@@ -13,9 +13,9 @@ export default {
     MilitaryItem
   },
   props: {
-    military: {
-    type: Array,
-    required: true
+    militaries: {
+      type: Array,
+      required: true
     }
   }
 };

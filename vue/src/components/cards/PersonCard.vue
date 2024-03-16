@@ -42,8 +42,8 @@
 
       <h2>Военная служба</h2>
       <MilitaryList
-        v-if="person.military && person.military.length > 0"
-        :military="person.military"
+        v-if="person.militaries && person.militaries.length > 0"
+        :militaries="person.militaries"
       />
       <div v-else class="person-card__information-text">
         Информации нет
