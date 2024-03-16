@@ -6,14 +6,14 @@ enum GENDER {
 type PersonId = string;
 type DateString = string;
 
-interface Person {
+export interface Person {
   id: PersonId; // id
   secondName: string; // Фамилия
   firstName: string; // Имя
   patronymicName: string; // Отчество
   birthDate: DateString; // Дата рождения
   dieDate: DateString; // Дата смерти
-  gender: GENDER; // Пол
+  gender: GENDER | null; // Пол
   biography: string; // Биография
   activity: string; // Род деятельности
   photo: string; // Ссылка на фото
@@ -21,7 +21,7 @@ interface Person {
   educations: Education[]; // Образования
   weddings: Wedding[]; // Брачные союзы
   works: Work[]; // Работы
-  militaryServices: MilitaryService[]; // Служба
+  militaries: Military[]; // Военная служба
 }
 
 interface Education {
@@ -48,7 +48,7 @@ interface Work {
   description: string; // Описание
 }
 
-interface MilitaryService {
+interface Military {
   type: string; // Тип службы
   rank: string; // Звание, должность
   startDate: DateString; // Дата начала службы

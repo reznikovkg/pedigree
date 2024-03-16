@@ -5,8 +5,8 @@
     </div>
     <div>
       <h1>{{ fullName }}</h1>
-      <span class="person-card__dates">{{ person.birth_date }}</span>
-      <span v-if="person.die_date" class="person-card__dates"> - {{ person.die_date }}</span>
+      <span class="person-card__dates">{{ person.birthDate }}</span>
+      <span v-if="person.die_date" class="person-card__dates"> - {{ person.dieDate }}</span>
 
       <h2>Родители</h2>
       <div class="person-card__information-text">
@@ -15,7 +15,7 @@
 
       <h2>Дети</h2>
       <div class="person-card__information-text">
-        <div v-if="person.children.length > 0">
+        <div v-if="person.children && person.children.length > 0">
           <RelateButton v-for="child in children" :key="child.id" :person="child" relate="child" />
         </div>
         <p v-else>Нет детей</p>

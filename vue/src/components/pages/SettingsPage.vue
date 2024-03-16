@@ -18,11 +18,17 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import PageLayout from '@/components/parts/PageLayout.vue';
 
 export default {
   name: 'SettingsPage',
+  components: {
+    PageLayout
+  },
   computed: {
-    ...mapGetters('settings', ['getAccess']),
+    ...mapGetters('settings', [
+      'getAccess'
+    ]),
     accessSwitch: {
       get() {
         return this.getAccess;
@@ -33,7 +39,9 @@ export default {
     },
   },
   methods: {
-    ...mapActions('settings', ['setAccess']),
+    ...mapActions('settings', [
+      'setAccess'
+    ]),
   }
 };
 </script>
