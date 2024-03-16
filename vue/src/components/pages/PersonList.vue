@@ -54,7 +54,7 @@ export default {
   methods: {
     searchFunc(person) {
       return Object.keys(person).some(key => {
-          return person[key].toString().toLowerCase().includes(this.search.toLowerCase()) && this.fields.includes(key)
+        return person[key].toString().toLowerCase().includes(this.search.toLowerCase()) && this.fields.includes(key)
       })
     }
   }
