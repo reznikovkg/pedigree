@@ -202,13 +202,6 @@ export default {
 </script>
 
 <style scoped lang="less">
-@media (max-width: 720px) {
-  .custom-form {
-    display: flex;
-    flex-direction: column;
-  }
-}
-
 .person-page {
   &__btn {
     justify-self: center;
