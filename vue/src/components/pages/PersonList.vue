@@ -11,7 +11,13 @@
         v-if="persons.length > 0" 
         class="person-container__wrapper"
       >
-        <WidePersonCard v-for="(person, id) in persons" :key="id" :person="person"/>
+        <RouterLink 
+          class="navigation-panel__link__wrapper"
+          :to="{ name: 'PERSON', params: { id: person.id } }"
+          v-for="(person, id) in persons" :key="id"
+        >
+          <WidePersonCard :person="person"/>
+        </RouterLink>
       </div>
       <div v-else>
         Список пуст
