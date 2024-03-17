@@ -62,12 +62,12 @@
         class="custom-form__input"
         placeholder="Скрывание">
         <ElOption
-        label="Скрывать"
-        value=true
+          label="Скрывать"
+          value=true
         />
         <ElOption
-        label="Не скрывать"
-        value=false
+          label="Не скрывать"
+          value=false
         />
       </ElSelect>
     </div>
