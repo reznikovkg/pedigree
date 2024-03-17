@@ -39,12 +39,22 @@
       <div v-else class="person-card__information-text">
         Информации нет
       </div>
+
+      <h2>Военная служба</h2>
+      <MilitaryList
+        v-if="person.militaries && person.militaries.length > 0"
+        :militaries="person.militaries"
+      />
+      <div v-else class="person-card__information-text">
+        Информации нет
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import WeddingsList from '../parts/WeddingsList.vue';
+import MilitaryList from '../parts/MilitaryList.vue';
 import PhotoPreview from '../ui/PhotoPreview.vue';
 import RelateButton from '@/components/ui/RelateButton.vue';
 import { mapGetters } from 'vuex';
@@ -53,6 +63,7 @@ export default {
   name: 'PersonCard',
   components: {
     WeddingsList,
+    MilitaryList,
     PhotoPreview,
     RelateButton
   },

@@ -1,6 +1,7 @@
 import { genHash } from "@/services/common"
 
 export const PERSONS = "persons"
+export const CENTER = "center"
 
 const initialState = [
   {
@@ -27,12 +28,14 @@ export default {
   namespaced: true,
   state: {
     persons: JSON.parse(localStorage.getItem(PERSONS)) || initialState,
+    center: JSON.parse(localStorage.getItem(CENTER)) || '1'
   },
   getters: {
     getAllPersons: (state) => state.persons,
     getPersonById: (state) => (id) => state.persons.find((person) => person.id === id),
     filteredPersons: (state) => (filterFunction) => state.persons.filter(filterFunction),
-    getPersonsByIds: (state) => (ids) => state.persons.filter(person => ids.includes(person.id))
+    getPersonsByIds: (state) => (ids) => state.persons.filter(person => ids.includes(person.id)),
+    getCenter: (state) => state.center
   },
   mutations: {
     addPerson: (state, payload) => {
@@ -56,6 +59,10 @@ export default {
     editPerson: (state, payload) => {
       state.persons = state.persons.map((p) => (p.id === payload.id ? { ...p, ...payload } : p))
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
+    },
+    setCenter(state, id) {
+      state.center = id
+      localStorage.setItem(CENTER, JSON.stringify(id))
     }
   },
   actions: {
@@ -69,6 +76,9 @@ export default {
     },
     editPerson: ({ commit }, payload) => {
       commit("editPerson", payload)
+    },
+    setCenter({ commit }, id) {
+      commit("setCenter", id)
     }
   }
 }

@@ -115,7 +115,8 @@ export default {
   computed: {
     ...mapGetters('persons', [
       'filteredPersons',
-      'getAllPersons'
+      'getAllPersons',
+      'getCenter'
     ]),
     persons() {
       const customFilter = (person) => {
@@ -131,12 +132,17 @@ export default {
       return this.filteredPersons(customFilter) || []
     }
   },
-  mounted () {
-    const person = this.getAllPersons[0]
-    if (person) {
-      this.$router.push({ name: 'PERSON', params: { id: person.id } })
+  methods: {
+    redirectToDefaultPersonPage() {
+      const first = this.getAllPersons[0] || {}
+      const personId = this.getCenter || first.id
+      if (personId) {
+        this.$router.push({name: 'PERSON', params: { id: personId || '1' } })
+      }
     }
+  },
+  mounted () {
+    this.redirectToDefaultPersonPage();
   }
 }
 </script>
- 
