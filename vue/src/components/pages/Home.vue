@@ -134,18 +134,15 @@ export default {
   },
   methods: {
     redirectToDefaultPersonPage() {
-      const center = this.getCenter;
-      const savedId = center ? center : '1';
-      this.$router.push({name: 'PERSON', params: { id: savedId } });
+      const first = this.getAllPersons[0] || {}
+      const personId = this.getCenter || first.id
+      if (personId) {
+        this.$router.push({name: 'PERSON', params: { id: personId || '1' } })
+      }
     }
   },
   mounted () {
-    const person = this.getAllPersons[0]
-    if (person) {
-      this.$router.push({ name: 'PERSON', params: { id: person.id } });
-    }
     this.redirectToDefaultPersonPage();
   }
 }
 </script>
- 

@@ -4,7 +4,7 @@
     <div class="person-preview-card__information">
       <h2 class="person-preview-card__name">{{ person.secondName }}</h2>
       <h2 class="person-preview-card__name">{{ person.firstName }}</h2>
-      <h2 class="person-preview-card__name">{{ person.patronymic }}</h2>
+      <h2 class="person-preview-card__name">{{ person.patronymicName }}</h2>
 
       <span class="person-preview-card__date">{{ person.birth_date }}</span>
       <span v-if="person.die_date" class="person-preview-card__date"> - {{ person.die_date }}</span>
