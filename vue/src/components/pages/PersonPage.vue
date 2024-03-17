@@ -1,6 +1,6 @@
 <template>
   <PageLayout>
-    <ScrollingForm :sections="sections" />
+    <ScrollingPanel :sections="sections" />
     <SimpleButton class="person-page__btn"
       :class="{ 'disabled': buttonDisabled }"
       :disabled="buttonDisabled"
@@ -20,7 +20,7 @@ import { mapGetters, mapActions } from 'vuex'
 import PageLayout from '../parts/PageLayout.vue';
 import PersonCard from '@/components/cards/PersonCard.vue';
 import SimpleButton from '../ui/SimpleButton.vue';
-import ScrollingForm from '@/components/forms/ScrollingForm.vue';
+import ScrollingPanel from '@/components/ui/ScrollingPanel.vue';
 
 export default {
   name: 'PersonPage',
@@ -28,7 +28,7 @@ export default {
     PageLayout,
     PersonCard,
     SimpleButton,
-    ScrollingForm
+    ScrollingPanel
   },
   data() {
     return {

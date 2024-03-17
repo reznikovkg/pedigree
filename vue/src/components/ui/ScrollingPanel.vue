@@ -1,10 +1,8 @@
 <template>
   <div class="scrolling-menu">
-    <ul>
-      <li v-for="(section, index) in sections" :key="index">
-        <button @click="scrollToSection(section.id)">{{ section.title }}</button>
-      </li>
-    </ul>
+    <div v-for="(section, index) in sections" :key="index">
+      <button @click="() => scrollToSection(section.id)">{{ section.title }}</button>
+    </div>
   </div>
 </template>
 
@@ -33,15 +31,6 @@ export default {
   position: fixed;
   top: 50px;
   left: 10px; 
-}
-
-.scrolling-menu ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.scrolling-menu li {
-  margin-bottom: 5px;
 }
 
 .scrolling-menu button {
