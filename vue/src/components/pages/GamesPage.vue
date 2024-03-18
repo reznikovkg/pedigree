@@ -27,18 +27,20 @@
       >
       <button @click="() => getGameById(id)" class="select-panel__btn">Найти</button>
     </div>
-    <div v-if="games.length">
-      <h2>Найденные игры:</h2>
-      <div
-        v-for="game in games"
-        :key="game.id"
-        class="card_game"
-      >
-        <GameCard :game="game"></GameCard>
+    <div class="searched-panel">
+      <div v-if="games.length">
+        <h2 class="searched-panel__title">Найденные игры:</h2>
+        <div
+          v-for="game in games"
+          :key="game.id"
+          class="card_game"
+        >
+          <GameCard :game="game"></GameCard>
+        </div>
       </div>
-    </div>
-    <div v-else>
-      <p>Ни одной игры не найдено</p>
+      <div v-else>
+        <p>Ни одной игры не найдено</p>
+      </div>
     </div>
   </div>
 </template>
@@ -108,6 +110,14 @@ export default {
     background-color: rgb(52, 73, 150);
     color: white;
     cursor: pointer;
+  }
+}
+
+.searched-panel{
+  margin:10px;
+
+  &__title{
+    font-size: 26px;
   }
 }
 </style>
