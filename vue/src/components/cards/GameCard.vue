@@ -1,10 +1,10 @@
 <template>
   <div class="game-card">
     <img v-if="game.cover" :src="'https:' + game.cover.url">
-    <div v-else class="no-cover">Нет обложки</div>
+    <div v-else>Нет обложки</div>
     <div class="info">
       <h3>{{ game.name }}</h3>
-      <p>Год выпуска: {{ formatReleaseDate(game.first_release_date) }}</p>
+      <h3>Год выпуска: {{ formatReleaseDate(game.first_release_date) }}</h3>
     </div>
   </div>
 </template>
@@ -17,10 +17,10 @@ export default {
   methods: {
     formatReleaseDate(timestamp) {
       if (timestamp) {
-        const date = new Date(timestamp * 1000);
-        return date.getFullYear();
+        const date = new Date(timestamp * 1000)
+        return date.getFullYear()
       }
-      return 'Неизвестно';
+      return 'Неизвестно'
     },
   },
 };
@@ -33,17 +33,11 @@ export default {
   padding: 10px;
   margin-bottom: 10px;
   display: flex;
-}
-
-.game-card img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  margin-right: 10px;
-}
-
-
-.game-card .info {
-  flex-grow: 1;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  background-color: rgba(52, 73, 150, 0.8);
+  border-radius: 10px;
+  width:30%;
 }
 </style>
