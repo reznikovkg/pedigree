@@ -81,7 +81,7 @@ export default {
     children () {
       return this.getPersonsByIds(this.person.children);
     }
-  }
+  },
 }
 </script>
 
