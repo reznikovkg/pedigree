@@ -32,7 +32,19 @@ export default {
     getAllPersons: (state) => state,
     getPersonById: (state) => (id) => state.persons.find((person) => person.id === id),
     filteredPersons: (state) => (filterFunction) => state.persons.filter(filterFunction),
-    getPersonsByIds: (state) => (ids) => state.persons.filter(person => ids.includes(person.id))
+    getPersonsByIds: (state) => (ids) => state.persons.filter(person => ids.includes(person.id)),
+    getParentsForPerson: (state) => (id) => {
+      const parents = []
+      const mother = state.persons.find((person) => person.children.includes(id) && person.gender === 'female')
+      const father = state.persons.find((person) => person.children.includes(id) && person.gender === 'male')
+      if(mother) {
+        parents.push(mother)
+      }
+      if(father) {
+        parents.push(father)
+      }
+      return parents
+    }
   },
   mutations: {
     addPerson: (state, payload) => {

@@ -9,12 +9,12 @@
       <span v-if="person.die_date" class="person-card__dates"> - {{ person.die_date }}</span>
 
       <h2>Родители</h2>
-      <div class="person-card__information-text">
-        <p>Мать {{ mother }}</p>
-        <p>Отец {{ father }}</p>
-        <RelateButton :person="person" relate="parent"/>
+      <div v-if="getParents[0] || getParents[1]" class="person-card__information-text">
+        <RelateButton v-for="(person, id) in getParents" :person="person" :key="id" relate="parent"/>
       </div>
-
+      <div v-else>
+        Нет информации
+      </div>
       <h2>Дети</h2>
       <div class="person-card__information-text">
         <div v-if="person.children.length > 0">
@@ -65,25 +65,15 @@ export default {
     },
   },
   computed: {
-    ...mapGetters('persons',['getPersonsByIds']),
+    ...mapGetters('persons', [
+      'getPersonsByIds',
+      'getParentsForPerson'
+    ]),
     fullName () {
       return `${ this.person.secondName } ${ this.person.firstName } ${ this.person.patronymicName }`;
     },
-    mother () {
-      var pers = persons.find((p) => p === p.children.includes(person.id) ? p : undefined);
-      var res = "-";
-      if (pers.gender == FEMALE) {
-        res = pers.id;
-      }
-      return res;
-    },
-    father () {
-      var pers = persons.find((p) => p === p.children.includes(person.id) ? p : undefined);
-      var res = "-";
-      if (pers.gender == MALE) {
-        res = pers.id;
-      }
-      return res;
+    getParents () {
+      return this.getParentsForPerson(this.person.id)
     },
     children () {
       return this.getPersonsByIds(this.person.children);
