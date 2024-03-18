@@ -13,7 +13,7 @@
       placeholder="Имя"
     />
     <ElInput
-      v-model="patronymic"
+      v-model="patronymicName"
       class="custom-form__input"
       type="text"
       placeholder="Отчество"
@@ -25,7 +25,7 @@
       placeholder="Пол"
     />
     <ElDatePicker
-      v-model="birth_date"
+      v-model="birthDate"
       class="custom-form__input"
       type="date"
       format="dd.MM.yyyy"
@@ -33,7 +33,7 @@
       placeholder="Дата рождения"
     />
     <ElDatePicker
-      v-model="die_date"
+      v-model="dieDate"
       class="custom-form__input"
       type="date"
       format="dd.MM.yyyy"
@@ -56,25 +56,26 @@
         placeholder="Биография"
       />
     </div>
+    <h2>Военная служба</h2>
     <div 
       class="custom-form__full-width" 
-      v-for="(military, index) in value.military" 
+      v-for="(military, index) in value.militaries" 
       :key="index"
     >
       <div class ="person-page__header-wrapper">
-      <h2>Военная служба {{index + 1}}</h2>
-        <button @click="() => removeForm(index)" class="person-page__btn-close ">
+      <h3>Военная служба {{index + 1}}</h3>
+        <button class="person-page__btn-close" @click="() => removeMilitaryForm(index)">
           ✖
         </button>
       </div>
       <MilitaryForm
         :value="military"
         class="custom-form__input"
-        @change="(military) => setForm(military, index)"
+        @change="(military) => setMilitaryForm(military, index)"
       />
     </div>
     <div class ="custom-form__full-width person-page__right-wrapper">
-      <SimpleButton @click="() => addForm()" type="primary">
+      <SimpleButton type="primary" @click="() => addMilitaryForm()">
         Добавить
       </SimpleButton >
     </div>
@@ -118,12 +119,12 @@ export default {
         this.emitFormData({ firstName: value })
       }
     },
-    patronymic: {
+    patronymicName: {
       get () {
-        return this.value.patronymic
+        return this.value.patronymicName
       },
       set (value) {
-        this.emitFormData({ patronymic: value })
+        this.emitFormData({ patronymicName: value })
       }
     },
     gender: {
@@ -134,20 +135,20 @@ export default {
         this.emitFormData({ gender: value })
       }
     },
-    birth_date: {
+    birthDate: {
       get () {
-        return this.value.birth_date
+        return this.value.birthDate
       },
       set (value) {
-        this.emitFormData({ birth_date: value })
+        this.emitFormData({ birthDate: value })
       }
     },
-    die_date: {
+    dieDate: {
       get () {
-        return this.value.die_date
+        return this.value.dieDate
       },
       set (value) {
-        this.emitFormData({ die_date: value })
+        this.emitFormData({ dieDate: value })
       }
     },
     activity: {
@@ -174,26 +175,26 @@ export default {
         ...param
       })
     },
-    setForm(updatedMilitary, index) {
+    setMilitaryForm(updatedMilitary, index) {
       const newValue = { ...this.value }
-      newValue.military = [...newValue.military]
-      newValue.military[index] = updatedMilitary
+      newValue.militaries[index] = updatedMilitary
+      newValue.militaries = [...newValue.militaries]
       this.$emit('change', newValue)
     },
-    addForm() {
+    addMilitaryForm() {
       const newValue = { ...this.value }
-      newValue.military = [...newValue.military, {
+      newValue.militaries.push({
         type: '',
         rank: '',
         startDate: '',
         endDate: '',
         description: ''
-      }]
+      })
       this.$emit('change', newValue)
     },
-    removeForm(index) {
+    removeMilitaryForm(index) {
       const newValue = { ...this.value }
-      newValue.military.splice(index, 1)
+      newValue.militaries.splice(index, 1)
       this.$emit('change', newValue)
     }
   }

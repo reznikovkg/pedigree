@@ -1,8 +1,9 @@
 <template>
   <PageLayout>
     <section class="p-16">
-      <PersonForm v-model="person"/>
-      <button @click="() => createPerson()" class="person-page__btn">Сохранить</button>
+      <PersonForm v-model="form"/>
+      <SimpleButton class ="person-page__btn" type="primary" @click="() => createPerson()">Сохранить</SimpleButton>
+      <SimpleButton class ="person-page__btn" type="danger" @click="() => cancel()">Отмена</SimpleButton>
     </section>
   </PageLayout>
 </template>
@@ -11,35 +12,19 @@
 import { mapActions } from 'vuex'
 import PageLayout from '../parts/PageLayout.vue'
 import PersonForm from '../forms/PersonForm.vue'
+import { emptyPerson } from '@/services/person'
+import SimpleButton from '../ui/SimpleButton.vue'
 
 export default {
   name: 'CreatePersonPage',
   components: {
     PageLayout,
-    PersonForm
+    PersonForm,
+    SimpleButton
   },
   data () {
     return {
-      person: {
-        id: '',
-        secondName: '',
-        firstName: '',
-        patronymic: '',
-        birth_date: '',
-        die_date: '',
-        gender: '',
-        biography: '',
-        activity: '',
-        military: [
-          {
-            type: '',
-            rank: '',
-            startDate: '',
-            endDate: '',
-            description: ''
-          }
-        ]
-      }
+      form: emptyPerson()
     }
   },
   methods: {
@@ -47,7 +32,16 @@ export default {
       'addPerson'
     ]),
     createPerson () {
-      this.addPerson(this.person)
+      this.addPerson(this.form)
+        .then((person) => {
+          this.$router.push({ name: 'PERSON', params: { id: person.id } })
+        })
+    },
+    cancel () {
+      this.goBack()
+    },
+    goBack () {
+      this.$router.go(-1)
     }
   }
 }
@@ -56,16 +50,8 @@ export default {
 <style scoped lang="less">
 .person-page {
   &__btn {
-    justify-self: center;
-    padding: 10px 20px;
     margin-top: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: aqua;
-    color: black;
-    font-weight: 600;
-    cursor: pointer;
-    margin-left: 0px;
+    margin-right: 10px;
     margin-bottom: 20px;
   }
 }

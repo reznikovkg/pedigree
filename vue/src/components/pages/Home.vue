@@ -31,7 +31,6 @@ import PopOver from "@/components/ui/PopOver"
 import { mapGetters } from 'vuex'
 import WorkForm from '../forms/WorkForm.vue'
 
-
 export default {
   mixins: [helpModal],
   name: 'HomePage',
@@ -42,24 +41,6 @@ export default {
     PersonForm,
     PopOver,
     WorkForm,
-  },
-  computed: {
-    ...mapGetters('persons', [
-      'filteredPersons'
-    ]),
-    persons() {
-      const customFilter = (person) => {
-        const partnerGender = this.person.gender === 'male' ? 'female' : 'male'
-        const birthDate = new Date(this.person.birthDate)
-        const deathDate = new Date(this.person.dieDate)
-        return (
-          person.gender !== partnerGender &&
-          (!person.dieDate || new Date(person.dieDate) >birthDate) &&
-          (!person.birthDate|| new Date(person.birthDate) < deathDate)
-        )
-      }
-      return this.filteredPersons(customFilter) || []
-    }
   },
   data () {
     return {
@@ -131,9 +112,37 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters('persons', [
+      'filteredPersons',
+      'getAllPersons',
+      'getCenter'
+    ]),
+    persons() {
+      const customFilter = (person) => {
+        const partnerGender = this.person.gender === 'male' ? 'female' : 'male'
+        const birthDate = new Date(this.person.birthDate)
+        const deathDate = new Date(this.person.dieDate)
+        return (
+          person.gender !== partnerGender &&
+          (!person.dieDate || new Date(person.dieDate) >birthDate) &&
+          (!person.birthDate|| new Date(person.birthDate) < deathDate)
+        )
+      }
+      return this.filteredPersons(customFilter) || []
+    }
+  },
+  methods: {
+    redirectToDefaultPersonPage() {
+      const first = this.getAllPersons[0] || {}
+      const personId = this.getCenter || first.id
+      if (personId) {
+        this.$router.push({name: 'PERSON', params: { id: personId || '1' } })
+      }
+    }
+  },
   mounted () {
-    this.$router.push({ path: '/person/1' })
+    this.redirectToDefaultPersonPage();
   }
 }
 </script>
- 
