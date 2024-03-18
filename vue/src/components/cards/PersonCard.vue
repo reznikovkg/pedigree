@@ -1,7 +1,7 @@
 <template>
   <div class="person-card">
     <div>
-      <PhotoPreview size="large"/>
+      <PhotoPreview size="large" />
     </div>
     <div>
       <h1 id="info-section">{{ fullName }}</h1>
@@ -11,7 +11,7 @@
 
       <h2 id="parents-section">Родители</h2>
       <div class="person-card__information-text">
-        <RelateButton :person="person" relate="parent"/>
+        <RelateButton :person="person" relate="parent" />
       </div>
 
       <h2 id="childs-section">Дети</h2>

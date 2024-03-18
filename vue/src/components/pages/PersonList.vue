@@ -17,7 +17,7 @@
           v-for="(person, id) in persons" 
           :key="id"
         >
-          <WidePersonCard :person="person"/>
+          <WidePersonCard :person="person" />
         </RouterLink>
       </div>
       <div v-else>

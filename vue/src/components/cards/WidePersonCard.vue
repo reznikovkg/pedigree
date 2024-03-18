@@ -1,7 +1,7 @@
 <template>
   <div class="person-widecard">
     <div>
-      <PhotoPreview size="small"/>
+      <PhotoPreview size="small" />
     </div>
     <div class="person-widecard__description">
       <div class="person-widecard__description__fullname">

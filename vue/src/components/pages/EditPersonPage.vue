@@ -1,7 +1,7 @@
 <template>
   <PageLayout>
     <section class="p-16">
-      <PersonForm v-model="form"/>
+      <PersonForm v-model="form" />
       <SimpleButton 
         class ="person-page__btn" 
         type="primary" 

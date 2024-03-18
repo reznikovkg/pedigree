@@ -12,20 +12,20 @@
 </template>
   
 <script>
-  import EducationItem from './EducationItem.vue'
-  
-  export default {
-    name: 'EducationList',
-    components: {
-      EducationItem
-    },
-    props: {
-      educations: {
-        type: Array,
-        required: true
-      }
+import EducationItem from './EducationItem.vue'
+
+export default {
+  name: 'EducationList',
+  components: {
+    EducationItem
+  },
+  props: {
+    educations: {
+      type: Array,
+      required: true
     }
   }
+}
 </script>
   
 <style>
