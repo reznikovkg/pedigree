@@ -10,13 +10,25 @@
 
       <h2 id="parents-section">Родители</h2>
       <div class="person-card__information-text">
-        <RelateButton :person="person" relate="parent"/>
+        <PopOver>
+          <RelateButton :person="person" relate="parent"/>
+          <template #popover>
+            <PersonPreviewCard :person="person"></PersonPreviewCard>
+          </template>
+        </PopOver>
       </div>
 
       <h2 id="childs-section">Дети</h2>
       <div class="person-card__information-text">
         <div v-if="person.children && person.children.length > 0">
-          <RelateButton v-for="child in children" :key="child.id" :person="child" relate="child" />
+          <span v-for="child in children" :key="child.id">
+            <PopOver>
+              <RelateButton :person="child" relate="child" />
+              <template #popover>
+                <PersonPreviewCard :person="child"></PersonPreviewCard>
+              </template>
+            </PopOver>
+          </span>
         </div>
         <p v-else>Нет детей</p>
       </div>
@@ -57,6 +69,8 @@ import WeddingsList from '../parts/WeddingsList.vue';
 import MilitaryList from '../parts/MilitaryList.vue';
 import PhotoPreview from '../ui/PhotoPreview.vue';
 import RelateButton from '@/components/ui/RelateButton.vue';
+import PopOver from '../ui/PopOver.vue';
+import PersonPreviewCard from './PersonPreviewCard.vue';
 import { mapGetters } from 'vuex';
 
 export default {
@@ -65,7 +79,9 @@ export default {
     WeddingsList,
     MilitaryList,
     PhotoPreview,
-    RelateButton
+    RelateButton,
+    PopOver,
+    PersonPreviewCard
   },
   props: {
     person: {
