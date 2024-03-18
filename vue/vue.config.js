@@ -25,5 +25,5 @@ module.exports = defineConfig({
         additionalData: `@import '@/less/const.less';`
       }
     }
-  }
-})
+  },
+});
