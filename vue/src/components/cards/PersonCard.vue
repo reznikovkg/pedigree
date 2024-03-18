@@ -5,7 +5,6 @@
     </div>
     <div>
       <h1 id="info-section">{{ fullName }}</h1>
-      <span class="person-card__dates">{{ person.birth_Date }}</span>
       <span class="person-card__dates">{{ person.birthDate }}</span>
       <span v-if="person.dieDate" class="person-card__dates"> - {{ person.dieDate }}</span>
 
