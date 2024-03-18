@@ -16,7 +16,6 @@
       <EducationForm v-model="education" />
       <WeddingForm v-model="wedding" :persons="persons" />
       <PersonForm v-model="person" />
-      <MilitaryForm :military="military"/>
       <WorkForm v-model="workData"/>
     </section>
   </PageLayout>
@@ -28,7 +27,6 @@ import { helpModal } from "@/mixins/modals"
 import EducationForm from '../forms/EducationForm.vue'
 import WeddingForm from '../forms/WeddingForm.vue'
 import PersonForm from '../forms/PersonForm.vue'
-import MilitaryForm from '../forms/MilitaryForm.vue'
 import PopOver from "@/components/ui/PopOver"
 import { mapGetters } from 'vuex'
 import WorkForm from '../forms/WorkForm.vue'
@@ -41,27 +39,8 @@ export default {
     EducationForm,
     WeddingForm,
     PersonForm,
-    MilitaryForm,
     PopOver,
     WorkForm,
-  },
-  computed: {
-    ...mapGetters('persons', [
-      'filteredPersons'
-    ]),
-    persons() {
-      const customFilter = (person) => {
-        const partnerGender = this.person.gender === 'male' ? 'female' : 'male'
-        const birthDate = new Date(this.person.birthDate)
-        const deathDate = new Date(this.person.dieDate)
-        return (
-          person.gender !== partnerGender &&
-          (!person.dieDate || new Date(person.dieDate) >birthDate) &&
-          (!person.birthDate|| new Date(person.birthDate) < deathDate)
-        )
-      }
-      return this.filteredPersons(customFilter) || []
-    }
   },
   data () {
     return {
@@ -107,13 +86,22 @@ export default {
         institutionName: 'ВГУ',
         institutionCity: 'Воронеж'
       },
-      military: {
-        type: 'Контракт',
-        rank: 'Рядовой',
-        date_start: '01.01.2024',
-        date_end: '01.03.2025',
-        description: 'Служил в мото-стрелковой дивизии под Калининградом'
-      },
+      military: [
+        {
+          type: 'Контракт',
+          rank: 'Рядовой',
+          startDate: '01.01.2024',
+          endDate: '01.03.2025',
+          description: 'Служил в мото-стрелковой дивизии под Калининградом'
+        },
+        {
+          type: 'Контракт2',
+          rank: 'Рядовой',
+          startDate: '01.01.2024',
+          endDate: '01.03.2025',
+          description: 'Служил в мото-стрелковой дивизии под Калининградом'
+        }
+      ],
       workData: {
         place: "Россия, Воронеж",
         organization: "RedCollar",
@@ -124,8 +112,37 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters('persons', [
+      'filteredPersons',
+      'getAllPersons',
+      'getCenter'
+    ]),
+    persons() {
+      const customFilter = (person) => {
+        const partnerGender = this.person.gender === 'male' ? 'female' : 'male'
+        const birthDate = new Date(this.person.birthDate)
+        const deathDate = new Date(this.person.dieDate)
+        return (
+          person.gender !== partnerGender &&
+          (!person.dieDate || new Date(person.dieDate) >birthDate) &&
+          (!person.birthDate|| new Date(person.birthDate) < deathDate)
+        )
+      }
+      return this.filteredPersons(customFilter) || []
+    }
+  },
+  methods: {
+    redirectToDefaultPersonPage() {
+      const first = this.getAllPersons[0] || {}
+      const personId = this.getCenter || first.id
+      if (personId) {
+        this.$router.push({name: 'PERSON', params: { id: personId || '1' } })
+      }
+    }
+  },
   mounted () {
-    this.$router.push({ path: '/person/1' })
+    this.redirectToDefaultPersonPage();
   }
 }
 </script>

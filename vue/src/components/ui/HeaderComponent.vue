@@ -9,20 +9,21 @@
     </nav>
   </header>
 </template>
-  
+
 <script>
 export default {
   name: 'HeaderComponent'
-};
+}
 </script>
-  
+
 <style scoped lang="less">
 .header {
   width: 100%;
   height: 60px;
-  background-color: #f2f2f2;
+  background-color: #fafafa;
+  margin-bottom: 10px;
 }
-  
+
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -43,7 +44,7 @@ export default {
   &__link {
     text-decoration: none;
     color: #333;
-    font-weight: bold;
+    font-weight: 700;
   }
 }
 </style>

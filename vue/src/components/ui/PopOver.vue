@@ -26,6 +26,7 @@ export default {
   left: calc(50%);
   transform: translateX(-50%);
   transition: 0.3s ease;
+  z-index: 999;
 
   &__container {
     position: relative;

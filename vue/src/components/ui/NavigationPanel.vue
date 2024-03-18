@@ -6,9 +6,9 @@
     <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'HOME' }">
       <SimpleButton class="navigation-panel__link" type="warning">В центр</SimpleButton>
     </RouterLink>
-    <RouterLink v-if="isUserPage" class="navigation-panel__link__wrapper" :to="{ name: 'HOME' }">
-      <SimpleButton class="navigation-panel__link" type="danger">Удалить</SimpleButton>
-    </RouterLink>
+    <div v-if="isUserPage" class="navigation-panel__link__wrapper">
+      <SimpleButton class="navigation-panel__link" type="danger" @click="() => deletePersonInButton()">Удалить</SimpleButton>
+    </div>
     <RouterLink v-if="isUserPage" class="navigation-panel__link__wrapper"
       :to="{ name: 'EDIT_PERSON', params: { id: $route.params.id } }">
       <SimpleButton class="navigation-panel__link" type="warning">Редактировать</SimpleButton>
@@ -21,6 +21,7 @@
 
 <script>
 import SimpleButton from "./SimpleButton.vue";
+import { mapActions } from "vuex";
 
 export default {
   components: {
@@ -28,7 +29,34 @@ export default {
   },
   computed: {
     isUserPage() {
-      return this.$route.name === 'PersonPage';
+      return this.$route.name === 'PERSON';
+    },
+     id () {
+      return this.$route.params.id
+    }
+  },
+  methods: {
+    ...mapActions('persons', [
+      'deletePerson'
+    ]),
+    deletePersonInButton() {
+      this.$confirm('Действительно хотите удалить профиль? Это действие невозможно будет отменить', 'Удаление', {
+        confirmButtonText: 'Да',
+        cancelButtonText: 'Отмена',
+        type: 'warning'
+      }).then(() => {
+        this.deletePerson(this.id)
+        this.$message({
+          type: 'success',
+          message: 'Удаление выполнено'
+        })
+        this.$router.push({name: 'HOME'});
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: 'Удаление отменено'
+        });          
+      });
     }
   }
 };

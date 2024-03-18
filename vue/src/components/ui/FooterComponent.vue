@@ -9,28 +9,28 @@
 <script>
 export default {
   name: 'FooterComponent',
-  data() {
+  data () {
     return {
       currentYear: ''
-    };
+    }
   },
-  mounted() {
-    this.getCurrentYear();
+  mounted () {
+    this.getCurrentYear()
   },
   methods: {
-    getCurrentYear() {
-      const date = new Date();
-      this.currentYear = date.getFullYear();
+    getCurrentYear () {
+      const date = new Date()
+      this.currentYear = date.getFullYear()
     }
   }
-};
+}
 </script>
 
 <style scoped lang="less">
 .footer {
   width: 100%;
   height: 60px;
-  background-color: #f2f2f2;
+  background-color: #fafafa;
   display: flex;
   justify-content: center;
   align-items: center;

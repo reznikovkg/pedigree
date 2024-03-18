@@ -13,7 +13,7 @@
       placeholder="Имя"
     />
     <ElInput
-      v-model="patronymic"
+      v-model="patronymicName"
       class="custom-form__input"
       type="text"
       placeholder="Отчество"
@@ -25,7 +25,7 @@
       placeholder="Пол"
     />
     <ElDatePicker
-      v-model="birth_date"
+      v-model="birthDate"
       class="custom-form__input"
       type="date"
       format="dd.MM.yyyy"
@@ -33,7 +33,7 @@
       placeholder="Дата рождения"
     />
     <ElDatePicker
-      v-model="die_date"
+      v-model="dieDate"
       class="custom-form__input"
       type="date"
       format="dd.MM.yyyy"
@@ -56,16 +56,45 @@
         placeholder="Биография"
       />
     </div>
+    <h2>Военная служба</h2>
+    <div 
+      class="custom-form__full-width" 
+      v-for="(military, index) in value.militaries" 
+      :key="index"
+    >
+      <div class ="person-page__header-wrapper">
+      <h3>Военная служба {{index + 1}}</h3>
+        <button class="person-page__btn-close" @click="() => removeMilitaryForm(index)">
+          ✖
+        </button>
+      </div>
+      <MilitaryForm
+        :value="military"
+        class="custom-form__input"
+        @change="(military) => setMilitaryForm(military, index)"
+      />
+    </div>
+    <div class ="custom-form__full-width person-page__right-wrapper">
+      <SimpleButton type="primary" @click="() => addMilitaryForm()">
+        Добавить
+      </SimpleButton >
+    </div>
   </div>
 </template>
 
 <script>
+import MilitaryForm from '../forms/MilitaryForm.vue'
+import SimpleButton from '../ui/SimpleButton.vue'
 
 export default {
   name: 'PersonForm',
   model: {
     prop: 'value',
     event: 'change'
+  },
+  components: {
+    MilitaryForm,
+    SimpleButton
   },
   props: {
     value: {
@@ -90,12 +119,12 @@ export default {
         this.emitFormData({ firstName: value })
       }
     },
-    patronymic: {
+    patronymicName: {
       get () {
-        return this.value.patronymic
+        return this.value.patronymicName
       },
       set (value) {
-        this.emitFormData({ patronymic: value })
+        this.emitFormData({ patronymicName: value })
       }
     },
     gender: {
@@ -106,20 +135,20 @@ export default {
         this.emitFormData({ gender: value })
       }
     },
-    birth_date: {
+    birthDate: {
       get () {
-        return this.value.birth_date
+        return this.value.birthDate
       },
       set (value) {
-        this.emitFormData({ birth_date: value })
+        this.emitFormData({ birthDate: value })
       }
     },
-    die_date: {
+    dieDate: {
       get () {
-        return this.value.die_date
+        return this.value.dieDate
       },
       set (value) {
-        this.emitFormData({ die_date: value })
+        this.emitFormData({ dieDate: value })
       }
     },
     activity: {
@@ -145,6 +174,28 @@ export default {
         ...this.value,
         ...param
       })
+    },
+    setMilitaryForm(updatedMilitary, index) {
+      const newValue = { ...this.value }
+      newValue.militaries[index] = updatedMilitary
+      newValue.militaries = [...newValue.militaries]
+      this.$emit('change', newValue)
+    },
+    addMilitaryForm() {
+      const newValue = { ...this.value }
+      newValue.militaries.push({
+        type: '',
+        rank: '',
+        startDate: '',
+        endDate: '',
+        description: ''
+      })
+      this.$emit('change', newValue)
+    },
+    removeMilitaryForm(index) {
+      const newValue = { ...this.value }
+      newValue.militaries.splice(index, 1)
+      this.$emit('change', newValue)
     }
   }
 }
@@ -165,5 +216,21 @@ export default {
     margin-left: 0px;
     margin-bottom: 20px;
   }
+
+  &__btn-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__header-wrapper {
+    display: grid;
+    grid-template-columns: auto max-content;
+  }
+
+  &__right-wrapper {
+    text-align: right;
+  }
 }
 </style>
+ 
