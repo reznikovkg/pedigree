@@ -8,13 +8,14 @@
         clearable
       />
       <div 
-        v-if="persons.length > 0" 
+        v-if="persons && persons.length > 0" 
         class="person-container__wrapper"
       >
         <RouterLink 
           class="navigation-panel__link__wrapper"
           :to="{ name: 'PERSON', params: { id: person.id } }"
-          v-for="(person, id) in persons" :key="id"
+          v-for="(person, id) in persons" 
+          :key="id"
         >
           <WidePersonCard :person="person"/>
         </RouterLink>
@@ -27,9 +28,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import PageLayout from '../parts/PageLayout.vue';
-import WidePersonCard from '../cards/WidePersonCard.vue';
+import { mapGetters } from 'vuex'
+import PageLayout from '../parts/PageLayout.vue'
+import WidePersonCard from '../cards/WidePersonCard.vue'
 
 export default {
   name: 'PersonList',
@@ -66,7 +67,7 @@ export default {
       })
     }
   }
-};
+}
 </script>
 
 <style scoped lang="less">
@@ -75,6 +76,7 @@ export default {
   flex-direction: column;
   gap: 20px;
   padding-bottom: 30px;
+
   &__wrapper {
     display: flex;
     flex-direction: column;

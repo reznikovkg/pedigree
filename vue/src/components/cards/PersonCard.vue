@@ -5,8 +5,9 @@
     </div>
     <div>
       <h1 id="info-section">{{ fullName }}</h1>
+      <span class="person-card__dates">{{ person.birth_Date }}</span>
       <span class="person-card__dates">{{ person.birthDate }}</span>
-      <span v-if="person.die_date" class="person-card__dates"> - {{ person.dieDate }}</span>
+      <span v-if="person.dieDate" class="person-card__dates"> - {{ person.dieDate }}</span>
 
       <h2 id="parents-section">Родители</h2>
       <div class="person-card__information-text">
@@ -16,7 +17,12 @@
       <h2 id="childs-section">Дети</h2>
       <div class="person-card__information-text">
         <div v-if="person.children && person.children.length > 0">
-          <RelateButton v-for="child in children" :key="child.id" :person="child" relate="child" />
+          <RelateButton 
+            v-for="child in children" 
+            :key="child.id" 
+            :person="child" 
+            relate="child" 
+          />
         </div>
         <p v-else>Нет детей</p>
       </div>
@@ -53,11 +59,11 @@
 </template>
 
 <script>
-import WeddingsList from '../parts/WeddingsList.vue';
-import MilitaryList from '../parts/MilitaryList.vue';
-import PhotoPreview from '../ui/PhotoPreview.vue';
-import RelateButton from '@/components/ui/RelateButton.vue';
-import { mapGetters } from 'vuex';
+import WeddingsList from '../parts/WeddingsList.vue'
+import MilitaryList from '../parts/MilitaryList.vue'
+import PhotoPreview from '../ui/PhotoPreview.vue'
+import RelateButton from '@/components/ui/RelateButton.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'PersonCard',
@@ -79,7 +85,7 @@ export default {
       return `${ this.person.secondName } ${ this.person.firstName } ${ this.person.patronymicName }`
     },
     children () {
-      return this.getPersonsByIds(this.person.children);
+      return this.getPersonsByIds(this.person.children)
     }
   },
 }

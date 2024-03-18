@@ -38,13 +38,13 @@
       placeholder="Дата завершения обучения"
     />
     <ElInput
-      v-model="institutionName"
+      v-model="name"
       class="custom-form__input"
       type="text"
       placeholder="Название учреждения"
     />
     <ElInput
-      v-model="institutionCity"
+      v-model="city"
       class="custom-form__input"
       type="text"
       placeholder="Город учреждения"
@@ -105,20 +105,20 @@ export default {
         this.emitChange({ endDate: value })
       }
     },
-    institutionName: {
+    name: {
       get () {
-        return this.value.institutionName
+        return this.value.name
       },
       set (value) {
-        this.emitChange({ institutionName: value })
+        this.emitChange({ name: value })
       }
     },
-    institutionCity: {
+    city: {
       get () {
-        return this.value.institutionCity
+        return this.value.city
       },
       set (value) {
-        this.emitChange({ institutionCity: value })
+        this.emitChange({ city: value })
       }
     },
     hints: {
@@ -135,7 +135,7 @@ export default {
       })
     },
     selectHint(hint) {
-      this.type = hint;
+      this.type = hint
     }
   }
 }

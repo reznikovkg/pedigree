@@ -7,7 +7,13 @@
       <SimpleButton class="navigation-panel__link" type="warning">В центр</SimpleButton>
     </RouterLink>
     <div v-if="isUserPage" class="navigation-panel__link__wrapper">
-      <SimpleButton class="navigation-panel__link" type="danger" @click="() => deletePersonInButton()">Удалить</SimpleButton>
+      <SimpleButton 
+        class="navigation-panel__link" 
+        type="danger" 
+        @click="() => deletePersonInButton()"
+      >
+        Удалить
+      </SimpleButton>
     </div>
     <RouterLink v-if="isUserPage" class="navigation-panel__link__wrapper"
       :to="{ name: 'EDIT_PERSON', params: { id: $route.params.id } }">
@@ -20,8 +26,8 @@
 </template>
 
 <script>
-import SimpleButton from "./SimpleButton.vue";
-import { mapActions } from "vuex";
+import SimpleButton from "./SimpleButton.vue"
+import { mapActions } from "vuex"
 
 export default {
   components: {
@@ -29,7 +35,7 @@ export default {
   },
   computed: {
     isUserPage() {
-      return this.$route.name === 'PERSON';
+      return this.$route.name === 'PERSON'
     },
      id () {
       return this.$route.params.id
@@ -55,8 +61,8 @@ export default {
         this.$message({
           type: 'info',
           message: 'Удаление отменено'
-        });          
-      });
+        })       
+      })
     }
   }
 };

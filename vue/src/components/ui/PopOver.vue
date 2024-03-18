@@ -1,5 +1,9 @@
 <template>
-  <span class="popover__container" @mouseover="show = true" @mouseleave="show = false">
+  <span 
+    class="popover__container" 
+    @mouseover="show = true" 
+    @mouseleave="show = false"
+  >
     <slot />
     <transition name="popover__fade">
       <div v-if="show" class="popover">

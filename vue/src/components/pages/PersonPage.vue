@@ -17,10 +17,10 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import PageLayout from '../parts/PageLayout.vue';
-import PersonCard from '@/components/cards/PersonCard.vue';
-import SimpleButton from '../ui/SimpleButton.vue';
-import ScrollingPanel from '@/components/ui/ScrollingPanel.vue';
+import PageLayout from '../parts/PageLayout.vue'
+import PersonCard from '@/components/cards/PersonCard.vue'
+import SimpleButton from '../ui/SimpleButton.vue'
+import ScrollingPanel from '@/components/ui/ScrollingPanel.vue'
 
 export default {
   name: 'PersonPage',

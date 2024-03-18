@@ -9,6 +9,8 @@ const initialState = [
     secondName: 'Иванов',
     firstName: 'Иван',
     patronymicName: 'Иванович',
+    birthDate: '2020.02.02',
+    dieDate: '2025.02.02',
     gender: 'male',
     military: [],
     children: ['1','2'],
