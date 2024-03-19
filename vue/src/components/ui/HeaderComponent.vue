@@ -39,4 +39,13 @@ export default {
   gap: 10px;
   padding: 0 20px;
 }
+
+@media (max-width: 720px) {
+  .navbar {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+  }
+}
 </style>
