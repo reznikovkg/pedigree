@@ -3,15 +3,15 @@
 </template>
   
 <script>
-  export default {
-    name: 'EducationItem',
-    props: {
-      education: {
-        type: Object,
-        required: true
-      }
+export default {
+  name: 'EducationItem',
+  props: {
+    education: {
+      type: Object,
+      required: true
     }
-  };
+  }
+}
 </script>
   
 <style>

@@ -1,11 +1,17 @@
 <template>
   <div v-if="showModalContainer" class="modal-container">
-    <component v-for="i in getModals" :key="i.hash" :is="i.component" :params="i.params" @close="() => removeModal(i.hash)" />
+    <component 
+      v-for="i in getModals" 
+      :key="i.hash" 
+      :is="i.component" 
+      :params="i.params" 
+      @close="() => removeModal(i.hash)" 
+    />
   </div>
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'ModalContainer',
