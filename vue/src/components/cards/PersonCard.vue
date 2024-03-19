@@ -16,7 +16,12 @@
       <h2 id="childs-section">Дети</h2>
       <div class="person-card__information-text">
         <div v-if="children && children.length > 0">
-          <RelateButton v-for="child in children" :key="child.id" :person="child" relate="child" />
+          <RelateButton
+            v-for="child in children"
+            :key="child.id"
+            :person="child"
+            relate="child"
+          />
         </div>
         <p v-else>Нет детей</p>
       </div>
