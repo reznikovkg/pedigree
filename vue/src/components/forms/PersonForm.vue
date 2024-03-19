@@ -56,6 +56,21 @@
         placeholder="Биография"
       />
     </div>
+    <div class="custom-form__full-width">
+      <ElSelect
+        v-model="access"
+        class="custom-form__input"
+        placeholder="Скрывание">
+        <ElOption
+          label="Скрывать"
+          value=true
+        />
+        <ElOption
+          label="Не скрывать"
+          value=false
+        />
+      </ElSelect>
+    </div>
     <h2>Военная служба</h2>
     <div 
       class="custom-form__full-width" 
@@ -165,6 +180,16 @@ export default {
       },
       set (value) {
         this.emitFormData({ biography: value })
+      }
+    },
+    access: {
+      get(){
+        return this.value.access
+      },
+      set(value){
+        this.emitFormData({
+          access: value
+        })
       }
     }
   },
