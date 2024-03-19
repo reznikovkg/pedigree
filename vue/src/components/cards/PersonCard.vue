@@ -12,8 +12,8 @@
       <div class="person-card__information-text">
         <PopOver>
           <RelateButton :person="person" relate="parent"/>
-          <template #popover>
-            <PersonPreviewCard :person="person"></PersonPreviewCard>
+          <template slot="popover">
+            <PersonPreviewCard :person="person" />
           </template>
         </PopOver>
       </div>
@@ -24,8 +24,8 @@
           <span v-for="child in children" :key="child.id">
             <PopOver>
               <RelateButton :person="child" relate="child" />
-              <template #popover>
-                <PersonPreviewCard :person="child"></PersonPreviewCard>
+              <template slot="popover">
+                <PersonPreviewCard :person="child" />
               </template>
             </PopOver>
           </span>
