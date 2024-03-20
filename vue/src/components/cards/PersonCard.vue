@@ -10,7 +10,15 @@
 
       <h2 id="parents-section">Родители</h2>
       <div class="person-card__information-text">
-        <RelateButton :person="person" relate="parent" />
+        <div v-if="parents && parents.length > 0">
+          <RelateButton
+            v-for="parent in parents"
+            :key="parent.id"
+            :person="parent"
+            relate="parent"
+          />
+        </div>
+        <p v-else>Нет родителей</p>
       </div>
 
       <h2 id="childs-section">Дети</h2>
@@ -80,7 +88,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('persons',['getPersonsByIds']),
+    ...mapGetters('persons',['getPersonsByIds', 'getParentsById']),
     ...mapGetters('settings', ['getAccess']),
     activity (){
       if (this.needHide){
@@ -137,6 +145,9 @@ export default {
         return this.person.photo
       }
       return defaultImage
+    },
+    parents (){
+      return this.getParentsById(this.person.id)
     }
   }
 }
