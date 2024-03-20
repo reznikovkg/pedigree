@@ -36,8 +36,7 @@ export default {
     getPersonById: (state) => (id) => state.persons.find((person) => person.id === id),
     filteredPersons: (state) => (filterFunction) => state.persons.filter(filterFunction),
     getPersonsByIds: (state) => (ids) => state.persons.filter(person => ids.includes(person.id)),
-    getCenter: (state) => state.center,
-    getParentsById: (state) => (id) => state.persons.filter(person => person.children && person.children.includes(id))
+    getCenter: (state) => state.center
   },
   mutations: {
     addPerson: (state, payload) => {

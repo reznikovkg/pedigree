@@ -88,7 +88,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('persons',['getPersonsByIds', 'getParentsById']),
+    ...mapGetters('persons',['getPersonsByIds', 'filteredPersons']),
     ...mapGetters('settings', ['getAccess']),
     activity (){
       if (this.needHide){
@@ -147,7 +147,7 @@ export default {
       return defaultImage
     },
     parents (){
-      return this.getParentsById(this.person.id)
+      return this.filteredPersons(person => person.children && person.children.includes(this.person.id))
     }
   }
 }
