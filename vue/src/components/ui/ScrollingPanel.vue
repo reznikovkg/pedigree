@@ -42,4 +42,9 @@ export default {
   }
 }
 
+@media (max-width: 720px) {
+  .scrolling-menu {
+    display: none;
+  }
+} 
 </style>

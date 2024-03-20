@@ -10,6 +10,12 @@
 
       <h2 id="parents-section">Родители</h2>
       <div class="person-card__information-text">
+        <PopOver>
+          <RelateButton :person="person" relate="parent"/>
+          <template slot="popover">
+            <PersonPreviewCard :person="person" />
+          </template>
+        </PopOver>
         <div v-if="parents && parents.length > 0">
           <RelateButton
             v-for="parent in parents"
@@ -23,13 +29,15 @@
 
       <h2 id="childs-section">Дети</h2>
       <div class="person-card__information-text">
-        <div v-if="children && children.length > 0">
-          <RelateButton
-            v-for="child in children"
-            :key="child.id"
-            :person="child"
-            relate="child"
-          />
+        <div v-if="person.children && person.children.length > 0">
+          <span v-for="child in children" :key="child.id">
+            <PopOver>
+              <RelateButton :person="child" relate="child" />
+              <template slot="popover">
+                <PersonPreviewCard :person="child" />
+              </template>
+            </PopOver>
+          </span>
         </div>
         <p v-else>Нет детей</p>
       </div>
@@ -70,6 +78,8 @@ import WeddingsList from '../parts/WeddingsList.vue';
 import MilitaryList from '../parts/MilitaryList.vue';
 import PhotoPreview from '../ui/PhotoPreview.vue';
 import RelateButton from '@/components/ui/RelateButton.vue';
+import PopOver from '../ui/PopOver.vue';
+import PersonPreviewCard from './PersonPreviewCard.vue';
 import { mapGetters } from 'vuex';
 import { maskDatetime, maskFio, defaultImage } from '@/utils/mask';
 
@@ -79,7 +89,9 @@ export default {
     WeddingsList,
     MilitaryList,
     PhotoPreview,
-    RelateButton
+    RelateButton,
+    PopOver,
+    PersonPreviewCard
   },
   props: {
     person: {
@@ -171,4 +183,14 @@ export default {
     color: black;
   }
 }
+
+@media (max-width: 720px) {
+  .person-card {
+    display: flex;
+    width: 100%;
+    gap: 15px;
+    flex-direction: column;
+    align-items: center;
+  }
+} 
 </style>
