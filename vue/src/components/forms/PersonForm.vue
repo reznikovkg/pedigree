@@ -147,7 +147,7 @@
       :key="index"
     >
       <div class ="person-page__header-wrapper">
-      <h2>работа{{index + 1}}</h2>
+      <h2>Работа {{index + 1}}</h2>
         <button @click="() => removeWorkForm(index)" class="person-page__btn-close ">
           ✖
         </button>
