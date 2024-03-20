@@ -22,6 +22,7 @@ export interface Person {
   weddings: Wedding[]; // Брачные союзы
   works: Work[]; // Работы
   militaries: Military[]; // Военная служба
+  access: boolean | null;
 }
 
 interface Education {

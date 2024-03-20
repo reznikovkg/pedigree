@@ -2,7 +2,6 @@
   <div>
     <div class="content">
       <HeaderComponent />
-      <NavigationPanel />
       <slot />
       <FooterComponent />
     </div>
@@ -10,14 +9,12 @@
 </template>
 
 <script>
-import NavigationPanel from "@/components/ui/NavigationPanel.vue";
 import HeaderComponent from "@/components/ui/HeaderComponent.vue"
 import FooterComponent from "@/components/ui/FooterComponent.vue"
 
 export default {
   name: 'PageLayout',
   components: {
-    NavigationPanel,
     HeaderComponent,
     FooterComponent
   },
