@@ -7,6 +7,7 @@ import CreatePersonPage from '../components/pages/CreatePersonPage.vue'
 import SettingsPage from '../components/pages/SettingsPage.vue'
 import PaginationPage from '../components/pages/PaginationPage.vue'
 import PersonList from '../components/pages/PersonList.vue'
+import ServicePage from '@/components/pages/ServicePage.vue'
 import { RouteNames } from './routes'
 
 Vue.use(VueRouter)
@@ -50,7 +51,7 @@ const routes = [
   {
     path: '/service',
     name: RouteNames.SERVICE,
-    component: null
+    component: ServicePage
   }
 ]
 
