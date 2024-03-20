@@ -1,9 +1,21 @@
 <template>
   <PageLayout>
     <section class="p-16">
-      <PersonForm v-model="form"/>
-      <SimpleButton class ="person-page__btn" type="primary" @click="() => editPersonHandler()">Сохранить</SimpleButton>
-      <SimpleButton class ="person-page__btn" type="danger" @click="() => cancel()">Отмена</SimpleButton>
+      <PersonForm v-model="form" />
+      <SimpleButton 
+        class ="person-page__btn" 
+        type="primary" 
+        @click="() => editPersonHandler()"
+      >
+        Сохранить
+      </SimpleButton>
+      <SimpleButton 
+        class ="person-page__btn" 
+        type="danger" 
+        @click="() => cancel()"
+      >
+        Отмена
+      </SimpleButton>
     </section>
   </PageLayout>
 </template>

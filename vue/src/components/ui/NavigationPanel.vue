@@ -1,62 +1,86 @@
 <template>
   <div class="navigation-panel">
-    <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'SETTINGS' }">
-      <SimpleButton class="navigation-panel__link" type="info">Настройки</SimpleButton>
-    </RouterLink>
-    <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'HOME' }">
-      <SimpleButton class="navigation-panel__link" type="warning">В центр</SimpleButton>
-    </RouterLink>
-    <div v-if="isUserPage" class="navigation-panel__link__wrapper">
-      <SimpleButton class="navigation-panel__link" type="danger" @click="() => deletePersonInButton()">Удалить</SimpleButton>
-    </div>
-    <RouterLink v-if="isUserPage" class="navigation-panel__link__wrapper"
-      :to="{ name: 'EDIT_PERSON', params: { id: $route.params.id } }">
+    <span class="navigation-panel__link__wrapper">
+      <SimpleButton
+        class="navigation-panel__link"
+        :class="{ 'disabled': buttonDisabled }"
+        :disabled="buttonDisabled"
+        @click="() => saveId()"
+      >
+        Запомнить
+      </SimpleButton>
+    </span>
+
+    <span class="navigation-panel__link__wrapper">
+      <SimpleButton
+        class="navigation-panel__link"
+        type="danger"
+        @click="() => deletePersonInButton()"
+      >
+        Удалить
+      </SimpleButton>
+    </span>
+
+    <RouterLink
+      class="navigation-panel__link__wrapper"
+      :to="{ name: 'EDIT_PERSON', params: { id: $route.params.id } }"
+    >
       <SimpleButton class="navigation-panel__link" type="warning">Редактировать</SimpleButton>
-    </RouterLink>
-    <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'CREATE_PERSON' }">
-      <SimpleButton class="navigation-panel__link" type="primary">Добавить</SimpleButton>
     </RouterLink>
   </div>
 </template>
 
 <script>
-import SimpleButton from "./SimpleButton.vue";
-import { mapActions } from "vuex";
+import SimpleButton from "./SimpleButton.vue"
+import { mapGetters, mapActions } from "vuex"
 
 export default {
   components: {
     SimpleButton,
   },
   computed: {
-    isUserPage() {
-      return this.$route.name === 'PERSON';
+    ...mapGetters('persons', [
+      'getPersonById',
+      'getCenter'
+    ]),
+    buttonDisabled () {
+      return this.getCenter === this.id
     },
-     id () {
+    isUserPage () {
+      return this.$route.name === 'PERSON'
+    },
+    id () {
       return this.$route.params.id
     }
   },
   methods: {
     ...mapActions('persons', [
-      'deletePerson'
+      'deletePerson',
+      'setCenter'
     ]),
-    deletePersonInButton() {
+    saveId () {
+      this.setCenter(this.id);
+    },
+    deletePersonInButton () {
       this.$confirm('Действительно хотите удалить профиль? Это действие невозможно будет отменить', 'Удаление', {
         confirmButtonText: 'Да',
         cancelButtonText: 'Отмена',
         type: 'warning'
-      }).then(() => {
-        this.deletePerson(this.id)
-        this.$message({
-          type: 'success',
-          message: 'Удаление выполнено'
+      })
+        .then(() => this.deletePerson(this.id))
+        .then(() => {
+          this.$message({
+            type: 'success',
+            message: 'Удаление выполнено'
+          })
+          this.$router.push({ name: 'HOME' });
         })
-        this.$router.push({name: 'HOME'});
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: 'Удаление отменено'
-        });          
-      });
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: 'Удаление отменено'
+          })
+        })
     }
   }
 };
