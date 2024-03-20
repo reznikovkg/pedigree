@@ -46,6 +46,11 @@ const routes = [
     path: '/list',
     name: RouteNames.PERSON_LIST,
     component: PersonList
+  },
+  {
+    path: '/service',
+    name: RouteNames.SERVICE,
+    component: null
   }
 ]
 
