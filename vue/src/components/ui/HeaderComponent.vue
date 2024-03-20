@@ -45,7 +45,18 @@ export default {
     display: flex;
     width: 100%;
     height: 100%;
-    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 15px;
+  }
+  
+  .navigation-panel {
+      &__link {
+        width: 100%;
+
+        &__wrapper {
+          flex: 1;
+        }
+    }
   }
 }
 </style>

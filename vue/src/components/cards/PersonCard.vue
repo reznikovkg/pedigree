@@ -167,6 +167,7 @@ export default {
     width: 100%;
     gap: 15px;
     flex-direction: column;
+    align-items: center;
   }
 } 
 </style>
