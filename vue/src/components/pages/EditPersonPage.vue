@@ -2,20 +2,20 @@
   <PageLayout>
     <section class="p-16">
       <PersonForm v-model="form" />
-      <SimpleButton 
-        class ="person-page__btn" 
-        type="primary" 
-        @click="() => editPersonHandler()"
-      >
-        Сохранить
-      </SimpleButton>
-      <SimpleButton 
-        class ="person-page__btn" 
-        type="danger" 
-        @click="() => cancel()"
-      >
-        Отмена
-      </SimpleButton>
+      <div class="link__wrapper">
+        <SimpleButton 
+          class ="person-page__btn" 
+          @click="() => editPersonHandler()"
+        >
+          Сохранить
+        </SimpleButton>
+        <SimpleButton 
+          class ="person-page__btn" 
+          @click="() => goBack()"
+        >
+          Отмена
+        </SimpleButton>
+      </div>
     </section>
   </PageLayout>
 </template>
@@ -68,9 +68,6 @@ export default {
       this.editPerson(this.form)
       this.goBack()
     },
-    cancel () {
-      this.goBack()
-    },
     goBack () {
       this.$router.go(-1)
     }
@@ -79,11 +76,9 @@ export default {
 </script>
 
 <style scoped lang="less">
-.person-page {
-  &__btn {
-    margin-top: 10px;
-    margin-right: 10px;
-    margin-bottom: 20px;
-  }
+.link__wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
 }
 </style>
