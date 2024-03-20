@@ -11,8 +11,9 @@ const initialState = [
     patronymicName: 'Иванович',
     gender: 'male',
     military: [],
-    children: ['1','2'],
-    weddings: []
+    children: ['2'],
+    weddings: [],
+    photo: require('@/assets/logo.png'),
   },
   {
     id: '2',
@@ -55,16 +56,24 @@ export default {
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     },
     deletePerson: (state, payload) => {
+      console.log(payload)
+      console.log(state.persons)
       state.persons = state.persons.filter((person) => {
+        console.log(person)
         const isNotRemove = person.id !== payload
 
         if (isNotRemove) {
-          person.weddings = person.weddings.filter((wedding) => wedding.partnerId !== payload)
-          person.children = person.children.filter((childId) => childId !== payload)
+          if (person.weddings) {
+            person.weddings = person.weddings.filter((wedding) => wedding.partnerId !== payload)
+          }
+          if (person.children) {
+            person.children = person.children.filter((childId) => childId !== payload)
+          }
         }
 
         return isNotRemove
       })
+      console.log(state.persons)
 
       localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     },
@@ -75,6 +84,10 @@ export default {
     setCenter(state, id) {
       state.center = id
       localStorage.setItem(CENTER, JSON.stringify(id))
+    },
+    setPersons(state, payload) {
+      state.persons = payload
+      localStorage.setItem(PERSONS, JSON.stringify(state.persons))
     }
   },
   actions: {
@@ -83,14 +96,18 @@ export default {
       commit("addPerson", person)
       return resolve(person)
     }),
-    deletePerson: ({ commit }, payload) => {
+    deletePerson: ({ commit }, payload) => new Promise((resolve) => {
       commit("deletePerson", payload)
-    },
+      return resolve(payload)
+    }),
     editPerson: ({ commit }, payload) => {
       commit("editPerson", payload)
     },
     setCenter({ commit }, id) {
       commit("setCenter", id)
+    },
+    setPersons: ({ commit }, payload) => {
+      commit("setPersons", payload)
     }
   }
 }

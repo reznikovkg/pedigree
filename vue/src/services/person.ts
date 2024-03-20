@@ -15,5 +15,6 @@ export const emptyPerson = (): Person => ({
   educations: [], // Образования
   weddings: [], // Брачные союзы
   works: [], // Работы
-  militaries: [], // Служба
+  militaries: [], // Служба,
+  access: null
 })
