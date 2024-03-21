@@ -6,7 +6,9 @@
         :src="configuration.headerImgLink"
         alt="header img"
       />
-      <p :class="configuration.nameClass">{{ configuration.name }}</p>
+      <p :class="configuration.nameClass">
+        {{ configuration.name }}
+      </p>
       <p :class="configuration.descriptionClass">
         {{ configuration.description }}
       </p>
@@ -98,3 +100,4 @@ export default {
   }
 }
 </style>
+

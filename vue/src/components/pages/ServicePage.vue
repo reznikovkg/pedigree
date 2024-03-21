@@ -9,6 +9,7 @@
 <script>
 import PageLayout from '@/components/parts/PageLayout.vue'
 import CardComponent from '@/components/serviceComponents/CardComponent.vue'
+
 export default {
   name: 'ServicePage',
   components: {
@@ -55,19 +56,23 @@ export default {
   display: flex;
   justify-content: center;
 }
+
 .configuration {
   &__bg-header {
     background: @cBaseLightGinger;
   }
+
   &__img-header {
     height: 160px;
     width: 160px;
     border-radius: 50%;
     border: 6px solid white;
   }
+
   &__bg-main {
     background: #fff5b9;
   }
+  
   &__first-link {
     font-size: @sizeFontL;
     color: @cBaseGinger;
@@ -75,6 +80,7 @@ export default {
     background: @cBaseLightGinger;
     font-weight: @fwBold;
   }
+
   &__second-link {
     font-size: @sizeFontL;
     color: @cBaseGinger;
@@ -82,6 +88,7 @@ export default {
     background: #7aff76;
     font-weight: @fwBold;
   }
+
   &__third-link {
     font-size: @sizeFontL;
     color: #070295;
@@ -89,6 +96,7 @@ export default {
     background: #ff5c7a;
     font-weight: @fwBold;
   }
+
   &__name {
     color: white;
     font-size: @sizeFontL;
@@ -96,6 +104,7 @@ export default {
     text-shadow: black 0 2px 8px;
     margin: 0;
   }
+
   &__description {
     color: #474747;
     font-size: 16px;
@@ -104,3 +113,4 @@ export default {
   }
 }
 </style>
+
