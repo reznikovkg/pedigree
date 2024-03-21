@@ -39,13 +39,15 @@ export default {
       form: emptyPerson()
     }
   },
+  computed: {
+    ...mapGetters('settings', [
+      'getMode']
+    )
+  },
   methods: {
     ...mapActions('persons', [
       'addPerson'
     ]),
-    ...mapGetters('settings', [
-      'getMode']
-    ),
     createPerson () {
       this.addPerson(this.form)
         .then((person) => {
