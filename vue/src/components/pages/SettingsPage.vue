@@ -12,6 +12,15 @@
         />
         Скрытый режим
       </div>
+      <h2>
+        Роль
+      </h2>
+      <div>
+        <ElSelect v-model="currentRole" placeholder="Выберите роль">
+          <ElOption label="user" value="user" />
+          <ElOption label="admin" value="admin" />
+        </ElSelect>
+      </div>
       <div class="file-actions">
         <a
           :href="downloadRef"
@@ -61,6 +70,14 @@ export default {
       set(value) {
         this.setAccess(value)
       },
+    },
+    currentRole: {
+      get() {
+        return this.getMode
+      },
+      set(value) {
+        this.setMode(value)
+      }
     },
     downloadRef () {
       return "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({

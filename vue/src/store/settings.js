@@ -2,11 +2,15 @@ function getStoredAccess() {
   const access = localStorage.getItem('access')
   return access !== null ? JSON.parse(access) : false;
 }
+function getStoredMode() {
+  const mode = localStorage.getItem('mode')
+  return mode !== null ? JSON.parse(mode) : null;
+}
 
 export default {
   namespaced: true,
   state: {
-    mode: 'user', // admin/user
+    mode: getStoredMode(), // admin/user
     access: getStoredAccess(),
   },
 
@@ -17,7 +21,8 @@ export default {
 
   mutations: {
     setMode: (state, payload) => {
-      state.mode = payload;
+      state.mode = payload
+      localStorage.setItem('mode', JSON.stringify(payload))
     },
     setAccess: (state, payload) => {
       state.access = payload;
