@@ -9,7 +9,7 @@
       <span v-if="dieDate" class="person-card__dates"> - {{ dieDate }}</span>
 
       <h2>Родители</h2>
-      <div v-if="getParents[0] || getParents[1]" class="person-card__information-text">
+      <div v-if="getParents.length" class="person-card__information-text">
         <RelateButton v-for="(person, id) in getParents" :person="person" :key="id" relate="parent"/>
       </div>
       <div v-else>
@@ -85,11 +85,22 @@ export default {
   computed: {
     ...mapGetters('persons', [
       'getPersonsByIds',
-      'getParentsForPerson'
+      'filteredPersons'
     ]),
     ...mapGetters('settings', ['getAccess']),
     getParents () {
-      return this.getParentsForPerson(this.person.id)
+      const id = this.person.id
+      const parents = this.filteredPersons((person) => person.children.includes(id))
+      const mother = parents.find((person) => person.gender == 'female')
+      const father = parents.find((person) => person.gender == 'male')
+      let result = []
+      if(mother) {
+        result.push(mother)
+      }
+      if(father) {
+        result.push(father)
+      }
+      return result
     },
     activity (){
       if (this.needHide){
