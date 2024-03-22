@@ -10,30 +10,26 @@
 <script>
 import PageLayout from '../parts/PageLayout'
 import { helpModal } from "@/mixins/modals"
-import EducationForm from '../forms/EducationForm.vue'
-import WeddingForm from '../forms/WeddingForm.vue'
-import PersonForm from '../forms/PersonForm.vue'
-import PopOver from "@/components/ui/PopOver"
 import { mapGetters } from 'vuex'
-import WorkForm from '../forms/WorkForm.vue'
 
 export default {
   name: 'HomePage',
   mixins: [helpModal],
   components: {
     PageLayout,
-    EducationForm,
-    WeddingForm,
-    PersonForm,
-    PopOver,
-    WorkForm,
+  },
+  computed: {
+    ...mapGetters('persons', [
+      'getCenter',
+      'getAllPersons'
+    ])
   },
   methods: {
     redirectToDefaultPersonPage() {
       const first = this.getAllPersons[0] || {}
-      const personId = this.getCenter || first.id
-      if (personId) {
-        this.$router.push({name: 'PERSON', params: { id: personId || '1' } })
+      const id = this.getCenter || first.id
+      if (id) {
+        this.$router.push({ name: 'PERSON', params: { id } })
       }
     }
   },
