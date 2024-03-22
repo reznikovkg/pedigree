@@ -94,12 +94,109 @@
         Добавить
       </SimpleButton >
     </div>
+    <h2>Свадьба</h2>
+    <div 
+      class="custom-form__full-width" 
+      v-for="(wedding, index) in value.weddings" 
+      :key="index"
+    >
+      <div class ="person-page__header-wrapper">
+      <h2>Свадьба {{index + 1}}</h2>
+        <button @click="() => removeWeddingForm(index)" class="person-page__btn-close ">
+          ✖
+        </button>
+      </div>
+      <WeddingForm
+        :value="wedding" :persons="partners"
+        class="custom-form__input"
+        @change="(wedding) => setWeddingForm(wedding, index)"
+      />
+    </div>
+    <div class ="custom-form__full-width person-page__right-wrapper">
+      <SimpleButton @click="() => addWeddingForm()" type="primary">
+        Добавить 
+      </SimpleButton >
+    </div>
+    <h2>Образование</h2>
+    <div 
+      class="custom-form__full-width" 
+      v-for="(education, index) in value.educations" 
+      :key="index"
+    >
+      <div class ="person-page__header-wrapper">
+      <h2>Образование {{index + 1}}</h2>
+        <button @click="() => removeEducationForm(index)" class="person-page__btn-close ">
+          ✖
+        </button>
+      </div>
+      <EducationForm
+        :value="education"
+        class="custom-form__input"
+        @change="(education) => setEducationForm(education, index)"
+      />
+    </div>
+    <div class ="custom-form__full-width person-page__right-wrapper">
+      <SimpleButton @click="() => addEducationForm()" type="primary">
+        Добавить 
+      </SimpleButton >
+    </div>
+    <h2>Работа</h2>
+    <div 
+      class="custom-form__full-width" 
+      v-for="(work, index) in value.works" 
+      :key="index"
+    >
+      <div class ="person-page__header-wrapper">
+      <h2>Работа {{index + 1}}</h2>
+        <button @click="() => removeWorkForm(index)" class="person-page__btn-close ">
+          ✖
+        </button>
+      </div>
+      <WorkForm
+        :value="work"
+        class="custom-form__input"
+        @change="(work) => setWorkForm(work, index)"
+      />
+    </div>
+    <div class ="custom-form__full-width person-page__right-wrapper">
+      <SimpleButton @click="() => addWorkForm()" type="primary">
+        Добавить
+      </SimpleButton >
+    </div>
+    <h2>Дети</h2>
+    <div 
+      class="custom-form__full-width" 
+      v-for="(child, index) in value.children" 
+      :key="index"
+    >
+      <div class ="person-page__header-wrapper">
+      <h2>Ребёнок {{index + 1}}</h2>
+        <button @click="() => removeChildForm(index)" class="person-page__btn-close ">
+          ✖
+        </button>
+      </div>
+      <ChildForm
+        :value="child" :persons="children"
+        class="custom-form__input"
+        @change="(child) => setChildForm(child, index)"
+      />
+    </div>
+    <div class ="custom-form__full-width person-page__right-wrapper">
+      <SimpleButton @click="() => addChildForm()" type="primary">
+        Добавить 
+      </SimpleButton >
+    </div>
   </div>
 </template>
 
 <script>
 import MilitaryForm from '../forms/MilitaryForm.vue'
 import SimpleButton from '../ui/SimpleButton.vue'
+import WeddingForm from '../forms/WeddingForm.vue'
+import ChildForm from '../forms/ChildForm.vue'
+import { mapGetters } from 'vuex'
+import EducationForm from '../forms/EducationForm.vue'
+import WorkForm from '../forms/WorkForm.vue'
 
 export default {
   name: 'PersonForm',
@@ -108,6 +205,10 @@ export default {
     event: 'change'
   },
   components: {
+    WorkForm,
+    EducationForm,
+    WeddingForm,
+    ChildForm,
     MilitaryForm,
     SimpleButton
   },
@@ -191,6 +292,44 @@ export default {
           access: value
         })
       }
+    },
+    
+    ...mapGetters('persons', [
+      'filteredPersons',
+      'getAllPersons',
+      'getPersonById',
+      'getCenter'
+    ]),
+    id () {
+      return this.$route.params.id
+    },
+    person () {
+      return this.getPersonById(this.id)
+    },
+    partners() {
+      const customFilter = (person) => {
+        const partnerGender = this.person.gender === 'male' ? 'female' : 'male'
+        const birthDate = new Date(this.person.birthDate)
+        const deathDate = new Date(this.person.dieDate)
+        return (
+          person.gender !== partnerGender &&
+          (!person.dieDate || new Date(person.dieDate) >birthDate) &&
+          (!person.birthDate|| new Date(person.birthDate) < deathDate)
+        )
+      }
+      return this.filteredPersons(customFilter) || []
+    },
+    children() {
+      const customFilter = (person) => {
+        const birthDate = new Date(this.person.birthDate)
+        const deathDate = new Date(this.person.dieDate)
+        return (
+          person.birthDate > this.person.birthDate &&
+          (!person.dieDate || new Date(person.dieDate) >birthDate) &&
+          (!person.birthDate|| new Date(person.birthDate) < deathDate)
+        )
+      }
+      return this.filteredPersons(customFilter) || []
     }
   },
   methods: {
@@ -221,12 +360,108 @@ export default {
       const newValue = { ...this.value }
       newValue.militaries.splice(index, 1)
       this.$emit('change', newValue)
+    },
+    setWeddingForm(updatedWedding, index) {
+      const newValue = { ...this.value }
+      newValue.weddings = [...newValue.weddings]
+      newValue.weddings[index] = updatedWedding
+      this.$emit('change', newValue)
+    },
+    addWeddingForm() {
+      const newValue = { ...this.value }
+      newValue.weddings.push({
+        partner: '',
+        date_start: '',
+        date_end: ''
+      })
+      this.$emit('change', newValue)
+    },
+    removeWeddingForm(index) {
+      const newValue = { ...this.value }
+      newValue.weddings.splice(index, 1)
+      this.$emit('change', newValue)
+    },
+    setChildForm(updatedChild, index) {
+      const newValue = { ...this.value }
+      newValue.children = [...newValue.children]
+      newValue.children[index] = updatedChild
+      this.$emit('change', newValue)
+    },
+    addChildForm() {
+      const newValue = { ...this.value }
+      newValue.children.push({
+        partner: '',
+        date_start: '',
+        date_end: ''
+      })
+      this.$emit('change', newValue)
+    },
+    removeChildForm(index) {
+      const newValue = { ...this.value }
+      newValue.children.splice(index, 1)
+      this.$emit('change', newValue)
+    },
+    
+    setEducationForm(updatedEducation, index) {
+      const newValue = { ...this.value }
+      newValue.educations = [...newValue.educations]
+      newValue.educations[index] = updatedEducation
+      this.$emit('change', newValue)
+    },
+    addEducationForm() {
+      const newValue = { ...this.value }
+      newValue.educations.push({
+        type: '',
+        level: '',
+        startDate: '',
+        endDate: '',
+        institutionName: '',
+        institutionCity: ''
+      })
+      this.$emit('change', newValue)
+    },
+    removeEducationForm(index) {
+      const newValue = { ...this.value }
+      newValue.educations.splice(index, 1)
+      this.$emit('change', newValue)
+    },
+
+    setWorkForm(updatedWork, index) {
+      const newValue = { ...this.value }
+      newValue.works = [...newValue.works]
+      newValue.works[index] = updatedWork
+      this.$emit('change', newValue)
+    },
+    addWorkForm() {
+      const newValue = { ...this.value }
+      newValue.works.push({
+        place: '',
+        organization: '',
+        startDate: '',
+        endDate: '',
+        position: '',
+        description: ''
+      })
+      this.$emit('change', newValue)
+    },
+    removeWorkForm(index) {
+      const newValue = { ...this.value }
+      newValue.works.splice(index, 1)
+      this.$emit('change', newValue)
     }
   }
 }
 </script>
 
 <style scoped lang="less">
+@media (max-width: 720px) {
+  .custom-form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+  }
+} 
+
 .person-page {
   &__btn {
     justify-self: center;
