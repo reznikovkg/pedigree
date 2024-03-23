@@ -197,6 +197,10 @@ import ChildForm from '../forms/ChildForm.vue'
 import { mapGetters } from 'vuex'
 import EducationForm from '../forms/EducationForm.vue'
 import WorkForm from '../forms/WorkForm.vue'
+import { emptyWedding } from '@/services/person'
+import { emptyMilitary } from '@/services/person'
+import { emptyEducation } from '@/services/person'
+import { emptyWork } from '@/services/person'
 
 export default {
   name: 'PersonForm',
@@ -347,13 +351,7 @@ export default {
     },
     addMilitaryForm() {
       const newValue = { ...this.value }
-      newValue.militaries.push({
-        type: '',
-        rank: '',
-        startDate: '',
-        endDate: '',
-        description: ''
-      })
+      newValue.militaries.push(emptyMilitary)
       this.$emit('change', newValue)
     },
     removeMilitaryForm(index) {
@@ -369,11 +367,7 @@ export default {
     },
     addWeddingForm() {
       const newValue = { ...this.value }
-      newValue.weddings.push({
-        partner: '',
-        date_start: '',
-        date_end: ''
-      })
+      newValue.weddings.push(emptyWedding)
       this.$emit('change', newValue)
     },
     removeWeddingForm(index) {
@@ -390,9 +384,7 @@ export default {
     addChildForm() {
       const newValue = { ...this.value }
       newValue.children.push({
-        partner: '',
-        date_start: '',
-        date_end: ''
+        child: ''
       })
       this.$emit('change', newValue)
     },
@@ -410,14 +402,7 @@ export default {
     },
     addEducationForm() {
       const newValue = { ...this.value }
-      newValue.educations.push({
-        type: '',
-        level: '',
-        startDate: '',
-        endDate: '',
-        institutionName: '',
-        institutionCity: ''
-      })
+      newValue.educations.push(emptyEducation)
       this.$emit('change', newValue)
     },
     removeEducationForm(index) {
@@ -434,14 +419,7 @@ export default {
     },
     addWorkForm() {
       const newValue = { ...this.value }
-      newValue.works.push({
-        place: '',
-        organization: '',
-        startDate: '',
-        endDate: '',
-        position: '',
-        description: ''
-      })
+      newValue.works.push(emptyWork)
       this.$emit('change', newValue)
     },
     removeWorkForm(index) {
