@@ -31,7 +31,7 @@ export default {
   computed: {
     ...mapGetters('settings', [
       'getMode'
-    ]),
+    ]), 
     currentRole () {
       return this.getMode
     }
