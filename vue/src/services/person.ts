@@ -47,10 +47,6 @@ export const emptyMilitary = (): Military => ({
   description: ''
 })
 
-export const emptyChildren = (): Children => ({
-  child: ''
-})
-
 export const emptyEducation = (): Education => ({
   type: '',
   level: '',
