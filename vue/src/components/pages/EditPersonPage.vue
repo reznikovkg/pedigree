@@ -43,6 +43,9 @@ export default {
     ...mapGetters('persons', [
       'getPersonById'
     ]),
+    ...mapGetters('settings', [
+      'getMode'
+    ]),
     id () {
       return this.$route.params.id
     },

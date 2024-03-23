@@ -39,6 +39,11 @@ export default {
       form: emptyPerson()
     }
   },
+  computed: {
+    ...mapGetters('settings', [
+      'getMode'
+    ])
+  },
   methods: {
     ...mapActions('persons', [
       'addPerson'
@@ -54,6 +59,11 @@ export default {
     },
     goBack () {
       this.$router.go(-1)
+    }
+  },
+  mounted () {
+    if (this.getMode === 'user') {
+      this.$router.push({ name: 'HOME'})
     }
   }
 }

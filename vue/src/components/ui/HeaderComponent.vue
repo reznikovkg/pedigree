@@ -8,9 +8,11 @@
       <SimpleButton class="navigation-panel__link" type="warning">Список</SimpleButton>
     </RouterLink>
 
-    <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'CREATE_PERSON' }">
-      <SimpleButton class="navigation-panel__link" type="primary">Добавить</SimpleButton>
-    </RouterLink>
+    <div v-if="currentRole === 'admin'">
+      <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'CREATE_PERSON' }">
+        <SimpleButton class="navigation-panel__link" type="primary">Добавить</SimpleButton>
+      </RouterLink>
+    </div>
 
     <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'SETTINGS' }">
       <SimpleButton class="navigation-panel__link" type="info">Настройки</SimpleButton>
@@ -26,6 +28,14 @@ export default {
   components: {
     SimpleButton,
   },
+  computed: {
+    ...mapGetters('settings', [
+      'getMode'
+    ]),
+    currentRole () {
+      return this.getMode
+    }
+  }
 }
 </script>
 

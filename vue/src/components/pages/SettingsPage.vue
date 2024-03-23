@@ -22,11 +22,11 @@
           </ElButton>
         </a>
         <ElUpload
-            action="#"
-            :limit="1"
-            :show-file-list="false"
-            :auto-upload="false"
-            :on-change="(file) => setFile(file)"
+          action="#"
+          :limit="1"
+          :show-file-list="false"
+          :auto-upload="false"
+          :on-change="(file) => setFile(file)"
         >
           <ElButton type="primary">
             Импорт
@@ -55,19 +55,27 @@ export default {
       'getAllPersons'
     ]),
     accessSwitch: {
-      get() {
+      get () {
         return this.getAccess
       },
-      set(value) {
+      set (value) {
         this.setAccess(value)
       },
+    },
+    currentRole: {
+      get () {
+        return this.getMode
+      },
+      set (value) {
+        this.setMode(value)
+      }
     },
     downloadRef () {
       return "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({
         persons: this.getAllPersons,
         access: this.getAccess,
         mode: this.getMode
-      }));
+      }))
     }
   },
   methods: {
@@ -79,7 +87,7 @@ export default {
       'setPersons'
     ]),
     setFile (file) {
-      const reader = new FileReader();
+      const reader = new FileReader()
       reader.onload = (e) => {
         const { persons, access, mode } = JSON.parse(e.target.result)
         this.setPersons(persons)
