@@ -134,7 +134,7 @@ export default {
       return maskDatetime(this.person.dieDate)
     },
     fullName () {
-      return formatPersonName(this.person, {short: true, mask: this.needHide});
+      return formatPersonName(this.person, {short: true, access: this.needHide});
     },
     needHide (){
       return this.person.access && this.getAccess

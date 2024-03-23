@@ -7,15 +7,15 @@ export function maskFio(str: string): string {
   return str[0] + '.';
 }
 
-export function formatPersonName(person: Person, config: { access?: boolean; short?: boolean; mask?: boolean } = {}): string {
-  const { access, short, mask } = config;
+export function formatPersonName(person: Person, config: { access?: boolean; short?: boolean;} = {}): string {
+  const { access, short } = config;
   const parts = [];
   const { secondName, firstName, patronymicName } = person;
 
   // Добавление фамилии
   if (secondName) {
-    if (access && person.access || short) {
-      parts.push(mask ? maskFio(secondName) : secondName[0] + '.');
+    if (access && person.access) {
+      parts.push(access ? maskFio(secondName) : secondName[0] + '.');
     } else {
       parts.push(secondName);
     }
@@ -24,7 +24,7 @@ export function formatPersonName(person: Person, config: { access?: boolean; sho
   // Добавление имени
   if (firstName) {
     if (access && person.access || short) {
-      parts.push(mask ? maskFio(firstName) : firstName[0] + '.');
+      parts.push(access ? maskFio(firstName) : firstName[0] + '.');
     } else {
       parts.push(firstName);
     }
@@ -33,7 +33,7 @@ export function formatPersonName(person: Person, config: { access?: boolean; sho
   // Добавление отчества
   if (patronymicName) {
     if (access && person.access || short) {
-      parts.push(mask ? maskFio(patronymicName) : patronymicName[0] + '.');
+      parts.push(access ? maskFio(patronymicName) : patronymicName[0] + '.');
     } else {
       parts.push(patronymicName);
     }
