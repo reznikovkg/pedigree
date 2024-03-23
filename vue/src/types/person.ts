@@ -56,7 +56,3 @@ export interface Military {
   endDate: DateString; // Дата завершения службы
   description: string; // Описание
 }
-
-export interface Children {
-  child: PersonId; // id ребёнка
-}
