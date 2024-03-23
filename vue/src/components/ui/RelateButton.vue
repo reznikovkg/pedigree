@@ -16,6 +16,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import { maskFio } from '@/utils/mask';
+import { formatPersonName } from '@/services/formatPersonName';
 
 export default {
   name: 'RelateButton',
@@ -36,7 +37,7 @@ export default {
       if (!this.person) {
         return ''
       }
-      return `${this.secondNameFormatted} ${this.person.firstName && this.person.firstName[0] || ''}. ${this.person.patronymicName && this.person.patronymicName[0] || ''}.`
+      return formatPersonName(this.person, { short: true });
     },
     isMale () {
       return this.person.gender === 'male'

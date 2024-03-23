@@ -16,7 +16,7 @@ export function formatPersonName(person: Person, config: { access?: boolean; sho
 
   // Добавление имени
   if (firstName) {
-    if (short) {
+    if (access && person.access || short) {
       parts.push(firstName[0] + '.');
     } else {
       parts.push(firstName);
@@ -25,12 +25,15 @@ export function formatPersonName(person: Person, config: { access?: boolean; sho
 
   // Добавление отчества
   if (patronymicName) {
-    if (short) {
+    if (access && person.access || short) {
       parts.push(patronymicName[0] + '.');
     } else {
       parts.push(patronymicName);
     }
   }
 
+  if (parts.length == 0) {
+    return '-';
+  }
   return parts.join(' ');
 }
