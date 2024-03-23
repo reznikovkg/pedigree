@@ -94,7 +94,7 @@
         Добавить
       </SimpleButton >
     </div>
-    <h2>Свадьба</h2>
+    <h2>Брачные союзы</h2>
     <div 
       class="custom-form__full-width" 
       v-for="(wedding, index) in value.weddings" 

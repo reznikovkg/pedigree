@@ -1,4 +1,9 @@
 import { Person } from '@/types/person'
+import { Education } from '@/types/person'
+import { Wedding } from '@/types/person'
+import { Work } from '@/types/person'
+import { Military } from '@/types/person'
+import { Children } from '@/types/person'
 
 export const emptyPerson = (): Person => ({
   id: '', // id
@@ -17,4 +22,40 @@ export const emptyPerson = (): Person => ({
   works: [], // Работы
   militaries: [], // Служба,
   access: null
+})
+
+export const emptyWedding = (): Wedding => ({
+  partnerId: '',
+  startDate: '',
+  endDate: ''
+})
+
+export const emptyWork = (): Work => ({
+  place: '',
+  organization: '',
+  startDate: '',
+  endDate: '',
+  position: '',
+  description: ''
+})
+
+export const emptyMilitary = (): Military => ({
+  type: '',
+  rank: '',
+  startDate: '',
+  endDate: '',
+  description: ''
+})
+
+export const emptyChildren = (): Children => ({
+  child: ''
+})
+
+export const emptyEducation = (): Education => ({
+  type: '',
+  level: '',
+  startDate: '',
+  endDate: '',
+  name: '',
+  city: ''
 })
