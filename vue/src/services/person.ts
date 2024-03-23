@@ -3,7 +3,6 @@ import { Education } from '@/types/person'
 import { Wedding } from '@/types/person'
 import { Work } from '@/types/person'
 import { Military } from '@/types/person'
-import { Children } from '@/types/person'
 
 export const emptyPerson = (): Person => ({
   id: '', // id
