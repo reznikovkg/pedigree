@@ -15,7 +15,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { maskFio } from '@/services/formatPersonName';
+import { maskFio } from '@/utils/mask';
 import { formatPersonName } from '@/services/formatPersonName';
 
 export default {

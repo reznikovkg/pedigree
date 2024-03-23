@@ -1,11 +1,5 @@
 import { Person } from '@/types/person';
-
-export function maskFio(str: string): string {
-  if (!str || str.length === 0) {
-    return str;
-  }
-  return str[0] + '.';
-}
+import { maskFio } from '@/utils/mask'
 
 export function formatPersonName(person: Person, config: { access?: boolean; short?: boolean;} = {}): string {
   const { access, short } = config;
