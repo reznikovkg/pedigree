@@ -22,6 +22,7 @@
 
 <script>
 import SimpleButton from "./SimpleButton.vue"
+import { mapGetters } from "vuex"
 
 export default {
   name: 'HeaderComponent',
@@ -31,7 +32,7 @@ export default {
   computed: {
     ...mapGetters('settings', [
       'getMode'
-    ]), 
+    ]),
     currentRole () {
       return this.getMode
     }

@@ -12,6 +12,15 @@
         />
         Скрытый режим
       </div>
+      <h2>
+        Роль
+      </h2>
+      <div>
+        <ElSelect v-model="currentRole" placeholder="Выберите роль">
+          <ElOption label="user" value="user" />
+          <ElOption label="admin" value="admin" />
+        </ElSelect>
+      </div>
       <div class="file-actions">
         <a
           :href="downloadRef"

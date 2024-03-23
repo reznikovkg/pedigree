@@ -1,5 +1,5 @@
 <template>
-  <div class="navigation-panel">
+  <div v-if="currentRole === 'admin'" class="navigation-panel">
     <span class="navigation-panel__link__wrapper">
       <SimpleButton
         class="navigation-panel__link"
@@ -25,7 +25,12 @@
       class="navigation-panel__link__wrapper"
       :to="{ name: 'EDIT_PERSON', params: { id: $route.params.id } }"
     >
-      <SimpleButton class="navigation-panel__link" type="warning">Редактировать</SimpleButton>
+      <SimpleButton
+        class="navigation-panel__link"
+        type="warning"
+      >
+        Редактировать
+      </SimpleButton>
     </RouterLink>
   </div>
 </template>

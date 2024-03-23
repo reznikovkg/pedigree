@@ -10,7 +10,7 @@ function getStoredMode() {
 export default {
   namespaced: true,
   state: {
-    mode: 'user', // admin/user
+    mode: getStoredMode(), // admin/user
     access: getStoredAccess(),
   },
 
@@ -21,7 +21,8 @@ export default {
 
   mutations: {
     setMode: (state, payload) => {
-      state.mode = payload;
+      state.mode = payload
+      localStorage.setItem('mode', JSON.stringify(payload))
     },
     setAccess: (state, payload) => {
       state.access = payload
