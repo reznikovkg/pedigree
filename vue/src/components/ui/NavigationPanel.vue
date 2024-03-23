@@ -49,8 +49,8 @@ export default {
       'getCenter'
     ]),
     ...mapGetters('settings', [
-      'getMode']
-    ),
+      'getMode'
+    ]),
     buttonDisabled () {
       return this.getCenter === this.id
     },
@@ -60,7 +60,7 @@ export default {
     id () {
       return this.$route.params.id
     },
-    currentRole() {
+    currentRole () {
       return this.getMode
     }
   },
@@ -94,7 +94,7 @@ export default {
         })
     }
   }
-};
+}
 </script>
 
 <style scoped lang="less">

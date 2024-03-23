@@ -41,8 +41,8 @@ export default {
   },
   computed: {
     ...mapGetters('settings', [
-      'getMode']
-    )
+      'getMode'
+    ])
   },
   methods: {
     ...mapActions('persons', [
@@ -62,7 +62,9 @@ export default {
     }
   },
   mounted () {
-    if (this.getMode === 'user') { this.$router.push({ name: 'HOME' })}
+    if (this.getMode === 'user') {
+      this.$router.push({ name: 'HOME'})
+    }
   }
 }
 </script>
