@@ -76,7 +76,7 @@ import PopOver from '../ui/PopOver.vue';
 import PersonPreviewCard from './PersonPreviewCard.vue';
 import { formatPersonName } from '@/services/formatPersonName';
 import { mapGetters } from 'vuex';
-import { maskDatetime, maskFio, defaultImage } from '@/utils/mask';
+import { maskDatetime, defaultImage } from '@/utils/mask';
 
 export default {
   name: 'PersonCard',
@@ -134,16 +134,7 @@ export default {
       return maskDatetime(this.person.dieDate)
     },
     fullName () {
-      let personForFormat = this.person;
-
-      if (this.needHide) {
-        personForFormat = {
-          secondName: maskFio(this.person.secondName),
-          firstName: maskFio(this.person.firstName),
-          patronymicName: maskFio(this.person.patronymicName),
-        };
-      }
-      return formatPersonName(personForFormat, {short: true});
+      return formatPersonName(this.person, {short: true, mask: this.needHide});
     },
     needHide (){
       return this.person.access && this.getAccess

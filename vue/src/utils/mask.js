@@ -1,10 +1,3 @@
-export function maskFio(str){
-  if (!str || str.length === 0){
-    return str
-  }
-  return str[0] + '.'
-}
-
 export function maskDatetime(str){
     if (!str){
       return str

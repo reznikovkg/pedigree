@@ -1,14 +1,21 @@
 import { Person } from '@/types/person';
 
-export function formatPersonName(person: Person, config: { access?: boolean; short?: boolean } = {}): string {
-  const { access, short } = config;
+export function maskFio(str: string): string {
+  if (!str || str.length === 0) {
+    return str;
+  }
+  return str[0] + '.';
+}
+
+export function formatPersonName(person: Person, config: { access?: boolean; short?: boolean; mask?: boolean } = {}): string {
+  const { access, short, mask } = config;
   const parts = [];
   const { secondName, firstName, patronymicName } = person;
 
   // Добавление фамилии
   if (secondName) {
     if (access && person.access || short) {
-      parts.push(secondName[0] + '.');
+      parts.push(mask ? maskFio(secondName) : secondName[0] + '.');
     } else {
       parts.push(secondName);
     }
@@ -17,7 +24,7 @@ export function formatPersonName(person: Person, config: { access?: boolean; sho
   // Добавление имени
   if (firstName) {
     if (access && person.access || short) {
-      parts.push(firstName[0] + '.');
+      parts.push(mask ? maskFio(firstName) : firstName[0] + '.');
     } else {
       parts.push(firstName);
     }
@@ -26,7 +33,7 @@ export function formatPersonName(person: Person, config: { access?: boolean; sho
   // Добавление отчества
   if (patronymicName) {
     if (access && person.access || short) {
-      parts.push(patronymicName[0] + '.');
+      parts.push(mask ? maskFio(patronymicName) : patronymicName[0] + '.');
     } else {
       parts.push(patronymicName);
     }
