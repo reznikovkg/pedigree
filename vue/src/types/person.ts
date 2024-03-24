@@ -25,7 +25,7 @@ export interface Person {
   access: boolean | null;
 }
 
-interface Education {
+export interface Education {
   type: string; // Тип образования
   level: string; // Уровень образования
   startDate: DateString; // Дата начала обучения
@@ -34,13 +34,13 @@ interface Education {
   city: string; // Город
 }
 
-interface Wedding {
+export interface Wedding {
   partnerId: PersonId; // id партнера
   startDate: DateString; // Дата заключения договора
   endDate: DateString; // Дата расторжения брака
 }
 
-interface Work {
+export interface Work {
   place: string; // Страна, город
   organization: string; // Полное название организации
   startDate: DateString; // Дата начала работы
@@ -49,7 +49,7 @@ interface Work {
   description: string; // Описание
 }
 
-interface Military {
+export interface Military {
   type: string; // Тип службы
   rank: string; // Звание, должность
   startDate: DateString; // Дата начала службы
