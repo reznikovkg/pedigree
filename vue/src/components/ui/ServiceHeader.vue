@@ -1,14 +1,14 @@
 <template>
-  <div :class="headerBackgroundClass">
+  <div :class="config.headerBackgroundClass">
     <img 
-      :class="headerImageClass"
-      :src="headerImageLink"
+      :class="config.headerImageClass"
+      :src="config.headerImageLink"
       alt="Header Image"
     />
-    <h1 :class="titleClass">
+    <h1 :class="config.titleClass">
       {{ personName }}
     </h1>
-    <h2 :class="descriptionClass">
+    <h2 :class="config.descriptionClass">
       {{ description }}
     </h2>
   </div>
@@ -18,6 +18,7 @@
 export default {
   name: 'ServiceHeader',
   props: {
+    config: {
       headerBackgroundClass: {
         type: String,
         default: ''
@@ -30,6 +31,10 @@ export default {
         type: String,
         default: ''
       },
+      mainBackgroundClass: {
+        type: String,
+        default: ''
+      },
       titleClass: {
         type: String,
         default: ''
@@ -37,15 +42,16 @@ export default {
       descriptionClass: {
         type: String,
         default: ''
-      },
-      personName: {
-        type: String,
-        default: ''
-      },
-      description: {
-        type: String,
-        default: ''
       }
-  }
+    },           
+    personName: {
+      type: String,
+      default: ''
+    },
+    description: {
+      type: String,
+      default: ''
+    } 
+  }  
 }
 </script>

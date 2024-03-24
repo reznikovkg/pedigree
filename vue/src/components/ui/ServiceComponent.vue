@@ -1,29 +1,27 @@
 <template>
   <div :class="config.mainBackgroundClass">
     <ServiceHeader
-      :headerBackgroundClass="config.headerBackgroundClass"
-      :headerImageLink="config.headerImageLink"
-      :headerImageClass="config.headerImageClass"
-      :titleClass="config.titleClass"
-      :descriptionClass="config.descriptionClass"
+      :config="config"
       :personName="personName"
       :description="description"
     /> 
-    <ServiceList
-      :links="config.links"
-    />
+    <div v-for="(link, index) in config.links" :key="index">
+      <ServiceLink
+        :link="link"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import ServiceHeader from './ServiceHeader.vue'
-import ServiceList from './ServiceList.vue'
+import ServiceLink from './ServiceLink.vue'
 
 export default {
   name: 'ServiceComponent',
   components: {
     ServiceHeader,
-    ServiceList
+    ServiceLink
   },
   props: {
     config: {
