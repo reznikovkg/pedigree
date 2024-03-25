@@ -17,6 +17,10 @@
     <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'SETTINGS' }">
       <SimpleButton class="navigation-panel__link" type="info">Настройки</SimpleButton>
     </RouterLink>
+
+    <RouterLink class="navigation-panel__link__wrapper" :to="{ name: 'FEEDBACK' }">
+      <SimpleButton class="navigation-panel__link" type="info">Обратная связь</SimpleButton>
+    </RouterLink>
   </section>
 </template>
 
