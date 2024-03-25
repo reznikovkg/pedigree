@@ -9,7 +9,7 @@
       <ElOption
         v-for="person in persons"
         :key="person.id"
-        :label="person.name"
+        :label="person.secondName + ' ' + person.firstName + ' ' + person.patronymicName"
         :value="person.id"
       />
     </ElSelect>
