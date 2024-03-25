@@ -122,7 +122,10 @@ export default {
       if (!this.person.children){
         return []
       }
-      return this.getPersonsByIds(this.person.children);
+      const removedFilter = (person) => {
+        return !person.removed
+      }
+      return this.getPersonsByIds(this.person.children).filter(removedFilter);
     },
     dieDate () {
       if (!this.person.dieDate){
@@ -146,7 +149,15 @@ export default {
       return defaultImage
     },
     parents (){
-      return this.filteredPersons(person => person.children && person.children.includes(this.person.id))
+      const removedFilter = (person) => {
+        return !person.removed
+      }
+      const basicFilter = (person) => {
+        return person.children && person.children.includes(this.person.id)
+      }
+      return this
+        .filteredPersons(basicFilter)
+        .filter(removedFilter)
     }
   }
 }
