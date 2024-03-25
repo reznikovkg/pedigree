@@ -14,6 +14,10 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import { maskFio } from '@/utils/mask';
+import { formatPersonName } from '@/services/formatPersonName';
+
 export default {
   name: 'RelateButton',
   props: {
@@ -28,14 +32,27 @@ export default {
     }
   },
   computed: {
-    isMale () {
-      return this.person.gender === 'male'
-    },
+    ...mapGetters('settings', ['getAccess']),
     formatName () {
       if (!this.person) {
         return ''
       }
-      return `${this.person.secondName} ${this.person.firstName && this.person.firstName[0] || ''}. ${this.person.patronymicName && this.person.patronymicName[0] || ''}.`
+      return formatPersonName(this.person, { short: true });
+    },
+    isMale () {
+      return this.person.gender === 'male'
+    },
+    needHide(){
+      return this.person.access && this.getAccess
+    },
+    secondNameFormatted(){
+      if (!this.person){
+        return ''
+      }
+      if (this.needHide){
+        return maskFio(this.person.secondName)
+      }
+      return this.person.secondName
     }
   }
 };

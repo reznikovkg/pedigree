@@ -1,9 +1,21 @@
 <template>
   <PageLayout>
     <section class="p-16">
-      <PersonForm v-model="form"/>
-      <SimpleButton class ="person-page__btn" type="primary" @click="() => editPersonHandler()">Сохранить</SimpleButton>
-      <SimpleButton class ="person-page__btn" type="danger" @click="() => cancel()">Отмена</SimpleButton>
+      <PersonForm v-model="form" />
+      <SimpleButton 
+        class ="person-page__btn" 
+        type="primary" 
+        @click="() => editPersonHandler()"
+      >
+        Сохранить
+      </SimpleButton>
+      <SimpleButton 
+        class ="person-page__btn" 
+        type="danger" 
+        @click="() => cancel()"
+      >
+        Отмена
+      </SimpleButton>
     </section>
   </PageLayout>
 </template>
@@ -31,6 +43,9 @@ export default {
     ...mapGetters('persons', [
       'getPersonById'
     ]),
+    ...mapGetters('settings', [
+      'getMode'
+    ]),
     id () {
       return this.$route.params.id
     },
@@ -39,13 +54,17 @@ export default {
     }
   },
   mounted () {
-    if (this.person) {
-      this.form = {
-        ...this.form,
-        ...this.person
-      }
+    if(this.getMode === 'user') { 
+      this.$router.push({ name: 'HOME' })
     } else {
-      this.$router.push({ path: '/' })
+      if (this.person) {
+        this.form = {
+          ...this.form,
+          ...this.person
+        }
+      } else {
+        this.$router.push({ path: '/' })
+      }
     }
   },
   methods: {

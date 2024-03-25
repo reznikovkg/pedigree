@@ -1,15 +1,27 @@
 <template>
   <PageLayout>
     <section class="p-16">
-      <PersonForm v-model="form"/>
-      <SimpleButton class ="person-page__btn" type="primary" @click="() => createPerson()">Сохранить</SimpleButton>
-      <SimpleButton class ="person-page__btn" type="danger" @click="() => cancel()">Отмена</SimpleButton>
+      <PersonForm v-model="form" />
+      <SimpleButton 
+        class ="person-page__btn" 
+        type="primary" 
+        @click="() => createPerson()"
+      >
+        Сохранить
+      </SimpleButton>
+      <SimpleButton 
+        class ="person-page__btn" 
+        type="danger" 
+        @click="() => cancel()"
+      >
+        Отмена
+      </SimpleButton>
     </section>
   </PageLayout>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import PageLayout from '../parts/PageLayout.vue'
 import PersonForm from '../forms/PersonForm.vue'
 import { emptyPerson } from '@/services/person'
@@ -27,6 +39,11 @@ export default {
       form: emptyPerson()
     }
   },
+  computed: {
+    ...mapGetters('settings', [
+      'getMode'
+    ])
+  },
   methods: {
     ...mapActions('persons', [
       'addPerson'
@@ -42,6 +59,11 @@ export default {
     },
     goBack () {
       this.$router.go(-1)
+    }
+  },
+  mounted () {
+    if (this.getMode === 'user') {
+      this.$router.push({ name: 'HOME'})
     }
   }
 }

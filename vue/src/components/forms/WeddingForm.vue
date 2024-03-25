@@ -1,7 +1,7 @@
 <template>
   <div class="custom-form">
     <ElSelect
-      v-model="partner"
+      v-model="partnerId"
       class="custom-form__full-width"
       type="textarea"
       placeholder="Выберите партнёра"
@@ -14,7 +14,7 @@
       />
     </ElSelect>
     <ElDatePicker
-      v-model="date_start"
+      v-model="startDate"
       class="custom-form__input"
       type="date"
       format="dd.MM.yyyy"
@@ -22,7 +22,7 @@
       placeholder="Дата свадьбы"
     />
     <ElDatePicker
-      v-model="date_end"
+      v-model="endDate"
       class="custom-form__input"
       type="date"
       format="dd.MM.yyyy"
@@ -50,28 +50,28 @@ export default {
     }
   },
   computed: {
-    partner: {
+    partnerId: {
       get () {
-        return this.value.partner
+        return this.value.partnerId
       },
       set (value) {
-        this.emitFormData({ partner: value })
+        this.emitFormData({ partnerId: value })
       }
     },
-    date_start: {
+    startDate: {
       get () {
-        return this.value.date_start
+        return this.value.startDate
       },
       set (value) {
-        this.emitFormData({ date_start: value })
+        this.emitFormData({ startDate: value })
       }
     },
-    date_end: {
+    endDate: {
       get () {
-        return this.value.date_end
+        return this.value.endDate
       },
       set (value) {
-        this.emitFormData({ date_end: value })
+        this.emitFormData({ endDate: value })
       }
     }
   },
