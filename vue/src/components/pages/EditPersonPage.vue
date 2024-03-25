@@ -16,6 +16,9 @@
       >
         Отмена
       </SimpleButton>
+      <ul v-if="errors.length">
+        <li v-for="error in errors" :key="error" class="person-page__error">{{ error }}</li>
+      </ul>
     </section>
   </PageLayout>
 </template>
@@ -36,7 +39,8 @@ export default {
   },
   data () {
     return {
-      form: emptyPerson()
+      form: emptyPerson(),
+      errors: []
     }
   },
   computed: {
@@ -71,9 +75,55 @@ export default {
     ...mapActions('persons', [
       'editPerson'
     ]),
+    checkForm () {
+      this.errors = [];
+      if (this.form.birthDate && this.form.dieDate) {
+        if (new Date(this.form.dieDate) < new Date(this.form.birthDate)) {
+          this.$message.error('Дата смерти должна быть позже или совпадать с датой рождения')
+          return
+        }
+      }
+      for (let military of this.form.militaries) {
+        if (military.startDate && military.endDate) {
+          if (new Date(military.endDate) < new Date(military.startDate)) {
+            this.$message.error('Дата окончания службы должна быть позже или совпадать c датой начала службы')
+            return;
+          }
+        }
+      }
+      for (let wedding of this.form.weddings) {
+        if (wedding.startDate && wedding.endDate) {
+          if (new Date(wedding.endDate) < new Date(wedding.startDate)) {
+            this.$message.error('Дата развода должна быть позже или совпадать c датой свадьбы')
+            return;
+          }
+        }
+      }
+      for (let education of this.form.educations) {
+        if (education.startDate && education.endDate) {
+          if (new Date(education.endDate) < new Date(education.startDate)) {
+            this.$message.error('Дата окончания обучения должна быть позже или совпадать c датой начала обучения')
+            return;
+          }
+        }
+      }
+      for (let work of this.form.works) {
+        if (work.startDate && work.endDate) {
+          if (new Date(work.endDate) < new Date(work.startDate)) {
+            this.$message.error('Дата окончания работы должна быть позже или совпадать c датой начала работы')
+            return;
+          }
+        }
+      }
+      if (!this.errors.length) {
+        return true;
+      }
+    },
     editPersonHandler () {
-      this.editPerson(this.form)
-      this.goBack()
+      if (this.checkForm()) {
+        this.editPerson(this.form)
+        this.goBack()
+      }
     },
     cancel () {
       this.goBack()
@@ -91,6 +141,9 @@ export default {
     margin-top: 10px;
     margin-right: 10px;
     margin-bottom: 20px;
+  }
+  &__error {
+    color: red;
   }
 }
 </style>

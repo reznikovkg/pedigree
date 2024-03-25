@@ -7,6 +7,13 @@
       placeholder="Фамилия"
     />
     <ElInput
+      v-model="maidenName"
+      v-if="gender === 'female'"
+      class="custom-form__input"
+      type="text"
+      placeholder="Девичья фамилия"
+    />
+    <ElInput
       v-model="firstName"
       class="custom-form__input"
       type="text"
@@ -247,6 +254,14 @@ export default {
         this.emitFormData({ patronymicName: value })
       }
     },
+    maidenName: {
+      get() {
+        return this.value.maidenName;
+      },
+      set(value) {
+        this.emitFormData({ maidenName: value });
+      }
+    },
     gender: {
       get () {
         return this.value.gender
@@ -348,6 +363,19 @@ export default {
     }
   },
   methods: {
+    validateDates() {
+      // Преобразование строковых дат в объекты Date
+      const birthDate = this.birthDate ? new Date(this.birthDate) : null;
+      const dieDate = this.dieDate ? new Date(this.dieDate) : null;
+
+      // Проверка, что дата смерти после даты рождения, если обе указаны
+      if (birthDate && dieDate && dieDate < birthDate) {
+        // Показать сообщение об ошибке
+        this.$message.error('Дата смерти должна быть больше или равна дате рождения.');
+        return false;
+      }
+      return true;
+    },
     emitFormData (param) {
       this.$emit('change', {
         ...this.value,
