@@ -7,8 +7,10 @@ import { sync } from "vuex-router-sync";
 import ElementUI from 'element-ui';
 import locale from 'element-ui/lib/locale/lang/ru-RU';
 import 'element-ui/lib/theme-chalk/index.css';
+import RoutesPlugin from './router/routesPlugin';
 
 Vue.use(Vuex)
+Vue.use(RoutesPlugin)
 Vue.config.productionTip = false
 
 const store = new Vuex.Store(storeRoot)

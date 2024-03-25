@@ -23,7 +23,7 @@
 
     <RouterLink
       class="navigation-panel__link__wrapper"
-      :to="{ name: 'EDIT_PERSON', params: { id: $route.params.id } }"
+      :to="{ name: $routes.EDIT_PERSON, params: { id: $route.params.id } }"
     >
       <SimpleButton
         class="navigation-panel__link"
@@ -84,7 +84,7 @@ export default {
             type: 'success',
             message: 'Удаление выполнено'
           })
-          this.$router.push({ name: 'HOME' });
+          this.$router.push({ name: this.$routes.HOME });
         })
         .catch(() => {
           this.$message({

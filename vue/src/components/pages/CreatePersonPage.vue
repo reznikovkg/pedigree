@@ -51,7 +51,7 @@ export default {
     createPerson () {
       this.addPerson(this.form)
         .then((person) => {
-          this.$router.push({ name: 'PERSON', params: { id: person.id } })
+          this.$router.push({ name: this.$routes.PERSON, params: { id: person.id } })
         })
     },
     cancel () {
@@ -63,7 +63,7 @@ export default {
   },
   mounted () {
     if (this.getMode === 'user') {
-      this.$router.push({ name: 'HOME'})
+      this.$router.push({ name: this.$routes.HOME })
     }
   }
 }
