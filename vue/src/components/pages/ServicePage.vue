@@ -10,7 +10,7 @@
 
 <script>
   import PageLayout from '../parts/PageLayout.vue'
-  import ServiceComponent from '../ui/ServiceComponent.vue';
+  import ServiceComponent from '../ui/service/ServiceComponent.vue';
   
   export default {
     name: 'ServicePage',
@@ -29,17 +29,17 @@
             {
               label: 'Vkontakte',
               url: 'https://vk.com',
-              viewClass: 'link'
+              viewClass: 'link__first'
             },
             {
               label: 'Vkontakte',
               url: 'https://vk.com',
-              viewClass: 'link'
+              viewClass: 'link__second'
             },
             {
               label: 'Vkontakte',
               url: 'https://vk.com',
-              viewClass: 'link'
+              viewClass: 'link__third'
             }
           ],
             titleClass: 'header__title',
@@ -94,13 +94,26 @@
     justify-content: center;
     align-items: center;
     border: 1px solid black;
-    color: brown;
-    background-color: orange;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
     font-weight: bolder;
     height: 50px;
+
+    &__first {
+      color: brown;
+      background-color: orange;
+    }
+
+    &__second {
+      color: gray;
+      background-color: aquamarine;
+    }
+
+    &__third {
+      color: black;
+      background-color: greenyellow;
+    }
   }
 </style>
