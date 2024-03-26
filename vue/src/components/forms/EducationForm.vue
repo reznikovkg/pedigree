@@ -1,11 +1,20 @@
 <template>
   <div class="custom-form">
-    <ElInput
-      v-model="type"
-      class="custom-form__input"
-      type="text"
-      placeholder="Тип"
-    />
+    <PopOver>
+      <ElInput
+        v-model="type"
+        class="custom-form__input"
+        type="text"
+        placeholder="Тип"
+      />
+
+      <template slot="popover">
+        <InputHelper 
+          :options="hints" 
+          @select="(hint) => selectHint(hint)"
+        />
+      </template>
+    </PopOver>
     <ElInput
       v-model="level"
       class="custom-form__input"
@@ -29,13 +38,13 @@
       placeholder="Дата завершения обучения"
     />
     <ElInput
-      v-model="institutionName"
+      v-model="name"
       class="custom-form__input"
       type="text"
       placeholder="Название учреждения"
     />
     <ElInput
-      v-model="institutionCity"
+      v-model="city"
       class="custom-form__input"
       type="text"
       placeholder="Город учреждения"
@@ -44,8 +53,15 @@
 </template>
 
 <script>
+import PopOver from '../ui/PopOver.vue'
+import InputHelper from '../ui/InputHelper.vue'
+
 export default {
   name: 'EducationForm',
+  components: {
+    PopOver,
+    InputHelper
+  },
   model: {
     prop: 'value',
     event: 'change'
@@ -89,20 +105,25 @@ export default {
         this.emitChange({ endDate: value })
       }
     },
-    institutionName: {
+    name: {
       get () {
-        return this.value.institutionName
+        return this.value.name
       },
       set (value) {
-        this.emitChange({ institutionName: value })
+        this.emitChange({ name: value })
       }
     },
-    institutionCity: {
+    city: {
       get () {
-        return this.value.institutionCity
+        return this.value.city
       },
       set (value) {
-        this.emitChange({ institutionCity: value })
+        this.emitChange({ city: value })
+      }
+    },
+    hints: {
+      get() {
+        return ['Бакалавриат', 'Магистратура', 'Аспирантура']
       }
     }
   },
@@ -112,6 +133,9 @@ export default {
         ...this.value,
         ...param
       })
+    },
+    selectHint(hint) {
+      this.type = hint
     }
   }
 }

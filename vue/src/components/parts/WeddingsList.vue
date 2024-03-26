@@ -1,11 +1,15 @@
 <template>
   <div v-if="weddings" class="weddings-list">
-    <WeddingItem v-for="(wedding, index) in weddings" :key="index" :wedding="wedding" />
+    <WeddingItem 
+      v-for="(wedding, index) in weddings" 
+      :key="index" 
+      :wedding="wedding" 
+    />
   </div>
 </template>
 
 <script>
-import WeddingItem from './WeddingItem.vue';
+import WeddingItem from './WeddingItem.vue'
 
 export default {
   name: 'WeddingsList',
@@ -18,5 +22,5 @@ export default {
       required: true
     }
   }
-};
+}
 </script>

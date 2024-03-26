@@ -6,11 +6,18 @@
     <template v-if="relate === 'parent'">
       {{ isMale ? 'Отец: ' : 'Мать: ' }}
     </template>
+    <template v-else-if="relate === 'child'">
+      {{ isMale ? 'Сын: ' : 'Дочь: ' }}
+    </template>
     {{ formatName }}
   </button>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import { maskFio } from '@/utils/mask';
+import { formatPersonName } from '@/services/formatPersonName';
+
 export default {
   name: 'RelateButton',
   props: {
@@ -25,11 +32,27 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('settings', ['getAccess']),
+    formatName () {
+      if (!this.person) {
+        return ''
+      }
+      return formatPersonName(this.person, { short: true });
+    },
     isMale () {
       return this.person.gender === 'male'
     },
-    formatName () {
-      return `${this.person.secondName} ${this.person.firstName[0]}. ${this.person.patronymicName[0]}.`
+    needHide(){
+      return this.person.access && this.getAccess
+    },
+    secondNameFormatted(){
+      if (!this.person){
+        return ''
+      }
+      if (this.needHide){
+        return maskFio(this.person.secondName)
+      }
+      return this.person.secondName
     }
   }
 };

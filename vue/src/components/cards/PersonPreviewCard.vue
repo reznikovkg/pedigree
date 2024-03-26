@@ -1,13 +1,13 @@
 <template>
   <div class="person-preview-card">
-    <PhotoPreview v-if="person.photo" class="person-preview-card__photo" size="middle" :photo="person.photo" />
+    <PhotoPreview v-if="photo" class="person-preview-card__photo" size="middle" :photo="photo" />
     <div class="person-preview-card__information">
-      <h2 class="person-preview-card__name">{{ person.secondName }}</h2>
-      <h2 class="person-preview-card__name">{{ person.firstName }}</h2>
-      <h2 class="person-preview-card__name">{{ person.patronymic }}</h2>
+      <h2 class="person-preview-card__name">{{ secondName }}</h2>
+      <h2 class="person-preview-card__name">{{ firstName }}</h2>
+      <h2 class="person-preview-card__name">{{ patronymicName}}</h2>
 
-      <span class="person-preview-card__date">{{ person.birth_date }}</span>
-      <span v-if="person.die_date" class="person-preview-card__date"> - {{ person.die_date }}</span>
+      <span class="person-preview-card__date">{{ birthDate }}</span>
+      <span v-if="dieDate" class="person-preview-card__date"> - {{ dieDate }}</span>
 
       <div class="person-preview-card__person-id">id: {{ person.id }}</div>
     </div>
@@ -17,6 +17,8 @@
 
 <script>
 import PhotoPreview from '../ui/PhotoPreview.vue'
+import { mapGetters } from 'vuex';
+import { maskFio, maskDatetime, defaultImage} from '@/utils/mask';
 
 export default {
   name: 'PersonPreviewCard',
@@ -30,8 +32,54 @@ export default {
     },
   },
   computed: {
+    ...mapGetters('settings', ['getAccess']),
+    birthDate() {
+      if (!this.person.birthDate){
+        return null
+      }
+      if (!this.needHide){
+        return this.person.birthDate
+      }
+      return maskDatetime(this.person.birthDate)
+    },
+    dieDate () {
+      if (!this.person.dieDate){
+        return null
+      }
+      if (!this.needHide){
+        return this.person.dieDate
+      }
+      return maskDatetime(this.person.dieDate)
+    },
+    firstName () {
+      if (!this.needHide){
+        return this.person.firstName 
+      }
+      return maskFio(this.person.firstName)
+    },
     genderClass () {
-      return `person-preview-card__status-indicator__${this.person.gender.toLowerCase()}`;
+      return `person-preview-card__status-indicator__${this.person.gender.toLowerCase()}`
+    },
+    patronymicName (){
+      if (!this.needHide){
+        return this.person.patronymicName
+      }
+      return maskFio(this.person.patronymicName)
+    },
+    photo(){
+      if (!this.needHide){
+        return this.person.photo
+      }
+      return defaultImage
+    },
+    needHide(){
+      return this.person.access && this.getAccess
+    },
+    secondName () {
+      if (!this.needHide){
+        return this.person.secondName 
+      }
+      return maskFio(this.person.secondName)
     },
   },
 }

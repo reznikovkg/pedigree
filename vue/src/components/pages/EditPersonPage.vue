@@ -1,8 +1,21 @@
 <template>
   <PageLayout>
     <section class="p-16">
-      <PersonForm v-model="form"/>
-      <button @click="() => editPersonHandler()" class="person-page__btn">Сохранить</button>
+      <PersonForm v-model="form" />
+      <SimpleButton 
+        class ="person-page__btn" 
+        type="primary" 
+        @click="() => editPersonHandler()"
+      >
+        Сохранить
+      </SimpleButton>
+      <SimpleButton 
+        class ="person-page__btn" 
+        type="danger" 
+        @click="() => cancel()"
+      >
+        Отмена
+      </SimpleButton>
     </section>
   </PageLayout>
 </template>
@@ -11,44 +24,47 @@
 import { mapGetters, mapActions } from 'vuex'
 import PageLayout from '../parts/PageLayout.vue'
 import PersonForm from '../forms/PersonForm.vue'
+import { emptyPerson } from '@/services/person'
+import SimpleButton from '../ui/SimpleButton.vue'
 
 export default {
   name: 'EditPersonPage',
   components: {
     PageLayout,
-    PersonForm
+    PersonForm,
+    SimpleButton
   },
   data () {
     return {
-      form: {
-        id: '',
-        secondName: '',
-        firstName: '',
-        patronymic: '',
-        birth_date: '',
-        die_date: '',
-        gender: '',
-        biography: '',
-        activity: '',
-      }
+      form: emptyPerson()
     }
   },
   computed: {
     ...mapGetters('persons', [
       'getPersonById'
     ]),
-    person () {
-      return this.getPersonById(this.id)
-    },
+    ...mapGetters('settings', [
+      'getMode'
+    ]),
     id () {
       return this.$route.params.id
+    },
+    person () {
+      return this.getPersonById(this.id)
     }
   },
   mounted () {
-    if (this.person) {
-      this.form = { ...this.person }
+    if(this.getMode === 'user') { 
+      this.$router.push({ name: 'HOME' })
     } else {
-      this.$router.push({ path: '/' })
+      if (this.person) {
+        this.form = {
+          ...this.form,
+          ...this.person
+        }
+      } else {
+        this.$router.push({ path: '/' })
+      }
     }
   },
   methods: {
@@ -57,6 +73,13 @@ export default {
     ]),
     editPersonHandler () {
       this.editPerson(this.form)
+      this.goBack()
+    },
+    cancel () {
+      this.goBack()
+    },
+    goBack () {
+      this.$router.go(-1)
     }
   }
 }
@@ -65,16 +88,8 @@ export default {
 <style scoped lang="less">
 .person-page {
   &__btn {
-    justify-self: center;
-    padding: 10px 20px;
     margin-top: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: aqua;
-    color: black;
-    font-weight: 600;
-    cursor: pointer;
-    margin-left: 0px;
+    margin-right: 10px;
     margin-bottom: 20px;
   }
 }

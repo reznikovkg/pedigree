@@ -1,6 +1,10 @@
 <template>
-  <button class="simple-button" :disabled="disabled"
-    :class="[`simple-button--${type}`, { 'simple-button--disabled': disabled }]">
+  <button 
+    class="simple-button" 
+    :disabled="disabled"
+    :class="[`simple-button--${type}`, { 'simple-button--disabled': disabled }]" 
+    @click="$emit('click')"
+  >
     <slot />
   </button>
 </template>
@@ -18,8 +22,8 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-};
+  }
+}
 </script>
 
 <style scoped lang="less">
@@ -65,3 +69,4 @@ export default {
   }
 }
 </style>
+ 
