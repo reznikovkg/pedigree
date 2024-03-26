@@ -74,8 +74,9 @@ import PhotoPreview from '../ui/PhotoPreview.vue';
 import RelateButton from '@/components/ui/RelateButton.vue';
 import PopOver from '../ui/PopOver.vue';
 import PersonPreviewCard from './PersonPreviewCard.vue';
+import { formatPersonName } from '@/services/formatPersonName';
 import { mapGetters } from 'vuex';
-import { maskDatetime, maskFio, defaultImage } from '@/utils/mask';
+import { maskDatetime, defaultImage } from '@/utils/mask';
 
 export default {
   name: 'PersonCard',
@@ -133,15 +134,7 @@ export default {
       return maskDatetime(this.person.dieDate)
     },
     fullName () {
-      if (this.needHide){
-        const maskedSecondName = maskFio(this.person.secondName)
-        const maskedFirstName = maskFio(this.person.firstName)
-        const maskedPatronymicName = maskFio(this.person.patronymicName)
-        return `${ maskedSecondName } ${ maskedFirstName } ${ maskedPatronymicName }`
-      }
-      else {
-        return `${ this.person.secondName } ${ this.person.firstName } ${ this.person.patronymicName }`
-      }
+      return formatPersonName(this.person, {short: true, access: this.needHide});
     },
     needHide (){
       return this.person.access && this.getAccess
