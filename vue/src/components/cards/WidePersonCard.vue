@@ -19,6 +19,7 @@
   
 <script>
 import PhotoPreview from '../ui/PhotoPreview.vue'
+import { formatPersonName } from '@/services/formatPersonName';
 
 export default {
   name: 'WidePersonCard',
@@ -33,7 +34,7 @@ export default {
   },
   computed: {
     fullName () {
-      return `${ this.person.secondName } ${ this.person.firstName } ${ this.person.patronymicName }`
+      return formatPersonName(this.person, {});
     },
     genderClass () {
       return `person-widecard__status-indicator__${this.person.gender.toLowerCase()}`

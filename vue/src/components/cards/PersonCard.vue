@@ -10,12 +10,15 @@
 
       <h2 id="parents-section">Родители</h2>
       <div class="person-card__information-text">
-        <PopOver>
-          <RelateButton :person="person" relate="parent"/>
-          <template slot="popover">
-            <PersonPreviewCard :person="person" />
-          </template>
-        </PopOver>
+        <div v-if="parents && parents.length > 0">
+          <PopOver v-for="parent in parents" :key="parent.id">
+            <RelateButton :person="parent" relate="parent" />
+            <template slot="popover">
+              <PersonPreviewCard :person="parent" />
+            </template>
+          </PopOver>
+        </div>
+        <p v-else>Нет родителей</p>
       </div>
 
       <h2 id="childs-section">Дети</h2>
@@ -71,8 +74,9 @@ import PhotoPreview from '../ui/PhotoPreview.vue';
 import RelateButton from '@/components/ui/RelateButton.vue';
 import PopOver from '../ui/PopOver.vue';
 import PersonPreviewCard from './PersonPreviewCard.vue';
+import { formatPersonName } from '@/services/formatPersonName';
 import { mapGetters } from 'vuex';
-import { maskDatetime, maskFio, defaultImage } from '@/utils/mask';
+import { maskDatetime, defaultImage } from '@/utils/mask';
 
 export default {
   name: 'PersonCard',
@@ -91,7 +95,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('persons',['getPersonsByIds']),
+    ...mapGetters('persons',['getPersonsByIds', 'filteredPersons']),
     ...mapGetters('settings', ['getAccess']),
     activity (){
       if (this.needHide){
@@ -130,15 +134,7 @@ export default {
       return maskDatetime(this.person.dieDate)
     },
     fullName () {
-      if (this.needHide){
-        const maskedSecondName = maskFio(this.person.secondName)
-        const maskedFirstName = maskFio(this.person.firstName)
-        const maskedPatronymicName = maskFio(this.person.patronymicName)
-        return `${ maskedSecondName } ${ maskedFirstName } ${ maskedPatronymicName }`
-      }
-      else {
-        return `${ this.person.secondName } ${ this.person.firstName } ${ this.person.patronymicName }`
-      }
+      return formatPersonName(this.person, {short: true, access: this.needHide});
     },
     needHide (){
       return this.person.access && this.getAccess
@@ -148,6 +144,9 @@ export default {
         return this.person.photo
       }
       return defaultImage
+    },
+    parents (){
+      return this.filteredPersons(person => person.children && person.children.includes(this.person.id))
     }
   }
 }
@@ -171,4 +170,14 @@ export default {
     color: black;
   }
 }
+
+@media (max-width: 720px) {
+  .person-card {
+    display: flex;
+    width: 100%;
+    gap: 15px;
+    flex-direction: column;
+    align-items: center;
+  }
+} 
 </style>
