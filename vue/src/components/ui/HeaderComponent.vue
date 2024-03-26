@@ -63,7 +63,7 @@ export default {
   .navigation-panel {
       &__link {
         width: 100%;
-        
+
         &__wrapper {
           flex: 1;
         }
