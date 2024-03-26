@@ -1,22 +1,20 @@
 <template>
-  <div class="education-card">
-    <div class="education-card__header">
-      <h2 class="education-card__institution">{{ education.name }}</h2>
-      <div class="education-card__dates">
-        {{ formatDate(education.startDate) }} - {{ education.endDate ? formatDate(education.endDate) : 'настоящее время' }}
-      </div>
+  <div class="custom-card">
+    <div class="custom-card__header">
+      {{ education.name }}
     </div>
-
-    <div class="education-card__body">
-      <div class="education-card__detail">
-        <span class="education-card__detail-label">Тип:</span> {{ education.type }}
-      </div>
-      <div class="education-card__detail">
-        <span class="education-card__detail-label">Уровень образования:</span> {{ education.level }}
-      </div>
-      <div class="education-card__detail">
-        <span class="education-card__detail-label">Город:</span> {{ education.city }}
-      </div>
+    <div class="custom-card__date">
+      {{ formatDate(education.startDate) }} - {{ education.endDate ? formatDate(education.endDate) : 'настоящее время' }}
+    </div>
+    
+    <div class="custom-card__type">
+      <span class="custom-card__type">Тип:</span> {{ education.type }}
+    </div>
+    <div class="custom-card__type">
+      <span class="custom-card__type">Уровень образования:</span> {{ education.level }}
+    </div>
+    <div class="custom-card__type">
+      <span class="custom-card__type">Город:</span> {{ education.city }}
     </div>
   </div>
 </template>

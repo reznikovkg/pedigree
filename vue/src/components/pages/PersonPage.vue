@@ -47,5 +47,5 @@ export default {
       return this.$route.params.id
     }
   }
-};
+}
 </script>
