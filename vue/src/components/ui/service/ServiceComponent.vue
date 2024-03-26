@@ -6,9 +6,7 @@
       :description="description"
     /> 
     <div v-for="(link, index) in config.links" :key="index">
-      <ServiceLink
-        :link="link"
-      />
+      <ServiceLink :link="link"/>
     </div>
   </div>
 </template>

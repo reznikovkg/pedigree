@@ -15,17 +15,17 @@ import ServiceComponent from '../ui/service/ServiceComponent.vue';
 export default {
   name: 'ServicePage',
   components: {
-      PageLayout,
-      ServiceComponent
+    PageLayout,
+    ServiceComponent
   },
   data() {
     return {
       config: {
-          headerBackgroundClass: 'header__background',
-          headerImageLink: 'https://ucare.timepad.ru/549b7f3e-7020-4f95-ba5f-ee77a42fbf55/poster_event_2408410.jpg',
-          headerImageClass: 'header__image',
-          mainBackgroundClass: 'main-background',
-          links: [
+        headerBackgroundClass: 'header__background',
+        headerImageLink: 'https://ucare.timepad.ru/549b7f3e-7020-4f95-ba5f-ee77a42fbf55/poster_event_2408410.jpg',
+        headerImageClass: 'header__image',
+        mainBackgroundClass: 'main-background',
+        links: [
           {
             label: 'Vkontakte',
             url: 'https://vk.com',
@@ -42,8 +42,8 @@ export default {
             viewClass: 'link__third'
           }
         ],
-          titleClass: 'header__title',
-          descriptionClass: 'description'
+        titleClass: 'header__title',
+        descriptionClass: 'description'
       },
       personName: 'Ксимона Никнамковна',
       description: 'Штрих'
