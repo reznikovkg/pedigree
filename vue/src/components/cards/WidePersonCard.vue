@@ -8,7 +8,7 @@
         <h1>{{ fullName }}</h1>
       </div>
       <div class="person-widecard__description__dates">
-        <span>{{ person.birth_date }}</span>
+        <span>{{ person.birthDate }}</span>
         <span v-if="person.dieDate"> - {{ person.dieDate }}</span>
       </div>
       <span class="person-widecard__description__id">id: {{ person.id }}</span>
@@ -45,6 +45,7 @@ export default {
   
 <style scoped lang="less">
 .person-widecard {
+  position: relative;
   display: flex;
   gap: 15px;
   background: #f5f5f5;
@@ -53,6 +54,8 @@ export default {
   box-shadow:  8px 8px 2px #d0d0d0, -8px -8px 2px #ffffff2d;
 
   &__status-indicator {
+    position: absolute;
+    right: 3%;
     width: 15px;
     height: 15px;
     border-radius: 50%;
