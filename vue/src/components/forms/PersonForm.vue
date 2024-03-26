@@ -2,6 +2,7 @@
   <div class="custom-form">
     <ElInput
       v-model="secondName"
+      id="info-section"
       class="custom-form__input"
       type="text"
       placeholder="Фамилия"
@@ -71,7 +72,7 @@
         />
       </ElSelect>
     </div>
-    <h2>Военная служба</h2>
+    <h2 id="military-section">Военная служба</h2>
     <div 
       class="custom-form__full-width" 
       v-for="(military, index) in value.militaries" 
@@ -94,7 +95,7 @@
         Добавить
       </SimpleButton >
     </div>
-    <h2>Брачные союзы</h2>
+    <h2 id="wedding-section">Брачные союзы</h2>
     <div 
       class="custom-form__full-width" 
       v-for="(wedding, index) in value.weddings" 
@@ -117,7 +118,7 @@
         Добавить 
       </SimpleButton >
     </div>
-    <h2>Образование</h2>
+    <h2 id="education-section">Образование</h2>
     <div 
       class="custom-form__full-width" 
       v-for="(education, index) in value.educations" 
@@ -140,7 +141,7 @@
         Добавить 
       </SimpleButton >
     </div>
-    <h2>Работа</h2>
+    <h2 id="work-section">Работа</h2>
     <div 
       class="custom-form__full-width" 
       v-for="(work, index) in value.works" 
@@ -163,7 +164,7 @@
         Добавить
       </SimpleButton >
     </div>
-    <h2>Дети</h2>
+    <h2 id="childs-section">Дети</h2>
     <div 
       class="custom-form__full-width" 
       v-for="(child, index) in value.children" 

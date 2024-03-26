@@ -2,6 +2,7 @@
   <div class="person-card">
     <div>
       <PhotoPreview size="large" :photo="photo"/>
+      <ScrollingPanel :sections="sections" />
     </div>
     <div>
       <h1 id="info-section">{{ fullName }}</h1>
@@ -58,7 +59,7 @@
       <h2 id="military-section">Военная служба</h2>
       <MilitaryList
         v-if="person.militaries && person.militaries.length > 0"
-        :militaries="militariesCheck"
+        :militaries="person.militaries"
       />
       <div v-else class="person-card__information-text">
         Информации нет
@@ -77,6 +78,7 @@ import PersonPreviewCard from './PersonPreviewCard.vue';
 import { formatPersonName } from '@/services/formatPersonName';
 import { mapGetters } from 'vuex';
 import { maskDatetime, defaultImage } from '@/utils/mask';
+import ScrollingPanel from '../ui/ScrollingPanel.vue';
 
 export default {
   name: 'PersonCard',
@@ -86,12 +88,24 @@ export default {
     PhotoPreview,
     RelateButton,
     PopOver,
-    PersonPreviewCard
+    PersonPreviewCard,
+    ScrollingPanel
   },
   props: {
     person: {
       type: Object,
       required: true
+    }
+  },
+  data () {
+    return {
+      sections: [
+        { id: 'info-section', title: 'Общая информация'},
+        { id: 'parents-section', title: 'Родители'},
+        { id: 'childs-section', title: 'Дети'},
+        { id: 'weddings-section', title: 'Брачные союзы'},
+        { id: 'military-section', title: 'Военная служба'}
+      ]
     }
   },
   computed: {
@@ -147,9 +161,6 @@ export default {
     },
     parents (){
       return this.filteredPersons(person => person.children && person.children.includes(this.person.id))
-    },
-    militariesCheck () {
-      return this.person.militaries.filter((military) => military.startDate != '')
     }
   }
 }
@@ -183,5 +194,4 @@ export default {
     align-items: center;
   }
 } 
-
 </style>

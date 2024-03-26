@@ -31,7 +31,6 @@ export default {
 .content {
   margin: 0 auto;
   padding: 20px 34px;
-  overflow: auto;
   box-sizing: border-box;
   max-width: 1000px;
 }

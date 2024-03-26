@@ -1,20 +1,29 @@
 <template>
   <PageLayout>
     <section class="p-16">
-      <PersonForm v-model="form" />
-      <div class="link__wrapper">
-        <SimpleButton 
-          class ="person-page__btn" 
-          @click="() => editPersonHandler()"
-        >
-          Сохранить
-        </SimpleButton>
-        <SimpleButton 
-          class ="person-page__btn" 
-          @click="() => goBack()"
-        >
-          Отмена
-        </SimpleButton>
+      <div class="form-section">
+        <div>
+          <ScrollingPanel :sections="sections" />
+        </div>
+        <div class="form-person">
+          <PersonForm v-model="form" />
+          <div class="buttons">
+            <SimpleButton 
+              class ="person-page__btn" 
+              type="primary" 
+              @click="() => createPerson()"
+            >
+              Сохранить
+            </SimpleButton>
+            <SimpleButton 
+              class ="person-page__btn" 
+              type="danger" 
+              @click="() => cancel()"
+            >
+              Отмена
+            </SimpleButton>
+          </div>
+        </div>
       </div>
     </section>
   </PageLayout>
@@ -26,17 +35,27 @@ import PageLayout from '../parts/PageLayout.vue'
 import PersonForm from '../forms/PersonForm.vue'
 import { emptyPerson } from '@/services/person'
 import SimpleButton from '../ui/SimpleButton.vue'
+import ScrollingPanel from '../ui/ScrollingPanel.vue'
 
 export default {
   name: 'EditPersonPage',
   components: {
     PageLayout,
     PersonForm,
-    SimpleButton
+    SimpleButton,
+    ScrollingPanel
   },
   data () {
     return {
-      form: emptyPerson()
+      form: emptyPerson(),
+      sections: [
+        { id: 'info-section', title: 'Общая информация'},
+        { id: 'military-section', title: 'Военная служба'},
+        { id: 'wedding-section', title: 'Брачные союзы'},
+        { id: 'education-section', title: 'Образование'},
+        { id: 'work-section', title: 'Работа'},
+        { id: 'childs-section', title: 'Дети'}
+      ]
     }
   },
   computed: {
@@ -63,7 +82,7 @@ export default {
           ...this.person
         }
       } else {
-        this.$router.push({ path: '/' })
+        this.$router.push({ name: 'HOME'  })
       }
     }
   },
@@ -75,6 +94,9 @@ export default {
       this.editPerson(this.form)
       this.goBack()
     },
+    cancel () {
+      this.goBack()
+    },
     goBack () {
       this.$router.go(-1)
     }
@@ -83,9 +105,27 @@ export default {
 </script>
 
 <style scoped lang="less">
-.link__wrapper {
+.form-section {
   display: flex;
   flex-direction: row;
   gap: 20px;
+}
+.form-person {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: flex-end;
+}
+.person-page {
+  &__btn {
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+  }
 }
 </style>
