@@ -10,15 +10,12 @@
 
       <h2 id="parents-section">Родители</h2>
       <div class="person-card__information-text">
-        <div v-if="parents && parents.length > 0">
-          <PopOver v-for="parent in parents" :key="parent.id">
-            <RelateButton :person="parent" relate="parent" />
-            <template slot="popover">
-              <PersonPreviewCard :person="parent" />
-            </template>
-          </PopOver>
-        </div>
-        <p v-else>Нет родителей</p>
+        <PopOver>
+          <RelateButton :person="person" relate="parent"/>
+          <template slot="popover">
+            <PersonPreviewCard :person="person" />
+          </template>
+        </PopOver>
       </div>
 
       <h2 id="childs-section">Дети</h2>
@@ -74,7 +71,6 @@ import PhotoPreview from '../ui/PhotoPreview.vue';
 import RelateButton from '@/components/ui/RelateButton.vue';
 import PopOver from '../ui/PopOver.vue';
 import PersonPreviewCard from './PersonPreviewCard.vue';
-import { formatPersonName } from '@/services/formatPersonName';
 import { mapGetters } from 'vuex';
 import { maskDatetime, defaultImage } from '@/utils/mask';
 

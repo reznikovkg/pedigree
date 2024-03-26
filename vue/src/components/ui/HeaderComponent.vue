@@ -50,24 +50,4 @@ export default {
   gap: 10px;
   padding: 0 20px;
 }
-
-@media (max-width: 720px) {
-  .navbar {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    flex-wrap: wrap;
-    padding: 15px;
-  }
-  
-  .navigation-panel {
-      &__link {
-        width: 100%;
-
-        &__wrapper {
-          flex: 1;
-        }
-    }
-  }
-}
 </style>
