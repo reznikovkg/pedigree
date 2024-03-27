@@ -59,7 +59,7 @@ export default {
   },
   mounted () {
     if(this.getMode === 'user') { 
-      this.$router.push({ name: 'HOME' })
+      this.$router.push({ name: this.$routes.HOME })
     } else {
       if (this.person) {
         this.form = {

@@ -6,6 +6,7 @@ import EditPersonPage from '../components/pages/EditPersonPage.vue'
 import CreatePersonPage from '../components/pages/CreatePersonPage.vue'
 import SettingsPage from '../components/pages/SettingsPage.vue'
 import PersonList from '../components/pages/PersonList.vue'
+import ServicePage from '@/components/pages/ServicePage.vue'
 import { RouteNames } from './routes'
 
 Vue.use(VueRouter)
@@ -40,6 +41,11 @@ const routes = [
     path: '/list',
     name: RouteNames.PERSON_LIST,
     component: PersonList
+  },
+  {
+    path: '/service',
+    name: RouteNames.SERVICE,
+    component: ServicePage
   }
 ]
 
