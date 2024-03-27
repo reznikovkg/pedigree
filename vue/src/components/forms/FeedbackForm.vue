@@ -1,43 +1,62 @@
 <template>
-  <div class="custom-form">
-    <ElInput
-      v-model="firstName"
-      class="custom-form__input"
-      type="text"
-      placeholder="Ваше имя"
-    />
-    <ElInput
-      v-model="secondName"
-      class="custom-form__input"
-      type="text"
-      placeholder="Ваша фамилия"
-    />
-    <ElInput
-      v-model="phoneNumber"
-      class="custom-form__input"
-      type="text"
-      placeholder="Номер телефона"
-    />
-    <ElInput
-      v-model="email"
-      class="custom-form__input"
-      type="text"
-      placeholder="E-mail"
-    />
-    <div class="custom-form__full-width">
+  <form @submit.prevent="takeForm()">
+    <div class="custom-form">
       <ElInput
-        v-model="message"
+        v-model="fullName"
         class="custom-form__input"
-        type="textarea"
-        placeholder="Сообщение"
+        :class="{invalid: isFullNameInvalid }"
+        type="text"
+        placeholder="Ваше имя"
       />
+      <ElInput
+        v-model="phoneNumber"
+        class="custom-form__input"
+        :class="{invalid: isPhoneNumberInvalid }"
+        type="text"
+        placeholder="Номер телефона"
+      />
+      <ElInput
+        v-model="mail"
+        class="custom-form__input"
+        :class="{invalid: isMailInvalid }"
+        type="text"
+        placeholder="E-mail"
+      />
+      <div class="custom-form__full-width">
+        <ElInput
+          v-model="message"
+          class="custom-form__input"
+          :class="{invalid: isMessageInvalid }"
+          type="textarea"
+          placeholder="Сообщение"
+        />
+      </div>
+      <SimpleButton 
+        type="info"
+        @click="() => takeForm()"
+      >
+        Сохранить
+      </SimpleButton>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
+import SimpleButton from '../ui/SimpleButton.vue'
+
 export default {
   name: 'FeedbackForm',
+  components: {
+    SimpleButton
+  },
+  data() {
+    return {
+      fullName: null,
+      phoneNumber: null,
+      mail: null,
+      message: null
+    }
+  },
   model: {
     prop: 'value',
     event: 'change'
@@ -49,54 +68,46 @@ export default {
     }
   },
   computed: {
-    firstName: {
-      get () {
-        return this.value.firstName
-      },
-      set (value) {
-        this.emitFormData({ firstName: value })
-      }
+    isFullNameInvalid() {
+      return !this.fullName || !/^[а-яё]*$/i.test(this.fullName)
     },
-    secondName: {
-      get () {
-        return this.value.secondName
-      },
-      set (value) {
-        this.emitFormData({ secondName: value })
-      }
+    isPhoneNumberInvalid() {
+      return !this.phoneNumber || !/^(\s*)?(\+)?([- _():=+]?\d[- _():=+]?){10,14}(\s*)?$/i.test(this.phoneNumber)
     },
-    phoneNumber: {
-      get () {
-        return this.value.phoneNumber
-      },
-      set (value) {
-        this.emitFormData({ phoneNumber: value })
-      }
+    isMailInvalid() {
+      return !this.mail || !/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/.test(this.mail)
     },
-    email: {
-      get () {
-        return this.value.email
-      },
-      set (value) {
-        this.emitFormData({ email: value })
-      }
+    isMessageInvalid() {
+      return !this.message
     },
-    message: {
-      get () {
-        return this.value.message
-      },
-      set (value) {
-        this.emitFormData({ message: value })
-      }
-    },
+    isFormInvalid () {
+      return this.isFullNameInvalid || this.isMailInvalid || this.isMessageInvalid || this.isPhoneNumberInvalid
+    }
   },
   methods: {
+    takeForm() {
+      if (this.isFormInvalid) {
+        this.handleInvalidForm()
+        return
+      }
+      const fullForm = {
+        fullName: this.fullName,
+        phoneNumber: this.phoneNumber,
+        mail: this.mail,
+        message: this.message
+      }
+      console.log(fullForm)
+      this.emitFormData(fullForm)
+    },
     emitFormData (param) {
       this.$emit('change', {
         ...this.value,
         ...param
       })
     },
+    handleInvalidForm () {
+      console.log('invalid form')
+    }
   }
 }
 </script>
@@ -109,4 +120,8 @@ export default {
     flex-direction: column;
   }
 } 
+.invalid {
+  border: solid 1px red;
+  border-radius: 5px;
+}
 </style>

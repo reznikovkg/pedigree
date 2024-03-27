@@ -46,6 +46,7 @@ export default {
       this.$router.go(-1)
     },
     sendMessage() {
+      console.log(this.feed)
       axios.post('https://ourfeed', this.feed)
       .then(response => {
         console.log('Результат ', response);
