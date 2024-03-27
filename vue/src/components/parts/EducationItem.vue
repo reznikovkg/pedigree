@@ -8,13 +8,13 @@
     </div>
     
     <div class="custom-card__type">
-      <span class="custom-card__type">Тип:</span> {{ education.type }}
+      Тип: {{ education.type }}
     </div>
     <div class="custom-card__type">
-      <span class="custom-card__type">Уровень образования:</span> {{ education.level }}
+      Уровень образования: {{ education.level }}
     </div>
     <div class="custom-card__type">
-      <span class="custom-card__type">Город:</span> {{ education.city }}
+      Город: {{ education.city }}
     </div>
   </div>
 </template>
