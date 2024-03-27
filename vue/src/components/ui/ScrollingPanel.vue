@@ -28,10 +28,8 @@ export default {
 
 <style scoped lang="less">
 .scrolling-menu {
-  position: fixed;
-  top: 50px;
-  left: 10px; 
-
+  position: sticky;
+  top: 15px;
   &__btn {
     background-color: #45475F00;
     border: none;

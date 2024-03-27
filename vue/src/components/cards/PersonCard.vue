@@ -2,6 +2,7 @@
   <div class="person-card">
     <div>
       <PhotoPreview size="large" :photo="photo"/>
+      <ScrollingPanel :sections="sections" />
     </div>
     <div>
       <h1 id="info-section">{{ fullName }}</h1>
@@ -77,6 +78,7 @@ import PersonPreviewCard from './PersonPreviewCard.vue';
 import { formatPersonName } from '@/services/formatPersonName';
 import { mapGetters } from 'vuex';
 import { maskDatetime, defaultImage } from '@/utils/mask';
+import ScrollingPanel from '../ui/ScrollingPanel.vue';
 
 export default {
   name: 'PersonCard',
@@ -86,7 +88,8 @@ export default {
     PhotoPreview,
     RelateButton,
     PopOver,
-    PersonPreviewCard
+    PersonPreviewCard,
+    ScrollingPanel
   },
   props: {
     person: {
@@ -97,6 +100,15 @@ export default {
   computed: {
     ...mapGetters('persons',['getPersonsByIds', 'filteredPersons']),
     ...mapGetters('settings', ['getAccess']),
+    sections () {
+      return [
+        { id: 'info-section', title: 'Общая информация'},
+        { id: 'parents-section', title: 'Родители'},
+        { id: 'childs-section', title: 'Дети'},
+        { id: 'weddings-section', title: 'Брачные союзы'},
+        { id: 'military-section', title: 'Военная служба'}
+      ]
+    },
     activity (){
       if (this.needHide){
         return 'Информация скрыта'

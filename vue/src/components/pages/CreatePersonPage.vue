@@ -32,7 +32,7 @@ export default {
   components: {
     PageLayout,
     PersonForm,
-    SimpleButton
+    SimpleButton,
   },
   data () {
     return {
@@ -42,7 +42,7 @@ export default {
   computed: {
     ...mapGetters('settings', [
       'getMode'
-    ])
+    ]),
   },
   methods: {
     ...mapActions('persons', [
@@ -63,7 +63,7 @@ export default {
   },
   mounted () {
     if (this.getMode === 'user') {
-      this.$router.push({ name: this.$routes.HOME })
+      this.$router.push({ name: 'HOME' })
     }
   }
 }

@@ -32,7 +32,7 @@ export default {
   components: {
     PageLayout,
     PersonForm,
-    SimpleButton
+    SimpleButton,
   },
   data () {
     return {
@@ -63,7 +63,7 @@ export default {
           ...this.person
         }
       } else {
-        this.$router.push({ path: '/' })
+        this.$router.push({ name: 'HOME'  })
       }
     }
   },
