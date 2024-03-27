@@ -1,6 +1,6 @@
 <template>
   <div class="wedding-card">
-    <div class="wedding-card__partner">{{ getPartner.secondName }} {{ getPartner.firstName }} {{ getPartner.patronymicName }}</div>
+    <div class="wedding-card__partner">{{ fullName }}</div>
     <div class="wedding-card__date">
       {{ wedding.startDate }}<template v-if="wedding.endDate"> - {{ wedding.endDate }}</template>
     </div>
@@ -9,6 +9,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { formatPersonName } from '@/services/formatPersonName';
 
 export default {
   name: 'WeddingItem',
@@ -24,6 +25,12 @@ export default {
     ]),
     getPartner () {
       return this.getPersonById(this.wedding.partnerId)
+    },
+    fullName () {
+      if (this.getPartner) {
+        return formatPersonName(this.getPartner, {short: true, access: this.needHide})
+      }
+      return ''
     }
   }
 }

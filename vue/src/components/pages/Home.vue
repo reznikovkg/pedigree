@@ -16,7 +16,7 @@ export default {
   name: 'HomePage',
   mixins: [helpModal],
   components: {
-    PageLayout,
+    PageLayout
   },
   computed: {
     ...mapGetters('persons', [
@@ -25,11 +25,11 @@ export default {
     ])
   },
   methods: {
-    redirectToDefaultPersonPage() {
+    redirectToDefaultPersonPage () {
       const first = this.getAllPersons[0] || {}
       const id = this.getCenter || first.id
       if (id) {
-        this.$router.push({ name: 'PERSON', params: { id } })
+        this.$router.push({ name: 'PERSON_LIST' })
       }
     }
   },

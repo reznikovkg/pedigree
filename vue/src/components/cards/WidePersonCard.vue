@@ -62,11 +62,11 @@ export default {
     margin-top: 20px;
 
     &__female {
-      background-color: #ff16e4;
+      background-color: #ACFFE6;
     }
 
     &__male {
-      background-color: #3a54ff;
+      background-color: #ACFFB4;
     }
   }
 

@@ -14,6 +14,9 @@ import FooterComponent from "@/components/ui/FooterComponent.vue"
 
 export default {
   name: 'PageLayout',
+  model: {
+    prop: 'person'
+  },
   components: {
     HeaderComponent,
     FooterComponent

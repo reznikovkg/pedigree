@@ -76,7 +76,7 @@
     <div 
       class="custom-form__full-width" 
       v-for="(military, index) in value.militaries" 
-      :key="index"
+      :key="'military' + index"
     >
       <div class ="person-page__header-wrapper">
       <h3>Военная служба {{ index + 1 }}</h3>
@@ -100,7 +100,7 @@
     <div 
       class="custom-form__full-width" 
       v-for="(wedding, index) in value.weddings" 
-      :key="index"
+      :key="'wedding' + index"
     >
       <div class ="person-page__header-wrapper">
       <h2>Свадьба {{ index + 1 }}</h2>
@@ -109,7 +109,8 @@
         </button>
       </div>
       <WeddingForm
-        :value="wedding" :persons="partners"
+        :value="wedding" 
+        :persons="partners"
         class="custom-form__input"
         @change="(wedding) => setWeddingForm(wedding, index)"
       />
@@ -124,7 +125,7 @@
     <div 
       class="custom-form__full-width" 
       v-for="(education, index) in value.educations" 
-      :key="index"
+      :key="'education' + index"
     >
       <div class ="person-page__header-wrapper">
       <h2>Образование {{ index + 1 }}</h2>
@@ -148,7 +149,7 @@
     <div 
       class="custom-form__full-width" 
       v-for="(work, index) in value.works" 
-      :key="index"
+      :key="'work' + index"
     >
       <div class ="person-page__header-wrapper">
       <h2>Работа {{ index + 1 }}</h2>
@@ -172,7 +173,7 @@
     <div 
       class="custom-form__full-width" 
       v-for="(child, index) in value.children" 
-      :key="index"
+      :key="'child' + index"
     >
       <div class ="person-page__header-wrapper">
       <h2>Ребёнок {{ index + 1 }}</h2>
@@ -202,10 +203,10 @@ import ChildForm from '../forms/ChildForm.vue'
 import { mapGetters } from 'vuex'
 import EducationForm from '../forms/EducationForm.vue'
 import WorkForm from '../forms/WorkForm.vue'
-//import { emptyWedding } from '@/services/person'
-//import { emptyMilitary } from '@/services/person'
-//import { emptyEducation } from '@/services/person'
-//import { emptyWork } from '@/services/person'
+import { emptyWedding } from '@/services/person'
+import { emptyMilitary } from '@/services/person'
+import { emptyEducation } from '@/services/person'
+import { emptyWork } from '@/services/person'
 
 export default {
   name: 'PersonForm',
@@ -328,26 +329,32 @@ export default {
     },
     partners () {
       const customFilter = (person) => {
-        const partnerGender = this.person.gender === 'male' ? 'female' : 'male'
-        const birthDate = new Date(this.person.birthDate)
-        const deathDate = new Date(this.person.dieDate)
-        return (
-          person.gender !== partnerGender &&
-          (!person.dieDate || new Date(person.dieDate) >birthDate) &&
-          (!person.birthDate|| new Date(person.birthDate) < deathDate)
-        )
+        if (this.person) {
+          const partnerGender = this.person.gender === 'male' ? 'female' : 'male'
+          const birthDate = new Date(this.person.birthDate)
+          const deathDate = new Date(this.person.dieDate)
+          return (
+            person.gender !== partnerGender &&
+            (!person.dieDate || new Date(person.dieDate) > birthDate) &&
+            (!person.birthDate || new Date(person.birthDate) < deathDate)
+          )
+        }
+        return ''
       }
       return this.filteredPersons(customFilter) || []
     },
     children () {
       const customFilter = (person) => {
-        const birthDate = new Date(this.person.birthDate)
-        const deathDate = new Date(this.person.dieDate)
-        return (
-          person.birthDate > this.person.birthDate &&
-          (!person.dieDate || new Date(person.dieDate) >birthDate) &&
-          (!person.birthDate|| new Date(person.birthDate) < deathDate)
-        )
+        if (this.person) {
+          const birthDate = new Date(this.person.birthDate)
+          const deathDate = new Date(this.person.dieDate)
+          return (
+            person.birthDate > this.person.birthDate &&
+            (!person.dieDate || new Date(person.dieDate) > birthDate) &&
+            (!person.birthDate || new Date(person.birthDate) < deathDate)
+          )
+        }
+        return ''
       }
       return this.filteredPersons(customFilter) || []
     }
@@ -367,7 +374,7 @@ export default {
     },
     addMilitaryForm () {
       const newValue = { ...this.value }
-      newValue.militaries.push({ military: '' })
+      newValue.militaries.push(emptyMilitary())
       this.$emit('change', newValue)
     },
     removeMilitaryForm (index) {
@@ -383,7 +390,7 @@ export default {
     },
     addWeddingForm () {
       const newValue = { ...this.value }
-      newValue.weddings.push({ wedding: '' })
+      newValue.weddings.push(emptyWedding())
       this.$emit('change', newValue)
     },
     removeWeddingForm (index) {
@@ -416,7 +423,7 @@ export default {
     },
     addEducationForm () {
       const newValue = { ...this.value }
-      newValue.educations.push({ education: '' })
+      newValue.educations.push(emptyEducation())
       this.$emit('change', newValue)
     },
     removeEducationForm (index) {
@@ -433,7 +440,7 @@ export default {
     },
     addWorkForm () {
       const newValue = { ...this.value }
-      newValue.works.push({ work: '' })
+      newValue.works.push(emptyWork())
       this.$emit('change', newValue)
     },
     removeWorkForm (index) {

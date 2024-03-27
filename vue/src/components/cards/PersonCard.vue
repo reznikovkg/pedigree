@@ -23,7 +23,7 @@
 
       <h2 id="childs-section">Дети</h2>
       <div class="person-card__information-text">
-        <div v-if="person.children && person.children.length > 0">
+        <div v-if="person && person.children && person.children.length > 0">
           <span v-for="child in children" :key="child.id">
             <PopOver>
               <RelateButton :person="child" relate="child" />
@@ -48,7 +48,7 @@
 
       <h2 id="weddings-section">Брачные союзы</h2>
       <WeddingsList
-        v-if="person.weddings && person.weddings.length > 0"
+        v-if="person && person.weddings && person.weddings.length > 0"
         :weddings="person.weddings"
       />
       <div v-else class="person-card__information-text">
@@ -57,7 +57,7 @@
 
       <h2 id="military-section">Военная служба</h2>
       <MilitaryList
-        v-if="person.militaries && person.militaries.length > 0"
+        v-if="person && person.militaries && person.militaries.length > 0"
         :militaries="person.militaries"
       />
       <div v-else class="person-card__information-text">
@@ -95,62 +95,90 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('persons',[
-      'getPersonsByIds', 'filteredPersons'
+    ...mapGetters('persons', [
+      'getPersonsByIds',
+      'filteredPersons'
     ]),
     ...mapGetters('settings', [
       'getAccess'
     ]),
-    activity (){
-      if (this.needHide) {
-        return 'Информация скрыта'
+    activity () {
+      if (this.person) {
+        if (this.needHide) {
+          return 'Информация скрыта'
+        }
+        return this.person.activity || 'Информации нет'
       }
-      return this.person.activity || 'Информации нет'
+      return ''
     },
-    biography (){
-      if (this.needHide) {
-        return 'Информация скрыта'
+    biography () {
+      if (this.person) {
+        if (this.needHide) {
+          return 'Информация скрыта'
+        }
+        return this.person.biography || 'Информации нет'
       }
-      return this.person.biography || 'Информации нет'
+      return ''
     },
     birthDate () {
-      if (!this.person.birthDate) {
-        return null
+      if (this.person) {
+        if (!this.person.birthDate) {
+          return null
+        }
+        if (!this.needHide) {
+          return this.person.birthDate
+        }
+        return maskDatetime(this.person.birthDate)
       }
-      if (!this.needHide) {
-        return this.person.birthDate
-      }
-      return maskDatetime(this.person.birthDate)
+      return ''
     },
     children () {
-      if (!this.person.children) {
-        return []
+      if (this.person && this.person.id) {
+        if (!this.person.children) {
+          return []
+        }
+        return this.getPersonsByIds(this.person.children)
       }
-      return this.getPersonsByIds(this.person.children)
+      return ''
     },
     dieDate () {
-      if (!this.person.dieDate) {
-        return null
+      if (this.person) {
+        if (!this.person.dieDate) {
+          return null
+        }
+        if (!this.needHide) {
+          return this.person.dieDate
+        }
+        return maskDatetime(this.person.dieDate)
       }
-      if (!this.needHide) {
-        return this.person.dieDate
-      }
-      return maskDatetime(this.person.dieDate)
+      return ''
     },
     fullName () {
-      return formatPersonName(this.person, {short: true, access: this.needHide})
+      if (this.person) {
+        return formatPersonName(this.person, {short: true, access: this.needHide})
+      }
+      return ''
     },
     needHide () {
-      return this.person.access && this.getAccess
+      if (this.person) {
+        return this.person.access && this.getAccess
+      }
+      return ''
     },
     photo () {
-      if (!this.needHide) {
-        return this.person.photo
+      if (this.person) {
+        if (!this.needHide) {
+          return this.person.photo
+        }
+        return defaultImage
       }
-      return defaultImage
+      return ''
     },
     parents () {
-      return this.filteredPersons(person => person.children && person.children.includes(this.person.id))
+      if (this.person) {
+        return this.filteredPersons(person => person.children && person.children.includes(this.person.id))
+      }
+      return ''
     }
   }
 }
