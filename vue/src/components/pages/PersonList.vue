@@ -13,7 +13,7 @@
       >
         <RouterLink
           class="navigation-panel__link__wrapper"
-          :to="{ name: 'PERSON', params: { id: person.id } }"
+          :to="{ name: $routes.PERSON, params: { id: person.id } }"
           v-for="(person, id) in persons"
           :key="id"
         >
