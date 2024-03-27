@@ -97,20 +97,18 @@ export default {
       required: true
     }
   },
-  data () {
-    return {
-      sections: [
+  computed: {
+    ...mapGetters('persons',['getPersonsByIds', 'filteredPersons']),
+    ...mapGetters('settings', ['getAccess']),
+    sections () {
+      return [
         { id: 'info-section', title: 'Общая информация'},
         { id: 'parents-section', title: 'Родители'},
         { id: 'childs-section', title: 'Дети'},
         { id: 'weddings-section', title: 'Брачные союзы'},
         { id: 'military-section', title: 'Военная служба'}
       ]
-    }
-  },
-  computed: {
-    ...mapGetters('persons',['getPersonsByIds', 'filteredPersons']),
-    ...mapGetters('settings', ['getAccess']),
+    },
     activity (){
       if (this.needHide){
         return 'Информация скрыта'

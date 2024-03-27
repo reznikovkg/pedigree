@@ -47,21 +47,22 @@ export default {
   },
   data () {
     return {
-      form: emptyPerson(),
-      sections: [
-        { id: 'info-section', title: 'Общая информация'},
-        { id: 'military-section', title: 'Военная служба'},
-        { id: 'wedding-section', title: 'Брачные союзы'},
-        { id: 'education-section', title: 'Образование'},
-        { id: 'work-section', title: 'Работа'},
-        { id: 'childs-section', title: 'Дети'}
-      ]
+      form: emptyPerson()
     }
   },
   computed: {
     ...mapGetters('settings', [
       'getMode'
-    ])
+    ]),
+    sections () {
+      return [
+        { id: 'info-section', title: 'Общая информация'},
+        { id: 'parents-section', title: 'Родители'},
+        { id: 'childs-section', title: 'Дети'},
+        { id: 'weddings-section', title: 'Брачные союзы'},
+        { id: 'military-section', title: 'Военная служба'}
+      ]
+    },
   },
   methods: {
     ...mapActions('persons', [
