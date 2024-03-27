@@ -1,191 +1,196 @@
 <template>
-  <div class="custom-form">
-    <ElInput
-      v-model="secondName"
-      id="info-section"
-      class="custom-form__input"
-      type="text"
-      placeholder="Фамилия"
-    />
-    <ElInput
-      v-model="firstName"
-      class="custom-form__input"
-      type="text"
-      placeholder="Имя"
-    />
-    <ElInput
-      v-model="patronymicName"
-      class="custom-form__input"
-      type="text"
-      placeholder="Отчество"
-    />
-    <ElInput
-      v-model="gender"
-      class="custom-form__input"
-      type="text"
-      placeholder="Пол"
-    />
-    <ElDatePicker
-      v-model="birthDate"
-      class="custom-form__input"
-      type="date"
-      format="dd.MM.yyyy"
-      value-format="dd.MM.yyyy"
-      placeholder="Дата рождения"
-    />
-    <ElDatePicker
-      v-model="dieDate"
-      class="custom-form__input"
-      type="date"
-      format="dd.MM.yyyy"
-      value-format="dd.MM.yyyy"
-      placeholder="Дата смерти"
-    />
-    <div class="custom-form__full-width">
+  <div class="form">
+    <div>
+      <ScrollingPanel :sections="sections"/>
+    </div>
+    <div class="custom-form">
       <ElInput
-        v-model="activity"
+        v-model="secondName"
+        id="info-section"
         class="custom-form__input"
-        type="textarea"
-        placeholder="Род деятельности"
+        type="text"
+        placeholder="Фамилия"
       />
-    </div>
-    <div class="custom-form__full-width">
       <ElInput
-        v-model="biography"
+        v-model="firstName"
         class="custom-form__input"
-        type="textarea"
-        placeholder="Биография"
+        type="text"
+        placeholder="Имя"
       />
-    </div>
-    <div class="custom-form__full-width">
-      <ElSelect
-        v-model="access"
+      <ElInput
+        v-model="patronymicName"
         class="custom-form__input"
-        placeholder="Скрывание">
-        <ElOption
-          label="Скрывать"
-          value=true
+        type="text"
+        placeholder="Отчество"
+      />
+      <ElInput
+        v-model="gender"
+        class="custom-form__input"
+        type="text"
+        placeholder="Пол"
+      />
+      <ElDatePicker
+        v-model="birthDate"
+        class="custom-form__input"
+        type="date"
+        format="dd.MM.yyyy"
+        value-format="dd.MM.yyyy"
+        placeholder="Дата рождения"
+      />
+      <ElDatePicker
+        v-model="dieDate"
+        class="custom-form__input"
+        type="date"
+        format="dd.MM.yyyy"
+        value-format="dd.MM.yyyy"
+        placeholder="Дата смерти"
+      />
+      <div class="custom-form__full-width">
+        <ElInput
+          v-model="activity"
+          class="custom-form__input"
+          type="textarea"
+          placeholder="Род деятельности"
         />
-        <ElOption
-          label="Не скрывать"
-          value=false
+      </div>
+      <div class="custom-form__full-width">
+        <ElInput
+          v-model="biography"
+          class="custom-form__input"
+          type="textarea"
+          placeholder="Биография"
         />
-      </ElSelect>
-    </div>
-    <h2 id="military-section">Военная служба</h2>
-    <div 
-      class="custom-form__full-width" 
-      v-for="(military, index) in value.militaries" 
-      :key="index"
-    >
-      <div class ="person-page__header-wrapper">
-      <h3>Военная служба {{index + 1}}</h3>
-        <button class="person-page__btn-close" @click="() => removeMilitaryForm(index)">
-          ✖
-        </button>
       </div>
-      <MilitaryForm
-        :value="military"
-        class="custom-form__input"
-        @change="(military) => setMilitaryForm(military, index)"
-      />
-    </div>
-    <div class ="custom-form__full-width person-page__right-wrapper">
-      <SimpleButton type="primary" @click="() => addMilitaryForm()">
-        Добавить
-      </SimpleButton >
-    </div>
-    <h2 id="wedding-section">Брачные союзы</h2>
-    <div 
-      class="custom-form__full-width" 
-      v-for="(wedding, index) in value.weddings" 
-      :key="index"
-    >
-      <div class ="person-page__header-wrapper">
-      <h2>Свадьба {{index + 1}}</h2>
-        <button @click="() => removeWeddingForm(index)" class="person-page__btn-close ">
-          ✖
-        </button>
+      <div class="custom-form__full-width">
+        <ElSelect
+          v-model="access"
+          class="custom-form__input"
+          placeholder="Скрывание">
+          <ElOption
+            label="Скрывать"
+            value=true
+          />
+          <ElOption
+            label="Не скрывать"
+            value=false
+          />
+        </ElSelect>
       </div>
-      <WeddingForm
-        :value="wedding" :persons="partners"
-        class="custom-form__input"
-        @change="(wedding) => setWeddingForm(wedding, index)"
-      />
-    </div>
-    <div class ="custom-form__full-width person-page__right-wrapper">
-      <SimpleButton @click="() => addWeddingForm()" type="primary">
-        Добавить 
-      </SimpleButton >
-    </div>
-    <h2 id="education-section">Образование</h2>
-    <div 
-      class="custom-form__full-width" 
-      v-for="(education, index) in value.educations" 
-      :key="index"
-    >
-      <div class ="person-page__header-wrapper">
-      <h2>Образование {{index + 1}}</h2>
-        <button @click="() => removeEducationForm(index)" class="person-page__btn-close ">
-          ✖
-        </button>
+      <h2 id="military-section">Военная служба</h2>
+      <div 
+        class="custom-form__full-width" 
+        v-for="(military, index) in value.militaries" 
+        :key="index"
+      >
+        <div class ="person-page__header-wrapper">
+        <h3>Военная служба {{index + 1}}</h3>
+          <button class="person-page__btn-close" @click="() => removeMilitaryForm(index)">
+            ✖
+          </button>
+        </div>
+        <MilitaryForm
+          :value="military"
+          class="custom-form__input"
+          @change="(military) => setMilitaryForm(military, index)"
+        />
       </div>
-      <EducationForm
-        :value="education"
-        class="custom-form__input"
-        @change="(education) => setEducationForm(education, index)"
-      />
-    </div>
-    <div class ="custom-form__full-width person-page__right-wrapper">
-      <SimpleButton @click="() => addEducationForm()" type="primary">
-        Добавить 
-      </SimpleButton >
-    </div>
-    <h2 id="work-section">Работа</h2>
-    <div 
-      class="custom-form__full-width" 
-      v-for="(work, index) in value.works" 
-      :key="index"
-    >
-      <div class ="person-page__header-wrapper">
-      <h2>Работа {{index + 1}}</h2>
-        <button @click="() => removeWorkForm(index)" class="person-page__btn-close ">
-          ✖
-        </button>
+      <div class ="custom-form__full-width person-page__right-wrapper">
+        <SimpleButton type="primary" @click="() => addMilitaryForm()">
+          Добавить
+        </SimpleButton >
       </div>
-      <WorkForm
-        :value="work"
-        class="custom-form__input"
-        @change="(work) => setWorkForm(work, index)"
-      />
-    </div>
-    <div class ="custom-form__full-width person-page__right-wrapper">
-      <SimpleButton @click="() => addWorkForm()" type="primary">
-        Добавить
-      </SimpleButton >
-    </div>
-    <h2 id="childs-section">Дети</h2>
-    <div 
-      class="custom-form__full-width" 
-      v-for="(child, index) in value.children" 
-      :key="index"
-    >
-      <div class ="person-page__header-wrapper">
-      <h2>Ребёнок {{index + 1}}</h2>
-        <button @click="() => removeChildForm(index)" class="person-page__btn-close ">
-          ✖
-        </button>
+      <h2 id="wedding-section">Брачные союзы</h2>
+      <div 
+        class="custom-form__full-width" 
+        v-for="(wedding, index) in value.weddings" 
+        :key="index"
+      >
+        <div class ="person-page__header-wrapper">
+        <h2>Свадьба {{index + 1}}</h2>
+          <button @click="() => removeWeddingForm(index)" class="person-page__btn-close ">
+            ✖
+          </button>
+        </div>
+        <WeddingForm
+          :value="wedding" :persons="partners"
+          class="custom-form__input"
+          @change="(wedding) => setWeddingForm(wedding, index)"
+        />
       </div>
-      <ChildForm
-        :value="child" :persons="children"
-        class="custom-form__input"
-        @change="(child) => setChildForm(child, index)"
-      />
-    </div>
-    <div class ="custom-form__full-width person-page__right-wrapper">
-      <SimpleButton @click="() => addChildForm()" type="primary">
-        Добавить 
-      </SimpleButton >
+      <div class ="custom-form__full-width person-page__right-wrapper">
+        <SimpleButton @click="() => addWeddingForm()" type="primary">
+          Добавить 
+        </SimpleButton >
+      </div>
+      <h2 id="education-section">Образование</h2>
+      <div 
+        class="custom-form__full-width" 
+        v-for="(education, index) in value.educations" 
+        :key="index"
+      >
+        <div class ="person-page__header-wrapper">
+        <h2>Образование {{index + 1}}</h2>
+          <button @click="() => removeEducationForm(index)" class="person-page__btn-close ">
+            ✖
+          </button>
+        </div>
+        <EducationForm
+          :value="education"
+          class="custom-form__input"
+          @change="(education) => setEducationForm(education, index)"
+        />
+      </div>
+      <div class ="custom-form__full-width person-page__right-wrapper">
+        <SimpleButton @click="() => addEducationForm()" type="primary">
+          Добавить 
+        </SimpleButton >
+      </div>
+      <h2 id="work-section">Работа</h2>
+      <div 
+        class="custom-form__full-width" 
+        v-for="(work, index) in value.works" 
+        :key="index"
+      >
+        <div class ="person-page__header-wrapper">
+        <h2>Работа {{index + 1}}</h2>
+          <button @click="() => removeWorkForm(index)" class="person-page__btn-close ">
+            ✖
+          </button>
+        </div>
+        <WorkForm
+          :value="work"
+          class="custom-form__input"
+          @change="(work) => setWorkForm(work, index)"
+        />
+      </div>
+      <div class ="custom-form__full-width person-page__right-wrapper">
+        <SimpleButton @click="() => addWorkForm()" type="primary">
+          Добавить
+        </SimpleButton >
+      </div>
+      <h2 id="childs-section">Дети</h2>
+      <div 
+        class="custom-form__full-width" 
+        v-for="(child, index) in value.children" 
+        :key="index"
+      >
+        <div class ="person-page__header-wrapper">
+        <h2>Ребёнок {{index + 1}}</h2>
+          <button @click="() => removeChildForm(index)" class="person-page__btn-close ">
+            ✖
+          </button>
+        </div>
+        <ChildForm
+          :value="child" :persons="children"
+          class="custom-form__input"
+          @change="(child) => setChildForm(child, index)"
+        />
+      </div>
+      <div class ="custom-form__full-width person-page__right-wrapper">
+        <SimpleButton @click="() => addChildForm()" type="primary">
+          Добавить 
+        </SimpleButton >
+      </div>
     </div>
   </div>
 </template>
@@ -202,6 +207,7 @@ import { emptyWedding } from '@/services/person'
 import { emptyMilitary } from '@/services/person'
 import { emptyEducation } from '@/services/person'
 import { emptyWork } from '@/services/person'
+import ScrollingPanel from '../ui/ScrollingPanel.vue'
 
 export default {
   name: 'PersonForm',
@@ -215,7 +221,8 @@ export default {
     WeddingForm,
     ChildForm,
     MilitaryForm,
-    SimpleButton
+    SimpleButton,
+    ScrollingPanel
   },
   props: {
     value: {
@@ -224,6 +231,15 @@ export default {
     }
   },
   computed: {
+    sections () {
+      return [
+        { id: 'info-section', title: 'Общая информация'},
+        { id: 'parents-section', title: 'Родители'},
+        { id: 'childs-section', title: 'Дети'},
+        { id: 'weddings-section', title: 'Брачные союзы'},
+        { id: 'military-section', title: 'Военная служба'}
+      ]
+    },
     secondName: {
       get () {
         return this.value.secondName
@@ -450,7 +466,12 @@ export default {
     width: 100%;
     flex-direction: column;
   }
-} 
+}
+.form {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
 
 .person-page {
   &__btn {

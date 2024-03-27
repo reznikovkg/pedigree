@@ -1,30 +1,21 @@
 <template>
   <PageLayout>
     <section class="p-16">
-      <div class="form-section">
-        <div>
-          <ScrollingPanel :sections="sections" />
-        </div>
-        <div class="form-person">
-          <PersonForm v-model="form" />
-          <div class="buttons">
-            <SimpleButton 
-              class ="person-page__btn" 
-              type="primary" 
-              @click="() => createPerson()"
-            >
-              Сохранить
-            </SimpleButton>
-            <SimpleButton 
-              class ="person-page__btn" 
-              type="danger" 
-              @click="() => cancel()"
-            >
-              Отмена
-            </SimpleButton>
-          </div>
-        </div>
-      </div>
+      <PersonForm v-model="form" />
+      <SimpleButton 
+        class ="person-page__btn" 
+        type="primary" 
+        @click="() => createPerson()"
+      >
+        Сохранить
+      </SimpleButton>
+      <SimpleButton 
+        class ="person-page__btn" 
+        type="danger" 
+        @click="() => cancel()"
+      >
+        Отмена
+      </SimpleButton>
     </section>
   </PageLayout>
 </template>
@@ -35,7 +26,6 @@ import PageLayout from '../parts/PageLayout.vue'
 import PersonForm from '../forms/PersonForm.vue'
 import { emptyPerson } from '@/services/person'
 import SimpleButton from '../ui/SimpleButton.vue'
-import ScrollingPanel from '../ui/ScrollingPanel.vue'
 
 export default {
   name: 'CreatePersonPage',
@@ -43,7 +33,6 @@ export default {
     PageLayout,
     PersonForm,
     SimpleButton,
-    ScrollingPanel
   },
   data () {
     return {
@@ -54,15 +43,6 @@ export default {
     ...mapGetters('settings', [
       'getMode'
     ]),
-    sections () {
-      return [
-        { id: 'info-section', title: 'Общая информация'},
-        { id: 'parents-section', title: 'Родители'},
-        { id: 'childs-section', title: 'Дети'},
-        { id: 'weddings-section', title: 'Брачные союзы'},
-        { id: 'military-section', title: 'Военная служба'}
-      ]
-    },
   },
   methods: {
     ...mapActions('persons', [
@@ -90,22 +70,6 @@ export default {
 </script>
 
 <style scoped lang="less">
-.form-section {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-}
-.form-person {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  justify-content: flex-end;
-}
 .person-page {
   &__btn {
     margin-top: 10px;
