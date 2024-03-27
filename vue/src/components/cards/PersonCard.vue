@@ -23,7 +23,7 @@
 
       <h2 id="childs-section">Дети</h2>
       <div class="person-card__information-text">
-        <div v-if="person && person.children && person.children.length > 0">
+        <div v-if="person.children && person.children.length > 0">
           <span v-for="child in children" :key="child.id">
             <PopOver>
               <RelateButton :person="child" relate="child" />
@@ -48,7 +48,7 @@
 
       <h2 id="weddings-section">Брачные союзы</h2>
       <WeddingsList
-        v-if="person && person.weddings && person.weddings.length > 0"
+        v-if="person.weddings && person.weddings.length > 0"
         :weddings="person.weddings"
       />
       <div v-else class="person-card__information-text">
@@ -57,7 +57,7 @@
 
       <h2 id="military-section">Военная служба</h2>
       <MilitaryList
-        v-if="person && person.militaries && person.militaries.length > 0"
+        v-if="person.militaries && person.militaries.length > 0"
         :militaries="person.militaries"
       />
       <div v-else class="person-card__information-text">

@@ -29,7 +29,7 @@ export default {
       const first = this.getAllPersons[0] || {}
       const id = this.getCenter || first.id
       if (id) {
-        this.$router.push({ name: 'PERSON_LIST' })
+        this.$router.push({ name: this.$routes.PERSON, params: { id } })
       }
     }
   },

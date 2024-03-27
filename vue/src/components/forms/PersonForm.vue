@@ -182,7 +182,8 @@
         </button>
       </div>
       <ChildForm
-        :value="child" :persons="children"
+        :value="child" 
+        :persons="children"
         class="custom-form__input"
         @change="(child) => setChildForm(child, index)"
       />
@@ -203,10 +204,7 @@ import ChildForm from '../forms/ChildForm.vue'
 import { mapGetters } from 'vuex'
 import EducationForm from '../forms/EducationForm.vue'
 import WorkForm from '../forms/WorkForm.vue'
-import { emptyWedding } from '@/services/person'
-import { emptyMilitary } from '@/services/person'
-import { emptyEducation } from '@/services/person'
-import { emptyWork } from '@/services/person'
+import { emptyWedding, emptyWork, emptyMilitary, emptyEducation } from '@/services/person'
 
 export default {
   name: 'PersonForm',
@@ -329,32 +327,26 @@ export default {
     },
     partners () {
       const customFilter = (person) => {
-        if (this.person) {
-          const partnerGender = this.person.gender === 'male' ? 'female' : 'male'
-          const birthDate = new Date(this.person.birthDate)
-          const deathDate = new Date(this.person.dieDate)
-          return (
-            person.gender !== partnerGender &&
-            (!person.dieDate || new Date(person.dieDate) > birthDate) &&
-            (!person.birthDate || new Date(person.birthDate) < deathDate)
-          )
-        }
-        return ''
+        const partnerGender = this.person.gender === 'male' ? 'female' : 'male'
+        const birthDate = new Date(this.person.birthDate)
+        const deathDate = new Date(this.person.dieDate)
+        return (
+          person.gender !== partnerGender &&
+          (!person.dieDate || new Date(person.dieDate) > birthDate) &&
+          (!person.birthDate || new Date(person.birthDate) < deathDate)
+        )
       }
       return this.filteredPersons(customFilter) || []
     },
     children () {
       const customFilter = (person) => {
-        if (this.person) {
-          const birthDate = new Date(this.person.birthDate)
-          const deathDate = new Date(this.person.dieDate)
-          return (
-            person.birthDate > this.person.birthDate &&
-            (!person.dieDate || new Date(person.dieDate) > birthDate) &&
-            (!person.birthDate || new Date(person.birthDate) < deathDate)
-          )
-        }
-        return ''
+        const birthDate = new Date(this.person.birthDate)
+        const deathDate = new Date(this.person.dieDate)
+        return (
+          person.birthDate > this.person.birthDate &&
+          (!person.dieDate || new Date(person.dieDate) > birthDate) &&
+          (!person.birthDate || new Date(person.birthDate) < deathDate)
+        )
       }
       return this.filteredPersons(customFilter) || []
     }

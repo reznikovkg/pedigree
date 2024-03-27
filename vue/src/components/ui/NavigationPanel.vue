@@ -84,6 +84,7 @@ export default {
           type: 'success',
           message: 'Удаление выполнено'
         })
+        this.$router.push({ name: this.$routes.HOME });
         this.$router.push({ name: 'HOME' });
       })
       .catch(() => {
