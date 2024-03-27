@@ -85,7 +85,6 @@ export default {
           message: 'Удаление выполнено'
         })
         this.$router.push({ name: this.$routes.HOME });
-        this.$router.push({ name: 'HOME' });
       })
       .catch(() => {
         this.$message({
@@ -93,20 +92,6 @@ export default {
           message: 'Удаление отменено'
         })
       })
-        .then(() => this.deletePerson(this.id))
-        .then(() => {
-          this.$message({
-            type: 'success',
-            message: 'Удаление выполнено'
-          })
-          this.$router.push({ name: this.$routes.HOME });
-        })
-        .catch(() => {
-          this.$message({
-            type: 'info',
-            message: 'Удаление отменено'
-          })
-        })
     }
   }
 }

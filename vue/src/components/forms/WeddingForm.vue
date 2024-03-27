@@ -85,7 +85,10 @@ export default {
       })
     },
     fullName (partner) {
-      return formatPersonName(partner, { short: false, access: this.needHide })
+      if (partner) {
+        return formatPersonName(partner, { short: false, access: this.needHide })
+      }
+      return ''
     }
   }
 }

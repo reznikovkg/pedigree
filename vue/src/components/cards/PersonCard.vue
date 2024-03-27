@@ -24,7 +24,9 @@
       <h2 id="childs-section">Дети</h2>
       <div class="person-card__information-text">
         <div v-if="person.children && person.children.length > 0">
-          <span v-for="child in children" :key="child.id">
+          <span 
+            v-for="(child, index) in person.children" 
+            :key="index">
             <PopOver>
               <RelateButton :person="child" relate="child" />
               <template slot="popover">

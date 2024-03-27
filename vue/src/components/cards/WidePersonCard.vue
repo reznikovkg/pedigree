@@ -34,7 +34,10 @@ export default {
   },
   computed: {
     fullName () {
-      return formatPersonName(this.person, {});
+      if (this.person) {
+        return formatPersonName(this.person, {});
+      }
+      return ''
     },
     genderClass () {
       if (this.person.gender) {

@@ -110,7 +110,7 @@
       </div>
       <WeddingForm
         :value="wedding" 
-        :persons="partners"
+        :persons="filteredPersons(person => person.gender != gender)"
         class="custom-form__input"
         @change="(wedding) => setWeddingForm(wedding, index)"
       />
@@ -183,7 +183,7 @@
       </div>
       <ChildForm
         :value="child" 
-        :persons="children"
+        :persons="filteredPersons(person => person.birthDate < birthDate)"
         class="custom-form__input"
         @change="(child) => setChildForm(child, index)"
       />
@@ -324,31 +324,6 @@ export default {
     },
     person () {
       return this.getPersonById(this.id)
-    },
-    partners () {
-      const customFilter = (person) => {
-        const partnerGender = this.person.gender === 'male' ? 'female' : 'male'
-        const birthDate = new Date(this.person.birthDate)
-        const deathDate = new Date(this.person.dieDate)
-        return (
-          person.gender !== partnerGender &&
-          (!person.dieDate || new Date(person.dieDate) > birthDate) &&
-          (!person.birthDate || new Date(person.birthDate) < deathDate)
-        )
-      }
-      return this.filteredPersons(customFilter) || []
-    },
-    children () {
-      const customFilter = (person) => {
-        const birthDate = new Date(this.person.birthDate)
-        const deathDate = new Date(this.person.dieDate)
-        return (
-          person.birthDate > this.person.birthDate &&
-          (!person.dieDate || new Date(person.dieDate) > birthDate) &&
-          (!person.birthDate || new Date(person.birthDate) < deathDate)
-        )
-      }
-      return this.filteredPersons(customFilter) || []
     }
   },
   methods: {

@@ -32,30 +32,35 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('settings', ['getAccess']),
+    ...mapGetters('settings', [
+      'getAccess'
+    ]),
+    ...mapGetters ('persons', [
+      'getPersonById'
+    ]),
     formatName () {
-      if (!this.person) {
-        return ''
+      if (this.person) {
+        return formatPersonName(this.getPersonById(this.person.child), {short: false, access: this.needHide})
       }
-      return formatPersonName(this.person, { short: true });
+      return ''
     },
     isMale () {
-      return this.person.gender === 'male'
+      return this.getPersonById(this.person.child).gender === 'male'
     },
     needHide(){
       return this.person.access && this.getAccess
     },
     secondNameFormatted(){
-      if (!this.person){
+      if (!this.person) {
         return ''
       }
-      if (this.needHide){
+      if (this.needHide) {
         return maskFio(this.person.secondName)
       }
       return this.person.secondName
     }
   }
-};
+}
 </script>
 
 <style scoped lang="less">
