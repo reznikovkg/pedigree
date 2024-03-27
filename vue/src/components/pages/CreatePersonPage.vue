@@ -16,6 +16,14 @@
       >
         Отмена
       </SimpleButton>
+      <div v-if="errors.length">
+        <b>Пожалуйста, исправьте указанные ошибки:</b>
+        <ul class="person-page__error">
+          <li v-for="(error, index) in errors" :key="index">
+            {{ error }}
+          </li>
+        </ul>
+      </div>
     </section>
   </PageLayout>
 </template>
@@ -36,7 +44,8 @@ export default {
   },
   data () {
     return {
-      form: emptyPerson()
+      form: emptyPerson(),
+      errors: []
     }
   },
   computed: {
@@ -48,11 +57,37 @@ export default {
     ...mapActions('persons', [
       'addPerson'
     ]),
+    validateDates (startDate, endDate, message) {
+      const start = new Date(startDate)
+      const end = new Date(endDate)
+      if (end < start) {
+        this.errors.push(message)
+      }
+    },
+    checkForm () {
+      this.errors = []
+      this.validateDates(this.form.birthDate, this.form.dieDate, 'Дата смерти должна быть позже или совпадать с датой рождения'),
+      this.form.militaries.forEach((military, index) => {
+        this.validateDates(military.startDate, military.endDate, `Дата окончания службы ${index + 1} должна быть позже или совпадать с датой начала службы`)
+      }),
+      this.form.weddings.forEach((wedding, index) => {
+        this.validateDates(wedding.startDate, wedding.endDate, `Дата развода ${index + 1} должна быть позже или совпадать с датой свадьбы`)
+      }),
+      this.form.educations.forEach((education, index) => {
+        this.validateDates(education.startDate, education.endDate, `Дата окончания обучения ${index + 1} должна быть позже или совпадать c датой начала обучения`)
+      }),
+      this.form.works.forEach((work, index) => {
+        this.validateDates(work.startDate, work.endDate, `Дата окончания работы ${index + 1} должна быть позже или совпадать c датой начала работы`)
+      })
+      return !this.errors.length
+    },
     createPerson () {
-      this.addPerson(this.form)
-        .then((person) => {
-          this.$router.push({ name: this.$routes.PERSON, params: { id: person.id } })
-        })
+      if (this.checkForm()) {
+        this.addPerson(this.form)
+          .then((person) => {
+            this.$router.push({ name: this.$routes.PERSON, params: { id: person.id } })
+          })
+      }
     },
     cancel () {
       this.goBack()
@@ -75,6 +110,10 @@ export default {
     margin-top: 10px;
     margin-right: 10px;
     margin-bottom: 20px;
+  }
+
+  &__error {
+    color: red;
   }
 }
 </style>

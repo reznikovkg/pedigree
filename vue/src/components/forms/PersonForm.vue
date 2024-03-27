@@ -24,6 +24,13 @@
       type="text"
       placeholder="Пол"
     />
+    <ElInput
+      v-model="maidenName"
+      v-if="gender === 'female'"
+      class="custom-form__full-width"
+      type="text"
+      placeholder="Девичья фамилия"
+    />
     <ElDatePicker
       v-model="birthDate"
       class="custom-form__input"
@@ -245,6 +252,14 @@ export default {
       },
       set (value) {
         this.emitFormData({ patronymicName: value })
+      }
+    },
+    maidenName: {
+      get() {
+        return this.value.maidenName;
+      },
+      set(value) {
+        this.emitFormData({ maidenName: value });
       }
     },
     gender: {

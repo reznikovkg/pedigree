@@ -11,6 +11,7 @@ export interface Person {
   secondName: string; // Фамилия
   firstName: string; // Имя
   patronymicName: string; // Отчество
+  maidenName: string; // Девичья фамилия
   birthDate: DateString; // Дата рождения
   dieDate: DateString; // Дата смерти
   gender: GENDER | null; // Пол
