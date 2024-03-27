@@ -53,67 +53,67 @@ export default {
 </script>
 
 <style lang="less">
-  .header {
-    &__image{
-      margin-left: auto;
-      margin-right: auto;
-      width: 100px;
-      height: 100px;
-      border: 5px solid white;
-      border-radius: 50%;
-    }
-
-    &__background {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      background-color: orange;
-      padding: 20px;
-    }
-
-    &__title {
-      margin-top: 10px;
-      color: white;
-      text-shadow: 0px 2px 10px gray;
-    }
-
-    &__description {
-      color: black;
-      font-size: medium;
-    }
+.header {
+  &__image{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    height: 100px;
+    border: 5px solid white;
+    border-radius: 50%;
   }
 
-  .main-background {
-    background-color: antiquewhite;
-    padding-bottom: 100%;
-  }
-
-  .link {
+  &__background {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
-    font-weight: bolder;
-    height: 50px;
-
-    &__first {
-      color: brown;
-      background-color: orange;
-    }
-
-    &__second {
-      color: gray;
-      background-color: aquamarine;
-    }
-
-    &__third {
-      color: black;
-      background-color: greenyellow;
-    }
+    flex-direction: column;
+    background-color: orange;
+    padding: 20px;
   }
+
+  &__title {
+    margin-top: 10px;
+    color: white;
+    text-shadow: 0px 2px 10px gray;
+  }
+
+  &__description {
+    color: black;
+    font-size: medium;
+  }
+}
+
+.main-background {
+  background-color: antiquewhite;
+  padding-bottom: 100%;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  font-weight: bolder;
+  height: 50px;
+
+  &__first {
+    color: brown;
+    background-color: orange;
+  }
+
+  &__second {
+    color: gray;
+    background-color: aquamarine;
+  }
+
+  &__third {
+    color: black;
+    background-color: greenyellow;
+  }
+}
 </style>

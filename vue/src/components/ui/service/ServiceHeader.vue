@@ -1,6 +1,7 @@
 <template>
-  <div :class="config.headerBackgroundClass">
+  <div class="service-header__background" :class="config.headerBackgroundClass">
     <img 
+      class="service-header__image"
       :class="config.headerImageClass"
       :src="config.headerImageLink"
       alt="Header Image"
@@ -55,3 +56,23 @@ export default {
   }  
 }
 </script>
+
+<style scoped lang="less">
+.service-header {
+  &__image{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  &__background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+  }
+}
+</style>
