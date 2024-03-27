@@ -16,6 +16,14 @@
       >
         Отмена
       </SimpleButton>
+      <div v-if="errors.length">
+        <b>Пожалуйста, исправьте указанные ошибки:</b>
+        <ul class="person-page__error">
+          <li v-for="(error, index) in errors" :key="index">
+            {{ error }}
+          </li>
+        </ul>
+      </div>
     </section>
   </PageLayout>
 </template>
@@ -49,49 +57,29 @@ export default {
     ...mapActions('persons', [
       'addPerson'
     ]),
+    validateDates (startDate, endDate, message) {
+      const start = new Date(startDate)
+      const end = new Date(endDate)
+      if (end < start) {
+        this.errors.push(message)
+      }
+    },
     checkForm () {
-      this.errors = [];
-      if (this.form.birthDate && this.form.dieDate) {
-        if (new Date(this.form.dieDate) < new Date(this.form.birthDate)) {
-          this.$message.error('Дата смерти должна быть позже или совпадать с датой рождения')
-          return
-        }
-      }
-      for (let military of this.form.militaries) {
-        if (military.startDate && military.endDate) {
-          if (new Date(military.endDate) < new Date(military.startDate)) {
-            this.$message.error('Дата окончания службы должна быть позже или совпадать c датой начала службы')
-            return;
-          }
-        }
-      }
-      for (let wedding of this.form.weddings) {
-        if (wedding.startDate && wedding.endDate) {
-          if (new Date(wedding.endDate) < new Date(wedding.startDate)) {
-            this.$message.error('Дата развода должна быть позже или совпадать c датой свадьбы')
-            return;
-          }
-        }
-      }
-      for (let education of this.form.educations) {
-        if (education.startDate && education.endDate) {
-          if (new Date(education.endDate) < new Date(education.startDate)) {
-            this.$message.error('Дата окончания обучения должна быть позже или совпадать c датой начала обучения')
-            return;
-          }
-        }
-      }
-      for (let work of this.form.works) {
-        if (work.startDate && work.endDate) {
-          if (new Date(work.endDate) < new Date(work.startDate)) {
-            this.$message.error('Дата окончания работы должна быть позже или совпадать c датой начала работы')
-            return;
-          }
-        }
-      }
-      if (!this.errors.length) {
-        return true;
-      }
+      this.errors = []
+      this.validateDates(this.form.birthDate, this.form.dieDate, 'Дата смерти должна быть позже или совпадать с датой рождения'),
+      this.form.militaries.forEach((military, index) => {
+        this.validateDates(military.startDate, military.endDate, `Дата окончания службы ${index + 1} должна быть позже или совпадать с датой начала службы`)
+      }),
+      this.form.weddings.forEach((wedding, index) => {
+        this.validateDates(wedding.startDate, wedding.endDate, `Дата развода ${index + 1} должна быть позже или совпадать с датой свадьбы`)
+      }),
+      this.form.educations.forEach((education, index) => {
+        this.validateDates(education.startDate, education.endDate, `Дата окончания обучения ${index + 1} должна быть позже или совпадать c датой начала обучения`)
+      }),
+      this.form.works.forEach((work, index) => {
+        this.validateDates(work.startDate, work.endDate, `Дата окончания работы ${index + 1} должна быть позже или совпадать c датой начала работы`)
+      })
+      return !this.errors.length
     },
     createPerson () {
       if (this.checkForm()) {
@@ -122,6 +110,10 @@ export default {
     margin-top: 10px;
     margin-right: 10px;
     margin-bottom: 20px;
+  }
+
+  &__error {
+    color: red;
   }
 }
 </style>
