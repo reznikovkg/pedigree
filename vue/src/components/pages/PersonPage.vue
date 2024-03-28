@@ -16,9 +16,13 @@ import PageLayout from '../parts/PageLayout.vue'
 import PersonCard from '@/components/cards/PersonCard.vue'
 import NavigationPanel from '../ui/NavigationPanel.vue'
 import ScrollingPanel from '@/components/ui/ScrollingPanel.vue'
+import { emptyPerson } from '@/services/person'
 
 export default {
   name: 'PersonPage',
+  model: {
+    prop: 'person'
+  },
   components: {
     PageLayout,
     PersonCard,
@@ -38,14 +42,17 @@ export default {
   },
   computed: {
     ...mapGetters('persons', [
-      'getPersonById',
+      'getPersonById'
     ]),
     person () {
-      return this.getPersonById(this.id)
+      if (this.getPersonById(this.id)) {
+        return this.getPersonById(this.id)
+      }
+      return emptyPerson()
     },
     id () {
       return this.$route.params.id
     }
   }
-};
+}
 </script>

@@ -23,7 +23,7 @@
 
     <RouterLink
       class="navigation-panel__link__wrapper"
-      :to="{ name: $routes.EDIT_PERSON, params: { id: $route.params.id } }"
+      :to="{ name: 'EDIT_PERSON', params: { id: $route.params.id } }"
     >
       <SimpleButton
         class="navigation-panel__link"
@@ -45,8 +45,8 @@ export default {
   },
   computed: {
     ...mapGetters('persons', [
-      'getPersonById',
-      'getCenter'
+      'getCenter',
+      'getPersonById'
     ]),
     ...mapGetters('settings', [
       'getMode'
@@ -78,20 +78,20 @@ export default {
         cancelButtonText: 'Отмена',
         type: 'warning'
       })
-        .then(() => this.deletePerson(this.id))
-        .then(() => {
-          this.$message({
-            type: 'success',
-            message: 'Удаление выполнено'
-          })
-          this.$router.push({ name: this.$routes.HOME });
+      .then(() => this.deletePerson(this.id))
+      .then(() => {
+        this.$message({
+          type: 'success',
+          message: 'Удаление выполнено'
         })
-        .catch(() => {
-          this.$message({
-            type: 'info',
-            message: 'Удаление отменено'
-          })
+        this.$router.push({ name: this.$routes.HOME });
+      })
+      .catch(() => {
+        this.$message({
+          type: 'info',
+          message: 'Удаление отменено'
         })
+      })
     }
   }
 }

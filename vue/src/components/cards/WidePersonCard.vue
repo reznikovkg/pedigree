@@ -8,7 +8,7 @@
         <h1>{{ fullName }}</h1>
       </div>
       <div class="person-widecard__description__dates">
-        <span>{{ person.birth_date }}</span>
+        <span>{{ person.birthDate }}</span>
         <span v-if="person.dieDate"> - {{ person.dieDate }}</span>
       </div>
       <span class="person-widecard__description__id">id: {{ person.id }}</span>
@@ -34,10 +34,16 @@ export default {
   },
   computed: {
     fullName () {
-      return formatPersonName(this.person, {});
+      if (this.person) {
+        return formatPersonName(this.person, {});
+      }
+      return ''
     },
     genderClass () {
-      return `person-widecard__status-indicator__${this.person.gender.toLowerCase()}`
+      if (this.person.gender) {
+        return `person-widecard__status-indicator__${this.person.gender.toLowerCase()}`
+      }
+      return ''
     }
   }
 }
