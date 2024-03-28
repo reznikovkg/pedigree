@@ -46,6 +46,15 @@
         {{ biography }}
       </div>
 
+      <h2 id="education-section">Образование</h2>
+      <EducationList
+        v-if="person.education && person.education.length > 0"
+        :education="person.education"
+      />
+      <div v-else class="person-card__information-text">
+        Информации нет
+      </div>
+
       <h2 id="weddings-section">Брачные союзы</h2>
       <WeddingsList
         v-if="person.weddings && person.weddings.length > 0"
@@ -77,10 +86,12 @@ import PersonPreviewCard from './PersonPreviewCard.vue';
 import { formatPersonName } from '@/services/formatPersonName';
 import { mapGetters } from 'vuex';
 import { maskDatetime, defaultImage } from '@/utils/mask';
+import EducationList from '../parts/EducationList.vue';
 
 export default {
   name: 'PersonCard',
   components: {
+    EducationList,
     WeddingsList,
     MilitaryList,
     PhotoPreview,

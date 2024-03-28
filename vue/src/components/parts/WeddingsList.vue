@@ -1,5 +1,5 @@
 <template>
-  <div v-if="weddings" class="weddings-list">
+  <div v-if="weddings" class="custom-list">
     <WeddingItem 
       v-for="(wedding, index) in weddings" 
       :key="index" 

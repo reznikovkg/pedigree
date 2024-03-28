@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <MilitaryItem 
-      v-for="(military, index) in militaries" 
-      :key="index" 
-      :military="military" 
+  <div class="custom-list">
+    <MilitaryItem
+      v-for="(military, index) in militaries"
+      :key="index"
+      :military="military"
     />
   </div>
 </template>

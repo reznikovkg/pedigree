@@ -1,13 +1,18 @@
 <template>
-  <div class="wedding-item">
-    <strong>{{ wedding.person.name }}</strong>
-    <span>
-      ({{ wedding.date_start }}<template v-if="wedding.date_end"> - {{ wedding.date_end }}</template>)
-    </span>
+  <div class="custom-card">
+    <div class="custom-card__header">
+      {{ fullName }} 
+    </div>
+    <div class="custom-card__date">
+      {{ wedding.startDate }}<template v-if="wedding.endDate"> - {{ wedding.endDate }}</template>
+    </div>
   </div>
 </template>
 
 <script>
+import { formatPersonName } from '@/services/formatPersonName'
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'WeddingItem',
   props: {
@@ -15,18 +20,17 @@ export default {
       type: Object,
       required: true
     }
+  },
+  computed: {
+    ...mapGetters ('persons', [
+      'getPersonById'
+    ]),
+    getPartner () {
+      return this.getPersonById(this.wedding.partnerId)
+    },
+    fullName () {
+      return formatPersonName(this.getPersonById(this.wedding.partnerId), {short: true, access: this.needHide})
+    },
   }
 }
 </script>
-
-<style scoped lang ="less">
-.wedding-item {
-  background-color: #f2f2f2;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
-  text-align: center;
-  max-width: 400px;
-}
-</style>

@@ -1,13 +1,10 @@
 <template>
-  <div class="education-list">
-    <h2>Образование</h2>
-    <ul>
-      <EducationItem 
-        v-for="(education, index) in educations" 
-        :key="index" 
-        :education="education" 
-      />
-    </ul>
+  <div class="custom-list">
+    <EducationItem 
+      v-for="(education, index) in educations" 
+      :key="index" 
+      :education="education" 
+    />
   </div>
 </template>
   
