@@ -1,5 +1,5 @@
 <template>
-  <div class="person-card">
+  <div v-if="this.person" class="person-card">
     <div>
       <PhotoPreview size="large" :photo="photo"/>
     </div>
@@ -105,82 +105,55 @@ export default {
       'getAccess'
     ]),
     activity () {
-      if (this.person) {
-        if (this.needHide) {
-          return 'Информация скрыта'
-        }
-        return this.person.activity || 'Информации нет'
+      if (this.needHide) {
+        return 'Информация скрыта'
       }
-      return ''
+      return this.person.activity || 'Информации нет'
     },
     biography () {
-      if (this.person) {
-        if (this.needHide) {
-          return 'Информация скрыта'
-        }
-        return this.person.biography || 'Информации нет'
+      if (this.needHide) {
+        return 'Информация скрыта'
       }
-      return ''
+      return this.person.biography || 'Информации нет'
     },
     birthDate () {
-      if (this.person) {
-        if (!this.person.birthDate) {
-          return null
-        }
-        if (!this.needHide) {
-          return this.person.birthDate
-        }
-        return maskDatetime(this.person.birthDate)
+      if (!this.person.birthDate) {
+        return null
       }
-      return ''
+      if (!this.needHide) {
+        return this.person.birthDate
+      }
+      return maskDatetime(this.person.birthDate)
     },
     children () {
-      if (this.person && this.person.id) {
-        if (!this.person.children) {
-          return []
-        }
-        return this.getPersonsByIds(this.person.children)
+      if (!this.person.children) {
+        return []
       }
-      return ''
+      return this.getPersonsByIds(this.person.children)
     },
     dieDate () {
-      if (this.person) {
-        if (!this.person.dieDate) {
-          return null
-        }
-        if (!this.needHide) {
-          return this.person.dieDate
-        }
-        return maskDatetime(this.person.dieDate)
+      if (!this.person.dieDate) {
+        return null
       }
-      return ''
+      if (!this.needHide) {
+        return this.person.dieDate
+      }
+      return maskDatetime(this.person.dieDate)
     },
     fullName () {
-      if (this.person) {
-        return formatPersonName(this.person, {short: true, access: this.needHide})
-      }
-      return ''
+      return formatPersonName(this.person, {short: true, access: this.needHide})
     },
     needHide () {
-      if (this.person) {
-        return this.person.access && this.getAccess
-      }
-      return ''
+      return this.person.access && this.getAccess
     },
     photo () {
-      if (this.person) {
-        if (!this.needHide) {
-          return this.person.photo
-        }
-        return defaultImage
+      if (!this.needHide) {
+        return this.person.photo
       }
-      return ''
+      return defaultImage
     },
     parents () {
-      if (this.person) {
-        return this.filteredPersons(person => person.children && person.children.includes(this.person.id))
-      }
-      return ''
+      return this.filteredPersons(person => person.children && person.children.includes(this.person.id))
     }
   }
 }
